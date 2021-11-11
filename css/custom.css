@@ -347,6 +347,7 @@ span#logo a {
 }
  #footer p.sentance{
     text-align:left;
+    padding: 20px;
 }
  #menu-footer-navigation, .services-navigation{
     text-align:left;
@@ -372,4 +373,23 @@ span#logo a {
 }
  p iframe {
      width: 100%;
+}
+
+
+
+/* XSmall */
+
+@media screen and (max-width: 480px) {
+ 
+  /* Button */
+
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"],
+    .button {
+      padding: 0 20px;
+    }
+
+   
+
 }
