@@ -174,7 +174,7 @@ Template Name: HOME
 								</section>
 
 								<section class="col-3 col-12-medium">
-									<a href="https://www.youtube.com/embed/JbUalVg_AUw" data-fancybox>
+									<a href="https://www.youtube.com/embed/TJjdCK0Qq1c" data-fancybox>
 										<img src="<?php bloginfo('template_directory'); ?>/images/vid1.jpg" alt="play video" style="width: 100%;">
 									</a>
 									<p>Banana Republic Corporate Event DJ + Saxophone</p>
