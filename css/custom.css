@@ -364,18 +364,16 @@ span#logo a {
  iframe.fit {
      width: 100%;
 }
- p.sentence2 {
+p.sentence2 {
      font-size: 12px;
      line-height: 16px;
      padding: 15px;
      background-color: rgb(27, 28, 36);
      text-align: left;
 }
- p iframe {
-     width: 100%;
+p iframe {
+  width: 100%;
 }
-
-
 
 /* XSmall */
 
@@ -389,7 +387,11 @@ span#logo a {
     .button {
       padding: 0 20px;
     }
+}
 
-   
-
+.featured-snippet {
+  padding: 20px 20px 0px 20px;
+  border: 1px solid #000;
+  margin-bottom: 40px;
+  background: #242634;
 }
