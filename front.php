@@ -89,7 +89,7 @@ Template Name: HOME
 					<p>Talented saxophone player Jason Whitmore is a crowd pleaser when he plays along side with DJ Misha's dance beats</p>
 					<div id="slide3"> <br>
 						<ul class="actions">
-							<li><a href="http://djmisha.com/dj-saxophone/" class="button">DJ &amp; Saxophone  </a></li>
+							<li><a href="https://djmisha.com/dj-saxophone/" class="button">DJ &amp; Saxophone  </a></li>
 						</ul>
 					</div>
 					<a href="#four" class="goto-next scrolly" rel="nofollow">Next</a> 
