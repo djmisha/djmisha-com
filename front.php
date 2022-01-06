@@ -29,6 +29,7 @@ Template Name: HOME
 		<a href="#one" class="goto-next scrolly" rel="nofollow">Next</a></section>
 
 		<!-- One -->
+
 		<section id="one" class="spotlight style1 bottom"> <span class="image fit main"><img src="https://djmisha.com/wordpress/wp-content/themes/djmisha-LANDED/images/pic02.jpg" alt="san diego dj" /></span>
 			<div class="home-video"></div>
 			<div class="content">
@@ -36,8 +37,7 @@ Template Name: HOME
 					<div class="row">
 						<div class="col-4 col-12-medium">
 							<header>
-								<h2>San Diego DJ spinning<br>
-								Dance & House Music  </h2>
+								<h2>San Diego DJ spinning<br>Dance &amp; House Music  </h2>
 								<p>"Last night a DJ saved my life!"</p>
 							</header>
 						</div>
@@ -105,57 +105,76 @@ Template Name: HOME
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i></h2>
-							<p><a class="ratings" href="https://www.google.com/search?q=dj+misha&oq=dj+misha&aqs=edge..69i57j0i512l2j0i10l2j69i60l3j69i65.799j0j4&sourceid=chrome&ie=UTF-8#lrd=0x80dbffcb31404e13:0x3fae10d8742ab418,1,,," rel="nofollow noopener" target="_blank">DJ Misha is Rated 5/5 stars based on 24 reviews</a>.</p>
-
-						</header>
-						<div class="row">
-							<div class="col-6 col-12-medium">
+							<i class="fa fa-star" aria-hidden="true"></i>
+						</h2>
+						<p><a class="ratings" href="https://www.google.com/search?q=dj+misha&oq=dj+misha&aqs=edge..69i57j0i512l2j0i10l2j69i60l3j69i65.799j0j4&sourceid=chrome&ie=UTF-8#lrd=0x80dbffcb31404e13:0x3fae10d8742ab418,1,,," rel="nofollow noopener" target="_blank">DJ Misha is Rated 5/5 stars based on 24 reviews</a></p>
+					</header>
+					<div class="row">
+						<div class="col-6 col-12-medium">
+							<div class="home-testi">
+								<h3>DJ Misha played at our annual holiday party and did an amazing job.  He read the crowd so well and had everyone smiling, laughing and dancing - I enjoyed the ambiance he created for us. He <strong>turned our party up</strong> a notch and we plan to have him back next year!
+								<br><br>
+								<i class="fas fa-user"></i> Rececca Troydon
+								</h3>
+								<div class="t-short">turned our party up</div>
+							</div>
+							<div class="home-testi">
 								<h3>I can attest to the awesome party brought by DJ Misha. He sets the mood and <strong>makes you want to dance</strong>.
-									<br>  <i class="fas fa-user"></i> Joanna N, 2017</h3>
-									<h3><br>DJ Misha played at our company product launch party and was awesome! He had a great variety of music that appealed to everyone and <strong>kept the energy going</strong> throughout the event.
-										<br>
-									 <i class="fas fa-user"></i> Misty, 2017</h3>
-									<h3>He is accommodating and humble when it comes to his talents but rest assured this guy knows what he's doing and knows how to make the party! <br>
-										 <i class="fas fa-user"></i> Jason W, 2017
-								</h3>
+								<br><br>
+								<i class="fas fa-user"></i> Joanna Nieves</h3>
+								<div class="t-short">makes you want to dance</div>
 							</div>
-							<div class="col-6 col-12-medium">
-								<h3>You killed it last night, literally <strong>you made the party</strong>! Everyone was talking about it. That was so good!
-									<br>
-								 <i class="fas fa-user"></i> David T, 2019</h3>
+							<div class="home-testi">
+								<h3><br>DJ Misha played at our company product launch party and was awesome! He had a great variety of music that appealed to everyone and <strong>kept the energy going</strong> throughout the event.
+								<br><br>
+								<i class="fas fa-user"></i> Misty</h3>
+								<div class="t-short">music that appealed to everyone</div>
+							</div>
+						</div>
+						<div class="col-6 col-12-medium">
+							<div class="home-testi">
 								<h3>We hired DJ Misha and his saxophone playing partner for our company Holiday Party in December and I have never gotten so much positive feedback from all who attended. They were the <strong>perfect combination of live music and DJ</strong> songs and kept the dance floor full the entire night! I would recommend them for any party or event.
-									<br>
-									 <i class="fas fa-user"></i> Tori, 2016
-								</h3>
-								<h3>DJ Misha played at our annual holiday party and did an amazing job.  He read the crowd so well and had everyone smiling, laughing and dancing - I enjoyed the ambiance he created for us. He <strong>turned our party up a notch</strong> and we plan to have him back next year!
-									<br>
-									 <i class="fas fa-user"></i> Rececca T, 2019
-								</h3>
-							</div> 
-						</div>
-						<br>
-						<br>
-						<h2>DJ for Corporate Events, Weddings, Private Parties</h2>
-						<br>
-						<div class="row">
-							<div class="col-4 col-12-medium">                
-								<p>
-									<strong>Wedding DJ</strong>
-									Also offering san diego dj services for your wedding, including any part of your special day: ceremony, cocktail hour, wedding reception and all other music needed on your wedding day.  
-								</p>
+								<br><br>
+								<i class="fas fa-user"></i> Tori, 2016</h3>
+								<div class="t-short">perfect combo of live music and DJ</div>
 							</div>
-							<div class="col-4 col-12-medium">
-								<p>
-									<strong>Professional DJ</strong>
-									More then weddings and events we work with any venue that hosts private parties or special events for a corporate reception. 
-								</p>
-							</div> 
-							<div class="col-4 col-12-medium">
-								<p>Make your corporate event, wedding or big day shine with DJ Misha's music selections. Offering DJ and sound equipment in San Diego, California and surrounding areas. Everyone will have a great time on your big day with our professional dj services for the musical entertainment of your guests in the San Diego, Southern california and near you. </p>
-							</div> 
-						</div>
+							<div class="home-testi">
+								<h3>He is accommodating and humble when it comes to his talents but rest assured this guy knows what he's doing and knows how to make the party!
+								<br><br>
+								<i class="fas fa-user"></i> Jason Whitmore Saxophone</h3>
+								<div class="t-short">knows how to make the party</div>
+							</div>
+							<div class="home-testi">
+								<h3>You killed it last night, literally you <strong>made the party</strong>! Everyone was talking about it. That was so good!
+								<br><br>
+								<i class="fas fa-user"></i> David Tal</h3>
+								<div class="t-short">That was so good!</div>
+							</div>
+						</div> 
 					</div>
+					<br>
+					<br>
+					<br>
+					<h2>DJ for Corporate Events, Weddings, Private Parties</h2>
+					<br>
+					<div class="row">
+						<div class="col-4 col-12-medium">                
+							<p>
+								<strong>Wedding DJ</strong>
+								Also offering san diego dj services for your wedding, including any part of your special day: ceremony, cocktail hour, wedding reception and all other music needed on your wedding day.  
+							</p>
+						</div>
+						<div class="col-4 col-12-medium">
+							<p>
+								<strong>Professional DJ</strong>
+								More then weddings and events we work with any venue that hosts private parties or special events for a corporate reception. 
+							</p>
+						</div> 
+						<div class="col-4 col-12-medium">
+							<p>Make your corporate event, wedding or big day shine with DJ Misha's music selections. Offering DJ and sound equipment in San Diego, California and surrounding areas. Everyone will have a great time on your big day with our professional dj services for the musical entertainment of your guests in the San Diego, Southern california and near you. </p>
+						</div> 
+					</div>
+				</div>
 				</section>
 
 				<!-- Four -->
@@ -163,16 +182,14 @@ Template Name: HOME
 				<section id="four" class="wrapper style1 special fade-up">
 					<div class="container">
 						<header class="major">
-							
 							<h3>Watch Videos</h3>
 							<div class="row uniform">
 								<section class="col-3 col-12-medium">
 									<a href="https://www.youtube.com/embed/pC1JDp0rNCk" data-fancybox>
 										<img src="<?php bloginfo('template_directory'); ?>/images/vid4.jpg" alt="play video" style="width: 90%;">
 									</a>
-									<p>Margarita Month Grand Tasting Festival Event, "Techno Titan" as printed in Pacific Magazine 2018</p>
+									<p>Margarita Month Grand Tasting Festival Event, "Techno Titan" as printed in Pacific Magazine</p>
 								</section>
-
 								<section class="col-3 col-12-medium">
 									<a href="https://www.youtube.com/embed/TJjdCK0Qq1c" data-fancybox>
 										<img src="<?php bloginfo('template_directory'); ?>/images/vid1.jpg" alt="play video" style="width: 100%;">
@@ -183,13 +200,13 @@ Template Name: HOME
 									<a href="https://www.youtube.com/embed/lQkUsgD0Bio" data-fancybox>
 										<img src="<?php bloginfo('template_directory'); ?>/images/vid2.jpg" alt="play video" style="width: 100%;">
 									</a>
-									<p>Uncorked Wine Festival 2016 with DJ Misha</p>
+									<p>Uncorked Wine Festival with DJ Misha</p>
 								</section>
 								<section class="col-3 col-12-medium">
 									<a href="https://www.youtube.com/embed/zcSpRqKdBvI" data-fancybox>
 										<img src="<?php bloginfo('template_directory'); ?>/images/vid3.jpg" alt="play video" style="width: 100%;">
 									</a>
-									<p>Pacific Magazine Margarita Month Festival with DJ Kaos 2016</p>
+									<p>Pacific Magazine Margarita Festival </p>
 								</section>
 							</div>
 						</header>
@@ -215,9 +232,11 @@ Template Name: HOME
 						<?php wp_reset_query(); ?>
 					</div>
 				</div>
-			<!-- 	<footer class="major">
+				<!-- 	
+				<footer class="major">
 					<a href="https://djmisha.com/blog" class="button" rel="nofollow">DJ Misha's Blog</a>
-				</footer> -->
+				</footer> 
+				-->
 			</div>
 		</section>
 		<section id="five" class="wrapper style2 special fade">
@@ -227,7 +246,9 @@ Template Name: HOME
 					</h2>
 					<p>Text <a href="tel:+16197862664" style="color: white;">(619) 786-2664</a> with event details to receive a reply with availability</p>
 				</header>
-				<div class="container 25%"> <a href="https://djmisha.com/contact-dj-misha/" class="button special" rel="nofollow">Hire DJ Misha</a> </div>
+				<div class="container 25%"> 
+					<a href="https://djmisha.com/contact-dj-misha/" class="button special" rel="nofollow">Hire DJ Misha</a> 
+				</div>
 			</div>
 		</section>
 

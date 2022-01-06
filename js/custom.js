@@ -50,16 +50,31 @@
     /* Shake Book now */
 
     $(function () {
-        function shakeKyle() {
-          var kyle = $('.footer-show-form');
-          if(kyle.hasClass('hello-shake')) {
-            // console.log("removed");
-            kyle.removeClass('hello-shake');
+        function shakeChatCTA() {
+          var djmisha = $('.footer-show-form');
+          if(djmisha.hasClass('hello-shake')) {
+            djmisha.removeClass('hello-shake');
           }
           else {
-            kyle.addClass('hello-shake');
-            // console.log("added");
+            djmisha.addClass('hello-shake');
           }
         }
-        setInterval(shakeKyle, 60000);
+        setInterval(shakeChatCTA, 60000);
     });
+
+
+/* Homepage Testimonials Iffe */
+
+(function() {
+	let testis = document.querySelectorAll('.home-testi');
+
+	const showTesti = (e) => {
+		e.target.classList.toggle("testi-partial");
+		e.target.classList.toggle("testi-full");
+	}	
+
+	for (var i = testis.length - 1; i >= 0; i--) {
+		testis[i].classList.add('testi-partial');
+		testis[i].addEventListener('click', showTesti)
+	}
+})();
