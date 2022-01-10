@@ -107,7 +107,7 @@ Template Name: HOME
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 						</h2>
-						<p><a class="ratings" href="https://www.google.com/search?q=dj+misha&oq=dj+misha&aqs=edge..69i57j0i512l2j0i10l2j69i60l3j69i65.799j0j4&sourceid=chrome&ie=UTF-8#lrd=0x80dbffcb31404e13:0x3fae10d8742ab418,1,,," rel="nofollow noopener" target="_blank">DJ Misha is Rated 5/5 stars based on 24 reviews</a></p>
+						<p><a class="ratings" href="https://www.google.com/search?q=dj+misha&oq=dj+misha&aqs=chrome..69i57j46i175i199i512j0i10l2j69i60l2j69i61j69i65.1834j0j7&sourceid=chrome&ie=UTF-8#lrd=0x80dbffcb31404e13:0x3fae10d8742ab418,1,,," rel="nofollow noopener" target="_blank">DJ Misha is Rated 5/5 stars based on 24 reviews</a></p>
 					</header>
 					<div class="row">
 						<div class="col-6 col-12-medium">
@@ -148,7 +148,7 @@ Template Name: HOME
 								<h3>You killed it last night, literally you <strong>made the party</strong>! Everyone was talking about it. That was so good!
 								<br><br>
 								<i class="fas fa-user"></i> David Tal</h3>
-								<div class="t-short">That was so good!</div>
+								<div class="t-short">that was so good!</div>
 							</div>
 						</div> 
 					</div>
@@ -161,7 +161,7 @@ Template Name: HOME
 						<div class="col-4 col-12-medium">                
 							<p>
 								<strong>Wedding DJ</strong>
-								Also offering san diego dj services for your wedding, including any part of your special day: ceremony, cocktail hour, wedding reception and all other music needed on your wedding day.  
+								Also offering san diego dj services for the big day - your wedding, including any part of the special day: ceremony, cocktail hour, wedding reception and all other music needed on your wedding day.
 							</p>
 						</div>
 						<div class="col-4 col-12-medium">
@@ -171,7 +171,7 @@ Template Name: HOME
 							</p>
 						</div> 
 						<div class="col-4 col-12-medium">
-							<p>Make your corporate event, wedding or big day shine with DJ Misha's music selections. Offering DJ and sound equipment in San Diego, California and surrounding areas. Everyone will have a great time on your big day with our professional dj services for the musical entertainment of your guests in the San Diego, Southern california and near you. </p>
+							<p>Make your corporate event shine with DJ Misha's music selections. Offering DJ and sound equipment in San Diego, California and surrounding areas. Everyone will have a great time with our professional dj services for the musical entertainment of your guests in the San Diego, Southern california and near you.</p>
 						</div> 
 					</div>
 				</div>
