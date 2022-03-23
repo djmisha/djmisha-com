@@ -507,3 +507,11 @@ p iframe {
 .home-testi:nth-of-type(3) .t-short {
   transform: rotate(3deg);
 }
+
+.gform_legacy_markup_wrapper ul.gfield_checkbox li label, .gform_legacy_markup_wrapper ul.gfield_radio li label {
+  padding-left: 37px;
+}
+
+.gform_legacy_markup_wrapper.gf_browser_chrome .gfield_checkbox li input, .gform_legacy_markup_wrapper.gf_browser_chrome .gfield_checkbox li input[type=checkbox], .gform_legacy_markup_wrapper.gf_browser_chrome .gfield_radio li input[type=radio] {
+  height: 20px;
+}
