@@ -39,6 +39,7 @@
   </footer>
 
   <ul class="icons">
+    <li><a href="https://www.instagram.com/djmishasd/" class="icon brands fa-instagram" target="_blank" title="DJ Misha Instagram" rel="noreferrer"><span class="label">DJ Misha Instagram</span></a></li>
     <li><a href="https://www.google.com/maps/place/DJ+Misha+-+San+Diego+DJ+for+Events+Party+Weddings+Club+Affordable+Prices+House+Dance+Music/@32.7990179,-117.2530949,9z/data=!4m5!3m4!1s0x0:0x3fae10d8742ab418!8m2!3d32.7990179!4d-117.2530949" class="icon brands fa-google" target="_blank" title="San Diego DJ Google +" rel="noreferrer"><span class="label">San Diego DJ Google</span></a></li>
     <li><a href="https://www.yelp.com/biz/dj-misha-san-diego-3" class="icon brands fa-yelp" target="_blank" title="San Diego DJ Yelp" rel="noreferrer"><span class="label">San Diego DJ Yelp</span></a></li>
     <li><a href="https://www.facebook.com/djmishaSandiego" class="icon brands fa-facebook" target="_blank" title="San Diego DJ Facebook" rel="noreferrer"><span class="label">San Diego DJ Facebook</span></a></li>
