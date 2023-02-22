@@ -107,7 +107,7 @@ Template Name: HOME
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 						</h2>
-						<p><a class="ratings" href="https://www.google.com/search?q=dj+misha&oq=dj+misha&aqs=chrome..69i57j46i175i199i512j0i10l2j69i60l2j69i61j69i65.1834j0j7&sourceid=chrome&ie=UTF-8#lrd=0x80dbffcb31404e13:0x3fae10d8742ab418,1,,," rel="nofollow noopener" target="_blank">DJ Misha is Rated 5/5 stars based on 38 reviews</a></p>
+						<p><a class="ratings" href="https://www.google.com/search?q=dj+misha&oq=dj+misha&aqs=chrome..69i57j46i175i199i512j0i10l2j69i60l2j69i61j69i65.1834j0j7&sourceid=chrome&ie=UTF-8#lrd=0x80dbffcb31404e13:0x3fae10d8742ab418,1,,," rel="nofollow noopener" target="_blank">DJ Misha is Rated 5/5 stars based on 46 reviews</a></p>
 					</header>
 					<div class="row">
 						<div class="col-6 col-12-medium">
@@ -145,10 +145,10 @@ Template Name: HOME
 								<div class="t-short">knows how to make the party</div>
 							</div>
 							<div class="home-testi">
-								<h3>You killed it last night, literally you <strong>made the party</strong>! Everyone was talking about it. That was so good!
+								<h3>DJ Misha was <strong>absolutely perfect for our event</strong>. The music he picked for our crowd was on point and set the tone perfectly.
 								<br><br>
-								<i class="fas fa-user"></i> David Tal</h3>
-								<div class="t-short">that was so good!</div>
+								<i class="fas fa-user"></i> Lindsey Snyder</h3>
+								<div class="t-short">absolutely perfect for our event</div>
 							</div>
 						</div> 
 					</div>
@@ -166,12 +166,13 @@ Template Name: HOME
 						</div>
 						<div class="col-4 col-12-medium">
 							<p>
-								<strong>Professional DJ</strong>
-								More then weddings and events we work with any venue that hosts private parties or special events for a corporate reception. 
+								<strong>Corporate DJ</strong>
+								More than weddings and events we work with any venue that hosts private parties or special events for a corporate reception. Make your corporate event shine with DJ Misha's music selections.
 							</p>
 						</div> 
 						<div class="col-4 col-12-medium">
-							<p>Make your corporate event shine with DJ Misha's music selections. Offering DJ and sound equipment in San Diego, California and surrounding areas. Everyone will have a great time with our professional dj services for the musical entertainment of your guests in the San Diego, Southern california and near you.</p>
+							<strong>Private Party DJ</strong>
+							<p>Offering DJ and sound equipment in San Diego, California and surrounding areas. Everyone will have a great time with our professional dj servicesproviding musical entertainment of your guests at a party near you.</p>
 						</div> 
 					</div>
 				</div>
