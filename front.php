@@ -159,20 +159,20 @@ Template Name: HOME
 					<br>
 					<div class="row">
 						<div class="col-4 col-12-medium">                
+							<h4>Wedding DJ</h4>
 							<p>
-								<strong>Wedding DJ</strong>
 								Also offering san diego dj services for the big day - your wedding, including any part of the special day: ceremony, cocktail hour, wedding reception and all other music needed on your wedding day.
 							</p>
 						</div>
 						<div class="col-4 col-12-medium">
+							<h4>Corporate DJ</h4>
 							<p>
-								<strong>Corporate DJ</strong>
 								More than weddings and events we work with any venue that hosts private parties or special events for a corporate reception. Make your corporate event shine with DJ Misha's music selections.
 							</p>
 						</div> 
 						<div class="col-4 col-12-medium">
-							<strong>Private Party DJ</strong>
-							<p>Offering DJ and sound equipment in San Diego, California and surrounding areas. Everyone will have a great time with our professional dj servicesproviding musical entertainment of your guests at a party near you.</p>
+							<h4>Private Party DJ</h4>
+							<p>Offering DJ and sound equipment in San Diego, California and surrounding areas. Everyone will have a great time with professional DJ services providing musical entertainment for guests at a party near you.</p>
 						</div> 
 					</div>
 				</div>
