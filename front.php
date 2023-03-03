@@ -197,13 +197,13 @@ Template Name: HOME
 									<a href="https://www.youtube.com/embed/pC1JDp0rNCk" data-fancybox>
 										<img src="<?php bloginfo('template_directory'); ?>/images/vid4.jpg" alt="play video" style="width: 90%;">
 									</a>
-									<p>Margarita Month Grand Tasting Festival Event, "Techno Titan" as printed in Pacific Magazine</p>
+									<p>Margarita Month Grand Tasting Festival, DJ Misha is "Techno Titan" as printed in Pacific Magazine</p>
 								</section>
 								<section class="col-3 col-12-medium">
 									<a href="https://www.youtube.com/embed/TJjdCK0Qq1c" data-fancybox>
 										<img src="<?php bloginfo('template_directory'); ?>/images/vid1.jpg" alt="play video" style="width: 100%;">
 									</a>
-									<p>Banana Republic Corporate Event DJ + Saxophone</p>
+									<p>Banana Republic Corporate Event with DJ + Saxophone</p>
 								</section> 
 								<section class="col-3 col-12-medium">
 									<a href="https://www.youtube.com/embed/lQkUsgD0Bio" data-fancybox>
@@ -215,12 +215,12 @@ Template Name: HOME
 									<a href="https://www.youtube.com/embed/zcSpRqKdBvI" data-fancybox>
 										<img src="<?php bloginfo('template_directory'); ?>/images/vid3.jpg" alt="play video" style="width: 100%;">
 									</a>
-									<p>Pacific Magazine Margarita Festival </p>
+									<p>Pacific Magazine Margarita Festival with DJ Misha</p>
 								</section>
 							</div>
 						</header>
 
-						<h3>Past Events</h3>
+						<h3>Past Events Blog</h3>
 						<div class="box alt">
 							<div class="row uniform">
 								<?php query_posts('showposts=4'); ?>
