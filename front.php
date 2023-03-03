@@ -159,19 +159,24 @@ Template Name: HOME
 					<p>Get ready to dance the night away with our expert DJ services! We offer an incredible selection of dance music for any occasion. Whether you're tying the knot and need the perfect soundtrack for your special day or you're hosting a corporate event or private party, DJ Misha has got you covered.</p>
 					<br>
 					<div class="row">
-						<div class="col-4 col-12-medium">                
+						<div class="col-4 col-12-medium">   
+							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-wedding.jpg" alt="Wedding DJ" style="width: 100%;">             
 							<h4>Wedding DJ</h4>
 							<p>
 								Say "I do" to our Wedding DJ services, where we'll help you create the perfect atmosphere for every part of your big day. From the ceremony to the cocktail hour, and right through to the reception, we'll keep the tunes bumping and the dance floor packed.
 							</p>
 						</div>
 						<div class="col-4 col-12-medium">
+							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-corporate.jpg" alt="Corporate DJ" style="width: 100%;">             
+
 							<h4>Corporate DJ</h4>
 							<p>
 								Take your corporate event to the next level with our Corporate DJ services. We'll work with any venue to ensure your event is unforgettable. Our professional sound equipment and music selection will have your guests raving about your event for years to come.
 							</p>
 						</div> 
 						<div class="col-4 col-12-medium">
+							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-party.jpg" alt="Private Party DJ" style="width: 100%;">             
+
 							<h4>Private Party DJ</h4>
 							<p>
 								Planning a private party? Look no further than DJ Misha! We provide top-of-the-line DJ and sound equipment services in San Diego and surrounding areas. We guarantee your guests will have a blast as we provide the musical entertainment that will keep them dancing all night long.
