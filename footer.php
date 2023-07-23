@@ -9,10 +9,10 @@
   </div>
 
   <div class="row">
-    <div class="col-4 col-12-medium">
+    <div class="col-4 col-4-medium">
        <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_class' => 'menu-footer-navigation' ) ); ?>
     </div>
-    <div class="col-4 col-12-medium">
+    <div class="col-4 col-6-medium">
        <?php wp_nav_menu( array( 'theme_location' => 'services', 'menu_class' => 'services-navigation' ) ); ?>
      </div>
     <div class="col-4 col-12-medium">

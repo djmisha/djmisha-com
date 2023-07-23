@@ -515,3 +515,18 @@ p iframe {
 .gform_legacy_markup_wrapper.gf_browser_chrome .gfield_checkbox li input, .gform_legacy_markup_wrapper.gf_browser_chrome .gfield_checkbox li input[type=checkbox], .gform_legacy_markup_wrapper.gf_browser_chrome .gfield_radio li input[type=radio] {
   height: 20px;
 }
+
+
+/* Social Media Icons*/
+
+#ul.icons {
+  margin: 0 0 3em 0;
+}
+
+#ul.icons li {
+  padding: 0 1em;
+}
+
+#footer ul.icons li .icon {
+  font-size: 1.0em;
+}
