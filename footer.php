@@ -2,7 +2,7 @@
 
 <footer id="footer">
 
-  <div class="footer-show-form">
+  <div class="lets-chat">
     <a href="https://djmisha.com/contact-dj-misha/" class="show-form" rel="nofollow"><img src="<?php bloginfo('template_directory'); ?>/images/expert.png" alt="Book Now, Let's Chat">
       <span>Book Now<br>Let's Chat</span>
     </a>

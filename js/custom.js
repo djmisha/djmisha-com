@@ -1,80 +1,85 @@
 /* Custom JS for djmisha.com */
 
+/* Attach Video on Homepage*/
 
-    /* Attach Video on Homepage*/
+function attachVideo() {
+  const myVideoWrap = document.querySelector('#one .home-video');
+      
+  if (myVideoWrap) {
+    const mobileVideo ='video-mobile.mp4';
+    const desktopVideo ='video.mp4';
+    let file;
 
-    function attachVideo() {
-      var myVideoWrap = document.querySelector('#one .home-video');
-          
-      if(myVideoWrap) {
-      var mobileVideo ='video-mobile.mp4';
-      var desktopVideo ='video.mp4';
-      let thevid = "";
-
-        if(window.innerWidth > 768) {
-           thevid = desktopVideo;
-        }
-        else {
-           thevid = mobileVideo;
-        }
-
-      myVideoWrap.innerHTML = createVideoMarkup(thevid);
-
-        function createVideoMarkup(item) {
-          let videoMarkup = '<video playsinline autoplay muted loop poster=\"https://djmisha.com/wordpress/wp-content/themes/djmisha-LANDED/images/pic02.jpg\" class=\"bgvid\"><source src=\"https://djmisha.com/images/' + item +'\" type=\"video/mp4\"></video>';
-          return videoMarkup;
-        }
-      }
+    if (window.innerWidth > 768) {
+       file = desktopVideo;
+    } else {
+       file = mobileVideo;
+    }
+    
+    function createVideoMarkup(item) {
+      const videoMarkup = '<video playsinline autoplay muted loop poster=\"https://djmisha.com/wordpress/wp-content/themes/djmisha-LANDED/images/pic02.jpg\" class=\"bgvid\"><source src=\"https://www.sandiegohousemusic.com/images/djmisha/' + item +'\" type=\"video/mp4\"></video>';
+      return videoMarkup;
     }
 
-    setTimeout(attachVideo, 1000)
+    myVideoWrap.innerHTML = createVideoMarkup(file);
+  }
+}
 
-    // Pop in Book now
+setTimeout(attachVideo, 1000)
 
-      var stickyContactTop = 1200;
+// Book now, Lets Chat
 
-      var stickyContact = function(){
-        var scrollTop = $(window).scrollTop();
+var stickyContactTop = 1200;
 
-        if (scrollTop > stickyContactTop) {
-          $('.footer-show-form').addClass('hithere');
-        } else {
-          // $('.footer-show-form').removeClass('hithere');
-        }
-      };
+var stickyContact = function(){
+  var scrollTop = $(window).scrollTop();
 
-      $(window).scroll(function() {
-        stickyContact();
-      });
+  if (scrollTop > stickyContactTop) {
+    $('.lets-chat').addClass('fly-out');
+  } 
+};
 
-    /* Shake Book now */
+$(window).scroll(function() {
+  stickyContact();
+});
 
-    $(function () {
-        function shakeChatCTA() {
-          var djmisha = $('.footer-show-form');
-          if(djmisha.hasClass('hello-shake')) {
-            djmisha.removeClass('hello-shake');
-          }
-          else {
-            djmisha.addClass('hello-shake');
-          }
-        }
-        setInterval(shakeChatCTA, 60000);
-    });
+/* Shake Book now */
+
+$(function () {
+    function shakeChatCTA() {
+      var djmisha = $('.lets-chat');
+      if (djmisha.hasClass('hello-shake')) {
+        djmisha.removeClass('hello-shake');
+      } else {
+        djmisha.addClass('hello-shake');
+      }
+    }
+    setInterval(shakeChatCTA, 60000);
+});
 
 
-/* Homepage Testimonials Iffe */
+/* Homepage Testimonials IFFE */
 
 (function() {
 	let testis = document.querySelectorAll('.home-testi');
 
-	const showTesti = (e) => {
-		e.target.classList.toggle("testi-partial");
-		e.target.classList.toggle("testi-full");
-	}	
+  if (testis.length > 0) {
+  	const showTesti = (e) => {
+  		e.target.classList.toggle("testi-partial");
+  		e.target.classList.toggle("testi-full");
+  	}	
 
-	for (var i = testis.length - 1; i >= 0; i--) {
-		testis[i].classList.add('testi-partial');
-		testis[i].addEventListener('click', showTesti)
-	}
+  	for (var i = testis.length - 1; i >= 0; i--) {
+  		testis[i].classList.add('testi-partial');
+  		testis[i].addEventListener('click', showTesti)
+  	}
+  }
 })();
+
+
+
+// Video Issue
+
+// https://stackoverflow.com/questions/27712778/video-plays-in-other-browsers-but-not-safari
+
+// https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/CreatingVideoforSafarioniPhone/CreatingVideoforSafarioniPhone.html#//apple_ref/doc/uid/TP40006514-SW6
