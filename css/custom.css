@@ -1,5 +1,5 @@
-
 /* Body */
+
 body, input, select, textarea {
   font-weight: 300;
 }
@@ -9,7 +9,9 @@ h1 {
   line-height: 1.5em;
   letter-spacing: -0.025em;
 }
+
 /* Pop in Styles*/ 
+
 h1#logo {
   font-size: 100%;
 }
@@ -76,18 +78,17 @@ span#logo a {
    line-height: 15px;
    letter-spacing: .5px;
 }
+
 .lets-chat a span {
   background: #000;
   padding: 2px 4px;
   display: block;
-  border-radius: 4px;
- 
+  border-radius: 4px; 
 }
 
 .lets-chat:hover img {
   width: 120px;
 }
-
 
 .contact-page img {
   border: none;
@@ -140,41 +141,47 @@ span#logo a {
 
 
 /* Video Styles*/ 
-  #one img {
-    opacity: 0;
-  }
-  #one .content {
-    padding-top: 60px;
-    padding-bottom: 60px;
-  }
-  #one h2 {
-    line-height: 1.0em;
-  }
-  #one {
-    position: relative;
-  }
-  #one video {
-    position: absolute;
-    top: 0px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    margin: 0;
-    padding: 0;
-    -o-object-fit: cover;
-    object-fit: cover;
-    opacity: 1;
-}
-@media only screen and (max-width: 980px) {
-      #one video {
-      width: 100%;
-      height: 400px;
-    }
+
+#one img {
+  opacity: 0;
 }
 
-/*FOMRS*/
+#one .content {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+#one h2 {
+  line-height: 1.0em;
+}
+
+#one {
+  position: relative;
+}
+
+#one video {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+  opacity: 1;
+}
+
+@media only screen and (max-width: 980px) {
+  #one video {
+    width: 100%;
+    height: 66vw;
+  }
+}
+
+/*FORMS*/
 
 .gform_legacy_markup_wrapper input:not([type="radio"]):not([type="checkbox"]):not([type="submit"]):not([type="button"]):not([type="image"]):not([type="file"]) {
   width: 100%;
