@@ -182,8 +182,8 @@ span#logo a {
 }
 
 @media only screen and (min-width: 980px) {
-  #one .spotlight .content {
-    background: rgba(23, 24, 32, 0.55) !important  ;
+  #one.spotlight .content {
+    background: rgba(23, 24, 32, 0.55);
   }
 }
 
