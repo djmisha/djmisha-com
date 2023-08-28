@@ -75,11 +75,3 @@ $(function () {
   	}
   }
 })();
-
-
-
-// Video Issue
-
-// https://stackoverflow.com/questions/27712778/video-plays-in-other-browsers-but-not-safari
-
-// https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/CreatingVideoforSafarioniPhone/CreatingVideoforSafarioniPhone.html#//apple_ref/doc/uid/TP40006514-SW6
