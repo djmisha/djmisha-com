@@ -140,6 +140,13 @@ input, select, textarea {
 		margin: 0 0 1em 0;
 	}
 
+  #sidebar p.sidebar-title {
+    color: #ffffff;
+		font-weight: 300;
+    font-size: 1.35em;
+		line-height: 1.5em;
+  }
+
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 			color: inherit;
 			border: 0;

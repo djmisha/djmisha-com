@@ -20,8 +20,8 @@ register_sidebar(array(
 	'name' => 'Page Sidebar',
 	'before_widget' => '<section id="sidebar"><section>',
 	'after_widget' => ' </section><hr />',
-	'before_title' => '<h3>',
-	'after_title' => '</h3>',
+	'before_title' => '<p class="sidebar-title">',
+	'after_title' => '</p>',
 ));
 
 
@@ -30,8 +30,8 @@ register_sidebar(array(
 	'name' => 'Contact Sidebar',
 	'before_widget' => '<section id="sidebar"><section>',
 	'after_widget' => ' </section><hr />',
-	'before_title' => '<h3>',
-	'after_title' => '</h3>',
+	'before_title' => '<p class="sidebar-title">',
+	'after_title' => '</p>',
 ));	
 
 
