@@ -21,7 +21,8 @@ Template Name: HOME
 				Professional, Top Rated San Diego DJ services<br> 15+ years of experience<br> "He brings the party and makes you want to dance!" 
 				<br>
 				<br>
-				<strong>Planning a party?</strong><br>
+				<strong>Planning a party?</strong>
+				<br>
 				<a href="https://djmisha.com/contact-dj-misha/" rel="nofollow">DJ Misha would love to provide the music!</a> <br>
 			</header>
 			<span class="image"><img src="https://djmisha.com/wordpress/wp-content/themes/djmisha-LANDED/images/pic01.jpg" alt="dj misha" /></span> 
@@ -37,7 +38,7 @@ Template Name: HOME
 					<div class="row">
 						<div class="col-4 col-12-medium">
 							<header>
-								<h2>San Diego DJ spinning<br>Dance &amp; House Music  </h2>
+								<h2>San Diego DJ spinning<br>Dance &amp; House Music</h2>
 								<p>"Last night a DJ saved my life!"</p>
 							</header>
 						</div>
@@ -161,26 +162,41 @@ Template Name: HOME
 					<div class="row">
 						<div class="col-4 col-12-medium">   
 							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-wedding.jpg" alt="Wedding DJ" style="width: 100%;">             
-							<h4>Wedding DJ</h4>
+							<h3>Wedding DJ</h3>
 							<p>
 								Say "I do" to our Wedding DJ services, where we'll help you create the perfect atmosphere for every part of your big day. From the ceremony to the cocktail hour, and right through to the reception, we'll keep the tunes bumping and the dance floor packed.
 							</p>
+							<ul class="actions service-actions"> 
+								<li>
+									<a href="https://djmisha.com/services/wedding-dj-in-san-diego/" class="button" rel="nofollow">Learn More</a>
+								</li> 
+							</ul>
 						</div>
 						<div class="col-4 col-12-medium">
 							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-corporate.jpg" alt="Corporate DJ" style="width: 100%;">             
 
-							<h4>Corporate DJ</h4>
+							<h3>Corporate DJ</h3>
 							<p>
 								Take your corporate event to the next level with our Corporate DJ services. We'll work with any venue to ensure your event is unforgettable. Our professional sound equipment and music selection will have your guests raving about your event for years to come.
 							</p>
+							<ul class="actions service-actions"> 
+								<li>
+									<a href="https://djmisha.com/services/corporate-event-dj-in-san-diego/" class="button" rel="nofollow">Learn More</a>
+								</li> 
+							</ul>
 						</div> 
 						<div class="col-4 col-12-medium">
 							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-party.jpg" alt="Private Party DJ" style="width: 100%;">             
 
-							<h4>Private Party DJ</h4>
+							<h3>Private Party DJ</h3>
 							<p>
 								Planning a private party? Look no further than DJ Misha! We provide top-of-the-line DJ and sound equipment services in San Diego and surrounding areas. We guarantee your guests will have a blast as we provide the musical entertainment that will keep them dancing all night long.
 							</p>
+							<ul class="actions service-actions"> 
+								<li>
+									<a href="https://djmisha.com/services/party-birthday-dj-in-san-diego/" class="button" rel="nofollow">Learn More</a>
+								</li> 
+							</ul>
 						</div> 
 					</div>
 				</div>

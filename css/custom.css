@@ -536,7 +536,7 @@ p iframe {
 }
 
 
-/* Social Media Icons*/
+/* Social Media Icons */
 
 #ul.icons {
   margin: 0 0 3em 0;
@@ -548,4 +548,10 @@ p iframe {
 
 #footer ul.icons li .icon {
   font-size: 1.0em;
+}
+
+/* HomePage Service Butons */
+
+ul.actions.service-actions {
+  flex-direction: column;
 }
