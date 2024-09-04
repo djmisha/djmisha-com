@@ -17,10 +17,12 @@
      </div>
     <div class="col-4 col-12-medium">
       <aside>
-       <p class="sentance">DJ Misha is a San Diego DJ for hire; corporate events, party, weddings, clubs, birthdays, nightlife and all occasions. San Diego DJs playing dancing, party and house music including EDM, club music, deep house, lounge, techno and can provide mobile DJ equipment with turntables and sound system. <br />
-      <br />
-      <b>Text or Call for a fast response <a href="tel:6197862664">(619) 786-2664</a></b></p>
-        <p class="sentence2">Looking for <a href="http://sandiegohousemusic.com" target="_blank" rel="noreferrer noopener">Dance Music Events</a>? Check out sandiegohousemusic.com for dance music events and dj mixes. 
+        <p class="sentance">DJ Misha is a San Diego DJ for hire; corporate events, party, weddings, clubs, birthdays, nightlife and all occasions. San Diego DJs playing dancing, party and house music including EDM, club music, deep house, lounge, techno and can provide mobile DJ equipment with turntables and sound system.
+        <br />
+        <br />
+        <b>Text or Call for a fast response <a href="tel:6197862664">(619) 786-2664</a></b>
+      </p>
+      <p class="sentence2">Looking for <a href="http://sandiegohousemusic.com" target="_blank" rel="noreferrer noopener">Dance Music Events</a>? Check out sandiegohousemusic.com for events happening near you.
       </aside>
     </div>
   </div>
