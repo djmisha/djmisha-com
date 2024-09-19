@@ -160,8 +160,9 @@ Template Name: HOME
 					<p>Get ready to dance the night away with our expert DJ services! We offer an incredible selection of dance music for any occasion. Whether you're tying the knot and need the perfect soundtrack for your special day or you're hosting a corporate event or private party, DJ Misha has got you covered.</p>
 					<br>
 					<div class="row">
-						<div class="col-4 col-12-medium">   
-							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-wedding.jpg" alt="Wedding DJ" style="width: 100%;">             
+						<div class="col-4 col-12-medium">
+              <div class="wedding-dj-video"></div>
+							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-wedding.jpg" alt="Wedding DJ" style="width: 100%;" class="wedding-dj-image">
 							<h3>Wedding DJ</h3>
 							<p>
 								Say "I do" to our Wedding DJ services, where we'll help you create the perfect atmosphere for every part of your big day. From the ceremony to the cocktail hour, and right through to the reception, we'll keep the tunes bumping and the dance floor packed.
@@ -173,7 +174,7 @@ Template Name: HOME
 							</ul>
 						</div>
 						<div class="col-4 col-12-medium">
-							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-corporate.jpg" alt="Corporate DJ" style="width: 100%;">             
+							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-corporate.jpg" alt="Corporate DJ" style="width: 100%;">
 
 							<h3>Corporate DJ</h3>
 							<p>
@@ -182,9 +183,9 @@ Template Name: HOME
 							<ul class="actions service-actions"> 
 								<li>
 									<a href="https://djmisha.com/services/corporate-event-dj-in-san-diego/" class="button" rel="nofollow">Learn More</a>
-								</li> 
+								</li>
 							</ul>
-						</div> 
+						</div>
 						<div class="col-4 col-12-medium">
 							<img src="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-party.jpg" alt="Private Party DJ" style="width: 100%;">             
 
@@ -195,9 +196,9 @@ Template Name: HOME
 							<ul class="actions service-actions"> 
 								<li>
 									<a href="https://djmisha.com/services/party-birthday-dj-in-san-diego/" class="button" rel="nofollow">Learn More</a>
-								</li> 
+								</li>
 							</ul>
-						</div> 
+						</div>
 					</div>
 				</div>
 				</section>
