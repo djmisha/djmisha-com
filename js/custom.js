@@ -102,7 +102,7 @@ $(function () {
       e.target.classList.toggle("testi-full");
     };
 
-    for (var i = testis.length - 1; i >= 0; i--) {
+    for (let i = testis.length - 1; i >= 0; i--) {
       testis[i].classList.add("testi-partial");
       testis[i].addEventListener("click", showTesti);
     }
