@@ -577,3 +577,9 @@ p iframe {
 ul.actions.service-actions {
   flex-direction: column;
 }
+
+/* Hide Footer on Contact Page */
+
+body.contact-page #footer {
+  display: none;
+}
