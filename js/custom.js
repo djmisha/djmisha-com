@@ -67,7 +67,6 @@ $(window).scroll(detectScrollforWeddingVideo);
 const stickyContact = () => {
   const stickyContactTop = 1200;
   const scrollTop = $(window).scrollTop();
-  console.log(scrollTop);
 
   if (scrollTop > stickyContactTop) {
     $(".lets-chat").addClass("fly-out");
