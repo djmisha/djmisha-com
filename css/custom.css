@@ -557,6 +557,9 @@ p iframe {
   height: 20px;
 }
 
+.gform_legacy_markup_wrapper ul.gfield_checkbox li, .gform_legacy_markup_wrapper ul.gfield_radio li {
+  height: 30px;
+}
 
 /* Social Media Icons */
 
