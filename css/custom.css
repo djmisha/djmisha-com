@@ -587,6 +587,7 @@ body.contact-page #footer {
   display: none;
 }
 
+/* Contact Button Main Navigayion */
 
 #header nav ul li#menu-item-716 {
   padding: 0px;
@@ -598,4 +599,12 @@ body.contact-page #footer {
 
 #header nav ul li#menu-item-716 a:hover {
   color: white !important;
+}
+
+/* Main Nav Wrap to Two lines on Smaller Screens */
+
+@media screen and (max-width: 1100px) {
+  #header nav {
+    left: 100px;
+  }
 }
