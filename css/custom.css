@@ -561,6 +561,13 @@ p iframe {
   height: 30px;
 }
 
+@media screen and (min-width: 1680px) {
+  .gform_legacy_markup_wrapper ul.gfield_checkbox li, .gform_legacy_markup_wrapper ul.gfield_radio li {
+    height: 40px;
+  }
+}
+
+
 /* Social Media Icons */
 
 #ul.icons {
