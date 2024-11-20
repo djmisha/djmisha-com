@@ -608,3 +608,32 @@ body.contact-page #footer {
     left: 100px;
   }
 }
+
+/* Prices Table*/
+
+.style-prices {
+  background-color: #242634;
+  margin-top: 4em;
+  border-radius: 10px;
+}
+
+.style-prices header ul {
+  margin: 0;
+  text-align: left;
+  list-style: none;
+}
+
+.style-prices header ul li {
+  margin-bottom: 20px;
+}
+
+
+.style-prices header ul li ul {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  list-style: disc;
+}
+
+.style-prices header ul li ul li {
+  margin-bottom: 0px;
+}
