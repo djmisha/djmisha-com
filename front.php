@@ -23,7 +23,7 @@ Template Name: HOME
 				<br>
 				<strong>Planning a party?</strong>
 				<br>
-				<a href="https://djmisha.com/contact-dj-misha/" rel="nofollow">DJ Misha would love to provide the music!</a> <br>
+				<a href="https://djmisha.com/contact/" rel="nofollow">DJ Misha would love to provide the music!</a> <br>
 			</header>
 			<span class="image"><img src="https://djmisha.com/wordpress/wp-content/themes/djmisha-LANDED/images/pic01.jpg" alt="dj misha" /></span> 
 		</div>
@@ -241,7 +241,7 @@ Template Name: HOME
 							</div>
 						</header>
 
-						<h3>Past Events Blog</h3>
+						<h3>Latest From DJ Misha's Blog</h3>
 						<div class="box alt">
 							<div class="row uniform">
 								<?php query_posts('showposts=4'); ?>
@@ -262,11 +262,11 @@ Template Name: HOME
 						<?php wp_reset_query(); ?>
 					</div>
 				</div>
-				<!-- 	
+					
 				<footer class="major">
-					<a href="https://djmisha.com/blog" class="button" rel="nofollow">DJ Misha's Blog</a>
+					<a href="https://djmisha.com/blog" class="button" rel="nofollow">More from our Blog</a>
 				</footer> 
-				-->
+				
 			</div>
 		</section>
 		<section id="five" class="wrapper style2 special fade">
@@ -277,7 +277,7 @@ Template Name: HOME
 					<p>Text <a href="tel:+16197862664" style="color: white;">(619) 786-2664</a> with event details to receive a reply with availability</p>
 				</header>
 				<div class="container 25%"> 
-					<a href="https://djmisha.com/contact-dj-misha/" class="button special" rel="nofollow">Hire DJ Misha</a> 
+					<a href="https://djmisha.com/contact/" class="button special" rel="nofollow">Hire DJ Misha</a> 
 				</div>
 			</div>
 		</section>
