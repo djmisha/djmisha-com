@@ -25,7 +25,7 @@ Template Name: HOME
 				<br>
 				<a href="https://djmisha.com/contact/" rel="nofollow">DJ Misha would love to provide the music!</a> <br>
 			</header>
-			<span class="image"><img src="https://djmisha.com/wordpress/wp-content/themes/djmisha-LANDED/images/pic01-a.jpg" alt="dj misha" /></span> 
+			<span class="image"><img src="https://djmisha.com/wordpress/wp-content/themes/djmisha-LANDED/images/pic01.jpg" alt="dj misha" /></span> 
 		</div>
 		<a href="#one" class="goto-next scrolly" rel="nofollow">Next</a></section>
 
