@@ -8,17 +8,17 @@
         <div class="box alt">
           <div class="row uniform">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-            <section class="col-4 col-12-xsmall"> 
-              <a href="<?php the_permalink() ?>" rel="bookmark">
-                <?php the_post_thumbnail( 'medium'); ?>
-              </a>
-              <h2>
-                <a href="<?php the_permalink() ?>" rel="bookmark">
-                  <?php the_title(); ?>
+              <section class="col-4 col-12-small"> 
+                <a href="<?php the_permalink() ?>" rel="bookmark" class="image-w">
+                  <?php the_post_thumbnail('medium'); ?>
                 </a>
-              </h2>
-              <?php the_excerpt(); ?>            
-            </section>
+                <h2>
+                  <a href="<?php the_permalink() ?>" rel="bookmark">
+                    <?php the_title(); ?>
+                  </a>
+                </h2>
+                <?php the_excerpt(); ?>            
+              </section>
             <?php endwhile; else: ?>
             <?php endif; ?>
           </div>
@@ -26,7 +26,7 @@
       <?php posts_nav_link( ' &#8212; ', __( '&laquo; Previous Page'), __( 'Next Page &raquo;')); ?>
     </div>
   </div>
-  <?php wp_reset_postdata(); ?>
+<?php wp_reset_postdata(); ?>
 <?php include 'footer.php'; ?>
 </body>
 </html>
