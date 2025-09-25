@@ -110,7 +110,7 @@ Template Name: HOME
 						</h2>
 						<p>
               <a class="ratings" href="https://www.google.com/search?q=dj+misha&oq=dj+misha&aqs=chrome..69i57j46i175i199i512j0i10l2j69i60l2j69i61j69i65.1834j0j7&sourceid=chrome&ie=UTF-8#lrd=0x80dbffcb31404e13:0x3fae10d8742ab418,1,,," rel="nofollow noopener" target="_blank">
-                DJ Misha is Rated 5/5 stars based on 75 reviews
+                DJ Misha is Rated 5/5 stars based on 82 reviews
               </a>
             </p>
 					</header>
