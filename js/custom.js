@@ -18,7 +18,7 @@ const attachVideo = () => {
 
     function createVideoMarkup(item) {
       const videoMarkup =
-        '<video playsinline autoplay muted loop poster="https://djmisha.com/wordpress/wp-content/themes/djmisha-LANDED/images/pic02.jpg" class="bgvid"><source src="https://www.sandiegohousemusic.com/images/djmisha/' +
+        '<video playsinline autoplay muted loop poster="https://djmisha.com/wordpress/wp-content/themes/djmisha-LANDED/images/pic02.jpg" class="bgvid"><source src="https://grooverooster.com/images/djmisha/' +
         item +
         '" type="video/mp4"></video>';
       return videoMarkup;
@@ -42,7 +42,7 @@ const attachWeddingVideo = () => {
   };
 
   const videoMarkup =
-    '<video playsinline autoplay muted loop poster="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-wedding.jpg"><source src="https://www.sandiegohousemusic.com/images/djmisha/wedding-dj.mp4" type="video/mp4"></video>';
+    '<video playsinline autoplay muted loop poster="https://djmisha.com/wordpress/wp-content/uploads/2023/03/dj-service-wedding.jpg"><source src="https://grooverooster.com/images/djmisha/wedding-dj.mp4" type="video/mp4"></video>';
 
   if (window.innerWidth < 768) {
     myVideoWrap.innerHTML = videoMarkup;
