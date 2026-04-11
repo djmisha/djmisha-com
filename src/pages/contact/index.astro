@@ -1,0 +1,57 @@
+---
+import ContactLayout from '../../layouts/ContactLayout.astro';
+---
+<ContactLayout title="Contact DJ Misha" description="Contact DJ Misha for your next San Diego event. Get a quote for wedding DJ, corporate event DJ, or private party DJ services.">
+
+  <p>Ready to book DJ Misha for your next event? Fill out the form below or contact us directly.</p>
+
+  <h2>Get in Touch</h2>
+
+  <div class="gform_wrapper">
+    <form id="contact-form" class="gform_body" method="POST" action="https://formspree.io/f/placeholder" data-netlify="true" name="contact">
+      <div class="gform_fields">
+        <div class="gfield">
+          <label class="gfield_label" for="input_name">Your Name <span class="gfield_required">*</span></label>
+          <input type="text" id="input_name" name="name" class="ginput_container" required />
+        </div>
+        <div class="gfield">
+          <label class="gfield_label" for="input_email">Your Email <span class="gfield_required">*</span></label>
+          <input type="email" id="input_email" name="email" class="ginput_container" required />
+        </div>
+        <div class="gfield">
+          <label class="gfield_label" for="input_phone">Phone Number</label>
+          <input type="tel" id="input_phone" name="phone" class="ginput_container" />
+        </div>
+        <div class="gfield">
+          <label class="gfield_label" for="input_event_date">Event Date</label>
+          <input type="date" id="input_event_date" name="event_date" class="ginput_container" />
+        </div>
+        <div class="gfield">
+          <label class="gfield_label" for="input_event_type">Event Type</label>
+          <select id="input_event_type" name="event_type" class="ginput_container">
+            <option value="">Select Event Type</option>
+            <option value="wedding">Wedding</option>
+            <option value="corporate">Corporate Event</option>
+            <option value="private-party">Private Party</option>
+            <option value="birthday">Birthday Party</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="gfield">
+          <label class="gfield_label" for="input_message">Message <span class="gfield_required">*</span></label>
+          <textarea id="input_message" name="message" class="ginput_container" rows="6" required></textarea>
+        </div>
+      </div>
+      <div class="gform_footer">
+        <button type="submit" class="button primary">Send Message</button>
+      </div>
+    </form>
+  </div>
+
+  <h3>Other Ways to Reach Us</h3>
+  <p>
+    <strong>Phone:</strong> <a href="tel:6197862664">(619) 786-2664</a><br>
+    Text or call for a fast response with event details to receive a reply with availability.
+  </p>
+
+</ContactLayout>
