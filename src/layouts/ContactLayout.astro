@@ -1,0 +1,40 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+import BaseLayout from './BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import ContactSidebar from '../components/ContactSidebar.astro';
+
+const { title, description = '' } = Astro.props;
+---
+<BaseLayout title={title} description={description} bodyClass="contact-page">
+
+  <div id="page-wrapper">
+    <Navigation />
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+      <div class="container">
+        <header class="major">
+          <h1>{title}</h1>
+        </header>
+        <div class="row 150%">
+          <div class="col-8 col-12-medium">
+            <section id="content">
+              <slot />
+            </section>
+          </div>
+          <div class="col-4 col-12-medium">
+            <ContactSidebar />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+
+</BaseLayout>
