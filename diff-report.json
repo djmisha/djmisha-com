@@ -1,0 +1,345 @@
+{
+  "timestamp": "2026-04-12T14:28:38.266Z",
+  "summary": {
+    "total": 21,
+    "pass": 20,
+    "fail": 1,
+    "skipped": 0
+  },
+  "pages": [
+    {
+      "page": "home",
+      "url": "https://djmisha.com/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "about",
+      "url": "https://djmisha.com/about/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<a> count",
+          "expected": "57",
+          "actual": "56"
+        }
+      ]
+    },
+    {
+      "page": "music",
+      "url": "https://djmisha.com/music/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "reviews",
+      "url": "https://djmisha.com/reviews/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "prices",
+      "url": "https://djmisha.com/prices/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "services",
+      "url": "https://djmisha.com/services/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "wedding-dj",
+      "url": "https://djmisha.com/services/wedding-dj-in-san-diego/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "destination-wedding-dj",
+      "url": "https://djmisha.com/services/destination-wedding-dj/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "corporate-event-dj",
+      "url": "https://djmisha.com/services/corporate-event-dj-in-san-diego/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<a> count",
+          "expected": "73",
+          "actual": "72"
+        }
+      ]
+    },
+    {
+      "page": "party-birthday-dj",
+      "url": "https://djmisha.com/services/party-birthday-dj-in-san-diego/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "dj-saxophone",
+      "url": "https://djmisha.com/dj-saxophone/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<a> count",
+          "expected": "73",
+          "actual": "70"
+        }
+      ]
+    },
+    {
+      "page": "contact",
+      "url": "https://djmisha.com/contact/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "blog",
+      "url": "https://djmisha.com/blog/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "sitemap",
+      "url": "https://djmisha.com/sitemap/",
+      "status": "pass",
+      "headDiffs": [
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "https://djmisha.com/images/logo-djmisha.png"
+        }
+      ],
+      "bodyDiffs": []
+    },
+    {
+      "page": "misha",
+      "url": "https://djmisha.com/misha/",
+      "status": "pass",
+      "headDiffs": [],
+      "bodyDiffs": []
+    },
+    {
+      "page": "photogallery",
+      "url": "https://djmisha.com/photogallery/",
+      "status": "fail",
+      "headDiffs": [
+        {
+          "severity": "critical",
+          "element": "<title>",
+          "expected": "San Diego DJ Misha",
+          "actual": "Redirecting to: /"
+        },
+        {
+          "severity": "critical",
+          "element": "<meta description>",
+          "expected": "San Diego DJ for hire; spinning dance and house music at corporate events, parties, weddings, birthdays and all occasions. Planning a party? Book DJ Misha.",
+          "actual": "(missing)"
+        },
+        {
+          "severity": "critical",
+          "element": "JSON-LD schema",
+          "expected": "present",
+          "actual": "(missing)"
+        },
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:title\">",
+          "expected": "San Diego DJ Misha",
+          "actual": "(missing)"
+        },
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:description\">",
+          "expected": "best djs in san diego dj for events club party wedding corporate top dj&#039;s edm house music electronic dance music",
+          "actual": "(missing)"
+        },
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:image\">",
+          "expected": "https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png",
+          "actual": "(missing)"
+        },
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:url\">",
+          "expected": "https://djmisha.com/",
+          "actual": "(missing)"
+        },
+        {
+          "severity": "cosmetic",
+          "element": "<meta property=\"og:type\">",
+          "expected": "website",
+          "actual": "(missing)"
+        }
+      ],
+      "bodyDiffs": [
+        {
+          "severity": "critical",
+          "element": "<h1>",
+          "expected": "San Diego DJ",
+          "actual": "(missing)"
+        },
+        {
+          "severity": "critical",
+          "element": "<img> count",
+          "expected": "16",
+          "actual": "0"
+        },
+        {
+          "severity": "critical",
+          "element": "<a> count",
+          "expected": "60",
+          "actual": "1"
+        }
+      ]
+    },
+    {
+      "page": "your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision",
+      "url": "https://djmisha.com/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/",
+      "status": "pass",
+      "headDiffs": [],
+      "bodyDiffs": []
+    },
+    {
+      "page": "the-art-of-taking-requests-a-djs-perspective",
+      "url": "https://djmisha.com/blog/the-art-of-taking-requests-a-djs-perspective/",
+      "status": "pass",
+      "headDiffs": [],
+      "bodyDiffs": []
+    },
+    {
+      "page": "crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech",
+      "url": "https://djmisha.com/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/",
+      "status": "pass",
+      "headDiffs": [],
+      "bodyDiffs": []
+    },
+    {
+      "page": "a-guide-to-planning-for-your-wedding-with-dj-misha",
+      "url": "https://djmisha.com/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/",
+      "status": "pass",
+      "headDiffs": [],
+      "bodyDiffs": []
+    },
+    {
+      "page": "edm-dj-for-party-or-private-event-electronic-dance-music",
+      "url": "https://djmisha.com/blog/edm-dj-for-party-or-private-event-electronic-dance-music/",
+      "status": "pass",
+      "headDiffs": [],
+      "bodyDiffs": []
+    }
+  ]
+}

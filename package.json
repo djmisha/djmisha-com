@@ -6,9 +6,20 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest --run"
   },
   "dependencies": {
     "astro": "^5.18.1"
+  },
+  "devDependencies": {
+    "fast-check": "^4.6.0",
+    "jsdom": "^27.0.1",
+    "pixelmatch": "^7.1.0",
+    "playwright": "^1.59.1",
+    "pngjs": "^7.0.0",
+    "sirv": "^3.0.2",
+    "vitest": "^4.1.4",
+    "yaml": "^2.8.3"
   }
 }

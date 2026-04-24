@@ -1,18 +1,158 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
----
-<BlogLayout title="Blog" description="DJ Misha's blog - tips, stories, and insights about DJ services, events, and music in San Diego.">
 
-  <section class="col-4 col-12-xsmall">
-    <a href="/blog/" rel="bookmark">
-      <img src="/images/pic01.jpg" alt="DJ Misha" style="width: 100%; height: auto;" />
+const jsonLd = [
+  {
+    "@context": "http://schema.org/",
+    "@id": "https://djmisha.com",
+    "@type": "Organization",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "url": "https://djmisha.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/logo-djmisha.png",
+      "width": 400
+    },
+    "sameAs": [
+      "https://www.instagram.com/djmishasd/",
+      "https://www.youtube.com/@djmisha",
+      "https://www.facebook.com/djmishaSandiego",
+      "https://www.yelp.com/biz/dj-misha-san-diego-3",
+      "https://www.gigtown.com/artists/dj-misha",
+      "https://www.gigsalad.com/dj_misha_san_diego",
+      "https://goo.gl/maps/2rRm8kBYePqaPbVE6",
+      "https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"
+    ],
+    "contactPoint": {
+      "telephone": "+1-619-786-2664",
+      "contactType": "customer service"
+    },
+    "AggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "83"
+    }
+  },
+  {
+    "@context": "http://schema.org/",
+    "@type": "WebSite",
+    "url": "https://djmisha.com",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "about": "DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"
+  },
+  {
+    "@context": "http://schema.org/",
+    "@type": "WebPage",
+    "url": "https://djmisha.com/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/",
+    "headline": "Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision",
+    "mainEntityOfPage": "https://djmisha.com/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/",
+    "about": "After DJ\u2019ing weddings for many years, I\u2019ve come to realize one simple truth: no two weddings should sound the same. Every couple has a distinct vision, every crowd brings its own energy, and the music should reflect that to create a truly one-of-a-kind celebration. Every Wedding Deserves a Unique Soundtrack In my early years, I\u2026"
+  },
+  {
+    "@context": "http://schema.org/",
+    "@id": "#LocalBusiness",
+    "@type": "LocalBusiness",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "url": "https://djmisha.com/",
+    "image": "/images/i-4LhQfht-L.jpg",
+    "priceRange": "Contact For Pricing",
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "4640 Cass Street #9553",
+        "addressLocality": "San Diego",
+        "addressRegion": "CA",
+        "postalCode": "92109",
+        "addressCountry": "US",
+        "telephone": "+1-619-786-2664"
+      }
+    ],
+    "employees": ["DJ Misha"]
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "jobTitle": "DJ",
+    "name": "DJ Misha",
+    "telephone": "+1-619-786-2664",
+    "url": "https://djmisha.com/about/",
+    "image": "/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"
+  }
+];
+const blogDesc = "best djs in san diego dj for events club party wedding corporate top dj's edm house music electronic dance music";
+---
+<BlogLayout
+  title="Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision"
+  pageHeading="DJ Misha's Blog"
+  description={blogDesc}
+  canonicalUrl="https://djmisha.com/blog/"
+  ogTitle="Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision"
+  ogImage="https://djmisha.com/images/logo-djmisha.png"
+  ogUrl="https://djmisha.com/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/"
+  ogType="website"
+  twitterTitle="Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision"
+  twitterImage="https://djmisha.com/images/logo-djmisha.png"
+  jsonLd={jsonLd}
+>
+
+  <section class="col-4 col-12-small">
+    <a href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/" rel="bookmark" class="image-w">
+      <img width="298" height="200" src="/images/epic-DJ-set-wedding-dance-party-298x200.jpg" class="attachment-medium size-medium wp-post-image" alt="" decoding="async" fetchpriority="high" srcset="/images/epic-DJ-set-wedding-dance-party-298x200.jpg 298w, /images/epic-DJ-set-wedding-dance-party.jpg 504w" sizes="(max-width: 298px) 100vw, 298px" />
     </a>
     <h2>
-      <a href="/blog/" rel="bookmark">
-        Welcome to DJ Misha's Blog
+      <a href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/" rel="bookmark">
+        Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision
       </a>
     </h2>
-    <p>Stay tuned for the latest updates, event stories, and DJ tips from DJ Misha. We'll be sharing insights about music, events, and what makes a great DJ experience.</p>
+    <p>After DJ'ing weddings for many years, I've come to realize one simple truth: no two weddings should sound the same. Every couple has a distinct vision, every crowd brings its [&hellip;]</p>
+  </section>
+
+  <section class="col-4 col-12-small">
+    <a href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/" rel="bookmark" class="image-w">
+      <img width="296" height="200" src="/images/wedding-dj-toast-296x200.jpg" class="attachment-medium size-medium wp-post-image" alt="" decoding="async" srcset="/images/wedding-dj-toast-296x200.jpg 296w, /images/wedding-dj-toast.jpg 500w" sizes="(max-width: 296px) 100vw, 296px" />
+    </a>
+    <h2>
+      <a href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/" rel="bookmark">
+        Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech
+      </a>
+    </h2>
+    <p>As a wedding DJ, I&#8217;ve had the pleasure of witnessing countless toasts – the heartwarming, the funny, and occasionally, the ones that miss the mark. A well-delivered toast can be [&hellip;]</p>
+  </section>
+
+  <section class="col-4 col-12-small">
+    <a href="/blog/the-art-of-taking-requests-a-djs-perspective/" rel="bookmark" class="image-w">
+      <img width="274" height="200" src="/images/Screenshot-2024-09-14-at-6.18.37-AM-274x200.jpg" class="attachment-medium size-medium wp-post-image" alt="" decoding="async" srcset="/images/Screenshot-2024-09-14-at-6.18.37-AM-274x200.jpg 274w, /images/Screenshot-2024-09-14-at-6.18.37-AM.jpg 800w" sizes="(max-width: 274px) 100vw, 274px" />
+    </a>
+    <h2>
+      <a href="/blog/the-art-of-taking-requests-a-djs-perspective/" rel="bookmark">
+        The Art of Taking Requests: A DJ&#8217;s Perspective
+      </a>
+    </h2>
+    <p>As a San Diego DJ who&#8217;s been spinning tracks for many years, I&#8217;ve seen it all when it comes to song requests. From the perfectly timed crowd-pleaser to the cringe-worthy [&hellip;]</p>
+  </section>
+
+  <section class="col-4 col-12-small">
+    <a href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/" rel="bookmark" class="image-w">
+      <img width="300" height="200" src="/images/10-i-4lhqfht-l-300x200.jpg" class="attachment-medium size-medium wp-post-image" alt="DJing for 40th Birthday Party" decoding="async" loading="lazy" srcset="/images/10-i-4lhqfht-l-300x200.jpg 300w, /images/10-i-4lhqfht-l-768x513.jpg 768w, /images/10-i-4lhqfht-l.jpg 800w" sizes="auto, (max-width: 300px) 100vw, 300px" />
+    </a>
+    <h2>
+      <a href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/" rel="bookmark">
+        A Guide to Planning for Your Wedding with DJ Misha
+      </a>
+    </h2>
+    <p>Planning a wedding can be a formidable task, and choosing the right music is a big part of that. That&#8217;s why we&#8217;ve created this comprehensive guide to help you plan [&hellip;]</p>
+  </section>
+
+  <section class="col-4 col-12-small">
+    <a href="/blog/edm-dj-for-party-or-private-event-electronic-dance-music/" rel="bookmark" class="image-w">
+      <img width="300" height="200" src="/images/vish-2648-3427900361-O-300x200.jpg" class="attachment-medium size-medium wp-post-image" alt="" decoding="async" loading="lazy" srcset="/images/vish-2648-3427900361-O-300x200.jpg 300w, /images/vish-2648-3427900361-O.JPG 800w" sizes="auto, (max-width: 300px) 100vw, 300px" />
+    </a>
+    <h2>
+      <a href="/blog/edm-dj-for-party-or-private-event-electronic-dance-music/" rel="bookmark">
+        DJ Misha Rocks the Party: A Night of Electronic Dance Music and House Music in San Diego
+      </a>
+    </h2>
+    <p>If you&#8217;re looking for a way to make your private event unforgettable, then hiring a DJ is the way to go. Music is one of the most essential elements that [&hellip;]</p>
   </section>
 
 </BlogLayout>

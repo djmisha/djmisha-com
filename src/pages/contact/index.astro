@@ -1,57 +1,116 @@
 ---
 import ContactLayout from '../../layouts/ContactLayout.astro';
+import ContactForm from '../../components/ContactForm.astro';
+
+const jsonLd = [
+  {
+    "@context": "http://schema.org/",
+    "@id": "https://djmisha.com",
+    "@type": "Organization",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "url": "https://djmisha.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://djmisha.com/images/logo-djmisha.png",
+      "width": 400
+    },
+    "sameAs": [
+      "https://www.instagram.com/djmishasd/",
+      "https://www.youtube.com/@djmisha",
+      "https://www.facebook.com/djmishaSandiego",
+      "https://www.yelp.com/biz/dj-misha-san-diego-3",
+      "https://www.gigtown.com/artists/dj-misha",
+      "https://www.gigsalad.com/dj_misha_san_diego",
+      "https://goo.gl/maps/2rRm8kBYePqaPbVE6",
+      "https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"
+    ],
+    "contactPoint": {
+      "telephone": "+1-619-786-2664",
+      "contactType": "customer service"
+    },
+    "AggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "83"
+    }
+  },
+  {
+    "@context": "http://schema.org/",
+    "@type": "WebSite",
+    "url": "https://djmisha.com",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "about": "DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"
+  },
+  {
+    "@context": "http://schema.org/",
+    "@type": "WebPage",
+    "url": "https://djmisha.com/contact/",
+    "headline": "Contact San Diego DJ for Pricing and Bookings",
+    "mainEntityOfPage": "https://djmisha.com/contact/",
+    "about": "Welcome! I\u2019m DJ Misha, and I\u2019m excited you\u2019re considering me for your upcoming celebration. With years of experience crafting unforgettable moments, I specialize in creating the perfect musical atmosphere for any occasion. From elegant weddings to vibrant private parties and sophisticated corporate events, we bring our passion and expertise to venues both locally and worldwide.\u2026"
+  },
+  {
+    "@context": "http://schema.org/",
+    "@id": "#LocalBusiness",
+    "@type": "LocalBusiness",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "url": "https://djmisha.com/",
+    "image": "https://djmisha.com/images/i-4LhQfht-L.jpg",
+    "priceRange": "Contact For Pricing",
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "4640 Cass Street #9553",
+        "addressLocality": "San Diego",
+        "addressRegion": "CA",
+        "postalCode": "92109",
+        "addressCountry": "US",
+        "telephone": "+1-619-786-2664"
+      }
+    ],
+    "employees": ["DJ Misha"]
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "jobTitle": "DJ",
+    "name": "DJ Misha",
+    "telephone": "+1-619-786-2664",
+    "url": "https://djmisha.com/about/",
+    "image": "https://djmisha.com/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"
+  }
+];
+const contactDesc = "Hire a DJ near you. Reach out to DJ Misha today to receive availably and pricing for your event, party or wedding. Get fast response. Let's Party! \uD83E\uDD73";
 ---
-<ContactLayout title="Contact DJ Misha" description="Contact DJ Misha for your next San Diego event. Get a quote for wedding DJ, corporate event DJ, or private party DJ services.">
+<ContactLayout
+  title="Contact San Diego DJ for Pricing and Bookings"
+  description={contactDesc}
+  canonicalUrl="https://djmisha.com/contact/"
+  ogTitle="Contact San Diego DJ for Pricing and Bookings"
+  ogDescription={contactDesc}
+  ogImage="https://djmisha.com/images/logo-djmisha.png"
+  ogUrl="https://djmisha.com/contact/"
+  ogType="website"
+  twitterTitle="Contact San Diego DJ for Pricing and Bookings"
+  twitterDescription={contactDesc}
+  twitterImage="https://djmisha.com/images/logo-djmisha.png"
+  jsonLd={jsonLd}
+>
 
-  <p>Ready to book DJ Misha for your next event? Fill out the form below or contact us directly.</p>
+<div class="wp-block-image">
+<figure class="alignright size-large"><img decoding="async" src="/images/expert.png" alt="" /></figure>
+</div>
 
-  <h2>Get in Touch</h2>
+<p>Welcome! I&#8217;m DJ Misha, and I&#8217;m excited you&#8217;re considering me for your upcoming celebration. With years of experience crafting unforgettable moments, I specialize in creating the perfect musical atmosphere for any occasion.</p>
 
-  <div class="gform_wrapper">
-    <form id="contact-form" class="gform_body" method="POST" action="https://formspree.io/f/placeholder" data-netlify="true" name="contact">
-      <div class="gform_fields">
-        <div class="gfield">
-          <label class="gfield_label" for="input_name">Your Name <span class="gfield_required">*</span></label>
-          <input type="text" id="input_name" name="name" class="ginput_container" required />
-        </div>
-        <div class="gfield">
-          <label class="gfield_label" for="input_email">Your Email <span class="gfield_required">*</span></label>
-          <input type="email" id="input_email" name="email" class="ginput_container" required />
-        </div>
-        <div class="gfield">
-          <label class="gfield_label" for="input_phone">Phone Number</label>
-          <input type="tel" id="input_phone" name="phone" class="ginput_container" />
-        </div>
-        <div class="gfield">
-          <label class="gfield_label" for="input_event_date">Event Date</label>
-          <input type="date" id="input_event_date" name="event_date" class="ginput_container" />
-        </div>
-        <div class="gfield">
-          <label class="gfield_label" for="input_event_type">Event Type</label>
-          <select id="input_event_type" name="event_type" class="ginput_container">
-            <option value="">Select Event Type</option>
-            <option value="wedding">Wedding</option>
-            <option value="corporate">Corporate Event</option>
-            <option value="private-party">Private Party</option>
-            <option value="birthday">Birthday Party</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="gfield">
-          <label class="gfield_label" for="input_message">Message <span class="gfield_required">*</span></label>
-          <textarea id="input_message" name="message" class="ginput_container" rows="6" required></textarea>
-        </div>
-      </div>
-      <div class="gform_footer">
-        <button type="submit" class="button primary">Send Message</button>
-      </div>
-    </form>
-  </div>
+<p>From elegant weddings to vibrant private parties and sophisticated corporate events, we bring our passion and expertise to venues both locally and worldwide. The mission is simple: to keep your dance floor entertained and your guests talking about your event long after it&#8217;s over.</p>
 
-  <h3>Other Ways to Reach Us</h3>
-  <p>
-    <strong>Phone:</strong> <a href="tel:6197862664">(619) 786-2664</a><br>
-    Text or call for a fast response with event details to receive a reply with availability.
-  </p>
+<p>Ready to start planning?</p>
+
+<p>Fill out the quick form below with your event details and I&#8217;ll promptly respond with availability and pricing tailored to your celebration.</p>
+
+<p>Looking forward to helping make your event extraordinary!</p>
+
+<ContactForm />
 
 </ContactLayout>

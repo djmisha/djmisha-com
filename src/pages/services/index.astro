@@ -1,42 +1,101 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+
+const jsonLd = [
+  {"@context":"http://schema.org/","@id":"https://djmisha.com","@type":"Organization","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com","logo":{"@type":"ImageObject","url":"https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png","width":400},"sameAs":["https://www.instagram.com/djmishasd/","https://www.youtube.com/@djmisha","https://www.facebook.com/djmishaSandiego","https://www.yelp.com/biz/dj-misha-san-diego-3","https://www.gigtown.com/artists/dj-misha","https://www.gigsalad.com/dj_misha_san_diego","https://goo.gl/maps/2rRm8kBYePqaPbVE6","https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"],"contactPoint":{"telephone":"+1-619-786-2664","contactType":"customer service"},"AggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"83"}},
+  {"@context":"http://schema.org/","@type":"WebSite","url":"https://djmisha.com","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","about":"DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"},
+  {"@context":"http://schema.org/","@type":"WebPage","url":"https://djmisha.com/services/","headline":"DJ Services","mainEntityOfPage":"https://djmisha.com/services/"},
+  {"@context":"http://schema.org/","@id":"#LocalBusiness","@type":"LocalBusiness","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com/","image":"https://djmisha.com/wordpress/wp-content/uploads/2013/11/i-4LhQfht-L.jpg","priceRange":"Contact For Pricing","address":[{"@type":"PostalAddress","streetAddress":"4640 Cass Street #9553","addressLocality":"San Diego","addressRegion":"CA","postalCode":"92109","addressCountry":"US","telephone":"+1-619-786-2664"}],"employees":["DJ Misha"]},
+  {"@context":"http://schema.org","@type":"Person","jobTitle":"DJ","name":"DJ Misha","telephone":"+1-619-786-2664","url":"https://djmisha.com/about/","image":"https://djmisha.com/wordpress/wp-content/uploads/2018/06/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"}
+];
 ---
-<PageLayout title="DJ Services" description="DJ Misha offers professional DJ services in San Diego including weddings, corporate events, and private parties. Quality sound systems and expert music selection.">
+<PageLayout
+  title="DJ Services"
+  description="Hire DJ near you for Parties, Weddings and Corporate events, read more about DJ Services offered in San Diego and around the world. Playing edm, house, techno, club, lounge music."
+  canonicalUrl="https://djmisha.com/services/"
+  ogTitle="DJ Services in San Diego, Weddings, Parties, Private Events"
+  ogDescription="Hire DJ near you for Parties, Weddings and Corporate events, read more about DJ Services offered in San Diego and around the world. Playing edm, house, techno, club, lounge music. "
+  ogImage="https://djmisha.com/images/logo-djmisha.png"
+  ogUrl="https://djmisha.com/services/"
+  ogType="website"
+  twitterTitle="DJ Services in San Diego, Weddings, Parties, Private Events"
+  twitterDescription="Hire DJ near you for Parties, Weddings and Corporate events, read more about DJ Services offered in San Diego and around the world. Playing edm, house, techno, club, lounge music. "
+  twitterImage="https://djmisha.com/images/logo-djmisha.png"
+  jsonLd={jsonLd}
+>
 
-  <p>DJ Misha provides professional DJ services throughout San Diego and surrounding areas. Whether you're planning a wedding, corporate event, or private party, DJ Misha has the experience and equipment to make your event unforgettable.</p>
+<p>Since 2001, DJ Misha has been focused on playing good music, getting dance floors moving and making parties fun by playing his unique sound of house music and EDM on the turntables. Spinning records for dancing crowds at San Diego clubs, lounges, venues and private parties, including being the go to DJ for Pacific Magazine's event productions and more recently playing festivals for larger events like Margarita Month, Uncorked Wine Festival and Intel&#8217;s corporate employee block party in the Gaslamp district. </p>
 
-  <h2>Our DJ Services</h2>
+<p>Learn more about his services in San Diego and beyond:</p>
 
-  <h3><a href="/services/wedding-dj-in-san-diego/">Wedding DJ in San Diego</a></h3>
-  <p>Say "I do" to our Wedding DJ services, where we'll help you create the perfect atmosphere for every part of your big day. From the ceremony to the cocktail hour, and right through to the reception, we'll keep the tunes bumping and the dance floor packed.</p>
+<ul class="wp-block-list">
+<li><a href="/dj-saxophone/">DJ and Saxophone</a></li>
 
-  <h3><a href="/services/corporate-event-dj-in-san-diego/">Corporate Event DJ in San Diego</a></h3>
-  <p>Take your corporate event to the next level with our Corporate DJ services. We'll work with any venue to ensure your event is unforgettable. Our professional sound equipment and music selection will have your guests raving about your event for years to come.</p>
+<li><a href="/services/party-birthday-dj-in-san-diego/">Parties</a></li>
 
-  <h3><a href="/services/party-birthday-dj-in-san-diego/">Party &amp; Birthday DJ in San Diego</a></h3>
-  <p>Planning a private party? Look no further than DJ Misha! We provide top-of-the-line DJ and sound equipment services in San Diego and surrounding areas. We guarantee your guests will have a blast as we provide the musical entertainment that will keep them dancing all night long.</p>
+<li><a href="/services/wedding-dj-in-san-diego/">Weddings</a></li>
 
-  <h3><a href="/services/destination-wedding-dj/">Destination Wedding DJ</a></h3>
-  <p>DJ Misha specializes in providing luxury destination wedding DJ services, offering a tailored musical experience for couples celebrating anywhere in the world. From seamless planning to flawless execution, we ensure your destination wedding soundtrack is perfect.</p>
+<li><a href="/services/corporate-event-dj-in-san-diego/">Corporate and Private Events</a></li>
 
-  <h3><a href="/dj-saxophone/">DJ + Saxophone</a></h3>
-  <p>For a truly unique experience, DJ Misha collaborates with saxophonist Jason Whitmore. Together, they create an unforgettable musical experience that combines the energy of live performance with the precision of professional DJ mixing.</p>
+<li><a href="/services/destination-wedding-dj/" title="Destination Wedding DJ">Destination DJ</a></li>
+</ul>
 
-  <h2>What's Included</h2>
-  <ul>
-    <li>Professional DJ with 15+ years of experience</li>
-    <li>Quality Sound System for up to 500 people</li>
-    <li>DJ Booth with turntables</li>
-    <li>JBL Speakers &amp; Subwoofer</li>
-    <li>Wireless Microphones</li>
-    <li>Dance Lighting</li>
-  </ul>
+<div class="wp-block-image">
+<figure class="alignright"><a href="/images/Screen-Shot-2019-02-07-at-11.03.27-AM.png"><img width="298" height="200" src="/images/Screen-Shot-2019-02-07-at-11.03.27-AM-298x200.png" alt="" class="wp-image-1657" /></a></figure>
+</div>
 
-  <h2>Music Genres and Styles</h2>
-  <p>Playing House Music, EDM, Electronic Dance Music, Deep House, Techno, Electronica, Nu Disco, Downtempo, Lounge, Progressive, Electro, Trance, Underground, Pop, Future Hits and much more...</p>
+<p></p>
 
-  <ul class="actions">
-    <li><a href="/contact/" class="button primary">Get a Quote</a></li>
-  </ul>
+<p>He is also favorite to spin at corporate company events to provide entertainment for employees celebrating a company&#8217;s progress or success. Playing dance music and working in the past with big brand name like Intel, KPMG, Banana Republic, Essence of Australia, and Staub Electronics of Canada.</p>
+
+<p>DJ Misha offers the services listed below for hire in the San Diego area and around the world. Traveling in the past to Hawaii, Kansas City, San Francisco areas to perform with <a href="/dj-saxophone/">saxophone player</a> Jason Whitmore playing along with the DJs music. Please contact Misha by phone or text about any questions you may have &#8211; to inquire about your event date or begin the booking process.</p>
+
+<h2 class="wp-block-heading">DJ and Saxophone</h2>
+
+<div class="wp-block-image">
+<figure class="alignright"><a href="/images/img_0763.jpg"><img width="150" height="200" src="/images/img_0763-150x200.jpg" alt="" class="wp-image-1620" /></a></figure>
+</div>
+
+<p>Light up the excitement at any event by adding a live Saxophone accompaniment to play along the dance beats of the DJ. It's fun, exciting and always a top hit among guest. Saxophone player Jason Whitmore has been playing with DJ Misha since 2007. Learn more about the way they entertain together.</p>
+
+<p><a href="/dj-saxophone/" rel="nofollow">Learn More</a></p>
+
+<h2 class="wp-block-heading">DJ for Parties</h2>
+
+<div class="wp-block-image">
+<figure class="alignleft"><a href="/images/Screen-Shot-2019-02-07-at-11.03.33-AM.png"><img width="298" height="200" src="/images/Screen-Shot-2019-02-07-at-11.03.33-AM-298x200.png" alt="" class="wp-image-1656" /></a></figure>
+</div>
+
+<p>From small gatherings with friends to birthday celebrations, the perfect way to accent the evening is with a professional DJ playing the best dance beats. This DJ service is perfect for a house party, birthday party or any celebration.</p>
+
+<p><a href="/services/party-birthday-dj-in-san-diego/" rel="nofollow">Learn More</a></p>
+
+<h2 class="wp-block-heading">DJ for Weddings</h2>
+
+<div class="wp-block-image">
+<figure class="alignright"><a href="/images/Screen-Shot-2019-02-07-at-11.01.21-AM.png"><img width="300" height="200" src="/images/Screen-Shot-2019-02-07-at-11.01.21-AM-300x200.png" alt="" class="wp-image-1654" /></a></figure>
+</div>
+
+<p>A beautiful wedding requires planning, coordination and good execution. To learn more about the approach and process for weddings, head over to them wedding DJ service page and read more. Misha will provide the soundtrack for your special day &#8211; a tailored boutique approach &#8211; creating amazing memories for a lifetime.</p>
+
+<p><a href="/services/wedding-dj-in-san-diego/" rel="nofollow">Learn More</a></p>
+
+<p>&nbsp;</p>
+
+<h2 class="wp-block-heading">Corporate and Private Events</h2>
+
+<p>Private events for companies often require an elegant touch, not only in regards to music but also especially the vibe or feeling of the room. Misha's selection of music is what makes him the perfect choice to perform at these events &#8211; keeping the energy up by playing hip, modern, classy tracks.</p>
+
+<p><a href="/services/corporate-event-dj-in-san-diego/" rel="nofollow">Learn More</a></p>
+
+<h2 class="wp-block-heading">Destination DJ for Weddings and Events Worldwide</h2>
+
+<p>Planning to say &#8220;I do&#8221; in a breathtaking location? Don&#8217;t let borders limit your soundtrack. We specialize in bringing our signature DJ and live music experiences to celebrations across the globe. We handle all the travel and technical logistics so you can have a world-class party, anywhere in the world.</p>
+
+<p><a href="/services/destination-wedding-dj/" rel="nofollow" title="Destination Wedding DJ">Learn More</a></p>
+
+<h2 class="wp-block-heading">&nbsp;</h2>
+
+<p></p>
 
 </PageLayout>

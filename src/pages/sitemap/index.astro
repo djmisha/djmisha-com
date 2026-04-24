@@ -1,29 +1,55 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+
+const jsonLd = [
+  {"@context":"http://schema.org/","@id":"https://djmisha.com","@type":"Organization","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com","logo":{"@type":"ImageObject","url":"https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png","width":400},"sameAs":["https://www.instagram.com/djmishasd/","https://www.youtube.com/@djmisha","https://www.facebook.com/djmishaSandiego","https://www.yelp.com/biz/dj-misha-san-diego-3","https://www.gigtown.com/artists/dj-misha","https://www.gigsalad.com/dj_misha_san_diego","https://goo.gl/maps/2rRm8kBYePqaPbVE6","https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"],"contactPoint":{"telephone":"+1-619-786-2664","contactType":"customer service"},"AggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"83"}},
+  {"@context":"http://schema.org/","@type":"WebSite","url":"https://djmisha.com","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","about":"DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"},
+  {"@context":"http://schema.org/","@type":"WebPage","url":"https://djmisha.com/sitemap/","headline":"Sitemap","mainEntityOfPage":"https://djmisha.com/sitemap/"},
+  {"@context":"http://schema.org/","@id":"#LocalBusiness","@type":"LocalBusiness","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com/","image":"https://djmisha.com/wordpress/wp-content/uploads/2013/11/i-4LhQfht-L.jpg","priceRange":"Contact For Pricing","address":[{"@type":"PostalAddress","streetAddress":"4640 Cass Street #9553","addressLocality":"San Diego","addressRegion":"CA","postalCode":"92109","addressCountry":"US","telephone":"+1-619-786-2664"}],"employees":["DJ Misha"]},
+  {"@context":"http://schema.org","@type":"Person","jobTitle":"DJ","name":"DJ Misha","telephone":"+1-619-786-2664","url":"https://djmisha.com/about/","image":"https://djmisha.com/wordpress/wp-content/uploads/2018/06/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"}
+];
 ---
-<PageLayout title="Sitemap" description="Sitemap for DJ Misha's website - find all pages and services.">
+<PageLayout
+  title="Sitemap"
+  description="Sitemap for website users."
+  canonicalUrl="https://djmisha.com/sitemap/"
+  ogTitle="Sitemap"
+  ogImage="https://djmisha.com/images/logo-djmisha.png"
+  ogUrl="https://djmisha.com/sitemap/"
+  ogType="website"
+  twitterTitle="Sitemap"
+  twitterImage="https://djmisha.com/images/logo-djmisha.png"
+  jsonLd={jsonLd}
+>
 
-  <h2>Pages</h2>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about/">About</a></li>
-    <li><a href="/misha/">DJ Misha</a></li>
-    <li><a href="/music/">Dance and House Music</a></li>
-    <li><a href="/reviews/">Reviews &amp; Testimonials</a></li>
-    <li><a href="/prices/">Prices</a></li>
-    <li><a href="/contact/">Contact</a></li>
-    <li><a href="/dj-saxophone/">DJ &amp; Saxophone</a></li>
-    <li><a href="/photogallery/">Photogallery</a></li>
-    <li><a href="/blog/">Blog</a></li>
-  </ul>
+<ul class="wp-block-list">
+<li><a href="/about/">About DJ Misha</a></li>
 
-  <h2>DJ Services</h2>
-  <ul>
-    <li><a href="/services/">DJ Services</a></li>
-    <li><a href="/services/wedding-dj-in-san-diego/">Wedding DJ in San Diego</a></li>
-    <li><a href="/services/destination-wedding-dj/">Destination Wedding DJ</a></li>
-    <li><a href="/services/corporate-event-dj-in-san-diego/">Corporate Event DJ in San Diego</a></li>
-    <li><a href="/services/party-birthday-dj-in-san-diego/">Party &amp; Birthday DJ in San Diego</a></li>
-  </ul>
+<li><a href="/blog/">Blog</a></li>
+
+<li><a href="/contact/">Contact San Diego DJ for Pricing and Bookings</a></li>
+
+<li><a href="/music/">Dance and House Music by DJ Misha</a></li>
+
+<li><a href="/dj-saxophone/">DJ and Saxophone</a></li>
+
+<li><a href="/services/">DJ Services</a>
+<ul class="wp-block-list">
+<li><a href="/services/corporate-event-dj-in-san-diego/">Corporate Event DJ</a></li>
+
+<li><a href="/services/party-birthday-dj-in-san-diego/">Party &amp; Birthday DJ in San Diego</a></li>
+
+<li><a href="/services/wedding-dj-in-san-diego/">Wedding DJ in San Diego</a></li>
+
+<li><a href="/services/destination-wedding-dj/" title="Destination Wedding DJ">Destination Wedding DJ</a></li>
+</ul>
+</li>
+
+<li><a href="/prices/">Prices, rates and average cost for hiring a DJ</a></li>
+
+<li><a href="/reviews/">San Diego DJ Reviews &amp; Testimonials</a></li>
+</ul>
+
+<p></p>
 
 </PageLayout>

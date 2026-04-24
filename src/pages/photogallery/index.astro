@@ -1,41 +1,9 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
+/*
+  The photogallery page on the live site redirects to the home page.
+  The scraped HTML shows canonical URL as https://djmisha.com/ and body class "is-preload landing".
+  A Netlify redirect rule handles /photogallery/ -> / (301).
+  This page exists as a fallback in case the redirect doesn't fire.
+*/
+return Astro.redirect('/', 301);
 ---
-<PageLayout title="Photogallery" description="Browse photos from DJ Misha's events including weddings, corporate events, private parties, and nightlife gigs in San Diego.">
-
-  <p>Browse through photos from DJ Misha's events. From weddings to corporate parties, festivals to nightlife gigs, these photos capture the energy and excitement that DJ Misha brings to every event.</p>
-
-  <div class="box alt">
-    <div class="row gtr-uniform">
-      <div class="col-4 col-12-medium">
-        <span class="image fit"><img src="/images/pic01.jpg" alt="DJ Misha performing" /></span>
-      </div>
-      <div class="col-4 col-12-medium">
-        <span class="image fit"><img src="/images/pic02.jpg" alt="San Diego DJ event" /></span>
-      </div>
-      <div class="col-4 col-12-medium">
-        <span class="image fit"><img src="/images/pic03.jpg" alt="DJ turntables" /></span>
-      </div>
-      <div class="col-4 col-12-medium">
-        <span class="image fit"><img src="/images/pic04.jpg" alt="DJ and Saxophone duo" /></span>
-      </div>
-      <div class="col-4 col-12-medium">
-        <span class="image fit"><img src="/images/pic05.jpg" alt="DJ Misha at event" /></span>
-      </div>
-      <div class="col-4 col-12-medium">
-        <span class="image fit"><img src="/images/pic06.jpg" alt="DJ performance" /></span>
-      </div>
-      <div class="col-4 col-12-medium">
-        <span class="image fit"><img src="/images/pic07.jpg" alt="DJ Misha live" /></span>
-      </div>
-      <div class="col-4 col-12-medium">
-        <span class="image fit"><img src="/images/pic08.jpg" alt="San Diego event DJ" /></span>
-      </div>
-    </div>
-  </div>
-
-  <ul class="actions">
-    <li><a href="/contact/" class="button primary">Book DJ Misha</a></li>
-  </ul>
-
-</PageLayout>

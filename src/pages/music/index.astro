@@ -1,51 +1,164 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+const ogDesc = "Listen and download dance and house music mixes created by DJ Misha.  Spinning party, dance, club, emd, music and top hits on the turntables in San Diego and around the world. ";
+const jsonLd = [
+  {"@context":"http://schema.org/","@id":"https://djmisha.com","@type":"Organization","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com","logo":{"@type":"ImageObject","url":"https://djmisha.com/wordpress/wp-content/uploads/2018/02/logo-djmisha.png","width":400},"sameAs":["https://www.instagram.com/djmishasd/","https://www.youtube.com/@djmisha","https://www.facebook.com/djmishaSandiego","https://www.yelp.com/biz/dj-misha-san-diego-3","https://www.gigtown.com/artists/dj-misha","https://www.gigsalad.com/dj_misha_san_diego","https://goo.gl/maps/2rRm8kBYePqaPbVE6","https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"],"contactPoint":{"telephone":"+1-619-786-2664","contactType":"customer service"},"AggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"83"}},
+  {"@context":"http://schema.org/","@type":"WebSite","url":"https://djmisha.com","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","about":"DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"},
+  {"@context":"http://schema.org/","@type":"WebPage","url":"https://djmisha.com/music/","headline":"Music","mainEntityOfPage":"https://djmisha.com/music/","about":"Music is the heartbeat of every great event \u2014 it\u2019s what people feel in the room before the first dance, what pulls a stranger onto the dance floor, and what turns a good party into an unforgettable one. DJ Misha has spent many years perfecting the art of reading a crowd, building a set, and\u2026"},
+  {"@context":"http://schema.org/","@id":"#LocalBusiness","@type":"LocalBusiness","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com/","image":"https://djmisha.com/wordpress/wp-content/uploads/2013/11/i-4LhQfht-L.jpg","priceRange":"Contact For Pricing","address":[{"@type":"PostalAddress","streetAddress":"4640 Cass Street #9553","addressLocality":"San Diego","addressRegion":"CA","postalCode":"92109","addressCountry":"US","telephone":"+1-619-786-2664"}],"employees":["DJ Misha"]},
+  {"@context":"http://schema.org","@type":"Person","jobTitle":"DJ","name":"DJ Misha","telephone":"+1-619-786-2664","url":"https://djmisha.com/about/","image":"https://djmisha.com/wordpress/wp-content/uploads/2018/06/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"}
+];
 ---
-<PageLayout title="Dance and House Music by DJ Misha" description="DJ Misha specializes in dance and house music, playing House, EDM, Deep House, Techno, Electronica, Nu Disco, Downtempo, Lounge, Progressive, and more.">
+<PageLayout
+  title="Music"
+  description="Discover how DJ Misha curates custom sets for all types of events. Dance music and versatile genre expertise that create unforgettable experiences."
+  canonicalUrl="https://djmisha.com/music/"
+  ogTitle="Music"
+  ogDescription={ogDesc}
+  ogImage="https://djmisha.com/images/logo-djmisha.png"
+  ogUrl="https://djmisha.com/music/"
+  ogType="website"
+  twitterTitle="Music"
+  twitterDescription={ogDesc}
+  twitterImage="https://djmisha.com/images/logo-djmisha.png"
+  jsonLd={jsonLd}
+>
 
-  <p>DJ Misha is a passionate DJ who has dedicated his career to dance and house music. Since 2001, he has been collecting and spinning records, curating sets that introduce audiences to exceptional tracks and unique artists.</p>
+<p>Music is the heartbeat of every great event &#8212; it&#8217;s what people feel in the room before the first dance, what pulls a stranger onto the dance floor, and what turns a good party into an unforgettable one. DJ Misha has spent many years perfecting the art of reading a crowd, building a set, and delivering a sonic experience that is entirely unique to each and every event. Read more to get insight into how that works &#8212; the music, the mindset, and the craft behind the performance.</p>
 
-  <h2>Music Genres and Styles</h2>
-  <p>DJ Misha plays a wide variety of dance music genres to keep the energy going at any event:</p>
-  <ul>
-    <li>House Music</li>
-    <li>EDM (Electronic Dance Music)</li>
-    <li>Deep House</li>
-    <li>Techno</li>
-    <li>Electronica</li>
-    <li>Nu Disco</li>
-    <li>Downtempo</li>
-    <li>Lounge</li>
-    <li>Progressive</li>
-    <li>Electro</li>
-    <li>Trance</li>
-    <li>Underground</li>
-    <li>Pop</li>
-    <li>Future Hits</li>
-    <li>And much more...</li>
-  </ul>
+<p><strong>The Right Music, For Your Crowd, At Every Moment &#8212; How DJ Misha Curates Unforgettable Musical Experiences</strong>:</p>
 
-  <h2>The Art and Science of DJing</h2>
-  <p>DJ Misha invests significant time in collecting and curating music, creating sets that introduce audiences to exceptional tracks and unique artists. His intent is to create an environment where people can truly connect with the music, with each performance designed so everyone has an unforgettable time.</p>
+<div class="wp-block-image">
+<figure class="alignright"><a href="/images/Best-San-Diego-DJ-djmisha.com-12.jpg"><img fetchpriority="high" decoding="async" width="300" height="200" src="/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg" alt="" class="wp-image-1621" /></a></figure>
+</div>
 
-  <p>DJ technology has evolved dramatically in the last decade, but the essence of the DJ has remained the same. The job is simple: select good music and blend it to create an experience. DJ Misha understands mixing music in key, blending rhythms, and using professional DJ gear to deliver the best sound.</p>
+<ul class="wp-block-list">
+<li><a href="#every-event-is-a-custom-experience" title="">Every Event is a Custom Experience</a></li>
+<li><a href="#the-music-dj-misha-plays" title="">The Music DJ Misha Plays</a></li>
+<li><a href="#how-dj-misha-curates-a-set" title="">How DJ Misha Curates a Set</a></li>
+<li><a href="#working-with-clients-on-music" title="">Working With Clients on Music</a></li>
+<li><a href="#executing-the-music-on-event-day" title="">Executing the Music on Event Day</a></li>
+<li><a href="#what-does-a-dj-actually-do" title="">What Does a DJ Actually Do?</a></li>
+<li><a href="#how-people-experience-music-at-events" title="">How People Experience Music at Events</a></li>
+<li><a href="#how-music-sets-the-tone-and-vibe" title="">How Music Sets the Tone and Vibe</a></li>
+<li><a href="#listen-to-dj-mishas-music" title="">Listen to DJ Misha&#8217;s Music</a></li>
+</ul>
 
-  <h2>Equipment</h2>
-  <p>DJ Misha uses top-of-the-line sound equipment capable of entertaining up to 500 people:</p>
-  <ul>
-    <li>Professional Turntables</li>
-    <li>JBL Speakers &amp; Subwoofer</li>
-    <li>Wireless Microphones</li>
-    <li>Dance Lighting</li>
-    <li>DJ Booth setup</li>
-  </ul>
 
-  <h2>DJ + Saxophone</h2>
-  <p>For a truly unique experience, DJ Misha collaborates with saxophonist Jason Whitmore. Together, they create an unforgettable musical experience that combines the energy of live performance with the precision of professional DJ mixing.</p>
+<h2 class="wp-block-heading" id="every-event-is-a-custom-experience">Every Event is a Custom Experience</h2>
 
-  <ul class="actions">
-    <li><a href="/dj-saxophone/" class="button">DJ &amp; Saxophone</a></li>
-    <li><a href="/contact/" class="button primary">Book DJ Misha</a></li>
-  </ul>
+<p>No two events are the same &#8212; and that&#8217;s exactly the point. Whether it&#8217;s a black-tie corporate gala in downtown San Diego, a <a href="/services/destination-wedding-dj/" title="Destination Wedding DJ">destination wedding</a> on a ranch in Montana, or a birthday party that lasts until two in the morning, DJ Misha approaches every performance as its own unique creative project. The crowd is different. The room is different. The moment is different. And the music has to reflect all of that.</p>
+
+<p>This custom-first approach is baked into the process from the very first conversation. DJ Misha doesn&#8217;t arrive with a pre-loaded set list &#8212; he arrives with deep musical knowledge, a wide-ranging music collection, and a finely tuned ability to feel what a room needs in any given moment. Some events call for a slow, seductive build &#8212; a progression from lounge-y ambience into a peak-hour groove. Others demand energy from the first beat. Knowing which is which, and delivering on it, is the product of years doing this at every kind of event imaginable.</p>
+
+<p>What this means for you is simple: your guests will feel the difference. The music will feel like it belongs at your event.</p>
+
+<h2 class="wp-block-heading" id="the-music-dj-misha-plays">The Music DJ Misha Plays</h2>
+
+<p>DJ Misha specializes in modern dance music &#8212; songs with deep, groovy basslines and hooks that stick with you. The sound pulls from funk, disco, and jazz, blending guitars, sax, synths, and vocals into something that feels fresh and alive. Each performance is thoughtfully crafted to manage energy and keep the vibe going strong from the first track to the last.</p>
+
+<p>DJ Misha&#8217;s roots are in <strong>house music</strong> &#8212; it&#8217;s where it all started, and it remains the foundation of everything he does behind the decks. That deep, groovy, rhythm-driven sound shaped his musical ear, his taste, and his approach to building energy on a dance floor. Over the years, that foundation became a launching pad &#8212; expanding outward into every corner of electronic dance music and beyond, from tech house and melodic house to festival-style EDM and modern dance pop. The result is a versatile, well-rounded sound built on a deep musical core &#8212; one that allows DJ Misha to curate custom DJ sets tailored to any event type and any client&#8217;s musical vision.</p>
+
+<p>Beyond house music, DJ Misha&#8217;s music collection and expertise spans decades and genres, including:</p>
+
+<ul class="wp-block-list">
+<li><strong>Electronic and EDM</strong> &#8212; high-energy festival-style tracks for moments that demand peak intensity</li>
+<li><strong>Top 40 and pop dance hits</strong> &#8212; crowd-pleasing anthems that bridge the gap between music fans and casual listeners</li>
+<li><strong>80s, 90s, 2000s, and 2010s hits</strong> &#8212; feel-good throwbacks that get every generation on the floor</li>
+<li><strong>Lounge and ambient</strong> &#8212; sophisticated background music perfect for cocktail hours and dinner sets</li>
+<li><strong>Hip-hop and R&amp;B</strong> &#8212; essential flavors for events where the crowd wants something with edge and swagger</li>
+</ul>
+
+<p>The breadth of that repertoire means DJ Misha can serve any room &#8212; from a corporate cocktail hour to a late-night open dance floor &#8212; keeping the music fresh, authentic, and right for each unique setting.</p>
+
+<h2 class="wp-block-heading" id="how-dj-misha-curates-a-set">How DJ Misha Curates a Set</h2>
+
+<p>Curating a DJ set is not the same as making a playlist. A playlist is a static collection of songs. A DJ set is a living, breathing arc &#8212; with a beginning, a middle, and a peak &#8212; and every transition is a deliberate decision about energy, mood, and momentum.</p>
+
+<p>DJ Misha&#8217;s curation process starts long before the event does. It begins with an honest assessment of the occasion: What&#8217;s the vibe? What&#8217;s the venue? What time does the dancing start, and what time does it need to be at full energy? From there, it&#8217;s about selecting tracks that serve the arc &#8212; songs that work not just on their own merits, but in relationship to what comes before and after them. A great track dropped at the wrong moment can kill a dance floor. The right record at the right time can send it into euphoria.</p>
+
+<p>At its core, DJ Misha&#8217;s job is simple: find great music and blend it seamlessly to create a mood. That starts with digging through thousands of tracks to find the ones that hit &#8212; songs that work in any room and get people moving. The magic happens in the mix itself &#8212; layering tracks together, building energy song by song, and keeping the momentum flowing.</p>
+
+<p>Beyond the technical craft of mixing, great curation requires taste &#8212; an aesthetic sensibility about what belongs together and what doesn&#8217;t. DJ Misha has spent time developing that taste across thousands of hours behind the decks, at every kind of event, for every kind of crowd. The result is a musical intelligence that&#8217;s hard to manufacture and impossible to replicate.</p>
+
+<div class="home-testi testi-full">
+	<center>
+	<p>His music got everyone on the dance floor, and we were there for hours! It was so much fun! 
+	<br><br>
+	<i class="fas fa-user"></i> Jennifer. via Google</p>
+	</center>
+</div>
+
+<h2 class="wp-block-heading" id="working-with-clients-on-music">Working With Clients on Music</h2>
+
+<p>Music is personal. That&#8217;s what makes it so powerful &#8212; and that&#8217;s why DJ Misha treats every client conversation about music as one of the most important parts of the planning process.</p>
+
+<p>The process typically starts with a detailed discussion about the event: What&#8217;s the energy you&#8217;re going for? Are there specific songs or genres that feel essential? Are there artists or sounds you absolutely want to avoid? What&#8217;s the demographic of the crowd &#8212; and what are they expecting? These questions aren&#8217;t a formality. They&#8217;re the raw material that DJ Misha uses to build a custom musical roadmap for your event.</p>
+
+<p>From there, DJ Misha takes that input and translates it into a curated direction &#8212; not a rigid track list, but a musical framework that honors your vision while leaving room for the organic energy of the evening. Because here&#8217;s the thing: a crowd at 9pm is not the same crowd at 11pm. Reading that shift in real time &#8212; and adjusting the music accordingly &#8212; is where experience makes all the difference.</p>
+
+<p>You know your guests, your occasion, and what feels right for the moment. DJ Misha brings the musical knowledge, the music collection, and the craft to bring that vision to life on the dance floor. It&#8217;s a collaboration &#8212; and the result is a set that feels both intentional and spontaneous, both personal and universally fun.</p>
+
+<div class="home-testi testi-full">
+	<center>
+	<p>Misha was great to work with. We told him the vibe we were looking for and then we played an amazing 4 hour set without any direction needed from us. Had all the people dancing. 10/10
+	<br><br>
+	<i class="fas fa-user"></i> Quinn T. via Google</p>
+	</center>
+</div>
+
+<h2 class="wp-block-heading" id="executing-the-music-on-event-day">Executing the Music on Event Day</h2>
+
+<p>The planning is essential &#8212; but the real magic happens live. On the day of the event, DJ Misha arrives early, sets up top-of-the-line equipment, and runs a full sound check long before the first guest walks through the door. There are no surprises, no technical scrambles, no awkward silences where the music should be.</p>
+
+<p>Once the event is underway, DJ Misha is reading the room constantly. The music is never on autopilot. Every transition is intentional &#8212; building energy at the right pace, giving the crowd a moment to breathe when they need it, and pushing the intensity higher when the moment calls for it. Song requests are handled with care &#8212; weaving them into the set naturally rather than forcing a jarring detour in the musical flow.</p>
+
+<p>The goal on every single event is the same: make the music invisible in the best possible way. When the music is doing its job, guests aren&#8217;t thinking about it &#8212; they&#8217;re just feeling it. They&#8217;re laughing, dancing, connecting, and celebrating. They&#8217;re having the night of their lives. And DJ Misha is behind the decks making sure it stays that way.</p>
+
+<h2 class="wp-block-heading" id="what-does-a-dj-actually-do">What Does a DJ Actually Do?</h2>
+
+<p>It&#8217;s a question worth answering thoughtfully, because the answer is more nuanced than most people realize. At the most basic level, a DJ selects and plays recorded music for an audience. But that description barely scratches the surface of what a skilled DJ brings to an event.</p>
+
+<p>The role encompasses much more than just playing records. A DJ is responsible for the energy of the room, they&#8217;re deciding &#8212; in real time &#8212; which song comes next, how fast to transition, when to drop the energy back and when to push it harder. They&#8217;re managing tempo, key, and mood simultaneously, using music as a tool to guide the emotional experience of an entire room full of people.</p>
+
+<p>Beyond the creative work, a professional DJ handles the technical side of live sound: setting up PA systems, managing EQ for different room acoustics, balancing volume levels across different spaces and moments within an event. When a DJ is doing their job well, you never think about any of that &#8212; you just know the music sounds incredible and the energy feels exactly right.</p>
+
+<h2 class="wp-block-heading" id="how-people-experience-music-at-events">How People Experience Music at Events</h2>
+
+<p>Music at a live event is a shared, communal experience &#8212; and that makes it fundamentally different from listening to music alone. When a great song drops in a room full of people, there&#8217;s a collective response that is almost physical. Shoulders relax. Feet start moving. That&#8217;s music doing what it has always done, which is bring people together.</p>
+
+<p>The tempo, key, and intensity of music also shape the perceived pace of time. A skilled DJ uses this to their advantage &#8212; keeping energy high enough that the night feels electric, but managing the flow carefully enough that guests don&#8217;t burn out before the most important moments of the evening arrive. It&#8217;s a delicate balance, and it&#8217;s one of the things that separates a truly great DJ performance from a merely adequate one.</p>
+
+<p>There&#8217;s also something deeply emotional about hearing the right song at the right moment &#8212; a track that suddenly moves you in a way you didn&#8217;t see coming, a throwback anthem that triggers a memory, a drop that arrives right when the room is at its most ready. Those moments feel effortless from the outside. On the inside, they are the result of years of expertise, mindful planning, and real-time decision-making from someone who has been doing this long enough to know exactly when these moments are coming.</p>
+
+<h2 class="wp-block-heading" id="how-music-sets-the-tone-and-vibe">How Music Sets the Tone and Vibe</h2>
+
+<p>Before a single word is spoken at an event &#8212; before the first toast, the first bite of food, the first dance &#8212; the music has already told your guests what kind of night this is going to be. It&#8217;s the first thing they hear when they walk in. It shapes their first impressions and their emotional baseline for everything that follows.</p>
+
+<p>A sophisticated lounge set during cocktail hour signals elegance and intention &#8212; it says, <em>this is a curated experience.</em> A powerful, peak-hour house set signals that someone is serious about the dance floor. A well-timed throwback anthem signals that this crowd is about to have fun, full stop. Music doesn&#8217;t just accompany the event &#8212; it architecturally shapes what the event <em>is.</em></p>
+
+<p>This is why DJ Misha takes the musical narrative of an event so seriously. Every chapter of the evening has its own emotional register: the arrival and welcome, the dinner and socializing, the transition to dancing, the peak of the party, and the graceful wind-down at the end. Each of those chapters deserves music that serves its specific purpose &#8212; not a one-size-fits-all approach, but a thoughtful, curated arc that mirrors the emotional journey of the celebration itself. Get the music right, and everything else in the room feels elevated. That&#8217;s the power of a great DJ.</p>
+
+<h2 class="wp-block-heading" id="listen-to-dj-mishas-music">Listen to DJ Misha&#8217;s Music</h2>
+
+<p>The best way to understand DJ Misha&#8217;s sound is to hear it. Below are three ways to explore the music &#8212; from curated playlists to live studio mixes.</p>
+
+<h3 class="wp-block-heading">Spotify Playlists</h3>
+
+<p>DJ Misha maintains a collection of playlists on Spotify that reflect the different genres and moods in his repertoire &#8212; from deep, hypnotic house to feel-good crowd-pleasers. Look for the mixes titled &#8220;DJ Set&#8221; to hear actual sets from first song to last, which give you a real sense of how a complete performance comes together. These playlists are a great starting point for creating the general vibe and direction of the music for your own event.</p>
+
+<p><a href="https://open.spotify.com/user/djmisha" target="_blank" rel="noopener" title=""><strong>Listen on Spotify →</strong></a></p>
+
+<h3 class="wp-block-heading">SoundCloud Mixes &#8212; Studio-Crafted DJ Sets</h3>
+
+<p>Below you may listen to house music mixes created by DJ Misha. These hour-long mixes are carefully planned and crafted in the studio &#8212; a chance to experience DJ Misha&#8217;s deep house sound in a focused, uninterrupted context. Each mix represents a specific feel and vibe &#8212; a sonic journey from the first beat to the last.</p>
+
+<p><a href="https://soundcloud.com/djmisha" target="_blank" rel="noopener" title=""><strong>Listen to mixes on SoundCloud →</strong></a></p>
+
+<h3 class="wp-block-heading">Serato DJ Playlists &#8212; Live Event Track Lists</h3>
+
+<p>Serato is the professional DJ software that Misha uses to perform at every event. One of its useful features is the ability to export track lists from live sets and post them publicly &#8212; so you can see exactly what was played, song by song, at real events. Head over to DJ Misha&#8217;s Serato page to browse track lists from performances over the years and get a true sense of how a set comes together from start to finish, and how his sound has evolved overtime. </p>
+
+<p><a href="https://serato.com/playlists/DJ_Misha_San_Diego" target="_blank" rel="noopener" title=""><strong>View live set track lists on Serato →</strong></a></p>
 
 </PageLayout>

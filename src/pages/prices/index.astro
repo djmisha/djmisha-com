@@ -1,55 +1,308 @@
 ---
-import ContactLayout from '../../layouts/ContactLayout.astro';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const jsonLd = [
+  {
+    "@context": "http://schema.org/",
+    "@id": "https://djmisha.com",
+    "@type": "Organization",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "url": "https://djmisha.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://djmisha.com/images/logo-djmisha.png",
+      "width": 400
+    },
+    "sameAs": [
+      "https://www.instagram.com/djmishasd/",
+      "https://www.youtube.com/@djmisha",
+      "https://www.facebook.com/djmishaSandiego",
+      "https://www.yelp.com/biz/dj-misha-san-diego-3",
+      "https://www.gigtown.com/artists/dj-misha",
+      "https://www.gigsalad.com/dj_misha_san_diego",
+      "https://goo.gl/maps/2rRm8kBYePqaPbVE6",
+      "https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"
+    ],
+    "contactPoint": {
+      "telephone": "+1-619-786-2664",
+      "contactType": "customer service"
+    },
+    "AggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "83"
+    }
+  },
+  {
+    "@context": "http://schema.org/",
+    "@type": "WebSite",
+    "url": "https://djmisha.com",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "about": "DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"
+  },
+  {
+    "@context": "http://schema.org/",
+    "@type": "WebPage",
+    "url": "https://djmisha.com/prices/",
+    "headline": "Prices, rates and average cost for hiring a DJ",
+    "mainEntityOfPage": "https://djmisha.com/prices/",
+    "about": "Hiring a DJ is one of those things that sounds simple until you start looking into it \u2014 and suddenly you\u2019re comparing wildly different prices with no clear way to tell what\u2019s worth what. Consider this your straightforward guide to understanding DJ pricing. Whether you\u2019re planning a wedding, corporate event, or private party, DJ Misha\u2026"
+  },
+  {
+    "@context": "http://schema.org/",
+    "@id": "#LocalBusiness",
+    "@type": "LocalBusiness",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "url": "https://djmisha.com/",
+    "image": "https://djmisha.com/images/i-4LhQfht-L.jpg",
+    "priceRange": "Contact For Pricing",
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "4640 Cass Street #9553",
+        "addressLocality": "San Diego",
+        "addressRegion": "CA",
+        "postalCode": "92109",
+        "addressCountry": "US",
+        "telephone": "+1-619-786-2664"
+      }
+    ],
+    "employees": ["DJ Misha"]
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "jobTitle": "DJ",
+    "name": "DJ Misha",
+    "telephone": "+1-619-786-2664",
+    "url": "https://djmisha.com/about/",
+    "image": "https://djmisha.com/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"
+  }
+];
 ---
-<ContactLayout title="Prices, rates and average cost for hiring a DJ" description="DJ Misha pricing and packages for weddings, corporate events, and private parties in San Diego. Get a custom quote for your event.">
+<PageLayout
+  title="Prices, rates and average cost for hiring a DJ"
+  description="Learn how much DJs charge for a party. Estimate an hourly rate for your event for Parties, Weddings, Corporate Events from a DJ near you."
+  canonicalUrl="https://djmisha.com/prices/"
+  ogTitle="DJ Prices in San Diego. Average hourly rates."
+  ogDescription="Learn how much DJs charge for a party. Estimate an hourly rate for your event for Parties, Weddings, Corporate Events from a DJ near you. "
+  ogImage="https://djmisha.com/images/logo-djmisha.png"
+  ogUrl="https://djmisha.com/prices/"
+  ogType="website"
+  twitterTitle="DJ Prices in San Diego. Average hourly rates."
+  twitterDescription="Learn how much DJs charge for a party. Estimate an hourly rate for your event for Parties, Weddings, Corporate Events from a DJ near you. "
+  twitterImage="https://djmisha.com/images/logo-djmisha.png"
+  jsonLd={jsonLd}
+>
 
-  <h2>DJ Misha Pricing</h2>
-  <p>DJ Misha offers competitive and transparent pricing for all events. Every event is unique, so pricing is customized based on your specific needs, event duration, location, and any additional services required.</p>
+<p>Hiring a DJ is one of those things that sounds simple until you start looking into it — and suddenly you&#8217;re comparing wildly different prices with no clear way to tell what&#8217;s worth what. Consider this your straightforward guide to understanding DJ pricing. </p>
 
-  <h3>Wedding DJ Packages</h3>
-  <p>Wedding packages include pre-event consultation, ceremony music, cocktail hour, and full reception DJ services with professional sound and lighting.</p>
-  <ul>
-    <li>Pre-event consultation and personalized planning</li>
-    <li>Ceremony, cocktail hour, and reception music</li>
-    <li>Professional sound system for up to 500 guests</li>
-    <li>Wireless microphones for toasts and speeches</li>
-    <li>Dance lighting</li>
-    <li>MC services available</li>
-    <li>Custom playlists and "must play/do not play" lists</li>
-  </ul>
+<p>Whether you&#8217;re planning a wedding, corporate event, or private party, DJ Misha breaks down the usual factors that affect DJ pricing so you can set the right budget and understand exactly the value you&#8217;re paying for.</p>
 
-  <h3>Corporate Event DJ</h3>
-  <p>Professional DJ services for corporate events, holiday parties, product launches, award ceremonies, and team building events.</p>
-  <ul>
-    <li>Background music and ambient sound management</li>
-    <li>Dance floor entertainment</li>
-    <li>Wireless microphones for presentations</li>
-    <li>Customized playlists for your brand and event theme</li>
-  </ul>
+<p>The cost of hiring a DJ comes down to a handful of key factors:</p>
 
-  <h3>Private Party DJ</h3>
-  <p>Top-of-the-line DJ and sound equipment for birthdays, anniversaries, graduations, and any private celebration.</p>
+<ul class="wp-block-list">
+<li>The type of event you&#8217;re hosting</li>
+<li>How much sound and lighting equipment is needed</li>
+<li>The DJ&#8217;s experience level and reputation</li>
+<li>Date, time, and location of the event</li>
+<li>Number of guests attending</li>
+<li>Any special requests or add-on services</li>
+</ul>
 
-  <h3>DJ + Saxophone Package</h3>
-  <p>The ultimate entertainment experience with DJ Misha and saxophonist Jason Whitmore performing together for a unique blend of live music and DJ performance.</p>
+<p>Understanding each of these will help you compare quotes with confidence — and plan accodingly. Let&#8217;s walk through them.</p>
 
-  <h3>Factors That Affect Pricing</h3>
-  <ul>
-    <li>Type of event (wedding, corporate, private party)</li>
-    <li>Duration of the event</li>
-    <li>Number of guests</li>
-    <li>Location and travel distance</li>
-    <li>Additional equipment or lighting needs</li>
-    <li>Add-on services (MC, saxophone, extra speakers)</li>
-  </ul>
+<h2 class="wp-block-heading">How Much Should I Budget for a DJ?</h2>
 
-  <h3>Get a Custom Quote</h3>
-  <p>Every event is different, and DJ Misha provides personalized quotes to ensure you get exactly what you need at a fair price. Contact us with your event details for a fast response.</p>
+<p>If you&#8217;re not sure what to budget, you&#8217;re in good company — most people start there. A rough number is better than no number, because it immediately narrows down what level of talent, equipment, and service you can realistically expect.</p>
 
-  <p><strong>Text or Call for a fast response: <a href="tel:6197862664">(619) 786-2664</a></strong></p>
+<p>DJ rates span a wide range. A newer DJ with basic gear might charge a few hundred dollars, while an experienced professional with premium equipment and a proven track record commands significantly more. The sweet spot depends on your event — and your priorities. </p>
 
-  <ul class="actions">
-    <li><a href="/contact/" class="button primary">Get a Quote</a></li>
-  </ul>
+<p>DJ Misha works with events of every size and style, with packages built around high quality service, years of experience and a genuine focus on making your event exceptional — <a href="/contact/">reach out for an estimate</a> to see what fits your event and budget.</p>
 
-</ContactLayout>
+<h3 class="wp-block-heading"><strong>What Kind of Event Are You Hosting?</strong></h3>
+
+<p>This is the single biggest factor in DJ pricing. Different events require different skills, preparation, and performance styles — and that directly affects cost.</p>
+
+<p>A <a href="/services/wedding-dj-in-san-diego/">wedding DJ</a> does far more than play music — they guide the flow of the entire evening, from cocktail hour through the last dance, coordinating with timelines and managing announcements along the way. A <a href="/services/corporate-event-dj-in-san-diego/">corporate event DJ</a> needs to match the tone of your brand while keeping the energy right for the room. A birthday or private party calls for high-energy, crowd-reading talent that keeps the dance floor engaged. Each of these requires a different approach, and the pricing reflects that. </p>
+
+<p>DJ Misha has years of experience and hundreds of gigs performed across all of them.</p>
+
+<h3 class="wp-block-heading"><strong>How Many Guests Do You Expect at the Event?</strong></h3>
+
+<p>Guest count drives equipment needs — and equipment is a significant part of any DJ quote.</p>
+
+<p>A 30-person dinner party in a living room and a 200-person outdoor celebration are two completely different productions. More guests means more powerful speakers, additional lighting to fill the space, and a larger overall setup. </p>
+
+<p>DJ Misha provides top-of-the-line JBL speakers and professional audio gear scaled to your specific guest count, so every beat hits right whether you&#8217;re hosting an intimate gathering or a large-scale event.</p>
+
+<h3 class="wp-block-heading"><strong>What Is the Age of the Guests Attending Your Event?</strong></h3>
+
+<p>The age range of your crowd shapes the <a href="/music/">music</a> selection. A seasoned DJ brings years of experience reading live crowds, the preparation to anticipate what the room needs, and the instincts to adapt in the moment when the energy shifts &#8211; is well worth the investment.</p>
+
+<p>You might know exactly what you want to hear, but your guests likely span different generations and tastes. A skilled DJ blends genres seamlessly — for example: mixing 80s classics with 2000s hits with today&#8217;s top 40 — to keep people moving on the dance floor. </p>
+
+<p>DJ Misha curates every set to match the energy of the room and the vibe of the event, drawing from decades of music across every style.</p>
+
+<h3 class="wp-block-heading"><strong>What Kind of Music Would You Like to Hear?</strong></h3>
+
+<p>Most DJs specialize in certain genres, so the style of music you want affects who&#8217;s the right fit — and what they&#8217;ll charge.</p>
+
+<p>If you have a clear vision for the sound of your event, that helps narrow the search. If you don&#8217;t have strong preferences and just want your guests to have a fun time — that works too. </p>
+
+<p>DJ Misha draws from a massive, genre-spanning collection — from groovy deep house to crowd-pleasing pop to classic disco — and has the expertise to seamlessly transition between styles to keep the dance floor moving.</p>
+
+<h3 class="wp-block-heading"><strong>What Type of Venue Will Your Event Be Held At?</strong></h3>
+
+<p>Venue size and type directly affect how much gear a DJ needs to bring — which affects the price.</p>
+
+<p>An intimate wedding, a large ballroom, an open-air rooftop, a backyard party — each space has different acoustics, power requirements, and setup considerations. Larger venues with more guests generally require bigger speakers, more lighting, and a more involved production to create the right atmosphere.</p>
+
+<p>DJ Misha has performed at venues of every size and layout, from private homes to convention centers to outdoor festivals, and has the capabilities to provide the right sized setup for any event given space.</p>
+
+<h3 class="wp-block-heading"><strong>Do You Need to Rent Sound Equipment?</strong></h3>
+
+<p>This is a pricing factor that catches a lot of people off guard. Some venues have built-in sound systems — nightclubs, certain restaurants, hotel ballrooms — while most private event spaces don&#8217;t.</p>
+
+<p>If your venue doesn&#8217;t have existing audio, your DJ will need to provide a full setup: speakers, a mixing station, microphones, and potentially lighting. That adds to the cost, but it also means you get a cohesive, professional-grade sound experience. </p>
+
+<p>DJ Misha provides complete equipment packages with professional grade DJ gear — JBL speakers, Technics turntables, Rane and Pioneer mixers, Shure microphones — so you don&#8217;t have to source or coordinate gear separately.</p>
+
+<h3 class="wp-block-heading"><strong>What Additional Equipment or Services Would You Like?</strong></h3>
+
+<p>Beyond music, many DJs offer add-on services that enhance the experience — and each one affects the final price.</p>
+
+<p>Common add-ons include MC services (especially important for weddings, where the DJ often serves as master of ceremonies, guiding announcements and keeping the night on track), uplighting, fog machines, and photo booths. DJ Misha also offers something most DJs can&#8217;t — a <a href="/dj-saxophone/">live saxophone performance alongside the DJ set</a>, a unique combination of live instrumentation and curated dance music that transforms any event into a one-of-a-kind sonic experience your guests won&#8217;t forget.</p>
+
+<h3 class="wp-block-heading"><strong>Which of the Following Best Describes Your Role?</strong></h3>
+
+<p>Whether you&#8217;re a bride, an event planner, an office coordinator, or the host of a milestone celebration — your role in the planning process shapes how the conversation goes.</p>
+
+<p>Sharing your role upfront helps DJ Misha tailor the estimate and communication to your specific situation and vision for your event. A bride planning the biggest day of her life has different needs and questions than a corporate coordinator booking entertainment for a company holiday party. Either way, DJ Misha and team will match the conversation to your goals and expectations from the very first reply.</p>
+
+<h3 class="wp-block-heading"><strong>What Level of DJ Service Are You Looking For?</strong></h3>
+
+<p>This is where the real pricing differences show up. DJ talent ranges from entry-level to world-class — and always you get what you pay for.</p>
+
+<p>A newer DJ with basic gear and limited experience will charge less, and that might be fine for a casual get-together like a backyard BBQ. But for events where the music, energy and vibes really matter — weddings, milestone celebrations, corporate galas — an experienced DJ with a deep music collection, professional equipment, and a track record of flawless performances commands higher rates for a reason. They know how to read a crowd, adapt on the fly, and provide a high quality, valued client focused expereince.</p>
+
+<h3 class="wp-block-heading"><strong>When Is Your Event, and How Long Will You Need the DJ?</strong></h3>
+
+<p>DJ rates fluctuate with demand. Peak seasons — summer weekends, the holiday party stretch from November through New Year&#8217;s — are the busiest, and rates often reflect that.</p>
+
+<p>A typical DJ set at an event can run 3–5 hours in length, and pricing is at least partially calculated on an hourly basis. If you have specific song requests or a detailed playlist, sharing those early gives your DJ time to prepare — and ensures seamless execution on the night of your event. </p>
+
+<p>Once you&#8217;ve worked through all the factors above, you&#8217;ll have everything you need to request an accurate estimate from any professional DJ offering entertainment and music services in your area.</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+<h2 class="wp-block-heading">What Is the Average DJ Pricing for Events in San Diego?</h2>
+
+<p>To give you a real-world benchmark — in San Diego, a <strong>4 hour event, an average DJ price rate could range between $2000 to $5000 dollars</strong>, based on bids placed through platforms like Thumbtack, where DJs compete for your event and you can compare talent, specialties, and pricing side by side.</p>
+
+<p>That range reflects the diversity of experience levels, equipment quality, and service packages available. DJ Misha&#8217;s packages in San Diego and beyond typically include a professionally mixed DJ set, full sound system and DJ booth equipment, event planning coordination, and direct collaboration with you to perfect the playlist and nail every detail of your celebration.</p>
+
+<h2 class="wp-block-heading">Destination Events and Out of Town Gigs</h2>
+
+<p>DJ Misha travels nationally and internationally — so he is the perfect DJ near you &#8211; regardless of your location. For destination events, DJ Misha handles all travel logistics including flights, ground transportation, lodging, and meals. If needed, a full sound system can be sourced and set up through a local vendor at your destination, so you can relax and enjoy the event without worrying about equipment.</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+<h2 class="wp-block-heading">Packages – Starting Rates &amp; Service Ranges</h2>
+
+<p>Get a clear picture of what things cost before you reach out. Here&#8217;s a quick look at starting rates for DJ Misha&#8217;s most popular services. Final pricing depends on event details, date, location, and any add-ons — but these ranges give you a reliable starting point.</p>
+
+<section id="five" class="wrapper style-prices special fade">
+   <div class="container">
+      <header>
+         <h2>Wedding DJ Services</h2>
+         <h3>Starting from $2,500</h3>
+         <ul>
+            <li>
+              A full wedding DJ package — covering ceremony, cocktail and reception, MC services, and full sound setup — typically ranges from $2,500 to $5,000 depending on event length, sound system requirements, and any additional services.
+            </li>
+         </ul>
+      </header>
+   </div>
+</section>
+
+<section id="five" class="wrapper style-prices special fade">
+   <div class="container">
+      <header>
+         <h2>Live Saxophone</h2>
+         <h3>Starting from $2,000</h3>
+         <ul>
+            <li>
+                Add a live saxophonist performing alongside the DJ set for a truly one-of-a-kind experience. This service typically covers 3 hours of an event timeline and can be paired with any DJ package for weddings, corporate events, or private parties.
+            </li>
+         </ul>
+      </header>
+   </div>
+</section>
+
+<h2 class="wp-block-heading"><br>Additional Services &amp; Add-Ons </h2>
+
+<p>If you want to take your event to the next level, there are a range of add-on services that can be booked along side your DJ. These are offered through trusted third-party vendors that DJ Misha has worked with for years, ensuring a seamless experience and high-quality service. Here are some of the most popular options.</p>
+
+<section id="five" class="wrapper style-prices special fade">
+   <div class="container">
+      <header>
+         <h2>Custom Event Lighting</h2>
+         <h3>Starting from $1,500</h3>
+         <ul>
+            <li>
+                Uplighting, wash lighting, and custom ambiance packages are available in collaboration with a trusted lighting vendor. Pricing starts at $1,500 and varies based on venue size and lighting services scope and client preferences.
+            </li>
+         </ul>
+      </header>
+   </div>
+</section>
+
+<section id="five" class="wrapper style-prices special fade">
+   <div class="container">
+      <header>
+         <h2>Live Guitar</h2>
+         <h3>Pricing varies by package</h3>
+         <ul>
+            <li>
+                Create a warm, elegant atmosphere with live acoustic guitar during your ceremony or cocktail hour. Available through a trusted third-party musician, this add-on pairs beautifully with any DJ package — contact DJ Misha for current availability and package options.
+            </li>
+         </ul>
+      </header>
+   </div>
+</section>
+
+<section id="five" class="wrapper style-prices special fade">
+   <div class="container">
+      <header>
+         <h2>Portrait Lounge</h2>
+         <h3>Pricing varies by package</h3>
+         <ul>
+            <li>
+                Give your guests a keepsake to remember the night — a classy portrait lounge (aka: photo booths) are a crowd favorite at weddings and private parties alike. Available through a trusted third-party vendor, with a range of packages to fit different event sizes and styles.
+            </li>
+         </ul>
+      </header>
+   </div>
+</section>
+
+<p><br><br>In summary — the right DJ, the right equipment setup, and the estimate for services all start with understanding your event. The more details you share upfront — event type, guest count, venue, date, and any special requests — the more accurate and tailored the estimate will be. <a href="/contact/">Contact DJ Misha</a> today for a same-day reply with availability and pricing tailored to your celebration.</p>
+
+<script is:inline type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": [
+	{
+		"@type": "Question",
+		"name": "What Is the Average DJ Pricing for Events in San Diego?",
+		"acceptedAnswer": {
+			"@type": "Answer",
+			"text": "To give you a real-world benchmark — in San Diego, a 4 hour event, an average DJ price rate could range between $2000 to $5000 dollars."
+		}
+	}
+]
+}
+</script>
+
+</PageLayout>

@@ -8,35 +8,27 @@ const { isHome = false } = Astro.props;
 <a href="#skiptomaincontent" style="display:none;">Skip to main content</a>
 
 <header id="header">
-  {isHome ? (
-    <h1 id="logo">
-      <a href="/" title="San Diego DJ">San Diego DJ</a>
-    </h1>
-  ) : (
-    <span id="logo">
-      <a href="/" title="San Diego DJ">San Diego DJ</a>
-    </span>
-  )}
 
+  {isHome ? (
+    <h1 id="logo"><a href="/" title="San Diego DJ">San Diego DJ</a></h1>
+  ) : (
+    <span id="logo"><a href="/" title="San Diego DJ">San Diego DJ</a></span>
+  )}
   <nav id="nav">
     <ul class="nav-menu">
       <li><a href="/">Home</a></li>
-      <li><a href="/about/">About</a></li>
-      <li><a href="/music/">Music</a></li>
-      <li><a href="/reviews/">Reviews</a></li>
+      <li><a href="/dj-saxophone/" title="Jason Whitmore on Saxophone">DJ + Saxophone</a></li>
+      <li><a href="/services/wedding-dj-in-san-diego/" title="Wedding DJ in San Diego">Wedding DJ</a></li>
+      <li><a href="/services/corporate-event-dj-in-san-diego/" title="Corporate Event DJ in San Diego">Corporate Event DJ</a></li>
+      <li><a href="/services/party-birthday-dj-in-san-diego/" title="Party &amp; Birthday DJ in San Diego">Party DJ</a></li>
       <li><a href="/prices/">Prices</a></li>
-      <li><a href="/services/">Services</a>
-        <ul>
-          <li><a href="/dj-saxophone/">DJ + Saxophone</a></li>
-          <li><a href="/services/wedding-dj-in-san-diego/">Wedding DJ</a></li>
-          <li><a href="/services/destination-wedding-dj/">Destination Wedding DJ</a></li>
-          <li><a href="/services/corporate-event-dj-in-san-diego/">Corporate Event DJ</a></li>
-          <li><a href="/services/party-birthday-dj-in-san-diego/">Party &amp; Birthday DJ</a></li>
-        </ul>
-      </li>
-      <li><a href="/contact/" class="button primary">Contact</a></li>
+      <li><a href="/reviews/">Reviews</a></li>
+      <li><a href="/music/">Music</a></li>
+      <li><a href="/about/">About</a></li>
+      <li class="button primary"><a href="/contact/" title="Contact best San Diego DJ">Contact</a></li>
     </ul>
   </nav>
+
 </header>
 
 <span id="skiptomaincontent"></span>

@@ -15,6 +15,22 @@ dist/
 .vscode/
 .idea/
 
+# Rate limit data (keep .htaccess)
+php/rate-limit-data/*.json
+
 # OS
 .DS_Store
 Thumbs.db
+
+# Staging (CI/CD)
+_staging/
+
+# Various 
+
+archived-theme/
+existing-site/
+scripts/
+vrt-output/
+tests/
+.kiro/
+

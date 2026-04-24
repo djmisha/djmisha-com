@@ -349,8 +349,8 @@ span#logo a {
     background-color:#272833 !important;
     border:none !important;
     display:block;
-    margin:4px 0 4px 4px;
-    padding:4px;
+    margin:0;
+    padding:0;
     position:relative
 }
  div#yelpwidget{
@@ -390,9 +390,22 @@ span#logo a {
     text-align:left;
     padding: 20px;
 }
- #menu-footer-navigation, .services-navigation{
+
+@media screen and (max-width: 980px) {
+  #footer p.sentance {
+    padding-top: 2em;
+  }
+}
+ .menu-footer-navigation, .services-navigation{
     text-align:left;
     list-style:none !important;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-footer-navigation li, .services-navigation li {
+    list-style: none;
+    padding-left: 0.5em;
 }
  #footer ul.copyright li{
     line-height:25px;
@@ -646,4 +659,436 @@ body.contact-page #footer {
 .category img.attachment-medium.size-medium.wp-post-image {
   width: 100%;
   height: auto;
+}
+
+
+/* WordPress Block Image Styles */
+.wp-block-image {
+  margin-bottom: 1em;
+}
+
+.wp-block-image img {
+  box-sizing: border-box;
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+.wp-block-image figure {
+  margin: 0;
+}
+
+.wp-block-image .aligncenter,
+.wp-block-image .alignleft,
+.wp-block-image .alignright,
+.wp-block-image.aligncenter,
+.wp-block-image.alignleft,
+.wp-block-image.alignright {
+  display: table;
+}
+
+.wp-block-image .aligncenter > figcaption,
+.wp-block-image .alignleft > figcaption,
+.wp-block-image .alignright > figcaption,
+.wp-block-image.aligncenter > figcaption,
+.wp-block-image.alignleft > figcaption,
+.wp-block-image.alignright > figcaption {
+  caption-side: bottom;
+  display: table-caption;
+}
+
+.wp-block-image .alignleft,
+.wp-block-image figure.alignleft {
+  float: left;
+  margin: .5em 1em .5em 0;
+}
+
+.wp-block-image .alignright,
+.wp-block-image figure.alignright {
+  float: right;
+  margin: .5em 0 .5em 1em;
+}
+
+.wp-block-image .aligncenter,
+.wp-block-image figure.aligncenter {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.wp-block-image figcaption,
+.wp-element-caption {
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.5em;
+}
+
+/* WordPress Gallery Styles */
+.wp-block-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5em;
+}
+
+.wp-block-gallery .wp-block-image {
+  flex: 1 1 calc(33.333% - 1em);
+  margin-bottom: 0;
+}
+
+.wp-block-gallery .wp-block-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.wp-block-list {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+
+/* NextGEN Gallery Sidebar Thumbnails */
+.ngg-galleryoverview {
+  overflow: hidden;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.ngg-galleryoverview.default-view {
+  text-align: center;
+  font-size: 0;
+  letter-spacing: 0;
+}
+
+.ngg-galleryoverview.default-view .ngg-gallery-thumbnail-box {
+  display: inline-block;
+  float: none;
+  vertical-align: middle;
+}
+
+.ngg-galleryoverview.default-view .ngg-gallery-thumbnail {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+}
+
+.ngg-galleryoverview.default-view .ngg-gallery-thumbnail a {
+  margin: 2px;
+  display: block;
+  box-shadow: none;
+}
+
+.ngg-galleryoverview.default-view .ngg-gallery-thumbnail img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.ngg-clear {
+  clear: both;
+}
+
+/* Contact Page Image Alignment */
+.contact-page .wp-block-image figure.alignright {
+  float: right;
+  margin: 0 0 1em 1.5em;
+}
+
+.contact-page .wp-block-image img {
+  width: 100px;
+  height: auto;
+  border: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .contact-page .wp-block-image img {
+    width: 150px;
+  }
+}
+
+/* Contact Form */
+
+.cf-form {
+  max-width: 100%;
+}
+
+.cf-required-legend {
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5em;
+}
+
+.cf-required-asterisk {
+  color: #e44c65;
+  margin-left: 0.2em;
+}
+
+.cf-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.cf-row-3col .cf-field-group {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.cf-row-2col .cf-field-group {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.cf-field-group {
+  margin-bottom: 1.5em;
+}
+
+.cf-row .cf-field-group {
+  margin-bottom: 0;
+}
+
+.cf-label {
+  display: block;
+  font-size: 0.9em;
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 0.4em;
+}
+
+.cf-input,
+.cf-select,
+.cf-textarea {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: solid 1px rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.75);
+  display: block;
+  outline: 0;
+  padding: 0 1em;
+  width: 100%;
+  font-family: "Roboto", Helvetica, sans-serif;
+  font-size: 15pt;
+  font-weight: 100;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.cf-input,
+.cf-select {
+  height: 3em;
+}
+
+.cf-textarea {
+  padding: 0.75em 1em;
+  height: 190px;
+  min-height: 190px;
+  resize: vertical;
+  line-height: 1.75em;
+}
+
+.cf-select {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' preserveAspectRatio='none' viewBox='0 0 40 40'%3E%3Cpath d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31.9c-0.2,0.2-0.5,0.4-0.9,0.4c-0.3,0-0.6-0.1-0.9-0.4L4.3,17.3c-0.2-0.2-0.4-0.5-0.4-0.9 c0-0.4,0.1-0.6,0.4-0.9l3.3-3.3c0.2-0.2,0.5-0.4,0.9-0.4S9.1,12.1,9.4,12.3z' fill='rgba(255, 255, 255, 0.3)' /%3E%3C/svg%3E");
+  background-size: 1.25rem;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 1rem) center;
+  padding-right: 3em;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.cf-select option {
+  color: #ffffff;
+  background: #1c1d26;
+}
+
+.cf-input:focus,
+.cf-select:focus,
+.cf-textarea:focus {
+  border-color: #e44c65;
+}
+
+.cf-input--error {
+  border-color: #e44c65 !important;
+}
+
+.cf-error-message {
+  display: none;
+  font-size: 0.8em;
+  color: #e44c65;
+  margin-top: 0.4em;
+}
+
+.cf-description {
+  display: block;
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.1;
+  margin-top: -0.2em;
+  margin-bottom: 0.4em;
+}
+
+.cf-checkbox-group {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.cf-checkbox-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cf-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 100;
+  position: relative;
+  padding-left: 2.55em;
+  padding-top: 0.15em;
+  padding-bottom: 0.15em;
+  line-height: 1.2;
+}
+
+.cf-checkbox-label input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  width: 1em;
+  z-index: -1;
+}
+
+.cf-checkbox-label::before {
+  content: '';
+  display: inline-block;
+  width: 1.8em;
+  height: 1.8em;
+  border: solid 1px rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  line-height: 1.8em;
+  font-size: 0.8em;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.cf-checkbox-label:has(input:checked)::before {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  content: '\f00c';
+}
+
+.cf-checkbox-label:has(input:focus)::before {
+  border-color: #e44c65;
+}
+
+.cf-submit-wrapper {
+  margin-top: 1em;
+}
+
+.cf-submit-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #e44c65;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: none;
+  color: #ffffff !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-family: "Roboto", Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  height: 3em;
+  padding: 0 2.25em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.cf-submit-btn:hover {
+  background-color: #e76278;
+}
+
+.cf-submit-btn:active {
+  background-color: #e13652;
+}
+
+.cf-submit-btn:disabled {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+  cursor: default;
+  opacity: 0.25;
+}
+
+.cf-spinner {
+  display: none;
+  width: 1em;
+  height: 1em;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: cf-spin 0.6s linear infinite;
+}
+
+.cf-submit-btn.is-loading .cf-spinner {
+  display: inline-block;
+}
+
+@keyframes cf-spin {
+  to { transform: rotate(360deg); }
+}
+
+.cf-success-message {
+  background: rgba(255, 255, 255, 0.075);
+  border: solid 1px rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 2em;
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.1em;
+}
+
+.cf-error-banner {
+  background: rgba(228, 76, 101, 0.15);
+  border: solid 1px #e44c65;
+  border-radius: 4px;
+  padding: 1em 1.5em;
+  color: #e44c65;
+  margin-bottom: 1.5em;
+  font-size: 0.9em;
+}
+
+/* Contact Form — Responsive */
+
+@media screen and (max-width: 768px) {
+  .cf-row {
+    flex-direction: column;
+  }
+
+  .cf-row-3col .cf-field-group,
+  .cf-row-2col .cf-field-group {
+    flex: 1 1 100%;
+  }
 }

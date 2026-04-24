@@ -1,0 +1,160 @@
+---
+// ContactForm.astro — Custom contact form with cf-* CSS classes
+---
+
+<div class="cf-form-wrapper">
+  <p class="cf-required-legend">"<span class="cf-required-asterisk">*</span>" indicates required fields</p>
+
+  <form id="contact-form" class="cf-form" novalidate>
+
+    <!-- Row 1: Name, Email, Phone (3-column on desktop) -->
+    <div class="cf-row cf-row-3col">
+
+      <!-- Field 1: Name -->
+      <div id="cf-field-name" class="cf-field-group">
+        <label class="cf-label" for="cf-input-name">Name:<span class="cf-required-asterisk">*</span></label>
+        <input type="text" id="cf-input-name" name="name" class="cf-input" placeholder="Your full name" aria-required="true" />
+        <span id="cf-error-name" class="cf-error-message" role="alert"></span>
+      </div>
+
+      <!-- Field 2: Email Address -->
+      <div id="cf-field-email" class="cf-field-group">
+        <label class="cf-label" for="cf-input-email">Email Address:<span class="cf-required-asterisk">*</span></label>
+        <input type="email" id="cf-input-email" name="email" class="cf-input" placeholder="you@example.com" aria-required="true" />
+        <span id="cf-error-email" class="cf-error-message" role="alert"></span>
+      </div>
+
+      <!-- Field 3: Phone Number -->
+      <div id="cf-field-phone" class="cf-field-group">
+        <label class="cf-label" for="cf-input-phone">Phone Number:<span class="cf-required-asterisk">*</span></label>
+        <input type="text" id="cf-input-phone" name="phone" class="cf-input" placeholder="(619) 555-1234" aria-required="true" />
+        <span id="cf-error-phone" class="cf-error-message" role="alert"></span>
+      </div>
+
+    </div>
+
+    <!-- Row 2: Event Type, Attendance (2-column on desktop) -->
+    <div class="cf-row cf-row-2col">
+
+      <!-- Field 4: Event Type -->
+      <div id="cf-field-event_type" class="cf-field-group">
+        <label class="cf-label" for="cf-input-event_type">I need an awesome DJ for my:<span class="cf-required-asterisk">*</span></label>
+        <select id="cf-input-event_type" name="event_type" class="cf-select" aria-required="true">
+          <option value="" disabled selected>Select an option</option>
+          <option value="Wedding Reception">Wedding Reception</option>
+          <option value="Corporate Event">Corporate Event</option>
+          <option value="Private Party">Private Party</option>
+          <option value="Venue / Nightlife">Venue / Nightlife</option>
+          <option value="Festival / Concert">Festival / Concert</option>
+        </select>
+        <span id="cf-error-event_type" class="cf-error-message" role="alert"></span>
+      </div>
+
+      <!-- Field 5: Attendance -->
+      <div id="cf-field-attendance" class="cf-field-group">
+        <label class="cf-label" for="cf-input-attendance">I am expecting an attendance of:<span class="cf-required-asterisk">*</span></label>
+        <select id="cf-input-attendance" name="attendance" class="cf-select" aria-required="true">
+          <option value="" disabled selected>Select an option</option>
+          <option value="50 people or less">50 people or less</option>
+          <option value="50 – 75 people">50 – 75 people</option>
+          <option value="75 – 100 people">75 – 100 people</option>
+          <option value="100 – 125 people">100 – 125 people</option>
+          <option value="125 - 150 people">125 - 150 people</option>
+          <option value="150 – 200 people">150 – 200 people</option>
+          <option value="200 people or more">200 people or more</option>
+        </select>
+        <span id="cf-error-attendance" class="cf-error-message" role="alert"></span>
+      </div>
+
+    </div>
+
+    <!-- Field 6: Venue/Location (full width) -->
+    <div id="cf-field-venue" class="cf-field-group">
+      <label class="cf-label" for="cf-input-venue">The event will be held at the following venue and location:<span class="cf-required-asterisk">*</span></label>
+      <input type="text" id="cf-input-venue" name="venue" class="cf-input" placeholder="Venue name and city" aria-required="true" />
+      <span id="cf-error-venue" class="cf-error-message" role="alert"></span>
+    </div>
+
+    <!-- Field 7: Date/Time (full width) -->
+    <div id="cf-field-date_time" class="cf-field-group">
+      <label class="cf-label" for="cf-input-date_time">The DATE and START/END time of my event is:<span class="cf-required-asterisk">*</span></label>
+      <input type="text" id="cf-input-date_time" name="date_time" class="cf-input" placeholder="e.g. June 15, 2026 — 5:00 PM to 10:00 PM" aria-required="true" />
+      <span id="cf-error-date_time" class="cf-error-message" role="alert"></span>
+    </div>
+
+    <!-- Field 8: Select a service (full width, description above dropdown) -->
+    <div id="cf-field-service" class="cf-field-group">
+      <label class="cf-label" for="cf-input-service">Select a service<span class="cf-required-asterisk">*</span></label>
+      <p class="cf-description" id="cf-description-service">Rates shown are starting points based on typical timelines. Final pricing varies depending on date, location, and event details.</p>
+      <select id="cf-input-service" name="service" class="cf-select" aria-describedby="cf-description-service" aria-required="true">
+        <option value="" disabled selected>Select an option</option>
+        <option value="DJ + Saxophone — 4 hrs (from $3500 – $5000)">DJ + Saxophone — 4 hrs (from $3500 – $5000)</option>
+        <option value="DJ for Wedding —  4 hrs (from $2500)">DJ for Wedding —  4 hrs (from $2500)</option>
+        <option value="DJ for Corporate Event — 4 hrs (from $2500)">DJ for Corporate Event — 4 hrs (from $2500)</option>
+        <option value="DJ for Private Party — 4 hrs (from $2000)">DJ for Private Party — 4 hrs (from $2000)</option>
+      </select>
+      <span id="cf-error-service" class="cf-error-message" role="alert"></span>
+    </div>
+
+    <!-- Field 9: Vibes/Mood Checkboxes (full width, description above checkboxes) -->
+    <fieldset id="cf-field-vibes" class="cf-field-group cf-checkbox-group">
+      <legend class="cf-label">The vibes and mood at my event will be:<span class="cf-required-asterisk">*</span></legend>
+      <p class="cf-description" id="cf-description-vibes">Please select all that may apply</p>
+      <div class="cf-checkbox-options">
+        <label class="cf-checkbox-label">
+          <input type="checkbox" name="vibes[]" value="Lounge, Chillout, Mellow" aria-describedby="cf-description-vibes" />
+          Lounge, Chillout, Mellow
+        </label>
+        <label class="cf-checkbox-label">
+          <input type="checkbox" name="vibes[]" value="Groovy, Funky, Vibing" />
+          Groovy, Funky, Vibing
+        </label>
+        <label class="cf-checkbox-label">
+          <input type="checkbox" name="vibes[]" value="Epic, Total Rager, Party Rocker" />
+          Epic, Total Rager, Party Rocker
+        </label>
+      </div>
+      <span id="cf-error-vibes" class="cf-error-message" role="alert"></span>
+    </fieldset>
+
+    <!-- Field 10: Message (full width) -->
+    <div id="cf-field-message" class="cf-field-group">
+      <label class="cf-label" for="cf-input-message">Message:<span class="cf-required-asterisk">*</span></label>
+      <textarea id="cf-input-message" name="message" class="cf-textarea" placeholder="Tell us about your event..." aria-required="true" rows="6"></textarea>
+      <span id="cf-error-message" class="cf-error-message" role="alert"></span>
+    </div>
+
+    <!-- Honeypot field — hidden from real users, bots will fill it -->
+    <div style="position:absolute;left:-9999px;" aria-hidden="true">
+      <label for="cf-input-website">Website</label>
+      <input type="text" id="cf-input-website" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <!-- Timestamp for timing-based bot detection -->
+    <input type="hidden" id="cf-form-loaded" name="form_loaded_at" value="" />
+
+    <!-- Invisible reCAPTCHA placeholder -->
+    <!-- Replace YOUR_RECAPTCHA_SITE_KEY with your actual Google reCAPTCHA v2 Invisible site key -->
+    <div id="cf-recaptcha" class="g-recaptcha" data-sitekey="6LchZ3csAAAAAOG_PNFITer5D82_Rcm2ug3WmYlB" data-callback="onRecaptchaSubmit" data-size="invisible"></div>
+
+    <!-- Submit button with spinner -->
+    <div class="cf-submit-wrapper">
+      <button type="submit" id="cf-submit-btn" class="cf-submit-btn">
+        <span class="cf-submit-text">Submit</span>
+        <span class="cf-spinner" aria-hidden="true"></span>
+      </button>
+    </div>
+
+  </form>
+
+  <!-- Success message (hidden by default) -->
+  <div id="cf-success-message" class="cf-success-message" role="status" style="display:none;">
+    Thank you! Your message has been sent successfully.
+  </div>
+
+  <!-- Error banner (hidden by default) -->
+  <div id="cf-error-banner" class="cf-error-banner" role="alert" style="display:none;"></div>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="/js/contact-form.js" defer></script>

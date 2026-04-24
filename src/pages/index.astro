@@ -2,8 +2,96 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+
+const jsonLdSchema = [
+  {
+    "@context": "http://schema.org/",
+    "@id": "https://djmisha.com",
+    "@type": "Organization",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "url": "https://djmisha.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://djmisha.com/images/logo-djmisha.png",
+      "width": 400
+    },
+    "sameAs": [
+      "https://www.instagram.com/djmishasd/",
+      "https://www.youtube.com/@djmisha",
+      "https://www.facebook.com/djmishaSandiego",
+      "https://www.yelp.com/biz/dj-misha-san-diego-3",
+      "https://www.gigtown.com/artists/dj-misha",
+      "https://www.gigsalad.com/dj_misha_san_diego",
+      "https://goo.gl/maps/2rRm8kBYePqaPbVE6",
+      "https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"
+    ],
+    "contactPoint": {
+      "telephone": "+1-619-786-2664",
+      "contactType": "customer service"
+    },
+    "AggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "83"
+    }
+  },
+  {
+    "@context": "http://schema.org/",
+    "@type": "WebSite",
+    "url": "https://djmisha.com",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "about": "DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"
+  },
+  {
+    "@context": "http://schema.org/",
+    "@id": "#LocalBusiness",
+    "@type": "LocalBusiness",
+    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+    "url": "https://djmisha.com/",
+    "image": "https://djmisha.com/images/i-4LhQfht-L.jpg",
+    "priceRange": "Contact For Pricing",
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "4640 Cass Street #9553",
+        "addressLocality": "San Diego",
+        "addressRegion": "CA",
+        "postalCode": "92109",
+        "addressCountry": "US",
+        "telephone": "+1-619-786-2664"
+      }
+    ],
+    "employees": ["DJ Misha"]
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "jobTitle": "DJ",
+    "name": "DJ Misha",
+    "telephone": "+1-619-786-2664",
+    "url": "https://djmisha.com/about/",
+    "image": "https://djmisha.com/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"
+  }
+];
+const ogDesc = "best djs in san diego dj for events club party wedding corporate top dj's edm house music electronic dance music";
 ---
-<BaseLayout title="DJ Misha - San Diego DJ" description="DJ Misha is a San Diego DJ for hire, specializing in weddings, parties, and corporate events, with expertise in EDM, house, and dance music." bodyClass="is-preload landing" isHome={true}>
+<BaseLayout
+  title="San Diego DJ Misha"
+  description="San Diego DJ for hire; spinning dance and house music at corporate events, parties, weddings, birthdays and all occasions. Planning a party? Book DJ Misha."
+  bodyClass="is-preload landing"
+  isHome={true}
+  canonicalUrl="https://djmisha.com/"
+  ogTitle="San Diego DJ Misha"
+  ogDescription={ogDesc}
+  ogImage="https://djmisha.com/images/logo-djmisha.png"
+  ogUrl="https://djmisha.com/"
+  ogType="website"
+  twitterTitle="San Diego DJ Misha"
+  twitterDescription={ogDesc}
+  twitterImage="https://djmisha.com/images/logo-djmisha.png"
+  jsonLd={jsonLdSchema}
+  useFancybox={true}
+>
 
   <Navigation isHome={true} />
 
@@ -89,7 +177,7 @@ import Footer from '../components/Footer.astro';
       <p>Talented saxophone player Jason Whitmore is a crowd pleaser when he plays along side with DJ Misha's dance beats</p>
       <div id="slide3"> <br>
         <ul class="actions">
-          <li><a href="/dj-saxophone/" class="button">DJ &amp; Saxophone</a></li>
+          <li><a href="/dj-saxophone/" class="button">DJ &amp; Saxophone  </a></li>
         </ul>
       </div>
       <a href="#four" class="goto-next scrolly" rel="nofollow">Next</a>
@@ -241,13 +329,40 @@ import Footer from '../components/Footer.astro';
       <div class="box alt">
         <div class="row uniform">
           <section class="col-3 col-12-medium">
-            <a href="/blog/" rel="nofollow">
+            <a href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/" rel="nofollow">
               <style>.image-w img {width: 100%; height: auto;}</style>
               <div style="padding:0 10px;" class="image-w">
-                <img src="/images/pic01.jpg" alt="DJ Misha Blog" />
+                <img width="298" height="200" src="/images/epic-DJ-set-wedding-dance-party-298x200.jpg" class="attachment-medium size-medium wp-post-image" alt="Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision" decoding="async" loading="lazy" />
               </div>
             </a>
-            <h4><a href="/blog/" rel="bookmark">Check out our latest blog posts</a></h4>
+            <h4><a href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/" rel="bookmark"> Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision </a></h4>
+          </section>
+          <section class="col-3 col-12-medium">
+            <a href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/" rel="nofollow">
+              <style>.image-w img {width: 100%; height: auto;}</style>
+              <div style="padding:0 10px;" class="image-w">
+                <img width="296" height="200" src="/images/wedding-dj-toast-296x200.jpg" class="attachment-medium size-medium wp-post-image" alt="Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech" decoding="async" loading="lazy" />
+              </div>
+            </a>
+            <h4><a href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/" rel="bookmark"> Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech </a></h4>
+          </section>
+          <section class="col-3 col-12-medium">
+            <a href="/blog/the-art-of-taking-requests-a-djs-perspective/" rel="nofollow">
+              <style>.image-w img {width: 100%; height: auto;}</style>
+              <div style="padding:0 10px;" class="image-w">
+                <img width="274" height="200" src="/images/Screenshot-2024-09-14-at-6.18.37-AM-274x200.jpg" class="attachment-medium size-medium wp-post-image" alt="The Art of Taking Requests: A DJ&#8217;s Perspective" decoding="async" loading="lazy" />
+              </div>
+            </a>
+            <h4><a href="/blog/the-art-of-taking-requests-a-djs-perspective/" rel="bookmark"> The Art of Taking Requests: A DJ&#8217;s Perspective </a></h4>
+          </section>
+          <section class="col-3 col-12-medium">
+            <a href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/" rel="nofollow">
+              <style>.image-w img {width: 100%; height: auto;}</style>
+              <div style="padding:0 10px;" class="image-w">
+                <img width="300" height="200" src="/images/10-i-4lhqfht-l-300x200.jpg" class="attachment-medium size-medium wp-post-image" alt="A Guide to Planning for Your Wedding with DJ Misha" decoding="async" loading="lazy" />
+              </div>
+            </a>
+            <h4><a href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/" rel="bookmark"> A Guide to Planning for Your Wedding with DJ Misha </a></h4>
           </section>
         </div>
       </div>

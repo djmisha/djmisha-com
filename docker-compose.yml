@@ -1,0 +1,20 @@
+services:
+  web:
+    build:
+      context: ./docker
+    ports:
+      - "8080:80"
+    volumes:
+      - ./dist:/var/www/html:ro
+      - ./php:/var/www/php
+    environment:
+      - APACHE_LOG_DIR=/var/log/apache2
+    depends_on:
+      - mailhog
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    platform: linux/amd64
+    ports:
+      - "1025:1025"   # SMTP
+      - "8025:8025"   # Web UI
