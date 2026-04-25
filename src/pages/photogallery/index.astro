@@ -1,9 +1,0 @@
----
-/*
-  The photogallery page on the live site redirects to the home page.
-  The scraped HTML shows canonical URL as https://djmisha.com/ and body class "is-preload landing".
-  A Netlify redirect rule handles /photogallery/ -> / (301).
-  This page exists as a fallback in case the redirect doesn't fire.
-*/
-return Astro.redirect('/', 301);
----

@@ -135,7 +135,7 @@
 
     <!-- Invisible reCAPTCHA placeholder -->
     <!-- Replace YOUR_RECAPTCHA_SITE_KEY with your actual Google reCAPTCHA v2 Invisible site key -->
-    <div id="cf-recaptcha" class="g-recaptcha" data-sitekey="6LchZ3csAAAAAOG_PNFITer5D82_Rcm2ug3WmYlB" data-callback="onRecaptchaSubmit" data-size="invisible"></div>
+    <div id="cf-recaptcha" class="g-recaptcha" data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY} data-callback="onRecaptchaSubmit" data-size="invisible"></div>
 
     <!-- Submit button with spinner -->
     <div class="cf-submit-wrapper">

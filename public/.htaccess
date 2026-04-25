@@ -1,0 +1,7 @@
+# ── reCAPTCHA secret key ─────────────────────────────────────────────────────
+SetEnv RECAPTCHA_SECRET_KEY "6LchZ3csAAAAADA2ewlSnszmOy5u2j6lK1Zw-ze4"
+
+# ── Redirects (migrated from Netlify) ────────────────────────────────────────
+RewriteEngine On
+RewriteRule ^contact-dj-misha/?$ /contact/ [R=301,L]
+RewriteRule ^photogallery/?$ / [R=301,L]

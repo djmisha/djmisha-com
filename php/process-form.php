@@ -21,7 +21,7 @@ ini_set('display_errors', '0');
 error_reporting(E_ALL);
 
 // ── Configuration ───────────────────────────────────────────────────────────
-$RECAPTCHA_SECRET  = '6LchZ3csAAAAADA2ewlSnszmOy5u2j6lK1Zw-ze4';
+$RECAPTCHA_SECRET  = getenv('RECAPTCHA_SECRET_KEY') ?: '';
 $OWNER_EMAILS      = ['info@djmisha.com', 'misha.osinovskiy@gmail.com'];
 $FROM_EMAIL        = 'no-reply@djmisha.com';
 $FROM_NAME         = 'djmisha.com';
