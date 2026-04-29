@@ -26,7 +26,7 @@ $OWNER_EMAILS      = ['info@djmisha.com', 'misha.osinovskiy@gmail.com'];
 $FROM_EMAIL        = 'no-reply@djmisha.com';
 $FROM_NAME         = 'djmisha.com';
 $EMAIL_SUBJECT     = 'Contact from djmisha.com';
-$ALLOWED_ORIGIN    = 'https://djmisha.com';
+$ALLOWED_ORIGINS   = ['https://djmisha.com', 'https://test.djmisha.com'];
 $MIN_SUBMIT_SECONDS = 3;
 
 // ── Local dev mode ──────────────────────────────────────────────────────────
@@ -36,7 +36,7 @@ $LOCAL_DEV = (
     (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false)
 );
 if ($LOCAL_DEV) {
-    $ALLOWED_ORIGIN = 'http://' . $_SERVER['HTTP_HOST'];
+    $ALLOWED_ORIGINS = ['http://' . $_SERVER['HTTP_HOST']];
 }
 $MIN_SUBMIT_SECONDS = 3; // Minimum seconds between form load and submit
 
@@ -65,8 +65,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $origin  = $_SERVER['HTTP_ORIGIN']  ?? '';
 $referer = $_SERVER['HTTP_REFERER'] ?? '';
 
-$originValid  = ($origin !== '' && strpos($origin, $ALLOWED_ORIGIN) === 0);
-$refererValid = ($referer !== '' && strpos($referer, $ALLOWED_ORIGIN) === 0);
+$originValid  = false;
+$refererValid = false;
+foreach ($ALLOWED_ORIGINS as $_allowedOrigin) {
+    if ($origin !== '' && strpos($origin, $_allowedOrigin) === 0) {
+        $originValid = true;
+    }
+    if ($referer !== '' && strpos($referer, $_allowedOrigin) === 0) {
+        $refererValid = true;
+    }
+}
 
 if (!$originValid && !$refererValid) {
     jsonResponse(false, 'Request origin not allowed', 403);
