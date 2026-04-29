@@ -147,7 +147,7 @@ if (!$LOCAL_DEV) {
         || empty($recaptchaResult['tokenProperties']['valid'])
     ) {
         error_log('reCAPTCHA token invalid. tokenProperties: ' . json_encode($recaptchaResult['tokenProperties'] ?? 'missing'));
-        jsonResponse(false, 'reCAPTCHA DEBUG: ' . $recaptchaRaw, 403);
+        jsonResponse(false, 'reCAPTCHA DEBUG URL: ' . $assessmentUrl . ' | Response: ' . $recaptchaRaw, 403);
     }
 
     // Check score (0.0 = bot, 1.0 = human) — reject below 0.5
