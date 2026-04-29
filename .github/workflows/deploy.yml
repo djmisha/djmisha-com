@@ -30,6 +30,9 @@ jobs:
           sed -i 's|__RECAPTCHA_API_KEY__|${{ secrets.RECAPTCHA_API_KEY }}|g' dist/.htaccess
           sed -i 's|__RECAPTCHA_SITE_KEY__|${{ secrets.RECAPTCHA_SITE_KEY }}|g' dist/.htaccess
           sed -i 's|__RECAPTCHA_PROJECT_ID__|${{ secrets.RECAPTCHA_PROJECT_ID }}|g' dist/.htaccess
+          sed -i 's|__RECAPTCHA_API_KEY__|${{ secrets.RECAPTCHA_API_KEY }}|g' php/.htaccess
+          sed -i 's|__RECAPTCHA_SITE_KEY__|${{ secrets.RECAPTCHA_SITE_KEY }}|g' php/.htaccess
+          sed -i 's|__RECAPTCHA_PROJECT_ID__|${{ secrets.RECAPTCHA_PROJECT_ID }}|g' php/.htaccess
 
       - name: Assemble staging directory
         run: |

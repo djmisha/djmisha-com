@@ -1,0 +1,4 @@
+# ── reCAPTCHA Enterprise secrets (injected at deploy time) ───────────────────
+SetEnv RECAPTCHA_SECRET_KEY "__RECAPTCHA_API_KEY__"
+SetEnv RECAPTCHA_SITE_KEY "__RECAPTCHA_SITE_KEY__"
+SetEnv RECAPTCHA_PROJECT_ID "__RECAPTCHA_PROJECT_ID__"
