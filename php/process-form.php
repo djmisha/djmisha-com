@@ -138,7 +138,7 @@ if (!$LOCAL_DEV) {
 
     $recaptchaResult = json_decode($recaptchaRaw, true);
 
-    // ── DEBUG: log the full response (remove after testing) ─────────────
+    // ──  DEBUG: log the full response (remove after testing) ─────────────
     error_log('reCAPTCHA Enterprise response: ' . $recaptchaRaw);
 
     // Check token validity
