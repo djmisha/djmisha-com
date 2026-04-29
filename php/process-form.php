@@ -31,7 +31,7 @@ $EMAIL_SUBJECT     = 'Contact from djmisha.com';
 $ALLOWED_ORIGINS   = ['https://djmisha.com', 'https://test.djmisha.com'];
 $MIN_SUBMIT_SECONDS = 3;
 
-// ── Local dev mode ──────────────────────────────────────────────────────────
+// ──  Local dev mode ──────────────────────────────────────────────────────────
 // Auto-detected: skips reCAPTCHA verification and relaxes origin check on localhost
 $LOCAL_DEV = (
     isset($_SERVER['HTTP_HOST']) &&
