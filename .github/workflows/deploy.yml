@@ -25,14 +25,11 @@ jobs:
         env:
           PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
 
-      - name: Inject secrets into .htaccess
+      - name: Inject secrets into config files
         run: |
-          sed -i 's|__RECAPTCHA_API_KEY__|${{ secrets.RECAPTCHA_API_KEY }}|g' dist/.htaccess
-          sed -i 's|__RECAPTCHA_SITE_KEY__|${{ secrets.RECAPTCHA_SITE_KEY }}|g' dist/.htaccess
-          sed -i 's|__RECAPTCHA_PROJECT_ID__|${{ secrets.RECAPTCHA_PROJECT_ID }}|g' dist/.htaccess
-          sed -i 's|__RECAPTCHA_API_KEY__|${{ secrets.RECAPTCHA_API_KEY }}|g' php/.htaccess
-          sed -i 's|__RECAPTCHA_SITE_KEY__|${{ secrets.RECAPTCHA_SITE_KEY }}|g' php/.htaccess
-          sed -i 's|__RECAPTCHA_PROJECT_ID__|${{ secrets.RECAPTCHA_PROJECT_ID }}|g' php/.htaccess
+          sed -i 's|__RECAPTCHA_API_KEY__|${{ secrets.RECAPTCHA_API_KEY }}|g' php/config.php
+          sed -i 's|__RECAPTCHA_SITE_KEY__|${{ secrets.RECAPTCHA_SITE_KEY }}|g' php/config.php
+          sed -i 's|__RECAPTCHA_PROJECT_ID__|${{ secrets.RECAPTCHA_PROJECT_ID }}|g' php/config.php
 
       - name: Assemble staging directory
         run: |

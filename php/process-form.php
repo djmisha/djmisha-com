@@ -21,9 +21,11 @@ ini_set('display_errors', '0');
 error_reporting(E_ALL);
 
 // ── Configuration ───────────────────────────────────────────────────────────
-$RECAPTCHA_SECRET   = getenv('RECAPTCHA_SECRET_KEY') ?: ($_SERVER['RECAPTCHA_SECRET_KEY'] ?? '');
-$RECAPTCHA_SITE_KEY = getenv('RECAPTCHA_SITE_KEY') ?: ($_SERVER['RECAPTCHA_SITE_KEY'] ?? '');
-$RECAPTCHA_PROJECT  = getenv('RECAPTCHA_PROJECT_ID') ?: ($_SERVER['RECAPTCHA_PROJECT_ID'] ?? '');
+$config = require __DIR__ . '/config.php';
+
+$RECAPTCHA_SECRET   = $config['recaptcha_api_key'];
+$RECAPTCHA_SITE_KEY = $config['recaptcha_site_key'];
+$RECAPTCHA_PROJECT  = $config['recaptcha_project_id'];
 $OWNER_EMAILS      = ['info@djmisha.com', 'misha.osinovskiy@gmail.com'];
 $FROM_EMAIL        = 'no-reply@djmisha.com';
 $FROM_NAME         = 'djmisha.com';
