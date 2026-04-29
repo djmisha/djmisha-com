@@ -5,7 +5,8 @@
 (function () {
   'use strict';
 
-  // ── Validation rules ────────────────────────────────────────────────
+  // ── reCAPTCHA Enterprise site key ─────────────────────────────────────────
+  var RECAPTCHA_SITE_KEY = document.querySelector('meta[name="recaptcha-site-key"]').getAttribute('content');
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   var PHONE_RE = /^\+?1?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
 
@@ -225,15 +226,6 @@
       });
   }
 
-  // ── reCAPTCHA callback ──────────────────────────────────────────────
-
-  /**
-   * Global callback invoked by Google Invisible reCAPTCHA after token generation.
-   */
-  window.onRecaptchaSubmit = function (token) {
-    submitForm(token);
-  };
-
   // ── Initialization ──────────────────────────────────────────────────
 
   function initForm() {
@@ -259,16 +251,20 @@
         return;
       }
 
-      // Trigger invisible reCAPTCHA (skip on localhost for local dev testing)
+      // Trigger reCAPTCHA Enterprise (skip on localhost for local dev testing)
       var isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       if (isLocalDev) {
         submitForm('');
-      } else if (typeof grecaptcha !== 'undefined' && grecaptcha.execute) {
-        try {
-          grecaptcha.execute();
-        } catch (err) {
-          showSubmitError('Verification failed. Please try again.');
-        }
+      } else if (typeof grecaptcha !== 'undefined' && grecaptcha.enterprise) {
+        grecaptcha.enterprise.ready(function () {
+          grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, { action: 'CONTACT_FORM' })
+            .then(function (token) {
+              submitForm(token);
+            })
+            .catch(function () {
+              showSubmitError('Verification failed. Please try again.');
+            });
+        });
       } else {
         showSubmitError('reCAPTCHA failed to load. Please refresh and try again.');
       }

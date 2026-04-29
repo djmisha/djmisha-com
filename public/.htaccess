@@ -1,5 +1,7 @@
-# ── reCAPTCHA secret key ─────────────────────────────────────────────────────
-SetEnv RECAPTCHA_SECRET_KEY "6LchZ3csAAAAADA2ewlSnszmOy5u2j6lK1Zw-ze4"
+# ── reCAPTCHA Enterprise ──────────────────────────────────────────────────────
+SetEnv RECAPTCHA_SECRET_KEY "__RECAPTCHA_API_KEY__"
+SetEnv RECAPTCHA_SITE_KEY "__RECAPTCHA_SITE_KEY__"
+SetEnv RECAPTCHA_PROJECT_ID "__RECAPTCHA_PROJECT_ID__"
 
 # ── Redirects (migrated from Netlify) ────────────────────────────────────────
 RewriteEngine On

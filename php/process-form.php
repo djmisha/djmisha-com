@@ -21,7 +21,9 @@ ini_set('display_errors', '0');
 error_reporting(E_ALL);
 
 // ── Configuration ───────────────────────────────────────────────────────────
-$RECAPTCHA_SECRET  = getenv('RECAPTCHA_SECRET_KEY') ?: '';
+$RECAPTCHA_SECRET   = getenv('RECAPTCHA_SECRET_KEY') ?: '';
+$RECAPTCHA_SITE_KEY = getenv('RECAPTCHA_SITE_KEY') ?: '';
+$RECAPTCHA_PROJECT  = getenv('RECAPTCHA_PROJECT_ID') ?: '';
 $OWNER_EMAILS      = ['info@djmisha.com', 'misha.osinovskiy@gmail.com'];
 $FROM_EMAIL        = 'no-reply@djmisha.com';
 $FROM_NAME         = 'djmisha.com';
@@ -98,7 +100,7 @@ if ($formLoadedAt <= 0 || ($now - $formLoadedAt) < $MIN_SUBMIT_SECONDS) {
 
 $clientIp = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
 
-// ── 5. reCAPTCHA verification (skipped in local dev mode) ───────────────────
+// ── 5. reCAPTCHA Enterprise verification (skipped in local dev mode) ────────
 if (!$LOCAL_DEV) {
     $recaptchaToken = $_POST['g-recaptcha-response'] ?? '';
 
@@ -106,14 +108,22 @@ if (!$LOCAL_DEV) {
         jsonResponse(false, 'reCAPTCHA verification failed', 403);
     }
 
-    $ch = curl_init('https://www.google.com/recaptcha/api/siteverify');
+    $assessmentUrl = 'https://recaptchaenterprise.googleapis.com/v1/projects/'
+        . $RECAPTCHA_PROJECT . '/assessments?key=' . $RECAPTCHA_SECRET;
+
+    $assessmentBody = json_encode([
+        'event' => [
+            'token'          => $recaptchaToken,
+            'siteKey'        => $RECAPTCHA_SITE_KEY,
+            'expectedAction' => 'CONTACT_FORM',
+        ],
+    ]);
+
+    $ch = curl_init($assessmentUrl);
     curl_setopt_array($ch, [
         CURLOPT_POST           => true,
-        CURLOPT_POSTFIELDS     => http_build_query([
-            'secret'   => $RECAPTCHA_SECRET,
-            'response' => $recaptchaToken,
-            'remoteip' => $clientIp,
-        ]),
+        CURLOPT_POSTFIELDS     => $assessmentBody,
+        CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT        => 10,
     ]);
@@ -128,7 +138,17 @@ if (!$LOCAL_DEV) {
 
     $recaptchaResult = json_decode($recaptchaRaw, true);
 
-    if (!is_array($recaptchaResult) || empty($recaptchaResult['success'])) {
+    // Check token validity
+    if (
+        !is_array($recaptchaResult)
+        || empty($recaptchaResult['tokenProperties']['valid'])
+    ) {
+        jsonResponse(false, 'reCAPTCHA verification failed', 403);
+    }
+
+    // Check score (0.0 = bot, 1.0 = human) — reject below 0.5
+    $score = $recaptchaResult['riskAnalysis']['score'] ?? 0.0;
+    if ($score < 0.5) {
         jsonResponse(false, 'reCAPTCHA verification failed', 403);
     }
 }
