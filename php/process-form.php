@@ -106,24 +106,23 @@ if (!$LOCAL_DEV) {
         jsonResponse(false, 'reCAPTCHA verification failed', 403);
     }
 
-    $recaptchaPostData = http_build_query([
-        'secret'   => $RECAPTCHA_SECRET,
-        'response' => $recaptchaToken,
-        'remoteip' => $clientIp,
+    $ch = curl_init('https://www.google.com/recaptcha/api/siteverify');
+    curl_setopt_array($ch, [
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => http_build_query([
+            'secret'   => $RECAPTCHA_SECRET,
+            'response' => $recaptchaToken,
+            'remoteip' => $clientIp,
+        ]),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 10,
     ]);
 
-    $recaptchaContext = stream_context_create([
-        'http' => [
-            'method'  => 'POST',
-            'header'  => 'Content-Type: application/x-www-form-urlencoded',
-            'content' => $recaptchaPostData,
-            'timeout' => 10,
-        ],
-    ]);
+    $recaptchaRaw = curl_exec($ch);
+    $curlError    = curl_errno($ch);
+    curl_close($ch);
 
-    $recaptchaRaw = @file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $recaptchaContext);
-
-    if ($recaptchaRaw === false) {
+    if ($recaptchaRaw === false || $curlError !== 0) {
         jsonResponse(false, 'Verification service unavailable. Please try again later.', 503);
     }
 
