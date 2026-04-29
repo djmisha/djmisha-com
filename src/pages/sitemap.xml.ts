@@ -35,7 +35,7 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2013/11/05-i-dsccmdj-l.jpg`,
+      `${site}/images/05-i-dsccmdj-l.jpg`,
     ],
   },
   {
@@ -44,7 +44,7 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2018/06/Best-San-Diego-DJ-djmisha.com-12.jpg`,
+      `${site}/images/Best-San-Diego-DJ-djmisha.com-12.jpg`,
     ],
   },
   {
@@ -59,7 +59,7 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2013/11/10-i-4lhqfht-l.jpg`,
+      `${site}/images/10-i-4lhqfht-l.jpg`,
     ],
   },
   {
@@ -68,7 +68,7 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2013/11/05-i-dsccmdj-l.jpg`,
+      `${site}/images/05-i-dsccmdj-l.jpg`,
     ],
   },
   {
@@ -77,13 +77,13 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2024/09/Screenshot-2024-09-14-at-6.15.51 AM.png`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2024/09/Screenshot-2024-09-14-at-6.18.37 AM.jpg`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2025/02/Crafting-the-Perfect-Toast-DJ-Tips-for-a-Memorable-Wedding-Speech.jpg`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2025/02/wedding-dj-toast.jpg`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2025/07/epic-DJ-set-wedding-dance-party.jpg`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2025/07/epic-wedding-dance-party.jpg`,
-      `${site}/wordpress/wordpress/wp-content/themes/djmisha-LANDED/images/expert.png`,
+      `${site}/images/Screenshot-2024-09-14-at-6.15.51-AM.png`,
+      `${site}/images/Screenshot-2024-09-14-at-6.18.37-AM.jpg`,
+      `${site}/images/Crafting-the-Perfect-Toast-DJ-Tips-for-a-Memorable-Wedding-Speech.jpg`,
+      `${site}/images/wedding-dj-toast.jpg`,
+      `${site}/images/epic-DJ-set-wedding-dance-party.jpg`,
+      `${site}/images/epic-wedding-dance-party.jpg`,
+      `${site}/images/expert.png`,
     ],
   },
   {
@@ -92,10 +92,10 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2019/02/Screen-Shot-2019-02-07-at-11.03.27-AM.png`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2018/06/img_0763.jpg`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2019/02/Screen-Shot-2019-02-07-at-11.03.33-AM.png`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2019/02/Screen-Shot-2019-02-07-at-11.01.21-AM.png`,
+      `${site}/images/Screen-Shot-2019-02-07-at-11.03.27-AM.png`,
+      `${site}/images/img_0763.jpg`,
+      `${site}/images/Screen-Shot-2019-02-07-at-11.03.33-AM.png`,
+      `${site}/images/Screen-Shot-2019-02-07-at-11.01.21-AM.png`,
     ],
   },
   {
@@ -110,7 +110,7 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2025/07/epic-DJ-set-wedding-dance-party.jpg`,
+      `${site}/images/epic-DJ-set-wedding-dance-party.jpg`,
     ],
   },
   {
@@ -119,8 +119,8 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2024/09/Screenshot-2024-09-14-at-6.18.37 AM.jpg`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2024/09/Screenshot-2024-09-14-at-6.15.51 AM.png`,
+      `${site}/images/Screenshot-2024-09-14-at-6.18.37-AM.jpg`,
+      `${site}/images/Screenshot-2024-09-14-at-6.15.51-AM.png`,
     ],
   },
   {
@@ -129,8 +129,8 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2025/02/wedding-dj-toast.jpg`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2025/02/Crafting-the-Perfect-Toast-DJ-Tips-for-a-Memorable-Wedding-Speech.jpg`,
+      `${site}/images/wedding-dj-toast.jpg`,
+      `${site}/images/Crafting-the-Perfect-Toast-DJ-Tips-for-a-Memorable-Wedding-Speech.jpg`,
     ],
   },
   {
@@ -139,10 +139,10 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2018/06/Best-San-Diego-DJ-djmisha.com-12.jpg`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2018/06/img_0763.jpg`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2017/04/17807339_1878248429117390_307352909468015453_o.jpg`,
-      `${site}/wordpress/wordpress/wp-content/uploads/2012/05/misha-jason.jpg`,
+      `${site}/images/Best-San-Diego-DJ-djmisha.com-12.jpg`,
+      `${site}/images/img_0763.jpg`,
+      `${site}/images/17807339_1878248429117390_307352909468015453_o.jpg`,
+      `${site}/images/misha-jason.jpg`,
     ],
   },
   {
@@ -151,7 +151,7 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/themes/djmisha-LANDED/images/expert.png`,
+      `${site}/images/expert.png`,
     ],
   },
   {
@@ -160,7 +160,7 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2013/11/10-i-4lhqfht-l.jpg`,
+      `${site}/images/10-i-4lhqfht-l.jpg`,
     ],
   },
   {
@@ -169,7 +169,7 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/ngg_featured/vish-2648-3427900361-O.JPG`,
+      `${site}/images/vish-2648-3427900361-O.JPG`,
     ],
   },
   {
@@ -178,7 +178,7 @@ const pages: SitemapEntry[] = [
     changefreq: 'weekly',
     priority: '0.7',
     images: [
-      `${site}/wordpress/wordpress/wp-content/uploads/2018/06/Best-San-Diego-DJ-djmisha.com-12.jpg`,
+      `${site}/images/Best-San-Diego-DJ-djmisha.com-12.jpg`,
     ],
   },
 ];

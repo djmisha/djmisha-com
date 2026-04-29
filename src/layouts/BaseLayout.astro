@@ -25,17 +25,21 @@ const {
   isHome = false,
   canonicalUrl,
   ogTitle,
-  ogDescription,
+  ogDescription: _ogDescription,
   ogImage,
   ogUrl,
   ogType,
   twitterTitle,
-  twitterDescription,
+  twitterDescription: _twitterDescription,
   twitterImage,
   jsonLd,
   extraHeadContent,
   useFancybox = false,
 } = Astro.props;
+
+// Fall back to meta description when OG/Twitter descriptions aren't explicitly set
+const ogDescription = _ogDescription || description;
+const twitterDescription = _twitterDescription || description;
 
 const siteName = "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM";
 
