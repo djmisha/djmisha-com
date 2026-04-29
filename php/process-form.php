@@ -140,23 +140,18 @@ if (!$LOCAL_DEV) {
 
     $recaptchaResult = json_decode($recaptchaRaw, true);
 
-    // ──  DEBUG: log the full response (remove after testing) ─────────────
-    error_log('reCAPTCHA Enterprise response: ' . $recaptchaRaw);
-
     // Check token validity
     if (
         !is_array($recaptchaResult)
         || empty($recaptchaResult['tokenProperties']['valid'])
     ) {
-        error_log('reCAPTCHA token invalid. tokenProperties: ' . json_encode($recaptchaResult['tokenProperties'] ?? 'missing'));
-        jsonResponse(false, 'reCAPTCHA DEBUG URL: ' . $assessmentUrl . ' | Response: ' . $recaptchaRaw, 403);
+        jsonResponse(false, 'reCAPTCHA verification failed', 403);
     }
 
     // Check score (0.0 = bot, 1.0 = human) — reject below 0.5
     $score = $recaptchaResult['riskAnalysis']['score'] ?? 0.0;
-    error_log('reCAPTCHA score: ' . $score);
     if ($score < 0.5) {
-        jsonResponse(false, 'reCAPTCHA score too low: ' . $score, 403);
+        jsonResponse(false, 'reCAPTCHA verification failed', 403);
     }
 }
 
