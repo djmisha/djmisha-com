@@ -1,6 +1,7 @@
 ---
 export interface Props {
   title: string;
+  heading?: string;
   description?: string;
   canonicalUrl?: string;
   ogTitle?: string;
@@ -22,6 +23,7 @@ import Sidebar from '../components/Sidebar.astro';
 
 const {
   title,
+  heading,
   description = '',
   canonicalUrl,
   ogTitle,
@@ -35,6 +37,7 @@ const {
   jsonLd,
   extraHeadContent,
 } = Astro.props;
+const h1Text = heading || title;
 ---
 <BaseLayout
   title={title}
@@ -58,7 +61,7 @@ const {
     <div id="main" class="wrapper style1">
       <div class="container">
         <header class="major">
-          <h1><a href={canonicalUrl} rel="bookmark">{title}</a></h1>
+          <h1><a href={canonicalUrl} rel="bookmark">{h1Text}</a></h1>
         </header>
         <div class="row gtr-150">
           <div class="col-8 col-12-medium">

@@ -1,6 +1,7 @@
 ---
 export interface Props {
   title: string;
+  heading?: string;
   description?: string;
   canonicalUrl?: string;
   ogTitle?: string;
@@ -20,6 +21,7 @@ import Footer from '../components/Footer.astro';
 
 const {
   title,
+  heading,
   description = '',
   canonicalUrl,
   ogTitle,
@@ -55,7 +57,7 @@ const {
     <div id="main" class="wrapper style1">
       <div class="container">
         <header class="major">
-          <h1><a href="/reviews/" rel="bookmark">{title}</a></h1>
+          <h1><a href="/reviews/" rel="bookmark">{heading || title}</a></h1>
         </header>
         <div class="row 150%">
           <div class="col-8 col-12-medium">
