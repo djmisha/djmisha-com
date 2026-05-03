@@ -257,7 +257,7 @@ span#logo a {
   font-size:0.8em;
   line-height:1em;
   margin:2em 0 2em 0;
-  padding:0;
+  padding: 1em;
   text-align:center;
 }
 
@@ -405,7 +405,7 @@ span#logo a {
 
 .menu-footer-navigation li, .services-navigation li {
     list-style: none;
-    padding-left: 0.5em;
+    padding-left: 1.5em;
 }
  #footer ul.copyright li{
     line-height:25px;

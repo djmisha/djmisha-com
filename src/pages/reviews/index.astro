@@ -1,5 +1,5 @@
 ---
-import ReviewsLayout from '../../layouts/ReviewsLayout.astro';
+import PageLayout from '../../layouts/PageLayout.astro';
 
 const jsonLd = [
   {"@context":"http://schema.org/","@id":"https://djmisha.com","@type":"Organization","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com","logo":{"@type":"ImageObject","url":"https://djmisha.com/images/logo-djmisha.png","width":400},"sameAs":["https://www.instagram.com/djmishasd/","https://www.youtube.com/@djmisha","https://www.facebook.com/djmishaSandiego","https://www.yelp.com/biz/dj-misha-san-diego-3","https://www.gigtown.com/artists/dj-misha","https://www.gigsalad.com/dj_misha_san_diego","https://goo.gl/maps/2rRm8kBYePqaPbVE6","https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"],"contactPoint":{"telephone":"+1-619-786-2664","contactType":"customer service"},"AggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"83"}},
@@ -10,7 +10,7 @@ const jsonLd = [
 ];
 const reviewsDesc = "Looking for a San Diego DJ who can make your event unforgettable? Read testimonials from satisfied clients about DJ Misha's music selection, energy, and professionalism.";
 ---
-<ReviewsLayout
+<PageLayout
   title="DJ Misha Reviews - See What Our Clients Are Saying"
   heading="Reviews & Testimonials"
   description={reviewsDesc}
@@ -114,4 +114,4 @@ const reviewsDesc = "Looking for a San Diego DJ who can make your event unforget
 </div>
 </section>
 
-</ReviewsLayout>
+</PageLayout>
