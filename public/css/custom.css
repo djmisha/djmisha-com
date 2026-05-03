@@ -1092,3 +1092,48 @@ body.contact-page #footer {
     flex: 1 1 100%;
   }
 }
+
+/* ------------------------------------------------
+ * Blog Page Cards
+ * ------------------------------------------------ */
+.blog-card {
+	padding: 10px !important;
+}
+
+.blog-card__link {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	background: #272833;
+	border-radius: 8px;
+	overflow: hidden;
+	transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.blog-card__link:hover {
+	background: #1c1d26;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+	transform: translateY(-2px);
+	text-decoration: none;
+}
+
+.blog-card__img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	background-size: cover;
+	background-position: center;
+}
+
+.blog-card__title {
+	padding: 14px 16px;
+	font-size: 0.85em;
+	line-height: 1.4;
+	font-weight: 600;
+	color: #ffffff;
+	margin: 0;
+}
+
+.blog-card__link:hover .blog-card__title {
+	color: #e44c65;
+}
