@@ -1096,6 +1096,7 @@ body.contact-page #footer {
 /* ------------------------------------------------
  * Blog Page Cards
  * ------------------------------------------------ */
+
 .blog-card {
 	padding: 10px !important;
 }
@@ -1121,6 +1122,7 @@ body.contact-page #footer {
 	display: block;
 	width: 100%;
 	aspect-ratio: 3 / 2;
+	min-height: 150px;
 	background-size: cover;
 	background-position: center;
 }

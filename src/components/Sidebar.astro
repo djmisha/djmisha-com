@@ -60,7 +60,7 @@ const galleryImages = Array.from({ length: GALLERY_TOTAL }, (_, i) => ({
 	<section id="sidebar"><section>
 	<p class="sidebar-title">From the Blog</p>
 
-	<div class="sidebar-blog-cards">
+	<div class="sidebar-blog-cards" id="sidebar-blog-cards">
 		<a class="sidebar-blog-card" href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/">
 			<span class="sidebar-blog-card__img" style="background-image: url(/images/epic-DJ-set-wedding-dance-party-298x200.jpg)"></span>
 			<span class="sidebar-blog-card__title">Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision</span>
@@ -194,31 +194,46 @@ const galleryImages = Array.from({ length: GALLERY_TOTAL }, (_, i) => ({
 <!-- Randomize visible thumbnails on each page load -->
 <script is:inline>
 (function () {
-	document.addEventListener('DOMContentLoaded', function () {
-		var container = document.getElementById('ngg-gallery-sidebar');
-		if (!container) return;
-
-		var items = container.querySelectorAll('.sidebar-gallery-item');
-		var toShow = parseInt(container.getAttribute('data-thumbs-to-show'), 10) || 12;
-
-		// Build index array and Fisher-Yates shuffle
-		var indices = [];
-		for (var i = 0; i < items.length; i++) indices.push(i);
-		for (var i = indices.length - 1; i > 0; i--) {
+	// Fisher-Yates shuffle for DOM children
+	function shuffleChildren(parent) {
+		var children = Array.prototype.slice.call(parent.children);
+		for (var i = children.length - 1; i > 0; i--) {
 			var j = Math.floor(Math.random() * (i + 1));
-			var tmp = indices[i];
-			indices[i] = indices[j];
-			indices[j] = tmp;
+			parent.appendChild(children[j]);
+			children.splice(j, 1, children[i]);
+		}
+	}
+
+	document.addEventListener('DOMContentLoaded', function () {
+		// Randomize gallery thumbnails
+		var container = document.getElementById('ngg-gallery-sidebar');
+		if (container) {
+			var items = container.querySelectorAll('.sidebar-gallery-item');
+			var toShow = parseInt(container.getAttribute('data-thumbs-to-show'), 10) || 12;
+
+			var indices = [];
+			for (var i = 0; i < items.length; i++) indices.push(i);
+			for (var i = indices.length - 1; i > 0; i--) {
+				var j = Math.floor(Math.random() * (i + 1));
+				var tmp = indices[i];
+				indices[i] = indices[j];
+				indices[j] = tmp;
+			}
+
+			for (var k = 0; k < toShow && k < indices.length; k++) {
+				var item = items[indices[k]];
+				item.classList.add('is-visible');
+				var thumb = item.querySelector('.sidebar-gallery-thumb');
+				if (thumb && thumb.getAttribute('data-bg')) {
+					thumb.style.backgroundImage = 'url(' + thumb.getAttribute('data-bg') + ')';
+				}
+			}
 		}
 
-		// Reveal the chosen thumbnails and set their background images
-		for (var k = 0; k < toShow && k < indices.length; k++) {
-			var item = items[indices[k]];
-			item.classList.add('is-visible');
-			var thumb = item.querySelector('.sidebar-gallery-thumb');
-			if (thumb && thumb.getAttribute('data-bg')) {
-				thumb.style.backgroundImage = 'url(' + thumb.getAttribute('data-bg') + ')';
-			}
+		// Randomize blog card order
+		var blogCards = document.getElementById('sidebar-blog-cards');
+		if (blogCards) {
+			shuffleChildren(blogCards);
 		}
 	});
 })();
