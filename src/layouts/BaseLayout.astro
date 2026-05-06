@@ -1,4 +1,8 @@
 ---
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 export interface Props {
   title: string;
   description?: string;
@@ -42,6 +46,11 @@ const ogDescription = _ogDescription || description;
 const twitterDescription = _twitterDescription || description;
 
 const siteName = "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM";
+
+// Generate a short content hash of site.css for cache busting.
+// Changes automatically on every deploy where the CSS has been modified.
+const cssPath = resolve('public/css/site.css');
+const cssHash = createHash('md5').update(readFileSync(cssPath)).digest('hex').slice(0, 8);
 
 /** Escape single quotes to &#039; and double quotes to &quot; for HTML attribute safety */
 function esc(s?: string): string {
@@ -89,8 +98,8 @@ function esc(s?: string): string {
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
 
-    {/* 9. site.css (consolidated theme + custom styles) */}
-    <link rel="stylesheet" href="/css/site.css?v=2" />
+    {/* 9. site.css (cache-busted with content hash) */}
+    <link rel="stylesheet" href={`/css/site.css?v=${cssHash}`} />
 
     {/* 11. FancyBox CSS (always loaded - FancyBox JS is in Footer) */}
     <link rel="stylesheet" href="/css/jquery.fancybox.min.css" />

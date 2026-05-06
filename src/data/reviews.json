@@ -1,5 +1,5 @@
 {
-  "lastFetched": "2026-05-06T17:20:33.594Z",
+  "lastFetched": "2026-05-06T18:37:31.659Z",
   "placeId": "ChIJE04UMcv_3IARGLQqdNgQ_j8",
   "totalRating": 5,
   "totalReviews": 83,
@@ -9,11 +9,7 @@
     "dance floor",
     "playlist",
     "music selection",
-    "listening to requests",
-    "dance mix",
-    "live saxophone",
-    "easy to work with",
-    "wedding planning"
+    "easy to work with"
   ],
   "keywordCounts": {
     "saxophonist": 14,
@@ -21,11 +17,7 @@
     "dance floor": 12,
     "playlist": 2,
     "music selection": 23,
-    "listening to requests": 3,
-    "dance mix": 2,
-    "live saxophone": 3,
-    "easy to work with": 10,
-    "wedding planning": 3
+    "easy to work with": 10
   },
   "reviews": [
     {
@@ -230,8 +222,7 @@
         "dancing",
         "dance floor",
         "music selection",
-        "easy to work with",
-        "wedding planning"
+        "easy to work with"
       ],
       "profilePhoto": null
     },
@@ -245,7 +236,6 @@
       "keywords": [
         "dancing",
         "dance floor",
-        "listening to requests",
         "easy to work with"
       ],
       "profilePhoto": null
@@ -326,8 +316,7 @@
       "keywords": [
         "saxophonist",
         "dancing",
-        "playlist",
-        "dance mix"
+        "playlist"
       ],
       "profilePhoto": null
     },
@@ -380,8 +369,7 @@
       "keywords": [
         "dancing",
         "dance floor",
-        "music selection",
-        "listening to requests"
+        "music selection"
       ],
       "profilePhoto": null
     },
@@ -689,9 +677,7 @@
       "text": "DJ Misha made my party! He kept the energy up and good vibes flowing. He captured my special requests for certain tunes also. Can’t wait to have another party so he can dj again!",
       "time": 1683331200,
       "date": "2023-05-06",
-      "keywords": [
-        "listening to requests"
-      ],
+      "keywords": [],
       "profilePhoto": null
     },
     {
@@ -824,8 +810,7 @@
       "time": 1651795200,
       "date": "2022-05-06",
       "keywords": [
-        "saxophonist",
-        "live saxophone"
+        "saxophonist"
       ],
       "profilePhoto": null
     },
@@ -903,9 +888,7 @@
       "text": "As a wedding planner, I enjoyed working with Misha. He was quick in responding to my emails. He was on time and kept the evening going smoothly and stuck to the timeline that I had provided to him.",
       "time": 1557100800,
       "date": "2019-05-06",
-      "keywords": [
-        "wedding planning"
-      ],
+      "keywords": [],
       "profilePhoto": null
     },
     {

@@ -17,11 +17,7 @@ const KEYWORD_PATTERNS = {
   'dance floor': /\bdance\s+floor\b/i,
   'playlist': /\bplaylist\b/i,
   'music selection': /\bmusic\s*selection|selection\s*of\s*music|music.*(?:taste|choice|pick)|(?:great|amazing|perfect|awesome|fantastic|incredible|good)\s+(?:selection|mix|variety)\b/i,
-  'listening to requests': /\b(?:listen(?:ed|ing|s)?(?:\s+to)?(?:\s+(?:our|my|the|all))?\s*request|request(?:ed|s)?.*\blisten|special\s+requests?)/i,
-  'dance mix': /\bdance\s+mix\b/i,
-  'live saxophone': /\blive\s+sax(?:ophone)?(?:\s+(?:player|music))?\b/i,
   'easy to work with': /\beasy\s+to\s+(?:work\s+with|communicate\s+with|coordinate\s+with)\b/i,
-  'wedding planning': /\bwedding\s*(?:plan(?:ning|ner)|coordinat(?:or|ing|e))\b/i,
 };
 
 /**
