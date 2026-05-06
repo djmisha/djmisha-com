@@ -1,0 +1,100 @@
+/**
+ * Shared JSON-LD structured data schemas.
+ *
+ * The base schemas (Organization, WebSite, LocalBusiness, Person) are identical
+ * across all pages. Page-specific schemas (WebPage, FAQPage, etc.) are passed in
+ * via the helper function.
+ */
+
+const organization = {
+  "@context": "http://schema.org/",
+  "@id": "https://djmisha.com",
+  "@type": "Organization",
+  "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+  "url": "https://djmisha.com",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "/images/logo-djmisha.png",
+    "width": 400,
+  },
+  "sameAs": [
+    "https://www.instagram.com/djmishasd/",
+    "https://www.youtube.com/@djmisha",
+    "https://www.facebook.com/djmishaSandiego",
+    "https://www.yelp.com/biz/dj-misha-san-diego-3",
+    "https://www.gigtown.com/artists/dj-misha",
+    "https://www.gigsalad.com/dj_misha_san_diego",
+    "https://goo.gl/maps/2rRm8kBYePqaPbVE6",
+    "https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha",
+  ],
+  "contactPoint": {
+    "telephone": "+1-619-786-2664",
+    "contactType": "customer service",
+  },
+  "AggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "83",
+  },
+};
+
+const webSite = {
+  "@context": "http://schema.org/",
+  "@type": "WebSite",
+  "url": "https://djmisha.com",
+  "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+  "about":
+    "DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n",
+};
+
+const localBusiness = {
+  "@context": "http://schema.org/",
+  "@id": "#LocalBusiness",
+  "@type": "LocalBusiness",
+  "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+  "url": "https://djmisha.com/",
+  "image": "/images/i-4LhQfht-L.jpg",
+  "priceRange": "Contact For Pricing",
+  "address": [
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "4640 Cass Street #9553",
+      "addressLocality": "San Diego",
+      "addressRegion": "CA",
+      "postalCode": "92109",
+      "addressCountry": "US",
+      "telephone": "+1-619-786-2664",
+    },
+  ],
+  "employees": ["DJ Misha"],
+};
+
+const person = {
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "jobTitle": "DJ",
+  "name": "DJ Misha",
+  "telephone": "+1-619-786-2664",
+  "url": "https://djmisha.com/about/",
+  "image": "/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg",
+};
+
+export const baseSchemas = [organization, webSite, localBusiness, person];
+
+/**
+ * Build the full JSON-LD array for a page.
+ *
+ * @param pageSchemas - Page-specific schemas (WebPage, FAQPage, etc.)
+ * @returns The complete schema array to pass to the jsonLd prop.
+ *
+ * @example
+ * ```ts
+ * const jsonLd = buildJsonLd(
+ *   { "@context": "http://schema.org/", "@type": "WebPage", url: "...", headline: "..." },
+ *   { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [...] },
+ * );
+ * ```
+ */
+export function buildJsonLd(...pageSchemas: object[]): object[] {
+  return [...baseSchemas, ...pageSchemas];
+}

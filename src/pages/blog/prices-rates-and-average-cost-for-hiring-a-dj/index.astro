@@ -1,94 +1,18 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import { buildJsonLd } from '../../../data/schema';
 
-const jsonLd = [
-  {
-    "@context": "http://schema.org/",
-    "@id": "https://djmisha.com",
-    "@type": "Organization",
-    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
-    "url": "https://djmisha.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://djmisha.com/images/logo-djmisha.png",
-      "width": 400
-    },
-    "sameAs": [
-      "https://www.instagram.com/djmishasd/",
-      "https://www.youtube.com/@djmisha",
-      "https://www.facebook.com/djmishaSandiego",
-      "https://www.yelp.com/biz/dj-misha-san-diego-3",
-      "https://www.gigtown.com/artists/dj-misha",
-      "https://www.gigsalad.com/dj_misha_san_diego",
-      "https://goo.gl/maps/2rRm8kBYePqaPbVE6",
-      "https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"
-    ],
-    "contactPoint": {
-      "telephone": "+1-619-786-2664",
-      "contactType": "customer service"
-    },
-    "AggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "reviewCount": "83"
-    }
-  },
-  {
-    "@context": "http://schema.org/",
-    "@type": "WebSite",
-    "url": "https://djmisha.com",
-    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
-    "about": "DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"
-  },
-  {
-    "@context": "http://schema.org/",
-    "@type": "WebPage",
-    "url": "https://djmisha.com/prices/",
-    "headline": "Prices, rates and average cost for hiring a DJ",
-    "mainEntityOfPage": "https://djmisha.com/prices/",
-    "about": "Hiring a DJ is one of those things that sounds simple until you start looking into it \u2014 and suddenly you\u2019re comparing wildly different prices with no clear way to tell what\u2019s worth what. Consider this your straightforward guide to understanding DJ pricing. Whether you\u2019re planning a wedding, corporate event, or private party, DJ Misha\u2026"
-  },
-  {
-    "@context": "http://schema.org/",
-    "@id": "#LocalBusiness",
-    "@type": "LocalBusiness",
-    "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
-    "url": "https://djmisha.com/",
-    "image": "https://djmisha.com/images/i-4LhQfht-L.jpg",
-    "priceRange": "Contact For Pricing",
-    "address": [
-      {
-        "@type": "PostalAddress",
-        "streetAddress": "4640 Cass Street #9553",
-        "addressLocality": "San Diego",
-        "addressRegion": "CA",
-        "postalCode": "92109",
-        "addressCountry": "US",
-        "telephone": "+1-619-786-2664"
-      }
-    ],
-    "employees": ["DJ Misha"]
-  },
-  {
-    "@context": "http://schema.org",
-    "@type": "Person",
-    "jobTitle": "DJ",
-    "name": "DJ Misha",
-    "telephone": "+1-619-786-2664",
-    "url": "https://djmisha.com/about/",
-    "image": "https://djmisha.com/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"
-  }
-];
+const jsonLd = buildJsonLd({"@context": "http://schema.org/", "@type": "WebPage", "url": "https://djmisha.com/blog/prices-rates-and-average-cost-for-hiring-a-dj/", "headline": "Prices, rates and average cost for hiring a DJ", "mainEntityOfPage": "https://djmisha.com/blog/prices-rates-and-average-cost-for-hiring-a-dj/", "about": "Hiring a DJ is one of those things that sounds simple until you start looking into it — and suddenly you're comparing wildly different prices with no clear way to tell what's worth what. Consider this your straightforward guide to understanding DJ pricing. Whether you're planning a wedding, corporate event, or private party, DJ Misha…"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What Is the Average DJ Pricing for Events in San Diego?", "acceptedAnswer": {"@type": "Answer", "text": "To give you a real-world benchmark — in San Diego, a 4 hour event, an average DJ price rate could range between $2000 to $5000 dollars."}}]});
 ---
 <PageLayout
   title="DJ Prices in San Diego. Average hourly rates."
   heading="Prices, rates and average cost for hiring a DJ"
   description="Learn how much great DJs charge for an event. Estimate an hourly rate for your event for Parties, Weddings, Corporate Events from a DJ near you."
-  canonicalUrl="https://djmisha.com/prices/"
+  canonicalUrl="https://djmisha.com/blog/prices-rates-and-average-cost-for-hiring-a-dj/"
   ogTitle="DJ Prices in San Diego. What to budget for a good DJ."
   ogImage="https://djmisha.com/images/logo-djmisha.png"
-  ogUrl="https://djmisha.com/prices/"
-  ogType="website"
+  ogUrl="https://djmisha.com/blog/prices-rates-and-average-cost-for-hiring-a-dj/"
+  ogType="article"
   twitterTitle="DJ Prices in San Diego. What to budget for a good DJ."
   twitterImage="https://djmisha.com/images/logo-djmisha.png"
   jsonLd={jsonLd}
@@ -286,22 +210,4 @@ const jsonLd = [
 </section>
 
 <p><br><br>In summary — the right DJ, the right equipment setup, and the estimate for services all start with understanding your event. The more details you share upfront — event type, guest count, venue, date, and any special requests — the more accurate and tailored the estimate will be. <a href="/contact/">Contact DJ Misha</a> today for a same-day reply with availability and pricing tailored to your celebration.</p>
-
-<script is:inline type="application/ld+json">
-{
-	"@context": "https://schema.org",
-	"@type": "FAQPage",
-	"mainEntity": [
-	{
-		"@type": "Question",
-		"name": "What Is the Average DJ Pricing for Events in San Diego?",
-		"acceptedAnswer": {
-			"@type": "Answer",
-			"text": "To give you a real-world benchmark — in San Diego, a 4 hour event, an average DJ price rate could range between $2000 to $5000 dollars."
-		}
-	}
-]
-}
-</script>
-
 </PageLayout>

@@ -1,7 +1,8 @@
 ---
 import PageLayout from '../../../layouts/PageLayout.astro';
+import { buildJsonLd } from '../../../data/schema';
 const desc = "Hire DJ Misha, a top destination wedding DJ for luxury events worldwide. Offering expert DJ & live sax services for a curated, unforgettable musical experience. Book now.";
-const jsonLd = [{"@context":"http://schema.org/","@id":"https://djmisha.com","@type":"Organization","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com","logo":{"@type":"ImageObject","url":"/images/logo-djmisha.png","width":400},"sameAs":["https://www.instagram.com/djmishasd/","https://www.youtube.com/@djmisha","https://www.facebook.com/djmishaSandiego","https://www.yelp.com/biz/dj-misha-san-diego-3","https://www.gigtown.com/artists/dj-misha","https://www.gigsalad.com/dj_misha_san_diego","https://goo.gl/maps/2rRm8kBYePqaPbVE6","https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"],"contactPoint":{"telephone":"+1-619-786-2664","contactType":"customer service"},"AggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"83"}},{"@context":"http://schema.org/","@type":"WebSite","url":"https://djmisha.com","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","about":"DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"},{"@context":"http://schema.org/","@type":"WebPage","url":"https://djmisha.com/services/destination-wedding-dj/","headline":"Destination Wedding DJ","mainEntityOfPage":"https://djmisha.com/services/destination-wedding-dj/"},{"@context":"http://schema.org/","@id":"#LocalBusiness","@type":"LocalBusiness","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com/","image":"/images/i-4LhQfht-L.jpg","priceRange":"Contact For Pricing","address":[{"@type":"PostalAddress","streetAddress":"4640 Cass Street #9553","addressLocality":"San Diego","addressRegion":"CA","postalCode":"92109","addressCountry":"US","telephone":"+1-619-786-2664"}],"employees":["DJ Misha"]},{"@context":"http://schema.org","@type":"Person","jobTitle":"DJ","name":"DJ Misha","telephone":"+1-619-786-2664","url":"https://djmisha.com/about/","image":"/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"}];
+const jsonLd = buildJsonLd({"@context": "http://schema.org/", "@type": "WebPage", "url": "https://djmisha.com/services/destination-wedding-dj/", "headline": "Destination Wedding DJ", "mainEntityOfPage": "https://djmisha.com/services/destination-wedding-dj/"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do you travel anywhere in the world? ", "acceptedAnswer": {"@type": "Answer", "text": "Yes! While we have extensive experience throughout the US, Mexico, and the Caribbean, and we are available for celebrations worldwide. Let us know where you're headed, and we'll start a conversation."}}, {"@type": "Question", "name": "How does the planning process work from a distance?", "acceptedAnswer": {"@type": "Answer", "text": "Our process is designed to make planning feel easy and effortless for you. We use video calls, shared planning documents, and constant communication to ensure we are perfectly aligned on your vision, timeline, and musical preferences. It's a collaborative and stress-free experience."}}, {"@type": "Question", "name": "Who is responsible for booking flights and hotels? ", "acceptedAnswer": {"@type": "Answer", "text": "We can handle booking our own travel to ensure it aligns with our technical and travel needs, with the costs billed to you. Alternatively, if you have a wedding planner or are using hotel blocks, we can coordinate directly with them. We are flexible to what works best."}}, {"@type": "Question", "name": "What happens if your flight is delayed or canceled? ", "acceptedAnswer": {"@type": "Answer", "text": "This is exactly why we require a 2-night stay. By arriving at the destination a full day before the event, we build a critical buffer to mitigate nearly all travel risks, ensuring we are on-site and ready for your big day."}}, {"@type": "Question", "name": "Can you provide references?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! We can give you direct access to some of our satisfied clients so you can get answers first hand. Additionally be sure to check out our reviews page for more information and satisfied customers."}}, {"@type": "Question", "name": "Do you have business liability insurance?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, we are fully insured. We can provide a certificate of insurance to your venue upon request, giving you and your entire vendor team peace of mind."}}]});
 ---
 <PageLayout
   title="Destination Wedding DJ for Luxury Events - DJ Misha"
@@ -169,70 +170,4 @@ const jsonLd = [{"@context":"http://schema.org/","@id":"https://djmisha.com","@t
 <p>Your wedding is a once-in-a-lifetime event. Let&#8217;s work together to make the music as breathtaking as the destination. Reach out today to check availability and start planning the party of your dreams.</p>
 
 <p><a href="/contact/" rel="nofollow" title="Contact San Diego DJ for Pricing and Bookings">Get In Touch</a></p>
-
-<script type="application/ld+json" is:inline>
-{
-	"@context": "https://schema.org",
-	"@type": "FAQPage",
-	"mainEntity": [
-		{
-			"@type": "Question",
-			"name": "Do you travel anywhere in the world? ",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "Yes! While we have extensive experience throughout the US, Mexico, and the Caribbean, and we are available for celebrations worldwide. Let us know where you're headed, and we'll start a conversation."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "PASTEHERE",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "PASTEHERE"
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "How does the planning process work from a distance?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "Our process is designed to make planning feel easy and effortless for you. We use video calls, shared planning documents, and constant communication to ensure we are perfectly aligned on your vision, timeline, and musical preferences. It's a collaborative and stress-free experience."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "Who is responsible for booking flights and hotels? ",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "We can handle booking our own travel to ensure it aligns with our technical and travel needs, with the costs billed to you. Alternatively, if you have a wedding planner or are using hotel blocks, we can coordinate directly with them. We are flexible to what works best."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "What happens if your flight is delayed or canceled? ",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "This is exactly why we require a 2-night stay. By arriving at the destination a full day before the event, we build a critical buffer to mitigate nearly all travel risks, ensuring we are on-site and ready for your big day."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "Can you provide references?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "Yes! We can give you direct access to some of our satisfied clients so you can get answers first hand. Additionally be sure to check out our reviews page for more information and satisfied customers."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "Do you have business liability insurance?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "Yes, we are fully insured. We can provide a certificate of insurance to your venue upon request, giving you and your entire vendor team peace of mind."
-			}
-		}
-	]
-}
-</script>
-
 </PageLayout>

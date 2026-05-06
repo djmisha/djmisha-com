@@ -23,8 +23,8 @@ const pages: SitemapEntry[] = [
     priority: '0.7',
   },
   {
-    loc: `${site}/prices/`,
-    lastmod: '2026-04-10T14:29:54+00:00',
+    loc: `${site}/blog/prices-rates-and-average-cost-for-hiring-a-dj/`,
+    lastmod: '2026-05-04T00:00:00+00:00',
     changefreq: 'weekly',
     priority: '0.7',
   },

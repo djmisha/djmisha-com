@@ -1,4 +1,143 @@
-# ── Redirects (migrated from Netlify) ────────────────────────────────────────
+# ── Compression ───────────────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE application/x-font
+  AddOutputFilterByType DEFLATE application/x-font-opentype
+  AddOutputFilterByType DEFLATE application/x-font-otf
+  AddOutputFilterByType DEFLATE application/x-font-truetype
+  AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE font/opentype
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE image/x-icon
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+</IfModule>
+
+# ── Caching ───────────────────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access 1 year"
+  ExpiresByType image/jpeg "access 1 year"
+  ExpiresByType image/svg+xml "access 1 year"
+  ExpiresByType image/gif "access 1 year"
+  ExpiresByType image/png "access 1 year"
+  ExpiresByType text/css "access 1 month"
+  ExpiresByType font/woff "access 1 month"
+  ExpiresByType font/woff2 "access 1 month"
+  ExpiresByType application/pdf "access 1 month"
+  ExpiresByType application/javascript "access 1 month"
+  ExpiresByType application/x-javascript "access 1 month"
+  ExpiresByType image/x-icon "access 1 year"
+  ExpiresDefault "access 2 days"
+</IfModule>
+
+# ── Redirects ─────────────────────────────────────────────────────────────────
 RewriteEngine On
-RewriteRule ^contact-dj-misha/?$ /contact/ [R=301,L]
-RewriteRule ^photogallery/?$ / [R=301,L]
+
+# Blog posts (moved under /blog/)
+Redirect 301 /your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision https://djmisha.com/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/
+Redirect 301 /crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech https://djmisha.com/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/
+Redirect 301 /the-art-of-taking-requests-a-djs-perspective https://djmisha.com/blog/the-art-of-taking-requests-a-djs-perspective/
+Redirect 301 /a-guide-to-planning-for-your-wedding-with-dj-misha https://djmisha.com/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/
+Redirect 301 /edm-dj-for-party-or-private-event-electronic-dance-music https://djmisha.com/blog/edm-dj-for-party-or-private-event-electronic-dance-music/
+
+# Pages that moved
+Redirect 301 /about-dj-misha https://djmisha.com/about/
+Redirect 301 /jason-whitmore-on-saxophone https://djmisha.com/dj-saxophone/
+Redirect 301 /dance-and-house-music-by-dj-misha https://djmisha.com/music/
+Redirect 301 /contact-dj-misha https://djmisha.com/contact/
+Redirect 301 /san-diego-dj-and-live-saxophone-duo-performance https://djmisha.com/dj-saxophone/
+Redirect 301 /san-diego-djs-wedding-dj-party-dj https://djmisha.com/services/
+Redirect 301 /san-diego-dj-party-dj https://djmisha.com/services/
+Redirect 301 /san-diego-disc-jockey https://djmisha.com/services/
+Redirect 301 /tag/san-diego-dj-services https://djmisha.com/services/
+Redirect 301 /san-diego-dj-testimonials/ https://djmisha.com/reviews/
+Redirect 301 /prices/ /blog/prices-rates-and-average-cost-for-hiring-a-dj/
+
+# Dead pages → homepage
+Redirect 301 /photogallery https://djmisha.com/
+Redirect 301 /photogallery/bedroom-rockers-2 https://djmisha.com/
+Redirect 301 /photogallery/san-diego-dj-events-2016 https://djmisha.com/
+Redirect 301 /photogallery/past-san-diego-house-music-events https://djmisha.com/
+Redirect 301 /photogallery/san-diego-nightclubs https://djmisha.com/
+Redirect 301 /photogallery/san-diego-djs https://djmisha.com/
+Redirect 301 /vendors https://djmisha.com/
+Redirect 301 /party-vendors-and-local-resources https://djmisha.com/
+Redirect 301 /dj-for-corporate-party-in-san-diego-dj-misha-plays-for-banana-republic https://djmisha.com/
+Redirect 301 /dj-set-tracklisting-searsucker-10-21-2010 https://djmisha.com/
+Redirect 301 /san-diego-dj-at-grand-opening-of-draft-republic https://djmisha.com/
+Redirect 301 /djs-playing-san-diego-house-music-launch-party https://djmisha.com/
+Redirect 301 /djing-at-uncorked-wine-festival-2017-in-san-diego https://djmisha.com/
+Redirect 301 /san-diego-edm-dj-for-party-or-private-event https://djmisha.com/
+Redirect 301 /dj-misha-at-ob-warehouse https://djmisha.com/
+Redirect 301 /san-diego-dj-for-40th-birthday-party https://djmisha.com/
+Redirect 301 /san-diego-dj-for-40th-birthday-party/i-4lhqfht-l/ https://djmisha.com/
+Redirect 301 /djing-at-fashion-show-vip-lounge-for-pacific-magazine https://djmisha.com/
+Redirect 301 /djing-at-fashion-show-vip-lounge-for-pacific-magazine/vip-style-lounge-with-dj-misha https://djmisha.com/
+Redirect 301 /firehouse-dan-stark-2 https://djmisha.com/
+Redirect 301 /san-diego-at-uncorked-wine-festival-with-best-event-dj https://djmisha.com/
+Redirect 301 /san-diego-at-uncorked-wine-festival-with-best-event-dj/uncorked-wine-festival-san-diego-dj-141-x3 https://djmisha.com/
+Redirect 301 /san-diego-at-uncorked-wine-festival-with-best-event-dj/uncorked-wine-festival-san-diego-dj-139-x3 https://djmisha.com/
+Redirect 301 /san-diego-at-uncorked-wine-festival-with-best-event-dj/uncorked-wine-festival-san-diego-dj-147-edit-x3 https://djmisha.com/
+Redirect 301 /san-diego-at-uncorked-wine-festival-with-best-event-dj/uncorked-wine-festival-san-diego-dj-134-x3 https://djmisha.com/
+Redirect 301 /san-diego-at-uncorked-wine-festival-with-best-event-dj/uncorked-wine-festival-san-diego-dj-22-x3 https://djmisha.com/
+Redirect 301 /san-diego-at-uncorked-wine-festival-with-best-event-dj/uncorked-wine-festival-san-diego-dj-143-edit-x3 https://djmisha.com/
+Redirect 301 /dj-services-booking-in-san-diego https://djmisha.com/
+Redirect 301 /san-diego-dj-in-a-secret-room https://djmisha.com/
+Redirect 301 /vinyl-dj-sets-at-analog-and-more-san-diego-dj-gigs https://djmisha.com/
+Redirect 301 /new-dj-residency-in-the-gaslamp https://djmisha.com/
+Redirect 301 /electronic-dance-music-events-in-san-diego https://djmisha.com/
+Redirect 301 /san-diego-club-dj-at-grand-opening-of-restaurant https://djmisha.com/
+Redirect 301 /finding-box-of-vinyl-records https://djmisha.com/
+Redirect 301 /recent-san-diego-dj-misha-private-party-bookings https://djmisha.com/
+Redirect 301 /services/festival-concert-dj-in-san-diego https://djmisha.com/
+Redirect 301 /downtempo-and-lounge-music-at-seasucker-dj-san-diego https://djmisha.com/
+Redirect 301 /san-diego-electronic-dance-music-dj-at-halloween-party https://djmisha.com/
+Redirect 301 /djing-at-burlap-restaurant-in-san-diego https://djmisha.com/
+Redirect 301 /new-years-eve-san-diego-2011-3 https://djmisha.com/
+Redirect 301 /firehouse09-small https://djmisha.com/
+Redirect 301 /mobil-club-dj-services-for-weddings-private-events-birthdays https://djmisha.com/
+Redirect 301 /commonly-asked-questions-about-dj-services-and-disk-jockeys-in-san-diego https://djmisha.com/
+Redirect 301 /tracklisting-searsucker-thursday https://djmisha.com/
+Redirect 301 /new-night-clubs-and-upcoming-san-diego-dj-bookings https://djmisha.com/
+Redirect 301 /dj-set-tracklisting-searsucker-12042010 https://djmisha.com/
+Redirect 301 /dj-misha-searsucker https://djmisha.com/
+Redirect 301 /vin-de-syrah-with-djmisha https://djmisha.com/
+Redirect 301 /san-diego-dj-misha-featured-in-pacific-magazine https://djmisha.com/
+Redirect 301 /dj-misha-and-jason-whitmore https://djmisha.com/
+Redirect 301 /dscn6037-2 https://djmisha.com/
+Redirect 301 /img_1605 https://djmisha.com/
+
+# Tags → homepage
+Redirect 301 /tag/lounge-music https://djmisha.com/
+Redirect 301 /tag/disk-jockey https://djmisha.com/
+Redirect 301 /tag/mobile-dj https://djmisha.com/
+Redirect 301 /tag/san-diego-clubs https://djmisha.com/
+Redirect 301 /tag/techno https://djmisha.com/
+Redirect 301 /tag/funky-house https://djmisha.com/
+Redirect 301 /tag/house-music https://djmisha.com/
+Redirect 301 /tag/gaslamp https://djmisha.com/
+Redirect 301 /tag/underground https://djmisha.com/
+Redirect 301 /tag/progressive-house https://djmisha.com/
+Redirect 301 /tag/indie-dance https://djmisha.com/
+Redirect 301 /tag/dj-for-party https://djmisha.com/
+Redirect 301 /tag/saxophone-dj https://djmisha.com/
+Redirect 301 /tag/dj-set https://djmisha.com/
+Redirect 301 /tag/deep-house https://djmisha.com/
+Redirect 301 /tag/tech-house https://djmisha.com/
+Redirect 301 /tag/affordable-dj https://djmisha.com/
+Redirect 301 /tag/electronic-dance-music https://djmisha.com/
+Redirect 301 /tag/vin-de-syrah https://djmisha.com/
+Redirect 301 /tag/misha https://djmisha.com/
+Redirect 301 /tag/san-diego-dj/page/3 https://djmisha.com/
+Redirect 301 /ngg_tag/djmisha-at-envy-in-ivy-hotel https://djmisha.com/

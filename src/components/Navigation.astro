@@ -4,7 +4,6 @@ export interface Props {
 }
 const { isHome = false } = Astro.props;
 ---
-<!-- Header -->
 <a href="#skiptomaincontent" style="display:none;">Skip to main content</a>
 
 <header id="header">
@@ -12,20 +11,24 @@ const { isHome = false } = Astro.props;
   {isHome ? (
     <h1 id="logo"><a href="/" title="San Diego DJ">San Diego DJ</a></h1>
   ) : (
-    <span id="logo"><a href="/" title="San Diego DJ">San Diego DJ</a></span>
+    <span id="logo"><a href="/" title="San Diego DJ Misha">DJ Misha</a></span>
   )}
   <nav id="nav">
     <ul class="nav-menu">
       <li><a href="/">Home</a></li>
-      <li><a href="/dj-saxophone/" title="Jason Whitmore on Saxophone">DJ + Saxophone</a></li>
-      <li><a href="/services/wedding-dj-in-san-diego/" title="Wedding DJ in San Diego">Wedding DJ</a></li>
-      <li><a href="/services/corporate-event-dj-in-san-diego/" title="Corporate Event DJ in San Diego">Corporate Event DJ</a></li>
-      <li><a href="/services/party-birthday-dj-in-san-diego/" title="Party &amp; Birthday DJ in San Diego">Party DJ</a></li>
-      <li><a href="/prices/">Prices</a></li>
-      <li><a href="/reviews/">Reviews</a></li>
-      <li><a href="/music/">Music</a></li>
+      <li><a href="/dj-saxophone/" title="DJ + Saxophone">DJ + Saxophone</a></li>
+      <li><a href="/services/" title="DJ Services">Services</a>
+        <ul>
+          <li><a href="/services/wedding-dj-in-san-diego/" title="Wedding DJ">Wedding DJ</a></li>
+          <li><a href="/services/corporate-event-dj-in-san-diego/" title="Corporate Event DJ">Corporate Event DJ</a></li>
+          <li><a href="/services/party-birthday-dj-in-san-diego/" title="Party &amp; Birthday">Party &amp; Birthday DJ</a></li>
+          <li><a href="/services/destination-wedding-dj/" title="Destination Wedding DJ">Destination Wedding DJ</a></li>
+        </ul>
+      </li>
       <li><a href="/about/">About</a></li>
-      <li class="button primary"><a href="/contact/" title="Contact best San Diego DJ">Contact</a></li>
+      <li><a href="/music/">Music</a></li>
+      <li><a href="/reviews/">Reviews</a></li>
+      <li class="button primary"><a href="/contact/" title="Contact">Contact</a></li>
     </ul>
   </nav>
 

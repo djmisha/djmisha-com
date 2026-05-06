@@ -1,7 +1,8 @@
 ---
 import PageLayout from '../../../layouts/PageLayout.astro';
+import { buildJsonLd } from '../../../data/schema';
 const desc = "Host the corporate event your guests will rave about by booking an unforgettable and energetic performance from DJ Misha.";
-const jsonLd = [{"@context":"http://schema.org/","@id":"https://djmisha.com","@type":"Organization","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com","logo":{"@type":"ImageObject","url":"/images/logo-djmisha.png","width":400},"sameAs":["https://www.instagram.com/djmishasd/","https://www.youtube.com/@djmisha","https://www.facebook.com/djmishaSandiego","https://www.yelp.com/biz/dj-misha-san-diego-3","https://www.gigtown.com/artists/dj-misha","https://www.gigsalad.com/dj_misha_san_diego","https://goo.gl/maps/2rRm8kBYePqaPbVE6","https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"],"contactPoint":{"telephone":"+1-619-786-2664","contactType":"customer service"},"AggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"83"}},{"@context":"http://schema.org/","@type":"WebSite","url":"https://djmisha.com","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","about":"DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"},{"@context":"http://schema.org/","@type":"WebPage","url":"https://djmisha.com/services/corporate-event-dj-in-san-diego/","headline":"Corporate Event DJ","mainEntityOfPage":"https://djmisha.com/services/corporate-event-dj-in-san-diego/","about":"DJ Misha \u2013 The Mobile DJ With the Right Music For Your Corporate Event Here to make your experience the most exciting night of the year for all who attend, DJ Misha is the top corporate event DJ for keeping the dance floor moving all night long!\u00a0 DJ Misha is the tastemaking entertainer you can\u2026"},{"@context":"http://schema.org/","@id":"#LocalBusiness","@type":"LocalBusiness","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com/","image":"/images/i-4LhQfht-L.jpg","priceRange":"Contact For Pricing","address":[{"@type":"PostalAddress","streetAddress":"4640 Cass Street #9553","addressLocality":"San Diego","addressRegion":"CA","postalCode":"92109","addressCountry":"US","telephone":"+1-619-786-2664"}],"employees":["DJ Misha"]},{"@context":"http://schema.org","@type":"Person","jobTitle":"DJ","name":"DJ Misha","telephone":"+1-619-786-2664","url":"https://djmisha.com/about/","image":"/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"}];
+const jsonLd = buildJsonLd({"@context": "http://schema.org/", "@type": "WebPage", "url": "https://djmisha.com/services/corporate-event-dj-in-san-diego/", "headline": "Corporate Event DJ", "mainEntityOfPage": "https://djmisha.com/services/corporate-event-dj-in-san-diego/", "about": "DJ Misha – The Mobile DJ With the Right Music For Your Corporate Event Here to make your experience the most exciting night of the year for all who attend, DJ Misha is the top corporate event DJ for keeping the dance floor moving all night long!  DJ Misha is the tastemaking entertainer you can…"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What types of corporate events will DJ perform", "acceptedAnswer": {"@type": "Answer", "text": "There are no limits when it comes to the types of corporate events that DJ Misha will perform at! With plenty of experience performing at experiences from corporate festival outings to store openings and conferences, DJ Misha is well-versed in developing a one-of-a-kind show that can make your event stand out from any corporate event your guests have attended previously. Several options are available for customizing your night, including flexible performance of diverse music styles, MC duties and the addition of a live saxophone player."}}, {"@type": "Question", "name": "How do DJs do corporate events?", "acceptedAnswer": {"@type": "Answer", "text": "What separates DJ Misha's corporate events from the others is the level of care that goes into making every performance perfect for your particular crowd. Every set list is curated to your crowd's music taste and the vibe you would like to create at your event, with the opportunity to discuss the direction for the music at your event available as well. Plus, the option to add on live saxophone players and other musicians is available to bring even more energy to an exceptional night. "}}, {"@type": "Question", "name": "Can DJ Misha travel to my corporate event?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! DJ Misha is based in San Diego but is available for travel anywhere within the United States or even internationally, either by ground or by air. Travel details will be arranged at the time of booking."}}, {"@type": "Question", "name": "What kind of music will DJ Misha perform at my corporate event?", "acceptedAnswer": {"@type": "Answer", "text": "When booking your corporate event, we begin with a discussion about the overall vision you have for your event, along with general details about your guests, demographics and their tastes. DJ Misha will then craft a unique DJ set and curated performance just for your event — exactly what a great DJ does best. Any specific songs you would love to have featured at your event can be easily worked in during the booking process."}}, {"@type": "Question", "name": "Can DJ Misha provide equipment for my corporate event?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! For events in the vicinity of San Diego, DJ Misha can provide all necessary equipment for your event, including a high-powered speaker system, dual turntables, lighting equipment and a vast collection of curated music. For events outside of the San Diego area, DJ Misha works with top vendors across the country to set you up with everything needed to make this corporate event a success."}}, {"@type": "Question", "name": "Is event insurance included with my corporate event's performance?", "acceptedAnswer": {"@type": "Answer", "text": "One-day event insurance can be included as an optional add-on for any of DJ Misha's corporate events. Many venues, such as banquet rooms and hotels, require that all vendors provide evidence of insurance to protect from unlikely incidents or accidents that would stop the event or present a safety hazard.This is usually due to the venue's own legal and insurance requirements and DJ Misha is happy to work with the venue to ensure all bases are covered.  "}}, {"@type": "Question", "name": "Can DJ Misha make announcements and act as an MC at my event? ", "acceptedAnswer": {"@type": "Answer", "text": "Yes, DJ Misha is happy to provide this service!  As a Master of Ceremonies, Misha will ensure the event keeps flowing in the planned direction by keeping track of timelines, setting up music cues when needed, making announcements throughout the night and ensuring microphones are set-up and moving to the appropriate speaker at the right moment.  "}}]});
 ---
 <PageLayout
   title="Corporate Event DJ For Events Across the US - DJ Misha"
@@ -75,7 +76,7 @@ const jsonLd = [{"@context":"http://schema.org/","@id":"https://djmisha.com","@t
 
 <h3 class="wp-block-heading">What is Included In a Mobile DJ Package</h3>
 
-<p>A dynamic performance from DJ Misha is available for your corporate event — regardless of what side of the country it's occurring. <a href="/prices/">Mobile DJ packages</a> vary depending on the equipment needed for the event, travel required to the event and vendors that may be collaborated with at the event but are guaranteed to be exceptional for all who attend. Mobile corporate event DJ packages include:</p>
+<p>A dynamic performance from DJ Misha is available for your corporate event — regardless of what side of the country it's occurring. <a href="/blog/prices-rates-and-average-cost-for-hiring-a-dj/">Mobile DJ packages</a> vary depending on the equipment needed for the event, travel required to the event and vendors that may be collaborated with at the event but are guaranteed to be exceptional for all who attend. Mobile corporate event DJ packages include:</p>
 
 <ul class="wp-block-list"><li>The same exciting performance with access to the same vast collection of music to set the perfect atmosphere for the event</li><li>Exceptional DJ equipment from top vendors in the country, including top-of-the line speakers, mixers, turntables and microphones</li><li>Live saxophonists and musicians are also available for travel</li><li>All travel pre-arranged, including necessary air travel, ground travel by car, lodging and all meals&nbsp;</li><li>Communication with all other event vendors to coordinate equipment needs, timelines and other event specifics</li><li>Set-up 1.5 hours before music begins and breakdown included with each event</li></ul>
 
@@ -128,70 +129,4 @@ const jsonLd = [{"@context":"http://schema.org/","@id":"https://djmisha.com","@t
 <h3 class="wp-block-heading">I have additional questions, can we set time up to talk?</h3>
 
 <p>Absolutely! Visit the <a href="/contact/">contact page</a> to submit a request or find other ways of getting in touch with DJ Misha.</p>
-
-<script type="application/ld+json" is:inline>
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What types of corporate events will DJ perform",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "There are no limits when it comes to the types of corporate events that DJ Misha will perform at! With plenty of experience performing at experiences from corporate festival outings to store openings and conferences, DJ Misha is well-versed in developing a one-of-a-kind show that can make your event stand out from any corporate event your guests have attended previously. Several options are available for customizing your night, including flexible performance of diverse music styles, MC duties and the addition of a live saxophone player."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do DJs do corporate events?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "What separates DJ Misha's corporate events from the others is the level of care that goes into making every performance perfect for your particular crowd. Every set list is curated to your crowd's music taste and the vibe you would like to create at your event, with the opportunity to discuss the direction for the music at your event available as well. Plus, the option to add on live saxophone players and other musicians is available to bring even more energy to an exceptional night. "
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can DJ Misha travel to my corporate event?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! DJ Misha is based in San Diego but is available for travel anywhere within the United States or even internationally, either by ground or by air. Travel details will be arranged at the time of booking."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What kind of music will DJ Misha perform at my corporate event?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "When booking your corporate event, we begin with a discussion about the overall vision you have for your event, along with general details about your guests, demographics and their tastes. DJ Misha will then craft a unique DJ set and curated performance just for your event — exactly what a great DJ does best. Any specific songs you would love to have featured at your event can be easily worked in during the booking process."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can DJ Misha provide equipment for my corporate event?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! For events in the vicinity of San Diego, DJ Misha can provide all necessary equipment for your event, including a high-powered speaker system, dual turntables, lighting equipment and a vast collection of curated music. For events outside of the San Diego area, DJ Misha works with top vendors across the country to set you up with everything needed to make this corporate event a success."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is event insurance included with my corporate event's performance?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "One-day event insurance can be included as an optional add-on for any of DJ Misha's corporate events. Many venues, such as banquet rooms and hotels, require that all vendors provide evidence of insurance to protect from unlikely incidents or accidents that would stop the event or present a safety hazard.This is usually due to the venue's own legal and insurance requirements and DJ Misha is happy to work with the venue to ensure all bases are covered.  "
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can DJ Misha make announcements and act as an MC at my event? ",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, DJ Misha is happy to provide this service!  As a Master of Ceremonies, Misha will ensure the event keeps flowing in the planned direction by keeping track of timelines, setting up music cues when needed, making announcements throughout the night and ensuring microphones are set-up and moving to the appropriate speaker at the right moment.  "
-      }
-    }
-  ]
-}
-</script>
-
 </PageLayout>

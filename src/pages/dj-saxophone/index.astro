@@ -1,13 +1,8 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import { buildJsonLd } from '../../data/schema';
 
-const jsonLd = [
-  {"@context":"http://schema.org/","@id":"https://djmisha.com","@type":"Organization","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com","logo":{"@type":"ImageObject","url":"https://djmisha.com/images/logo-djmisha.png","width":400},"sameAs":["https://www.instagram.com/djmishasd/","https://www.youtube.com/@djmisha","https://www.facebook.com/djmishaSandiego","https://www.yelp.com/biz/dj-misha-san-diego-3","https://www.gigtown.com/artists/dj-misha","https://www.gigsalad.com/dj_misha_san_diego","https://goo.gl/maps/2rRm8kBYePqaPbVE6","https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"],"contactPoint":{"telephone":"+1-619-786-2664","contactType":"customer service"},"AggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"83"}},
-  {"@context":"http://schema.org/","@type":"WebSite","url":"https://djmisha.com","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","about":"DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"},
-  {"@context":"http://schema.org/","@type":"WebPage","url":"https://djmisha.com/dj-saxophone/","headline":"DJ and Saxophone","mainEntityOfPage":"https://djmisha.com/dj-saxophone/"},
-  {"@context":"http://schema.org/","@id":"#LocalBusiness","@type":"LocalBusiness","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com/","image":"https://djmisha.com/images/i-4LhQfht-L.jpg","priceRange":"Contact For Pricing","address":[{"@type":"PostalAddress","streetAddress":"4640 Cass Street #9553","addressLocality":"San Diego","addressRegion":"CA","postalCode":"92109","addressCountry":"US","telephone":"+1-619-786-2664"}],"employees":["DJ Misha"]},
-  {"@context":"http://schema.org","@type":"Person","jobTitle":"DJ","name":"DJ Misha","telephone":"+1-619-786-2664","url":"https://djmisha.com/about/","image":"https://djmisha.com/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"}
-];
+const jsonLd = buildJsonLd({"@context": "http://schema.org/", "@type": "WebPage", "url": "https://djmisha.com/dj-saxophone/", "headline": "DJ and Saxophone", "mainEntityOfPage": "https://djmisha.com/dj-saxophone/"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much do DJs cost for a party?", "acceptedAnswer": {"@type": "Answer", "text": "<p>DJ Misha offers several packages to make every occasion unforgettable, with performances beginning at $1,000. For full details on setting a budget for your event, visit the prices page.</p><p>There are several factors that come into play when hiring a DJ for your next event, including the type of event the DJ is being hired for, the length of the event, the amount of equipment required for the event and the number of attendees who will be at the event. Additionally, the seasonality of the event and any travel required for the performer will need to be factored into the rate. DJ Misha offers a variety of packages, with a standard four-hour DJ and Saxophone performance averaging $2,000. To contact DJ Misha about performing at your next private party, corporate event, wedding, club, venue, birthday party, or celebration of any kind, visit the contact page.</p>"}}, {"@type": "Question", "name": "How much does it cost to hire a saxophone player?", "acceptedAnswer": {"@type": "Answer", "text": "<p>DJ Misha’s unforgettable performances get even better when a live musician, such as a saxophone player is added to the mix. </p><p>DJ Misha works with live musicians, such as saxophone players Jason Whitmore and Brian Pierini to create unique musical experiences that break the boundaries of traditional DJ sets. DJ + saxophone and live musician package prices may vary by seasonality and availability. For more details, contact DJ Misha.</p>"}}, {"@type": "Question", "name": "What is the role of the DJ at a party?", "acceptedAnswer": {"@type": "Answer", "text": "<p>The primary role of the DJ is to keep the energy flowing and to keep people on the dance floor, as well as occasionally acting as MC to make announcements at weddings, corporate events and birthday parties.</p><p>The number one responsibility of any DJ is to ensure that there is never a lull in the event’s energy by playing a mix of engaging music that sets the perfect mood — and DJ Misha has vibes in spades! An exceptional mix of house, electronic dance music, electronica, techno, top hits and throwback classics is sure to ignite a spark in any crowd. Additionally, DJ Misha includes a full audio setup complete with microphones to engage the crowd and make any announcements throughout the night.</p>"}}, {"@type": "Question", "name": "What’s included in a DJ package?", "acceptedAnswer": {"@type": "Answer", "text": "<p>DJ Misha offers a variety of DJ packages for events of all kinds and budgets of all sizes, with top-of-the-line equipment, endless amounts of music and much more included.</p><p>DJ Misha also offers tailored packages for specific events, including weddings, corporate events, birthdays and private parties. Find your price and book your event by contacting DJ Misha.</p>"}}, {"@type": "Question", "name": "What does the DJ service include?", "acceptedAnswer": {"@type": "Answer", "text": "<p>DJ Misha’s services includes everything needed for a night full of music throughout the duration of your event, such as the sound system, dj mixing equipment, and of course, DJ Misha mixing a blend of outstanding music by spinning records in real time.</p>"}}, {"@type": "Question", "name": "What kind of music will you play at our event?", "acceptedAnswer": {"@type": "Answer", "text": "<p>DJ Misha plays a variety of modern dance music, including many genres of electronic dance music, such as house music, deep house, techno, lounge, chill out and more.  This allows you and your guests to hear some of your favorite crowd pleasers and popular hits, as well as new music you may have never heard before.  The goal is to match the sound to the vibe of the event while keeping the dance floor fully engaged.</p>"}}, {"@type": "Question", "name": "Can we make a request playlist of songs we’d like to hear? ", "acceptedAnswer": {"@type": "Answer", "text": "<p>Each party is unique, and in order to accommodate, we begin with a discussion about your personal taste in music, the vision you have for your event and some general details about your guests. From there DJ Misha will craft a DJ set and performance specifically for your event — after all, that is what a good DJ does best. If there are a few songs you’re keen to hear during your party, just let Misha know and he’ll work them into your performance.</p>"}}, {"@type": "Question", "name": "Does the DJ take requests?", "acceptedAnswer": {"@type": "Answer", "text": "<p>As a lover of all kinds of music, DJ Misha wants to know what kind of music resonates with you and makes your crowd excited. Included in any booking is the opportunity to discuss the vision you have for your event and your favorite genres, artists and even songs so Misha can create the perfect set that perfectly matches the night’s vibe. </p><p>However, when in the middle of a live performance and “in the mix” it can be quite distracting for the DJ to talk to and take specific song requests from guests. For this reason DJ Misha encourages early communication about your musical vision – that way you and your guests can relax and fully enjoy the show.</p>"}}, {"@type": "Question", "name": "How do I hire a DJ and saxophone player near me?", "acceptedAnswer": {"@type": "Answer", "text": "<p>Hiring DJ Misha as your next DJ is as simple as getting in contact!</p><p>If you have your date set, know the number of people who will be in attendance and are ready to start picking out the perfect music to set the mood at your event, it’s time for you to book your performance with DJ Misha. To find DJ Misha’s availability and get your rate, visit the contact page.</p>"}}]});
 ---
 <PageLayout
   title="DJ and Saxophone Player Performances for Your Event - DJ Misha"
@@ -137,7 +132,7 @@ const jsonLd = [
 
 <h3 class="wp-block-heading">How much do DJs cost for a party?&nbsp;</h3>
 
-<p>DJ Misha offers <a href="/services/">several packages</a> to make every occasion unforgettable, with performances beginning at $1,000. For full details on setting a budget for your event, visit the <a href="/prices/">prices page</a>.</p>
+<p>DJ Misha offers <a href="/services/">several packages</a> to make every occasion unforgettable, with performances beginning at $1,000. For full details on setting a budget for your event, visit the <a href="/blog/prices-rates-and-average-cost-for-hiring-a-dj/">prices page</a>.</p>
 
 <p>There are several factors that come into play when hiring a DJ for your next event, including the type of event the DJ is being hired for, the length of the event, the amount of equipment required for the event and the number of attendees who will be at the event. Additionally, the seasonality of the event and any travel required for the performer will need to be factored into the rate. DJ Misha offers a variety of packages, <strong>with a standard four-hour DJ and Saxophone performance starting at $2,000.</strong> To contact DJ Misha about performing at your next private party, corporate event, wedding, club, venue, birthday party, or celebration of any kind, visit the <a href="/contact/">contact page</a>.</p>
 
@@ -165,7 +160,7 @@ const jsonLd = [
 
 <p>DJ Misha offers a variety of DJ packages for events of all kinds and budgets of all sizes, with top-of-the-line equipment, endless amounts of music and much more included.</p>
 
-<p>DJ Misha also offers tailored packages for specific events, including <a href="/services/wedding-dj-in-san-diego/">weddings</a>, <a href="/services/corporate-event-dj-in-san-diego/">corporate events</a>, <a href="/services/party-birthday-dj-in-san-diego/">birthdays and private parties</a>. Find your <a href="/prices/">price</a> and book your event by <a href="/contact/">contacting DJ Misha</a>.</p>
+<p>DJ Misha also offers tailored packages for specific events, including <a href="/services/wedding-dj-in-san-diego/">weddings</a>, <a href="/services/corporate-event-dj-in-san-diego/">corporate events</a>, <a href="/services/party-birthday-dj-in-san-diego/">birthdays and private parties</a>. Find your <a href="/blog/prices-rates-and-average-cost-for-hiring-a-dj/">price</a> and book your event by <a href="/contact/">contacting DJ Misha</a>.</p>
 
 <h3 class="wp-block-heading">What does the DJ service include?&nbsp;</h3>
 
@@ -190,87 +185,5 @@ const jsonLd = [
 <p>Hiring DJ Misha as your next DJ is as simple as getting in contact!</p>
 
 <p>If you have your date set, know the number of people who will be in attendance and are ready to start picking out the perfect music to set the mood at your event, it's time for you to book your performance with DJ Misha. To find DJ Misha's availability and get your rate, visit the <a href="/contact/">contact page</a>.</p>
-
-
-<script is:inline type="application/ld+json">
-{
-	"@context": "https://schema.org",
-	"@type": "FAQPage",
-	"mainEntity": [
-		{
-			"@type": "Question",
-			"name": "How much do DJs cost for a party?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "<p>DJ Misha offers several packages to make every occasion unforgettable, with performances beginning at $1,000. For full details on setting a budget for your event, visit the prices page.</p><p>There are several factors that come into play when hiring a DJ for your next event, including the type of event the DJ is being hired for, the length of the event, the amount of equipment required for the event and the number of attendees who will be at the event. Additionally, the seasonality of the event and any travel required for the performer will need to be factored into the rate. DJ Misha offers a variety of packages, with a standard four-hour DJ and Saxophone performance averaging $2,000. To contact DJ Misha about performing at your next private party, corporate event, wedding, club, venue, birthday party, or celebration of any kind, visit the contact page.</p>"
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "How much does it cost to hire a saxophone player?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "<p>DJ Misha\u2019s unforgettable performances get even better when a live musician, such as a saxophone player is added to the mix. </p><p>DJ Misha works with live musicians, such as saxophone players Jason Whitmore and Brian Pierini to create unique musical experiences that break the boundaries of traditional DJ sets. DJ + saxophone and live musician package prices may vary by seasonality and availability. For more details, contact DJ Misha.</p>"
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "What is the role of the DJ at a party?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "<p>The primary role of the DJ is to keep the energy flowing and to keep people on the dance floor, as well as occasionally acting as MC to make announcements at weddings, corporate events and birthday parties.</p><p>The number one responsibility of any DJ is to ensure that there is never a lull in the event\u2019s energy by playing a mix of engaging music that sets the perfect mood \u2014 and DJ Misha has vibes in spades! An exceptional mix of house, electronic dance music, electronica, techno, top hits and throwback classics is sure to ignite a spark in any crowd. Additionally, DJ Misha includes a full audio setup complete with microphones to engage the crowd and make any announcements throughout the night.</p>"
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "What\u2019s included in a DJ package?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "<p>DJ Misha offers a variety of DJ packages for events of all kinds and budgets of all sizes, with top-of-the-line equipment, endless amounts of music and much more included.</p><p>DJ Misha also offers tailored packages for specific events, including weddings, corporate events, birthdays and private parties. Find your price and book your event by contacting DJ Misha.</p>"
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "What does the DJ service include?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "<p>DJ Misha\u2019s services includes everything needed for a night full of music throughout the duration of your event, such as the sound system, dj mixing equipment, and of course, DJ Misha mixing a blend of outstanding music by spinning records in real time.</p>"
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "What kind of music will you play at our event?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "<p>DJ Misha plays a variety of modern dance music, including many genres of electronic dance music, such as house music, deep house, techno, lounge, chill out and more.  This allows you and your guests to hear some of your favorite crowd pleasers and popular hits, as well as new music you may have never heard before.  The goal is to match the sound to the vibe of the event while keeping the dance floor fully engaged.</p>"
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "Can we make a request playlist of songs we\u2019d like to hear? ",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "<p>Each party is unique, and in order to accommodate, we begin with a discussion about your personal taste in music, the vision you have for your event and some general details about your guests. From there DJ Misha will craft a DJ set and performance specifically for your event \u2014 after all, that is what a good DJ does best. If there are a few songs you\u2019re keen to hear during your party, just let Misha know and he\u2019ll work them into your performance.</p>"
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "Does the DJ take requests?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "<p>As a lover of all kinds of music, DJ Misha wants to know what kind of music resonates with you and makes your crowd excited. Included in any booking is the opportunity to discuss the vision you have for your event and your favorite genres, artists and even songs so Misha can create the perfect set that perfectly matches the night\u2019s vibe. </p><p>However, when in the middle of a live performance and \u201cin the mix\u201d it can be quite distracting for the DJ to talk to and take specific song requests from guests. For this reason DJ Misha encourages early communication about your musical vision \u2013 that way you and your guests can relax and fully enjoy the show.</p>"
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "How do I hire a DJ and saxophone player near me?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "<p>Hiring DJ Misha as your next DJ is as simple as getting in contact!</p><p>If you have your date set, know the number of people who will be in attendance and are ready to start picking out the perfect music to set the mood at your event, it\u2019s time for you to book your performance with DJ Misha. To find DJ Misha\u2019s availability and get your rate, visit the contact page.</p>"
-			}
-		}
-	]
-}
-</script>
 
 </PageLayout>

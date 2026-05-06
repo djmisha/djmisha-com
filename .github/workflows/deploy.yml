@@ -34,6 +34,7 @@ jobs:
       - name: Assemble staging directory
         run: |
           mkdir -p _staging/php
+          shopt -s dotglob
           cp -r dist/* _staging/
           cp -r php/* _staging/php/
 

@@ -1,7 +1,8 @@
 ---
 import PageLayout from '../../../layouts/PageLayout.astro';
+import { buildJsonLd } from '../../../data/schema';
 const desc = "Looking for the best DJ near you? Hire our top-rated wedding DJ in San Diego, and learn about our services, pricing, and one of a kind music experience.";
-const jsonLd = [{"@context":"http://schema.org/","@id":"https://djmisha.com","@type":"Organization","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com","logo":{"@type":"ImageObject","url":"/images/logo-djmisha.png","width":400},"sameAs":["https://www.instagram.com/djmishasd/","https://www.youtube.com/@djmisha","https://www.facebook.com/djmishaSandiego","https://www.yelp.com/biz/dj-misha-san-diego-3","https://www.gigtown.com/artists/dj-misha","https://www.gigsalad.com/dj_misha_san_diego","https://goo.gl/maps/2rRm8kBYePqaPbVE6","https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha"],"contactPoint":{"telephone":"+1-619-786-2664","contactType":"customer service"},"AggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"83"}},{"@context":"http://schema.org/","@type":"WebSite","url":"https://djmisha.com","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","about":"DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n"},{"@context":"http://schema.org/","@type":"WebPage","url":"https://djmisha.com/services/wedding-dj-in-san-diego/","headline":"Wedding DJ in San Diego","mainEntityOfPage":"https://djmisha.com/services/wedding-dj-in-san-diego/","about":"The Perfect Soundtrack for Your Special Day Think about the most fun wedding you\u2019ve attended. What do you remember? There\u2019s a good chance your time on the dance floor stands out. The music was pumping; the atmosphere was electric; and every song seemed to capture the essence of the couple's love story. That's the kind\u2026"},{"@context":"http://schema.org/","@id":"#LocalBusiness","@type":"LocalBusiness","name":"San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM","url":"https://djmisha.com/","image":"/images/i-4LhQfht-L.jpg","priceRange":"Contact For Pricing","address":[{"@type":"PostalAddress","streetAddress":"4640 Cass Street #9553","addressLocality":"San Diego","addressRegion":"CA","postalCode":"92109","addressCountry":"US","telephone":"+1-619-786-2664"}],"employees":["DJ Misha"]},{"@context":"http://schema.org","@type":"Person","jobTitle":"DJ","name":"DJ Misha","telephone":"+1-619-786-2664","url":"https://djmisha.com/about/","image":"/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"}];
+const jsonLd = buildJsonLd({"@context": "http://schema.org/", "@type": "WebPage", "url": "https://djmisha.com/services/wedding-dj-in-san-diego/", "headline": "Wedding DJ in San Diego", "mainEntityOfPage": "https://djmisha.com/services/wedding-dj-in-san-diego/", "about": "The Perfect Soundtrack for Your Special Day Think about the most fun wedding you’ve attended. What do you remember? There’s a good chance your time on the dance floor stands out. The music was pumping; the atmosphere was electric; and every song seemed to capture the essence of the couple's love story. That's the kind…"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can a Wedding DJ Take Song Requests?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely, and the decision is entirely up to you. Your DJ is available to take requests if that is something you would like. Sometimes, requests can provide useful feedback from the audience and add a fun, interactive element to the party. However, our primary commitment is to you. The DJ will always prioritize your vision and the seamless flow of the musical journey we've planned together, ensuring any request fits the atmosphere and never disrupts the energy on the dance floor."}}, {"@type": "Question", "name": "What Questions Should I Ask My Wedding DJ?", "acceptedAnswer": {"@type": "Answer", "text": "Before hiring a wedding DJ, you'll want to ask certain questions to make sure they meet your needs for your special day. Here are some helpful questions to consider: What is your experience with DJ-ing weddings? How many have you done? Do you have testimonials from past clients? Do you have backup equipment in case of technical issues? How do you handle song requests and do-not-play lists? Can you make announcements during the event? Do you offer additional services? What is your policy on overtime? Is there an additional charge? How far in advance should we book your services? What is your cancellation or rescheduling policy?"}}, {"@type": "Question", "name": "How Many Hours Does a DJ Play at a Wedding?", "acceptedAnswer": {"@type": "Answer", "text": "Our DJ services can be used throughout the entirety of your wedding day, from before the ceremony to the end of the reception. Our wedding package typically includes 4 hours of reception music. Custom packages can be created based on your individual needs."}}, {"@type": "Question", "name": "Does DJ Misha Perform at Destination Weddings?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! DJ Misha is available for national and international travel. Whether you're in San Diego or hosting a destination wedding in a unique location, he can bring the music to you. Reach out to us with details like your wedding location and date, because travel to any destination is possible. For destination weddings, DJ Misha will take care of all travel booking and equipment rentals that are required for a remote performance, ensuring there is no additional work for you. He will also handle all the coordination between vendors and event planners too, making your destination wedding planning an easy and efficient process."}}]});
 ---
 <PageLayout
   title="Wedding DJ in San Diego, CA - DJ Misha"
@@ -167,7 +168,7 @@ const jsonLd = [{"@context":"http://schema.org/","@id":"https://djmisha.com","@t
 
 <p><strong>On average you can expect to pay about $2500 for our wedding DJ services in San Diego.</strong> This popular package includes 4 hours of coverage for the reception, with a 2-speaker sound system and a microphone for toasts. Keep in mind rates can vary based on factors like the length of the event, number of people attending, customization options, equipment rental, travel expenses, and if live saxophone music is included. Couples should communicate their specific needs and budget to ensure a clear understanding of the services provided and any associated costs.</p>
 
-<p>For more information on <a href="/prices/">DJ prices</a> for wedding services in San Diego – or any destination – please <a href="/contact/" rel="nofollow" title="">contact DJ Misha</a>.&nbsp;</p>
+<p>For more information on <a href="/blog/prices-rates-and-average-cost-for-hiring-a-dj/">DJ prices</a> for wedding services in San Diego – or any destination – please <a href="/contact/" rel="nofollow" title="">contact DJ Misha</a>.&nbsp;</p>
 
 <h2 class="wp-block-heading" id="faq">Frequently Asked Questions About Wedding DJs</h2>
 
@@ -206,46 +207,4 @@ const jsonLd = [{"@context":"http://schema.org/","@id":"https://djmisha.com","@t
 <p>So what are you waiting for? Let's rock your wedding party together! <a href="/contact/" rel="nofollow" title="">Contact DJ Misha</a> today with your wedding date, start and end time, location, and any other details you have. You'll receive a quick reply with availability and pricing.&nbsp;</p>
 
 <p>We look forward to making your dream wedding a reality!</p>
-
-<script type="application/ld+json" is:inline>
-{
-	"@context": "https://schema.org",
-	"@type": "FAQPage",
-	"mainEntity": [
-	{
-		"@type": "Question",
-		"name": "Can a Wedding DJ Take Song Requests?",
-		"acceptedAnswer": {
-			"@type": "Answer",
-			"text": "Absolutely, and the decision is entirely up to you. Your DJ is available to take requests if that is something you would like. Sometimes, requests can provide useful feedback from the audience and add a fun, interactive element to the party. However, our primary commitment is to you. The DJ will always prioritize your vision and the seamless flow of the musical journey we've planned together, ensuring any request fits the atmosphere and never disrupts the energy on the dance floor."
-		}
-	},
-	{
-		"@type": "Question",
-		"name": "What Questions Should I Ask My Wedding DJ?",
-		"acceptedAnswer": {
-			"@type": "Answer",
-			"text": "Before hiring a wedding DJ, you'll want to ask certain questions to make sure they meet your needs for your special day. Here are some helpful questions to consider: What is your experience with DJ-ing weddings? How many have you done? Do you have testimonials from past clients? Do you have backup equipment in case of technical issues? How do you handle song requests and do-not-play lists? Can you make announcements during the event? Do you offer additional services? What is your policy on overtime? Is there an additional charge? How far in advance should we book your services? What is your cancellation or rescheduling policy?"
-		}
-	},
-	{
-		"@type": "Question",
-		"name": "How Many Hours Does a DJ Play at a Wedding?",
-		"acceptedAnswer": {
-			"@type": "Answer",
-			"text": "Our DJ services can be used throughout the entirety of your wedding day, from before the ceremony to the end of the reception. Our wedding package typically includes 4 hours of reception music. Custom packages can be created based on your individual needs."
-		}
-	},
-	{
-		"@type": "Question",
-		"name": "Does DJ Misha Perform at Destination Weddings?",
-		"acceptedAnswer": {
-			"@type": "Answer",
-			"text": "Yes! DJ Misha is available for national and international travel. Whether you're in San Diego or hosting a destination wedding in a unique location, he can bring the music to you. Reach out to us with details like your wedding location and date, because travel to any destination is possible. For destination weddings, DJ Misha will take care of all travel booking and equipment rentals that are required for a remote performance, ensuring there is no additional work for you. He will also handle all the coordination between vendors and event planners too, making your destination wedding planning an easy and efficient process."
-		}
-	}
-]
-}
-</script>
-
 </PageLayout>
