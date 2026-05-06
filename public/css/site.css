@@ -22,6 +22,16 @@
   --color-text-strong: #ffffff;
   --color-border: rgba(255, 255, 255, 0.3);
 
+  /* Reviews */
+  --color-star-filled: #fbbf24;
+  --color-star-empty: rgba(255, 255, 255, 0.2);
+  --color-pill-bg: rgba(255, 255, 255, 0.075);
+  --color-pill-bg-hover: rgba(255, 255, 255, 0.12);
+  --color-pill-border: rgba(255, 255, 255, 0.2);
+  --color-pill-border-hover: rgba(255, 255, 255, 0.4);
+  --color-pill-badge-bg: rgba(255, 255, 255, 0.15);
+  --color-pill-badge-bg-active: rgba(255, 255, 255, 0.25);
+
   /* Typography */
   --font-family: 'Roboto', Helvetica, sans-serif;
   --font-weight-thin: 100;
@@ -5360,5 +5370,201 @@ body.contact-page #footer {
     display: block;
     margin: 0;
     padding: 0;
+  }
+}
+
+/* ========== REVIEWS: Keyword Pills ========== */
+
+.keyword-pills {
+  display: flex;
+  gap: 0.5em;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.5em 0 1.5em 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.keyword-pills::-webkit-scrollbar {
+  height: 4px;
+}
+
+.keyword-pills::-webkit-scrollbar-thumb {
+  background: var(--color-pill-border);
+  border-radius: 2px;
+}
+
+.keyword-pill {
+  appearance: none;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.5em 1.1em;
+  border-radius: 2em;
+  font-family: var(--font-family);
+  font-size: 0.85em;
+  font-weight: 300;
+  cursor: pointer;
+  white-space: nowrap;
+  background: var(--color-pill-bg);
+  color: var(--color-text);
+  box-shadow: inset 0 0 0 1px var(--color-pill-border);
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+}
+
+.keyword-pill:hover {
+  background: var(--color-pill-bg-hover);
+  color: var(--color-text-strong);
+  box-shadow: inset 0 0 0 1px var(--color-pill-border-hover);
+}
+
+.keyword-pill.active {
+  background: var(--color-accent);
+  color: var(--color-text-strong);
+  box-shadow: none;
+}
+
+.keyword-pill.active:hover {
+  background: var(--color-accent-hover);
+}
+
+.pill-badge {
+  background: var(--color-pill-badge-bg);
+  border-radius: 1em;
+  padding: 0.1em 0.5em;
+  font-size: 0.8em;
+  line-height: 1.4;
+}
+
+.keyword-pill.active .pill-badge {
+  background: var(--color-pill-badge-bg-active);
+}
+
+/* ========== REVIEWS: Card Grid (Masonry) ========== */
+
+.reviews-grid {
+  columns: 3;
+  column-gap: 1.5em;
+  margin-bottom: 3em;
+}
+
+@media screen and (max-width: 1200px) {
+  .reviews-grid {
+    columns: 2;
+  }
+}
+
+/* ========== REVIEWS: Card ========== */
+
+.review-card {
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+  padding: 1.5em;
+  margin-bottom: 1.5em;
+  break-inside: avoid;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.review-card-hidden {
+  display: none;
+}
+
+.review-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+/* ========== REVIEWS: Avatar ========== */
+
+.review-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.review-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  color: var(--color-text-strong);
+  font-size: 1em;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+/* ========== REVIEWS: Meta ========== */
+
+.review-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+}
+
+.review-author {
+  color: var(--color-text-strong);
+  font-weight: 300;
+  font-size: 0.95em;
+}
+
+.review-date {
+  color: var(--color-text-muted);
+  font-size: 0.8em;
+}
+
+/* ========== REVIEWS: Stars ========== */
+
+.review-stars {
+  margin-bottom: 0.6em;
+  font-size: 1.1em;
+  letter-spacing: 0.05em;
+}
+
+.star-filled {
+  color: var(--color-star-filled);
+}
+
+.star-empty {
+  color: var(--color-star-empty);
+}
+
+/* ========== REVIEWS: Text ========== */
+
+.review-text {
+  color: var(--color-text);
+  font-size: 0.9em;
+  line-height: 1.7em;
+  margin: 0;
+}
+
+/* ========== REVIEWS: Responsive ========== */
+
+@media screen and (max-width: 736px) {
+  .reviews-grid {
+    columns: 1;
+    column-gap: 0;
+  }
+
+  .review-card {
+    margin-bottom: 1em;
+  }
+
+  .keyword-pills {
+    padding: 0.25em 0 1em 0;
+  }
+
+  .review-card {
+    padding: 1.25em;
   }
 }

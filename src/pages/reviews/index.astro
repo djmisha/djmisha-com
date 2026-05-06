@@ -1,11 +1,32 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import { buildJsonLd } from '../../data/schema';
+import FullWidthLayout from '../../layouts/FullWidthLayout.astro';
+import { buildJsonLdWithRating } from '../../data/schema';
+import { extractInitials } from '../../lib/reviews-helpers.mjs';
+import reviewsData from '../../data/reviews.json';
 
-const jsonLd = buildJsonLd({"@context": "http://schema.org/", "@type": "WebPage", "url": "https://djmisha.com/reviews/", "headline": "Reviews & Testimonials", "mainEntityOfPage": "https://djmisha.com/reviews/"});
+const { totalRating, totalReviews, keywords, keywordCounts, reviews } = reviewsData;
+
+// Compute badge counts from actual review keyword tags (ensures consistency
+// between the number shown on the pill and the cards displayed when clicked)
+const badgeCounts: Record<string, number> = {};
+for (const kw of keywords) {
+  badgeCounts[kw] = reviews.filter((r) => r.keywords.includes(kw)).length;
+}
+
+const jsonLd = buildJsonLdWithRating(
+  { ratingValue: totalRating, reviewCount: totalReviews },
+  {
+    "@context": "http://schema.org/",
+    "@type": "WebPage",
+    "url": "https://djmisha.com/reviews/",
+    "headline": "Reviews & Testimonials",
+    "mainEntityOfPage": "https://djmisha.com/reviews/",
+  }
+);
+
 const reviewsDesc = "Looking for a San Diego DJ who can make your event unforgettable? Read testimonials from satisfied clients about DJ Misha's music selection, energy, and professionalism.";
 ---
-<PageLayout
+<FullWidthLayout
   title="DJ Misha Reviews - See What Our Clients Are Saying"
   heading="Reviews & Testimonials"
   description={reviewsDesc}
@@ -19,94 +40,66 @@ const reviewsDesc = "Looking for a San Diego DJ who can make your event unforget
   jsonLd={jsonLd}
 >
 
-<p>DJ Misha is a San Diego DJ who has been providing high-quality DJ services for many years. He is known for his extensive curated music collection, his ability to read the crowd, and his professionalism. DJ Misha has played at a variety of events, including weddings, corporate parties, private functions and festivals. He is always willing to work with his clients to create a custom playlist that will fit the mood of the event.</p>
+<p>DJ Misha is a San Diego DJ who has been providing high-quality DJ services for many years. He is known for his extensive curated music collection, his ability to read the crowd, and his professionalism. DJ Misha has played at a variety of events, including weddings, corporate parties, private functions and festivals.</p>
 
-<p>On this page, you can read testimonials from some of DJ Misha&#8217;s satisfied clients. They rave about his music selection, his energizing DJ sets, and his overall professionalism. If you are looking for a DJ who will make your event unforgettable, then DJ Misha is the perfect choice for you.</p>
-
-<h2 class="wp-block-heading">Testimonials from Weddings</h2>
-
-<div class="home-testi testi-full">
-	<p>
-		Misha &#8211; thank you, thank you, thank you for everything!  You and Jason were absolutely INCREDIBLE.  I could not have asked for a more perfect performance and we have already received so many rave reviews!!!  We really appreciate everything you've done and you've been an amazing vendor from the very beginning. 
-		<br><br>
-	<i class="fas fa-user"></i> Amanda Liew via Email</p>
+<!-- Keyword Pills -->
+<div class="keyword-pills">
+  <button class="keyword-pill active" data-keyword="all">
+    All <span class="pill-badge">{reviews.length}</span>
+  </button>
+  {keywords.map((kw) => (
+    <button class="keyword-pill" data-keyword={kw}>
+      {kw} <span class="pill-badge">{badgeCounts[kw]}</span>
+    </button>
+  ))}
 </div>
 
-<div class="home-testi testi-full">
-	<p>
-	DJ Misha was an incredible partner with us for our wedding, from the planning phase to the actual day of we seriously could not have asked for a better performance.
-	<br><br>
-	We hired DJ Misha to play the after party for our wedding at the Mission Bay Yacht Club in September from 10pm-12am. He also brought a saxophone player to add a live music element to the party and the sax player absolutely crushed it as a compliment to his DJ set.
-	<br><br>
-	Through the planning phase, he was very communicative and easy to reach which made our lives a lot easier. We met a few times to discuss our style of music, shared a playlist of our music preferences and style, and what we were going for with the after party and he was always receptive and transparent with his recommendations and feedback, which we truly appreciated.
-	<br><br>
-	DJ Misha curated a set list of disco, house, and dance music for our after party that exceeded our expectations in every way. The sax player layered on to the performance helped make the best day of our lives even better.
-	<br><br>
-	Almost two months after our wedding we still have friends and family members raving about DJ Misha&#8217;s performance that night. From our younger cousins to our older family members, everyone was getting down on the dance floor and had a memorable experience with us on our wedding day. Thanks, DJ Misha!!
-	<br><br>
-	<i class="fas fa-user"></i> Chris R. via Google</p>
-</div>
-
-<div class="home-testi testi-full">
-	<p>
-		DJ Misha was absolutely incredible! We went with his DJ + sax duo package and it was easily the best decision we ever made. Him and Brian Pierini were incredible to work with, kept the vibe up the entire night, and were so incredible that our guests would not stop telling us how impressed they were. I worked closely with Misha on the playlist for different parts of the day and he was so helpful and had great insight into making the event flow well. Creating an upbeat and fun wedding for my guests was a top priority for me and Misha really helped me achieve that. Hiring him and Brian was easily one of the best decisions we made wedding planning and I could not recommend them more!!!
-	<br><br>
-	<i class="fas fa-user"></i> Taylor Clark via Google</p>
-</div>
-
-<div class="home-testi testi-full">
-	<p>
-		We hired DJ Misha as our wedding DJ as we are very specific in our music tastes and we wanted our wedding music to be as untraditional as possible (no Usher/cupid shuffle etc). DJ Misha made our dream come true, he was easy to work with, had some great suggestions and made everything run smooth! Great person to work with!
-	<br><br>
-	<i class="fas fa-user"></i> Tatyana Budarina via Google</p>
-</div>
-
-<h2 class="wp-block-heading">Testimonials from Parties and Private Events</h2>
-
-<div class="home-testi testi-full">
-	<p>
-	DJ Misha was absolutely perfect for our event. The music he picked for our crowd was on point and set the tone perfectly. We also had Saxophone player Brian Pierini come and play throughout the party. This added touch was everything! Everyone raved about it! The way the two of these guys collaborate together just follows so perfectly through the event. I highly recommend them for your party. You won't be disappointed!!!
-	<br><br>
-	<i class="fas fa-user"></i> Lindsey Snyder via Google</p>
-</div>
-
-<div class="home-testi testi-full">
-	<p>
-	We hired DJ Misha for my friend's birthday party and he created an amazing atmosphere with his music from start to finish. People were bouncing through cocktail hour/dinner and sweating on the dance floor later in the night. He read the crowd perfectly and knew just what to play to get people moving. From start to finish he was really easy to work with and I appreciated that we didn't have to create our own playlist (although we could have if we wanted to) instead describing the vibe we were looking for and he delivered!
-	<br><br>
-	<i class="fas fa-user"></i> K.C. via Google</p>
-</div>
-
-<h2 class="wp-block-heading">Testimonials from Event &amp; Wedding Planners</h2>
-
-<div class="home-testi testi-full">
-	<p>
-	DJ Misha was awesome! It was so fun to coordinate a wedding with his services! The bride and groom were very particular on music and he executing perfectly! He quite literally kept everyone dancing for THREE hours! The wedding party and guests couldn't get enough!
-	<br><br>
-	<i class="fas fa-user"></i> Gabrielle Connelly via Google</p>
-</div>
-
-<div class="home-testi testi-full">
-	<p>
-		DJ Misha is excellent! We had the opportunity to work together this past weekend at Tom Hams Lighthouse San Diego.  I appreciated the flexibility and awesome music. Great setup and lighting too!
-	<br><br>
-	<i class="fas fa-user"></i> Karissa Shannon via Google</p>
-</div>
-
-<div class="home-testi testi-full">
-	<p>
-	DJ Misha did a terrific job at my client&#8217;s wedding. Everyone was on the dance floor and raved about the music. Great job keeping everyone on their feet as well as the bride and groom who were the last to leave the dance floor. Thanks so much! It is all about the DJ at an event as we all know.
-	<br><br>
-	<i class="fas fa-user"></i> Jennifer Hughes via Google</p>
+<!-- Review Cards -->
+<div class="reviews-grid">
+  {reviews.map((review) => (
+    <div class="review-card" data-keywords={review.keywords.join(',')}>
+      <div class="review-card-header">
+        {review.profilePhoto ? (
+          <img
+            class="review-avatar"
+            src={review.profilePhoto}
+            alt={`${review.author} profile photo`}
+            width="48"
+            height="48"
+            loading="lazy"
+          />
+        ) : (
+          <div class="review-avatar review-avatar-fallback">
+            {extractInitials(review.author)}
+          </div>
+        )}
+        <div class="review-meta">
+          <span class="review-author">{review.author}</span>
+          <span class="review-date">{review.date}</span>
+        </div>
+      </div>
+      <div class="review-stars" aria-label={`${review.rating} out of 5 stars`}>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <span class={`star ${i < review.rating ? 'star-filled' : 'star-empty'}`}>&#9733;</span>
+        ))}
+      </div>
+      {review.text && <p class="review-text">{review.text}</p>}
+    </div>
+  ))}
 </div>
 
 <section id="five" class="wrapper style2 special fade">
-<div class="container"><header>
-<h2>San Diego DJ Reviews and Testimonials</h2>
-<p>Read more testimonials for DJ Misha on his Google profile.</p>
-</header>
-<div class="container 25%"><a class="button fit special" href="https://www.google.com/maps/place/DJ+Misha/@32.7990179,-117.2530949,9z/data=!3m1!5s0x80dc019320e5a943:0x21495feab25fb788!4m18!1m9!3m8!1s0x80dbffcb31404e13:0x3fae10d8742ab418!2sDJ+Misha!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z!3m7!1s0x80dbffcb31404e13:0x3fae10d8742ab418!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z" target="_blank" rel="noopener">Google Reviews</a></div>
-</div>
+  <!-- <div class="container"> -->
+    <header>
+      <h2>San Diego DJ Reviews and Testimonials</h2>
+      <p>Read more testimonials for DJ Misha on his Google profile.</p>
+    </header>
+    <div class="container 25%">
+      <a class="button fit special" href="https://www.google.com/maps/place/DJ+Misha/@32.7990179,-117.2530949,9z/data=!3m1!5s0x80dc019320e5a943:0x21495feab25fb788!4m18!1m9!3m8!1s0x80dbffcb31404e13:0x3fae10d8742ab418!2sDJ+Misha!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z!3m7!1s0x80dbffcb31404e13:0x3fae10d8742ab418!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z" target="_blank" rel="noopener">Google Reviews</a>
+    </div>
+  <!-- </div> -->
 </section>
 
-</PageLayout>
+<script src="/js/reviews-filter.js" defer></script>
+
+</FullWidthLayout>

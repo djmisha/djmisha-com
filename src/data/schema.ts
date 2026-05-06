@@ -31,11 +31,6 @@ const organization = {
     "telephone": "+1-619-786-2664",
     "contactType": "customer service",
   },
-  "AggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "reviewCount": "83",
-  },
 };
 
 const webSite = {
@@ -81,6 +76,11 @@ const person = {
 
 export const baseSchemas = [organization, webSite, localBusiness, person];
 
+interface AggregateRatingOptions {
+  ratingValue: number;
+  reviewCount: number;
+}
+
 /**
  * Build the full JSON-LD array for a page.
  *
@@ -91,10 +91,34 @@ export const baseSchemas = [organization, webSite, localBusiness, person];
  * ```ts
  * const jsonLd = buildJsonLd(
  *   { "@context": "http://schema.org/", "@type": "WebPage", url: "...", headline: "..." },
- *   { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [...] },
  * );
  * ```
  */
 export function buildJsonLd(...pageSchemas: object[]): object[] {
   return [...baseSchemas, ...pageSchemas];
+}
+
+/**
+ * Build the full JSON-LD array with a dynamic AggregateRating on the Organization schema.
+ *
+ * Use this on pages (like reviews) where the aggregate rating should reflect
+ * actual values from the reviews data store rather than being omitted.
+ *
+ * @param rating - Dynamic rating values from reviews.json
+ * @param pageSchemas - Page-specific schemas (WebPage, FAQPage, etc.)
+ * @returns The complete schema array with AggregateRating injected into Organization.
+ */
+export function buildJsonLdWithRating(
+  rating: AggregateRatingOptions,
+  ...pageSchemas: object[]
+): object[] {
+  const orgWithRating = {
+    ...organization,
+    AggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: String(rating.ratingValue),
+      reviewCount: String(rating.reviewCount),
+    },
+  };
+  return [orgWithRating, webSite, localBusiness, person, ...pageSchemas];
 }
