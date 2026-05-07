@@ -2,6 +2,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { SITE_NAME } from '../data/schema';
 
 export interface Props {
   title: string;
@@ -45,7 +46,7 @@ const {
 const ogDescription = _ogDescription || description;
 const twitterDescription = _twitterDescription || description;
 
-const siteName = "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM";
+const siteName = SITE_NAME;
 
 // Generate a short content hash of site.css for cache busting.
 // Changes automatically on every deploy where the CSS has been modified.

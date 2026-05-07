@@ -6,11 +6,15 @@
  * via the helper function.
  */
 
+export const SITE_NAME = "San Diego DJ for Weddings, Parties & Corporate Events – House Music, EDM & Dance";
+
+
+
 const organization = {
   "@context": "http://schema.org/",
   "@id": "https://djmisha.com",
   "@type": "Organization",
-  "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+  "name": SITE_NAME,
   "url": "https://djmisha.com",
   "logo": {
     "@type": "ImageObject",
@@ -37,7 +41,7 @@ const webSite = {
   "@context": "http://schema.org/",
   "@type": "WebSite",
   "url": "https://djmisha.com",
-  "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+  "name": SITE_NAME,
   "about":
     "DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n",
 };
@@ -46,7 +50,7 @@ const localBusiness = {
   "@context": "http://schema.org/",
   "@id": "#LocalBusiness",
   "@type": "LocalBusiness",
-  "name": "San Diego DJ for Party Events Weddings DJs spinning House Music Dance EDM",
+  "name": SITE_NAME,
   "url": "https://djmisha.com/",
   "image": "/images/i-4LhQfht-L.jpg",
   "priceRange": "Contact For Pricing",
