@@ -8,8 +8,6 @@
 
 export const SITE_NAME = "San Diego DJ for Weddings, Parties & Corporate Events – House Music, EDM & Dance";
 
-
-
 const organization = {
   "@context": "http://schema.org/",
   "@id": "https://djmisha.com",
@@ -18,7 +16,7 @@ const organization = {
   "url": "https://djmisha.com",
   "logo": {
     "@type": "ImageObject",
-    "url": "/images/logo-djmisha.png",
+    "url": "/images/Best-San-Diego-DJ-djmisha.com-12-768x512.jpg",
     "width": 400,
   },
   "sameAs": [
