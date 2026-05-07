@@ -9,8 +9,8 @@
     "astro": "astro",
     "test": "vitest --run",
     "update-reviews": "node scripts/parse-raw-text.mjs",
-    "format": "prettier --write 'public/css/site.css'",
-    "format:check": "prettier --check 'public/css/site.css'"
+    "format": "prettier --write 'public/css/site.css' 'src/**/*.{astro,ts,js}'",
+    "format:check": "prettier --check 'public/css/site.css' 'src/**/*.{astro,ts,js}'"
   },
   "dependencies": {
     "astro": "^5.18.1"
@@ -23,6 +23,7 @@
     "pixelmatch": "^7.1.0",
     "pngjs": "^7.0.0",
     "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
     "sirv": "^3.0.2",
     "vitest": "^4.1.4",
     "yaml": "^2.8.3"

@@ -39,6 +39,7 @@ const {
 } = Astro.props;
 const h1Text = heading || title;
 ---
+
 <BaseLayout
   title={title}
   description={description}
@@ -54,7 +55,6 @@ const h1Text = heading || title;
   jsonLd={jsonLd}
   extraHeadContent={extraHeadContent}
 >
-
   <div id="page-wrapper">
     <Navigation />
     <!-- Main -->
@@ -78,5 +78,4 @@ const h1Text = heading || title;
   </div>
 
   <Footer />
-
 </BaseLayout>

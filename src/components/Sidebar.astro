@@ -21,220 +21,266 @@ const galleryImages = Array.from({ length: GALLERY_TOTAL }, (_, i) => ({
 }));
 ---
 
-<section id="sidebar"><section>
+<section id="sidebar">
+  <section>
+    <p class="sidebar-title">Photo Gallery</p>
+    <p class="sidebar-gallery-hint">
+      Click any photo to browse the full gallery
+    </p>
 
-<p class="sidebar-title">Photo Gallery</p>
-<p class="sidebar-gallery-hint">Click any photo to browse the full gallery</p>
+    <div
+      class="ngg-galleryoverview default-view"
+      id="ngg-gallery-sidebar"
+      data-gallery-id="sidebar"
+      data-thumbs-to-show={THUMBS_TO_SHOW}
+    >
+      {
+        galleryImages.map((image) => (
+          <div
+            class="ngg-gallery-thumbnail-box sidebar-gallery-item"
+            data-gallery-index={image.id}
+          >
+            <div class="ngg-gallery-thumbnail">
+              <a
+                href={image.src}
+                title={image.alt}
+                data-src={image.src}
+                data-title={image.alt}
+                data-description=""
+              >
+                <span
+                  class="sidebar-gallery-thumb"
+                  role="img"
+                  aria-label={image.alt}
+                  data-bg={image.thumb}
+                />
+              </a>
+            </div>
+          </div>
+        ))
+      }
 
-<div
-	class="ngg-galleryoverview default-view"
-	id="ngg-gallery-sidebar"
-	data-gallery-id="sidebar"
-	data-thumbs-to-show={THUMBS_TO_SHOW}>
+      <br style="clear: both" />
+      <div class="ngg-clear"></div>
+    </div>
+  </section><hr />
+  <section id="sidebar">
+    <section>
+      <p class="sidebar-title">From the Blog</p>
 
-	{galleryImages.map((image) => (
-		<div class="ngg-gallery-thumbnail-box sidebar-gallery-item" data-gallery-index={image.id}>
-			<div class="ngg-gallery-thumbnail">
-				<a
-					href={image.src}
-					title={image.alt}
-					data-src={image.src}
-					data-title={image.alt}
-					data-description="">
-					<span
-						class="sidebar-gallery-thumb"
-						role="img"
-						aria-label={image.alt}
-						data-bg={image.thumb}
-					></span>
-				</a>
-			</div>
-		</div>
-	))}
+      <div class="sidebar-blog-cards" id="sidebar-blog-cards">
+        <a
+          class="sidebar-blog-card"
+          href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/"
+        >
+          <span
+            class="sidebar-blog-card__img"
+            style="background-image: url(/images/epic-DJ-set-wedding-dance-party-298x200.jpg)"
+          ></span>
+          <span class="sidebar-blog-card__title"
+            >Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your
+            Vision</span
+          >
+        </a>
+        <a
+          class="sidebar-blog-card"
+          href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/"
+        >
+          <span
+            class="sidebar-blog-card__img"
+            style="background-image: url(/images/wedding-dj-toast-296x200.jpg)"
+          ></span>
+          <span class="sidebar-blog-card__title"
+            >Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech</span
+          >
+        </a>
+        <a
+          class="sidebar-blog-card"
+          href="/blog/the-art-of-taking-requests-a-djs-perspective/"
+        >
+          <span
+            class="sidebar-blog-card__img"
+            style="background-image: url(/images/Screenshot-2024-09-14-at-6.18.37-AM-274x200.jpg)"
+          ></span>
+          <span class="sidebar-blog-card__title"
+            >The Art of Taking Requests: A DJ&#8217;s Perspective</span
+          >
+        </a>
+        <a
+          class="sidebar-blog-card"
+          href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/"
+        >
+          <span
+            class="sidebar-blog-card__img"
+            style="background-image: url(/images/10-i-4lhqfht-l-300x200.jpg)"
+          ></span>
+          <span class="sidebar-blog-card__title"
+            >A Guide to Planning for Your Wedding with DJ Misha</span
+          >
+        </a>
+      </div>
+    </section><hr />
 
-	<br style="clear: both" />
-	<div class="ngg-clear"></div>
-</div>
-
-</section><hr />
-	<section id="sidebar"><section>
-	<p class="sidebar-title">From the Blog</p>
-
-	<div class="sidebar-blog-cards" id="sidebar-blog-cards">
-		<a class="sidebar-blog-card" href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/">
-			<span class="sidebar-blog-card__img" style="background-image: url(/images/epic-DJ-set-wedding-dance-party-298x200.jpg)"></span>
-			<span class="sidebar-blog-card__title">Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision</span>
-		</a>
-		<a class="sidebar-blog-card" href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/">
-			<span class="sidebar-blog-card__img" style="background-image: url(/images/wedding-dj-toast-296x200.jpg)"></span>
-			<span class="sidebar-blog-card__title">Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech</span>
-		</a>
-		<a class="sidebar-blog-card" href="/blog/the-art-of-taking-requests-a-djs-perspective/">
-			<span class="sidebar-blog-card__img" style="background-image: url(/images/Screenshot-2024-09-14-at-6.18.37-AM-274x200.jpg)"></span>
-			<span class="sidebar-blog-card__title">The Art of Taking Requests: A DJ&#8217;s Perspective</span>
-		</a>
-		<a class="sidebar-blog-card" href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/">
-			<span class="sidebar-blog-card__img" style="background-image: url(/images/10-i-4lhqfht-l-300x200.jpg)"></span>
-			<span class="sidebar-blog-card__title">A Guide to Planning for Your Wedding with DJ Misha</span>
-		</a>
-	</div>
-
-	 </section><hr />
-
-<style is:global>
-	/* ------------------------------------------------
+    <style is:global>
+      /* ------------------------------------------------
 	 * Sidebar Gallery Thumbnails
 	 * ------------------------------------------------ */
 
-	/* Grid container for the thumbnail items */
-	#ngg-gallery-sidebar {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 6px;
-	}
+      /* Grid container for the thumbnail items */
+      #ngg-gallery-sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
 
-	/* Hide all items by default; JS reveals a random subset */
-	.sidebar-gallery-item {
-		display: none !important;
-	}
+      /* Hide all items by default; JS reveals a random subset */
+      .sidebar-gallery-item {
+        display: none !important;
+      }
 
-	/* Remove underlines/decoration from gallery links */
-	#ngg-gallery-sidebar a {
-		text-decoration: none;
-		border: none;
-	}
+      /* Remove underlines/decoration from gallery links */
+      #ngg-gallery-sidebar a {
+        text-decoration: none;
+        border: none;
+      }
 
-	.sidebar-gallery-item.is-visible {
-		display: block !important;
-		/* 3 columns with gap accounted for: (100% - 2*6px) / 3 */
-		width: calc((100% - 12px) / 3);
-		flex-shrink: 0;
-		/* Reserve space to prevent layout shift while images load */
-		aspect-ratio: 4 / 3;
-	}
+      .sidebar-gallery-item.is-visible {
+        display: block !important;
+        /* 3 columns with gap accounted for: (100% - 2*6px) / 3 */
+        width: calc((100% - 12px) / 3);
+        flex-shrink: 0;
+        /* Reserve space to prevent layout shift while images load */
+        aspect-ratio: 4 / 3;
+      }
 
-	/* Horizontal thumbnail via CSS background-image */
-	.sidebar-gallery-thumb {
-		display: block;
-		width: 100%;
-		aspect-ratio: 4 / 3;
-		background-size: cover;
-		background-position: center;
-		border-radius: 3px;
-		cursor: pointer;
-	}
+      /* Horizontal thumbnail via CSS background-image */
+      .sidebar-gallery-thumb {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        background-size: cover;
+        background-position: center;
+        border-radius: 3px;
+        cursor: pointer;
+      }
 
-	.sidebar-gallery-item .ngg-gallery-thumbnail,
-	.sidebar-gallery-item .ngg-gallery-thumbnail a {
-		display: block;
-		width: 100%;
-	}
+      .sidebar-gallery-item .ngg-gallery-thumbnail,
+      .sidebar-gallery-item .ngg-gallery-thumbnail a {
+        display: block;
+        width: 100%;
+      }
 
-	/* Hide the clear elements inside the flex container */
-	#ngg-gallery-sidebar > br,
-	#ngg-gallery-sidebar > .ngg-clear {
-		display: none;
-	}
+      /* Hide the clear elements inside the flex container */
+      #ngg-gallery-sidebar > br,
+      #ngg-gallery-sidebar > .ngg-clear {
+        display: none;
+      }
 
-	/* Gallery helper text */
-	.sidebar-gallery-hint {
-		font-size: 13px;
-		color: #888;
-		margin: 0 0 10px 0;
-		font-style: italic;
-	}
+      /* Gallery helper text */
+      .sidebar-gallery-hint {
+        font-size: 13px;
+        color: #888;
+        margin: 0 0 10px 0;
+        font-style: italic;
+      }
 
-	/* ------------------------------------------------
+      /* ------------------------------------------------
 	 * Sidebar Blog Cards
 	 * ------------------------------------------------ */
-	.sidebar-blog-cards {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 10px;
-	}
+      .sidebar-blog-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
 
-	.sidebar-blog-card {
-		display: flex;
-		flex-direction: column;
-		width: calc((100% - 10px) / 2);
-		text-decoration: none;
-		color: inherit;
-		border-radius: 6px;
-		overflow: hidden;
-		background: #272833;
-		transition: background-color 0.2s ease, box-shadow 0.2s ease;
-	}
+      .sidebar-blog-card {
+        display: flex;
+        flex-direction: column;
+        width: calc((100% - 10px) / 2);
+        text-decoration: none;
+        color: inherit;
+        border-radius: 6px;
+        overflow: hidden;
+        background: #272833;
+        transition:
+          background-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
 
-	.sidebar-blog-card:hover {
-		background: #1c1d26;
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-		text-decoration: none;
-	}
+      .sidebar-blog-card:hover {
+        background: #1c1d26;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        text-decoration: none;
+      }
 
-	.sidebar-blog-card__img {
-		width: 100%;
-		aspect-ratio: 3 / 2;
-		background-size: cover;
-		background-position: center;
-	}
+      .sidebar-blog-card__img {
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        background-size: cover;
+        background-position: center;
+      }
 
-	.sidebar-blog-card__title {
-		padding: 8px 10px;
-		font-size: 12px;
-		line-height: 1.4;
-		font-weight: 600;
-		color: #ffffff;
-	}
+      .sidebar-blog-card__title {
+        padding: 8px 10px;
+        font-size: 12px;
+        line-height: 1.4;
+        font-weight: 600;
+        color: #ffffff;
+      }
 
-	.sidebar-blog-card:hover .sidebar-blog-card__title {
-		color: #e44c65;
-	}
-</style>
+      .sidebar-blog-card:hover .sidebar-blog-card__title {
+        color: #e44c65;
+      }
+    </style>
 
-<!-- Randomize visible thumbnails on each page load -->
-<script is:inline>
-(function () {
-	// Fisher-Yates shuffle for DOM children
-	function shuffleChildren(parent) {
-		var children = Array.prototype.slice.call(parent.children);
-		for (var i = children.length - 1; i > 0; i--) {
-			var j = Math.floor(Math.random() * (i + 1));
-			parent.appendChild(children[j]);
-			children.splice(j, 1, children[i]);
-		}
-	}
+    <!-- Randomize visible thumbnails on each page load -->
+    <script is:inline>
+      (function () {
+        // Fisher-Yates shuffle for DOM children
+        function shuffleChildren(parent) {
+          var children = Array.prototype.slice.call(parent.children);
+          for (var i = children.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            parent.appendChild(children[j]);
+            children.splice(j, 1, children[i]);
+          }
+        }
 
-	document.addEventListener('DOMContentLoaded', function () {
-		// Randomize gallery thumbnails
-		var container = document.getElementById('ngg-gallery-sidebar');
-		if (container) {
-			var items = container.querySelectorAll('.sidebar-gallery-item');
-			var toShow = parseInt(container.getAttribute('data-thumbs-to-show'), 10) || 12;
+        document.addEventListener('DOMContentLoaded', function () {
+          // Randomize gallery thumbnails
+          var container = document.getElementById('ngg-gallery-sidebar');
+          if (container) {
+            var items = container.querySelectorAll('.sidebar-gallery-item');
+            var toShow =
+              parseInt(container.getAttribute('data-thumbs-to-show'), 10) || 12;
 
-			var indices = [];
-			for (var i = 0; i < items.length; i++) indices.push(i);
-			for (var i = indices.length - 1; i > 0; i--) {
-				var j = Math.floor(Math.random() * (i + 1));
-				var tmp = indices[i];
-				indices[i] = indices[j];
-				indices[j] = tmp;
-			}
+            var indices = [];
+            for (var i = 0; i < items.length; i++) indices.push(i);
+            for (var i = indices.length - 1; i > 0; i--) {
+              var j = Math.floor(Math.random() * (i + 1));
+              var tmp = indices[i];
+              indices[i] = indices[j];
+              indices[j] = tmp;
+            }
 
-			for (var k = 0; k < toShow && k < indices.length; k++) {
-				var item = items[indices[k]];
-				item.classList.add('is-visible');
-				var thumb = item.querySelector('.sidebar-gallery-thumb');
-				if (thumb && thumb.getAttribute('data-bg')) {
-					thumb.style.backgroundImage = 'url(' + thumb.getAttribute('data-bg') + ')';
-				}
-			}
-		}
+            for (var k = 0; k < toShow && k < indices.length; k++) {
+              var item = items[indices[k]];
+              item.classList.add('is-visible');
+              var thumb = item.querySelector('.sidebar-gallery-thumb');
+              if (thumb && thumb.getAttribute('data-bg')) {
+                thumb.style.backgroundImage =
+                  'url(' + thumb.getAttribute('data-bg') + ')';
+              }
+            }
+          }
 
-		// Randomize blog card order
-		var blogCards = document.getElementById('sidebar-blog-cards');
-		if (blogCards) {
-			shuffleChildren(blogCards);
-		}
-	});
-})();
-</script>
+          // Randomize blog card order
+          var blogCards = document.getElementById('sidebar-blog-cards');
+          if (blogCards) {
+            shuffleChildren(blogCards);
+          }
+        });
+      })();
+    </script>
+  </section>
+</section>

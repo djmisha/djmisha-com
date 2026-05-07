@@ -2,8 +2,15 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 import { buildJsonLd } from '../../data/schema';
 
-const jsonLd = buildJsonLd({"@context": "http://schema.org/", "@type": "WebPage", "url": "https://djmisha.com/sitemap/", "headline": "Sitemap", "mainEntityOfPage": "https://djmisha.com/sitemap/"});
+const jsonLd = buildJsonLd({
+  '@context': 'http://schema.org/',
+  '@type': 'WebPage',
+  url: 'https://djmisha.com/sitemap/',
+  headline: 'Sitemap',
+  mainEntityOfPage: 'https://djmisha.com/sitemap/',
+});
 ---
+
 <PageLayout
   title="Sitemap"
   description="Sitemap for website users."
@@ -16,35 +23,52 @@ const jsonLd = buildJsonLd({"@context": "http://schema.org/", "@type": "WebPage"
   twitterImage="https://djmisha.com/images/logo-djmisha.png"
   jsonLd={jsonLd}
 >
+  <ul class="wp-block-list">
+    <li><a href="/about/">About DJ Misha</a></li>
 
-<ul class="wp-block-list">
-<li><a href="/about/">About DJ Misha</a></li>
+    <li><a href="/blog/">Blog</a></li>
 
-<li><a href="/blog/">Blog</a></li>
+    <li>
+      <a href="/contact/">Contact San Diego DJ for Pricing and Bookings</a>
+    </li>
 
-<li><a href="/contact/">Contact San Diego DJ for Pricing and Bookings</a></li>
+    <li><a href="/music/">Dance and House Music by DJ Misha</a></li>
 
-<li><a href="/music/">Dance and House Music by DJ Misha</a></li>
+    <li><a href="/dj-saxophone/">DJ and Saxophone</a></li>
 
-<li><a href="/dj-saxophone/">DJ and Saxophone</a></li>
+    <li>
+      <a href="/services/">DJ Services</a>
+      <ul class="wp-block-list">
+        <li>
+          <a href="/services/corporate-event-dj-in-san-diego/"
+            >Corporate Event DJ</a>
+        </li>
 
-<li><a href="/services/">DJ Services</a>
-<ul class="wp-block-list">
-<li><a href="/services/corporate-event-dj-in-san-diego/">Corporate Event DJ</a></li>
+        <li>
+          <a href="/services/party-birthday-dj-in-san-diego/"
+            >Party &amp; Birthday DJ in San Diego</a>
+        </li>
 
-<li><a href="/services/party-birthday-dj-in-san-diego/">Party &amp; Birthday DJ in San Diego</a></li>
+        <li>
+          <a href="/services/wedding-dj-in-san-diego/"
+            >Wedding DJ in San Diego</a>
+        </li>
 
-<li><a href="/services/wedding-dj-in-san-diego/">Wedding DJ in San Diego</a></li>
+        <li>
+          <a
+            href="/services/destination-wedding-dj/"
+            title="Destination Wedding DJ">Destination Wedding DJ</a>
+        </li>
+      </ul>
+    </li>
 
-<li><a href="/services/destination-wedding-dj/" title="Destination Wedding DJ">Destination Wedding DJ</a></li>
-</ul>
-</li>
+    <li>
+      <a href="/blog/prices-rates-and-average-cost-for-hiring-a-dj/"
+        >Prices, rates and average cost for hiring a DJ</a>
+    </li>
 
-<li><a href="/blog/prices-rates-and-average-cost-for-hiring-a-dj/">Prices, rates and average cost for hiring a DJ</a></li>
+    <li><a href="/reviews/">San Diego DJ Reviews &amp; Testimonials</a></li>
+  </ul>
 
-<li><a href="/reviews/">San Diego DJ Reviews &amp; Testimonials</a></li>
-</ul>
-
-<p></p>
-
+  <p></p>
 </PageLayout>

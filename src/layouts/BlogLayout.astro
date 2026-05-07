@@ -19,11 +19,38 @@ import BaseLayout from './BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 
-const { title, description = '', canonicalUrl, ogTitle, ogDescription, ogImage, ogUrl, ogType, twitterTitle, twitterDescription, twitterImage, jsonLd, pageHeading } = Astro.props;
+const {
+  title,
+  description = '',
+  canonicalUrl,
+  ogTitle,
+  ogDescription,
+  ogImage,
+  ogUrl,
+  ogType,
+  twitterTitle,
+  twitterDescription,
+  twitterImage,
+  jsonLd,
+  pageHeading,
+} = Astro.props;
 const heading = pageHeading || title;
 ---
-<BaseLayout title={title} description={description} canonicalUrl={canonicalUrl} ogTitle={ogTitle} ogDescription={ogDescription} ogImage={ogImage} ogUrl={ogUrl} ogType={ogType} twitterTitle={twitterTitle} twitterDescription={twitterDescription} twitterImage={twitterImage} jsonLd={jsonLd}>
 
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalUrl={canonicalUrl}
+  ogTitle={ogTitle}
+  ogDescription={ogDescription}
+  ogImage={ogImage}
+  ogUrl={ogUrl}
+  ogType={ogType}
+  twitterTitle={twitterTitle}
+  twitterDescription={twitterDescription}
+  twitterImage={twitterImage}
+  jsonLd={jsonLd}
+>
   <div id="page-wrapper">
     <Navigation />
     <div id="main" class="wrapper style1 category">
@@ -39,5 +66,4 @@ const heading = pageHeading || title;
   </div>
 
   <Footer />
-
 </BaseLayout>

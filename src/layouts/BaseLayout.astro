@@ -51,15 +51,22 @@ const siteName = SITE_NAME;
 // Generate a short content hash of site.css for cache busting.
 // Changes automatically on every deploy where the CSS has been modified.
 const cssPath = resolve('public/css/site.css');
-const cssHash = createHash('md5').update(readFileSync(cssPath)).digest('hex').slice(0, 8);
+const cssHash = createHash('md5')
+  .update(readFileSync(cssPath))
+  .digest('hex')
+  .slice(0, 8);
 
 /** Escape single quotes to &#039; and double quotes to &quot; for HTML attribute safety */
 function esc(s?: string): string {
   if (!s) return '';
-  return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 ---
-<!DOCTYPE HTML>
+
+<!doctype html>
 <html lang="en">
   <head>
     {/* 1. Title */}
@@ -67,26 +74,59 @@ function esc(s?: string): string {
 
     {/* 2. Charset, viewport, content-type */}
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
 
     {/* 3. Meta description */}
-    {description && <Fragment set:html={`<meta name="description" content="${esc(description)}" />`} />}
+    {
+      description && (
+        <Fragment
+          set:html={`<meta name="description" content="${esc(description)}" />`}
+        />
+      )
+    }
 
     {/* 4. Canonical URL */}
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
     {/* 5. Open Graph meta tags */}
     <meta property="og:site_name" content={siteName} />
-    {ogTitle && <Fragment set:html={`<meta property="og:title" content="${esc(ogTitle)}" />`} />}
-    {ogDescription && <Fragment set:html={`<meta property="og:description" content="${esc(ogDescription)}" />`} />}
+    {
+      ogTitle && (
+        <Fragment
+          set:html={`<meta property="og:title" content="${esc(ogTitle)}" />`}
+        />
+      )
+    }
+    {
+      ogDescription && (
+        <Fragment
+          set:html={`<meta property="og:description" content="${esc(ogDescription)}" />`}
+        />
+      )
+    }
     {ogImage && <meta property="og:image" content={ogImage} />}
     {ogUrl && <meta property="og:url" content={ogUrl} />}
     {ogType && <meta property="og:type" content={ogType} />}
 
     {/* 6. Twitter Card meta tags */}
     <meta name="twitter:card" content="summary_large_image" />
-    {twitterTitle && <Fragment set:html={`<meta name="twitter:title" content="${esc(twitterTitle)}" />`} />}
-    {twitterDescription && <Fragment set:html={`<meta name="twitter:description" content="${esc(twitterDescription)}" />`} />}
+    {
+      twitterTitle && (
+        <Fragment
+          set:html={`<meta name="twitter:title" content="${esc(twitterTitle)}" />`}
+        />
+      )
+    }
+    {
+      twitterDescription && (
+        <Fragment
+          set:html={`<meta name="twitter:description" content="${esc(twitterDescription)}" />`}
+        />
+      )
+    }
     {twitterImage && <meta name="twitter:image" content={twitterImage} />}
 
     {/* 7. Favicon and apple-touch-icon links */}
@@ -95,9 +135,11 @@ function esc(s?: string): string {
     <link rel="apple-touch-icon" href="/images/logo-djmisha-200x200.png" />
 
     {/* 8. JSON-LD schema */}
-    {jsonLd && jsonLd.length > 0 && (
-      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    )}
+    {
+      jsonLd && jsonLd.length > 0 && (
+        <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+      )
+    }
 
     {/* 9. site.css (cache-busted with content hash) */}
     <link rel="stylesheet" href={`/css/site.css?v=${cssHash}`} />
@@ -109,7 +151,34 @@ function esc(s?: string): string {
     <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
 
     {/* 14. Ratings widget inline style */}
-    <style is:inline type="text/css" media="screen">.ratings a{display:block;text-decoration:none}.ratings a:hover .total-stars{text-decoration:underline}.ratings__text{display:inline-block;line-height:15px;vertical-align:top}.ratings__stars{display:inline-block;margin-left:7px;vertical-align:top}.ratings__star{display:inline-block;vertical-align:top}.ratings__star svg{display:block;height:15px;width:15px}</style>
+    <style is:inline type="text/css" media="screen">
+      .ratings a {
+        display: block;
+        text-decoration: none;
+      }
+      .ratings a:hover .total-stars {
+        text-decoration: underline;
+      }
+      .ratings__text {
+        display: inline-block;
+        line-height: 15px;
+        vertical-align: top;
+      }
+      .ratings__stars {
+        display: inline-block;
+        margin-left: 7px;
+        vertical-align: top;
+      }
+      .ratings__star {
+        display: inline-block;
+        vertical-align: top;
+      }
+      .ratings__star svg {
+        display: block;
+        height: 15px;
+        width: 15px;
+      }
+    </style>
 
     {/* Extra head content (page-specific) */}
     {extraHeadContent && <Fragment set:html={extraHeadContent} />}

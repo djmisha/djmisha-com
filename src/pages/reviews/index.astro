@@ -4,7 +4,8 @@ import { buildJsonLdWithRating } from '../../data/schema';
 import { extractInitials } from '../../lib/reviews-helpers.mjs';
 import reviewsData from '../../data/reviews.json';
 
-const { totalRating, totalReviews, keywords, keywordCounts, reviews } = reviewsData;
+const { totalRating, totalReviews, keywords, keywordCounts, reviews } =
+  reviewsData;
 
 // Compute badge counts from actual review keyword tags (ensures consistency
 // between the number shown on the pill and the cards displayed when clicked)
@@ -16,16 +17,18 @@ for (const kw of keywords) {
 const jsonLd = buildJsonLdWithRating(
   { ratingValue: totalRating, reviewCount: totalReviews },
   {
-    "@context": "http://schema.org/",
-    "@type": "WebPage",
-    "url": "https://djmisha.com/reviews/",
-    "headline": "Reviews & Testimonials",
-    "mainEntityOfPage": "https://djmisha.com/reviews/",
-  }
+    '@context': 'http://schema.org/',
+    '@type': 'WebPage',
+    url: 'https://djmisha.com/reviews/',
+    headline: 'Reviews & Testimonials',
+    mainEntityOfPage: 'https://djmisha.com/reviews/',
+  },
 );
 
-const reviewsDesc = "Looking for a San Diego DJ who can make your event unforgettable? Read testimonials from satisfied clients about DJ Misha's music selection, energy, and professionalism.";
+const reviewsDesc =
+  "Looking for a San Diego DJ who can make your event unforgettable? Read testimonials from satisfied clients about DJ Misha's music selection, energy, and professionalism.";
 ---
+
 <FullWidthLayout
   title="DJ Misha Reviews - See What Our Clients Are Saying"
   heading="Reviews & Testimonials"
@@ -39,67 +42,87 @@ const reviewsDesc = "Looking for a San Diego DJ who can make your event unforget
   twitterImage="https://djmisha.com/images/logo-djmisha.png"
   jsonLd={jsonLd}
 >
+  <p>
+    DJ Misha is a San Diego DJ who has been providing high-quality DJ services
+    for many years. He is known for his extensive curated music collection, his
+    ability to read the crowd, and his professionalism. DJ Misha has played at a
+    variety of events, including weddings, corporate parties, private functions
+    and festivals.
+  </p>
 
-<p>DJ Misha is a San Diego DJ who has been providing high-quality DJ services for many years. He is known for his extensive curated music collection, his ability to read the crowd, and his professionalism. DJ Misha has played at a variety of events, including weddings, corporate parties, private functions and festivals.</p>
-
-<!-- Keyword Pills -->
-<div class="keyword-pills">
-  <button class="keyword-pill active" data-keyword="all">
-    All <span class="pill-badge">{reviews.length}</span>
-  </button>
-  {keywords.map((kw) => (
-    <button class="keyword-pill" data-keyword={kw}>
-      {kw} <span class="pill-badge">{badgeCounts[kw]}</span>
+  <!-- Keyword Pills -->
+  <div class="keyword-pills">
+    <button class="keyword-pill active" data-keyword="all">
+      All <span class="pill-badge">{reviews.length}</span>
     </button>
-  ))}
-</div>
+    {
+      keywords.map((kw) => (
+        <button class="keyword-pill" data-keyword={kw}>
+          {kw} <span class="pill-badge">{badgeCounts[kw]}</span>
+        </button>
+      ))
+    }
+  </div>
 
-<!-- Review Cards -->
-<div class="reviews-grid">
-  {reviews.map((review) => (
-    <div class="review-card" data-keywords={review.keywords.join(',')}>
-      <div class="review-card-header">
-        {review.profilePhoto ? (
-          <img
-            class="review-avatar"
-            src={review.profilePhoto}
-            alt={`${review.author} profile photo`}
-            width="48"
-            height="48"
-            loading="lazy"
-          />
-        ) : (
-          <div class="review-avatar review-avatar-fallback">
-            {extractInitials(review.author)}
+  <!-- Review Cards -->
+  <div class="reviews-grid">
+    {
+      reviews.map((review) => (
+        <div class="review-card" data-keywords={review.keywords.join(',')}>
+          <div class="review-card-header">
+            {review.profilePhoto ? (
+              <img
+                class="review-avatar"
+                src={review.profilePhoto}
+                alt={`${review.author} profile photo`}
+                width="48"
+                height="48"
+                loading="lazy"
+              />
+            ) : (
+              <div class="review-avatar review-avatar-fallback">
+                {extractInitials(review.author)}
+              </div>
+            )}
+            <div class="review-meta">
+              <span class="review-author">{review.author}</span>
+              <span class="review-date">{review.date}</span>
+            </div>
           </div>
-        )}
-        <div class="review-meta">
-          <span class="review-author">{review.author}</span>
-          <span class="review-date">{review.date}</span>
+          <div
+            class="review-stars"
+            aria-label={`${review.rating} out of 5 stars`}
+          >
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span
+                class={`star ${i < review.rating ? 'star-filled' : 'star-empty'}`}
+              >
+                &#9733;
+              </span>
+            ))}
+          </div>
+          {review.text && <p class="review-text">{review.text}</p>}
         </div>
-      </div>
-      <div class="review-stars" aria-label={`${review.rating} out of 5 stars`}>
-        {Array.from({ length: 5 }).map((_, i) => (
-          <span class={`star ${i < review.rating ? 'star-filled' : 'star-empty'}`}>&#9733;</span>
-        ))}
-      </div>
-      {review.text && <p class="review-text">{review.text}</p>}
-    </div>
-  ))}
-</div>
+      ))
+    }
+  </div>
 
-<section id="five" class="wrapper style2 special fade">
-  <!-- <div class="container"> -->
+  <section id="five" class="wrapper style2 special fade">
+    <!-- <div class="container"> -->
     <header>
       <h2>San Diego DJ Reviews and Testimonials</h2>
       <p>Read more testimonials for DJ Misha on his Google profile.</p>
     </header>
     <div class="container 25%">
-      <a class="button fit special" href="https://www.google.com/maps/place/DJ+Misha/@32.7990179,-117.2530949,9z/data=!3m1!5s0x80dc019320e5a943:0x21495feab25fb788!4m18!1m9!3m8!1s0x80dbffcb31404e13:0x3fae10d8742ab418!2sDJ+Misha!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z!3m7!1s0x80dbffcb31404e13:0x3fae10d8742ab418!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z" target="_blank" rel="noopener">Google Reviews</a>
+      <a
+        class="button fit special"
+        href="https://www.google.com/maps/place/DJ+Misha/@32.7990179,-117.2530949,9z/data=!3m1!5s0x80dc019320e5a943:0x21495feab25fb788!4m18!1m9!3m8!1s0x80dbffcb31404e13:0x3fae10d8742ab418!2sDJ+Misha!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z!3m7!1s0x80dbffcb31404e13:0x3fae10d8742ab418!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z"
+        target="_blank"
+        rel="noopener">Google Reviews</a
+      >
     </div>
-  <!-- </div> -->
-</section>
+    <!-- </div> -->
+  </section>
 
-<script src="/js/reviews-filter.js" defer></script>
-
+  <script src="/js/reviews-filter.js" defer></script>
 </FullWidthLayout>

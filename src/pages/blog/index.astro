@@ -2,9 +2,21 @@
 import BlogLayout from '../../layouts/BlogLayout.astro';
 import { buildJsonLd } from '../../data/schema';
 
-const jsonLd = buildJsonLd({"@context": "http://schema.org/", "@type": "WebPage", "url": "https://djmisha.com/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/", "headline": "Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision", "mainEntityOfPage": "https://djmisha.com/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/", "about": "After DJ’ing weddings for many years, I’ve come to realize one simple truth: no two weddings should sound the same. Every couple has a distinct vision, every crowd brings its own energy, and the music should reflect that to create a truly one-of-a-kind celebration. Every Wedding Deserves a Unique Soundtrack In my early years, I…"});
-const blogDesc = "DJ tips, wedding music guides, and behind-the-scenes insights from DJ Misha. Read about event planning, song requests, and creating unforgettable celebrations.";
+const jsonLd = buildJsonLd({
+  '@context': 'http://schema.org/',
+  '@type': 'WebPage',
+  url: 'https://djmisha.com/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/',
+  headline:
+    'Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision',
+  mainEntityOfPage:
+    'https://djmisha.com/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/',
+  about:
+    'After DJ’ing weddings for many years, I’ve come to realize one simple truth: no two weddings should sound the same. Every couple has a distinct vision, every crowd brings its own energy, and the music should reflect that to create a truly one-of-a-kind celebration. Every Wedding Deserves a Unique Soundtrack In my early years, I…',
+});
+const blogDesc =
+  'DJ tips, wedding music guides, and behind-the-scenes insights from DJ Misha. Read about event planning, song requests, and creating unforgettable celebrations.';
 ---
+
 <BlogLayout
   title="DJ Misha's Blog"
   pageHeading="DJ Misha's Blog"
@@ -18,47 +30,124 @@ const blogDesc = "DJ tips, wedding music guides, and behind-the-scenes insights 
   twitterImage="https://djmisha.com/images/logo-djmisha.png"
   jsonLd={jsonLd}
 >
-
   <section class="col-4 col-12-small">
-    <a href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/" rel="bookmark" class="blog-card__link">
-      <img class="blog-card__img" src="/images/epic-DJ-set-wedding-dance-party-298x200.jpg" alt="Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision" width="298" height="200" loading="eager" />
-      <h2 class="blog-card__title">Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision</h2>
+    <a
+      href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/"
+      rel="bookmark"
+      class="blog-card__link"
+    >
+      <img
+        class="blog-card__img"
+        src="/images/epic-DJ-set-wedding-dance-party-298x200.jpg"
+        alt="Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision"
+        width="298"
+        height="200"
+        loading="eager"
+      />
+      <h2 class="blog-card__title">
+        Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision
+      </h2>
     </a>
   </section>
 
   <section class="col-4 col-12-small">
-    <a href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/" rel="bookmark" class="blog-card__link">
-      <img class="blog-card__img" src="/images/wedding-dj-toast-296x200.jpg" alt="Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech" width="296" height="200" loading="lazy" />
-      <h2 class="blog-card__title">Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech</h2>
+    <a
+      href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/"
+      rel="bookmark"
+      class="blog-card__link"
+    >
+      <img
+        class="blog-card__img"
+        src="/images/wedding-dj-toast-296x200.jpg"
+        alt="Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech"
+        width="296"
+        height="200"
+        loading="lazy"
+      />
+      <h2 class="blog-card__title">
+        Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech
+      </h2>
     </a>
   </section>
 
   <section class="col-4 col-12-small">
-    <a href="/blog/the-art-of-taking-requests-a-djs-perspective/" rel="bookmark" class="blog-card__link">
-      <img class="blog-card__img" src="/images/Screenshot-2024-09-14-at-6.18.37-AM-274x200.jpg" alt="The Art of Taking Requests: A DJ's Perspective" width="274" height="200" loading="lazy" />
-      <h2 class="blog-card__title">The Art of Taking Requests: A DJ&#8217;s Perspective</h2>
+    <a
+      href="/blog/the-art-of-taking-requests-a-djs-perspective/"
+      rel="bookmark"
+      class="blog-card__link"
+    >
+      <img
+        class="blog-card__img"
+        src="/images/Screenshot-2024-09-14-at-6.18.37-AM-274x200.jpg"
+        alt="The Art of Taking Requests: A DJ's Perspective"
+        width="274"
+        height="200"
+        loading="lazy"
+      />
+      <h2 class="blog-card__title">
+        The Art of Taking Requests: A DJ&#8217;s Perspective
+      </h2>
     </a>
   </section>
 
   <section class="col-4 col-12-small">
-    <a href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/" rel="bookmark" class="blog-card__link">
-      <img class="blog-card__img" src="/images/10-i-4lhqfht-l-300x200.jpg" alt="A Guide to Planning for Your Wedding with DJ Misha" width="300" height="200" loading="lazy" />
-      <h2 class="blog-card__title">A Guide to Planning for Your Wedding with DJ Misha</h2>
+    <a
+      href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/"
+      rel="bookmark"
+      class="blog-card__link"
+    >
+      <img
+        class="blog-card__img"
+        src="/images/10-i-4lhqfht-l-300x200.jpg"
+        alt="A Guide to Planning for Your Wedding with DJ Misha"
+        width="300"
+        height="200"
+        loading="lazy"
+      />
+      <h2 class="blog-card__title">
+        A Guide to Planning for Your Wedding with DJ Misha
+      </h2>
     </a>
   </section>
 
   <section class="col-4 col-12-small">
-    <a href="/blog/edm-dj-for-party-or-private-event-electronic-dance-music/" rel="bookmark" class="blog-card__link">
-      <img class="blog-card__img" src="/images/vish-2648-3427900361-O-300x200.jpg" alt="DJ Misha Rocks the Party: A Night of Electronic Dance Music and House Music in San Diego" width="300" height="200" loading="lazy" />
-      <h2 class="blog-card__title">DJ Misha Rocks the Party: A Night of Electronic Dance Music and House Music in San Diego</h2>
+    <a
+      href="/blog/edm-dj-for-party-or-private-event-electronic-dance-music/"
+      rel="bookmark"
+      class="blog-card__link"
+    >
+      <img
+        class="blog-card__img"
+        src="/images/vish-2648-3427900361-O-300x200.jpg"
+        alt="DJ Misha Rocks the Party: A Night of Electronic Dance Music and House Music in San Diego"
+        width="300"
+        height="200"
+        loading="lazy"
+      />
+      <h2 class="blog-card__title">
+        DJ Misha Rocks the Party: A Night of Electronic Dance Music and House
+        Music in San Diego
+      </h2>
     </a>
   </section>
 
   <section class="col-4 col-12-small">
-    <a href="/blog/prices-rates-and-average-cost-for-hiring-a-dj/" rel="bookmark" class="blog-card__link">
-      <img class="blog-card__img" src="/images/10-i-4lhqfht-l-300x200.jpg" alt="Prices, Rates and Average Cost for Hiring a DJ" width="300" height="200" loading="lazy" />
-      <h2 class="blog-card__title">Prices, Rates and Average Cost for Hiring a DJ</h2>
+    <a
+      href="/blog/prices-rates-and-average-cost-for-hiring-a-dj/"
+      rel="bookmark"
+      class="blog-card__link"
+    >
+      <img
+        class="blog-card__img"
+        src="/images/10-i-4lhqfht-l-300x200.jpg"
+        alt="Prices, Rates and Average Cost for Hiring a DJ"
+        width="300"
+        height="200"
+        loading="lazy"
+      />
+      <h2 class="blog-card__title">
+        Prices, Rates and Average Cost for Hiring a DJ
+      </h2>
     </a>
   </section>
-
 </BlogLayout>
