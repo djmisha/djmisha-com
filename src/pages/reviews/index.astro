@@ -4,8 +4,7 @@ import { buildJsonLdWithRating } from '../../data/schema';
 import { extractInitials } from '../../lib/reviews-helpers.mjs';
 import reviewsData from '../../data/reviews.json';
 
-const { totalRating, totalReviews, keywords, keywordCounts, reviews } =
-  reviewsData;
+const { totalRating, totalReviews, keywords, reviews } = reviewsData;
 
 // Compute badge counts from actual review keyword tags (ensures consistency
 // between the number shown on the pill and the cards displayed when clicked)

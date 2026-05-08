@@ -2,9 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import Testimonial from '../components/Testimonial.astro';
+import Icon from '../components/Icon.astro';
 import { buildJsonLd } from '../data/schema';
+import { PHONE, GOOGLE_REVIEW_URL } from '../data/config';
+import { blogPosts } from '../data/blog-posts';
+import reviews from '../data/reviews.json';
 
 const jsonLd = buildJsonLd();
+const reviewCount = reviews.totalReviews;
+const reviewRating = reviews.totalRating;
+const homeBlogPosts = blogPosts.slice(0, 4);
 ---
 
 <BaseLayout
@@ -20,7 +28,6 @@ const jsonLd = buildJsonLd();
   twitterTitle="San Diego DJ Misha"
   twitterImage="https://djmisha.com/images/logo-djmisha.png"
   jsonLd={jsonLd}
-  useFancybox={true}
 >
   <Navigation isHome={true} />
 
@@ -148,91 +155,57 @@ const jsonLd = buildJsonLd();
       <header>
         <h2>
           Top Rated DJ Services<br />
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
+          <Icon name="star" size="0.6em" class="star-orange" />
+          <Icon name="star" size="0.6em" class="star-orange" />
+          <Icon name="star" size="0.6em" class="star-orange" />
+          <Icon name="star" size="0.6em" class="star-orange" />
+          <Icon name="star" size="0.6em" class="star-orange" />
         </h2>
         <p>
           <a
             class="ratings"
-            href="https://www.google.com/search?q=dj+misha&oq=dj+misha&aqs=chrome..69i57j46i175i199i512j0i10l2j69i60l2j69i61j69i65.1834j0j7&sourceid=chrome&ie=UTF-8#lrd=0x80dbffcb31404e13:0x3fae10d8742ab418,1,,,"
+            href={GOOGLE_REVIEW_URL}
             rel="nofollow noopener"
             target="_blank"
           >
-            DJ Misha is Rated 5/5 stars based on 83 reviews
+            DJ Misha is Rated {reviewRating}/5 stars based on {reviewCount} reviews
           </a>
         </p>
       </header>
       <div class="row">
         <div class="col-6 col-12-medium">
-          <div class="home-testi">
-            <h3>
-              DJ Misha played at our annual holiday party and did an amazing
-              job. He read the crowd so well and had everyone smiling, laughing
-              and dancing - I enjoyed the ambiance he created for us. He <strong
-                >turned our party up</strong
-              > a notch and we plan to have him back next year!
-              <br /><br />
-              <i class="fas fa-user"></i> Rececca Troydon
-            </h3>
-            <div class="t-short">turned our party up</div>
-          </div>
-          <div class="home-testi">
-            <h3>
-              I can attest to the awesome party brought by DJ Misha. He sets the
-              mood and <strong>makes you want to dance</strong>.
-              <br /><br />
-              <i class="fas fa-user"></i> Joanna Nieves
-            </h3>
-            <div class="t-short">makes you want to dance</div>
-          </div>
-          <div class="home-testi">
-            <h3>
-              <br />DJ Misha played at our company product launch party and was
-              awesome! He had a great variety of music that appealed to everyone
-              and <strong>kept the energy going</strong> throughout the event.
-              <br /><br />
-              <i class="fas fa-user"></i> Misty
-            </h3>
-            <div class="t-short">music that appealed to everyone</div>
-          </div>
+          <Testimonial
+            quote="DJ Misha played at our annual holiday party and did an amazing job. He read the crowd so well and had everyone smiling, laughing and dancing - I enjoyed the ambiance he created for us. He <strong>turned our party up</strong> a notch and we plan to have him back next year!"
+            author="Rececca Troydon"
+            teaser="turned our party up"
+          />
+          <Testimonial
+            quote="I can attest to the awesome party brought by DJ Misha. He sets the mood and <strong>makes you want to dance</strong>."
+            author="Joanna Nieves"
+            teaser="makes you want to dance"
+          />
+          <Testimonial
+            quote="DJ Misha played at our company product launch party and was awesome! He had a great variety of music that appealed to everyone and <strong>kept the energy going</strong> throughout the event."
+            author="Misty"
+            teaser="music that appealed to everyone"
+          />
         </div>
         <div class="col-6 col-12-medium">
-          <div class="home-testi">
-            <h3>
-              We hired DJ Misha and his saxophone playing partner for our
-              company Holiday Party in December and I have never gotten so much
-              positive feedback from all who attended. They were the <strong
-                >perfect combination of live music and DJ</strong
-              > songs and kept the dance floor full the entire night! I would recommend
-              them for any party or event.
-              <br /><br />
-              <i class="fas fa-user"></i> Tori, 2016
-            </h3>
-            <div class="t-short">perfect combo of live music and DJ</div>
-          </div>
-          <div class="home-testi">
-            <h3>
-              He is accommodating and humble when it comes to his talents but
-              rest assured this guy knows what he's doing and knows how to make
-              the party!
-              <br /><br />
-              <i class="fas fa-user"></i> Jason Whitmore Saxophone
-            </h3>
-            <div class="t-short">knows how to make the party</div>
-          </div>
-          <div class="home-testi">
-            <h3>
-              DJ Misha was <strong>absolutely perfect for our event</strong>.
-              The music he picked for our crowd was on point and set the tone
-              perfectly.
-              <br /><br />
-              <i class="fas fa-user"></i> Lindsey Snyder
-            </h3>
-            <div class="t-short">absolutely perfect for our event</div>
-          </div>
+          <Testimonial
+            quote="We hired DJ Misha and his saxophone playing partner for our company Holiday Party in December and I have never gotten so much positive feedback from all who attended. They were the <strong>perfect combination of live music and DJ</strong> songs and kept the dance floor full the entire night! I would recommend them for any party or event."
+            author="Tori, 2016"
+            teaser="perfect combo of live music and DJ"
+          />
+          <Testimonial
+            quote="He is accommodating and humble when it comes to his talents but rest assured this guy knows what he's doing and knows how to make the party!"
+            author="Jason Whitmore Saxophone"
+            teaser="knows how to make the party"
+          />
+          <Testimonial
+            quote="DJ Misha was <strong>absolutely perfect for our event</strong>. The music he picked for our crowd was on point and set the tone perfectly."
+            author="Lindsey Snyder"
+            teaser="absolutely perfect for our event"
+          />
         </div>
       </div>
       <br />
@@ -379,141 +352,35 @@ const jsonLd = buildJsonLd();
       <h3>Latest From DJ Misha's Blog</h3>
       <div class="box alt">
         <div class="row uniform">
-          <section class="col-3 col-12-medium">
-            <a
-              href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/"
-              rel="nofollow"
-            >
-              <style>
-                .image-w img {
-                  width: 100%;
-                  height: auto;
-                }
-              </style>
-              <div style="padding:0 10px;" class="image-w">
-                <img
-                  width="298"
-                  height="200"
-                  src="/images/epic-DJ-set-wedding-dance-party-298x200.jpg"
-                  class="attachment-medium size-medium wp-post-image"
-                  alt="Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision"
-                  decoding="async"
-                  loading="lazy"
-                />
-              </div>
-            </a>
-            <h4>
-              <a
-                href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/"
-                rel="bookmark"
-              >
-                Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your
-                Vision
-              </a>
-            </h4>
-          </section>
-          <section class="col-3 col-12-medium">
-            <a
-              href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/"
-              rel="nofollow"
-            >
-              <style>
-                .image-w img {
-                  width: 100%;
-                  height: auto;
-                }
-              </style>
-              <div style="padding:0 10px;" class="image-w">
-                <img
-                  width="296"
-                  height="200"
-                  src="/images/wedding-dj-toast-296x200.jpg"
-                  class="attachment-medium size-medium wp-post-image"
-                  alt="Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech"
-                  decoding="async"
-                  loading="lazy"
-                />
-              </div>
-            </a>
-            <h4>
-              <a
-                href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/"
-                rel="bookmark"
-              >
-                Crafting the Perfect Toast: DJ Tips for a Memorable Wedding
-                Speech
-              </a>
-            </h4>
-          </section>
-          <section class="col-3 col-12-medium">
-            <a
-              href="/blog/the-art-of-taking-requests-a-djs-perspective/"
-              rel="nofollow"
-            >
-              <style>
-                .image-w img {
-                  width: 100%;
-                  height: auto;
-                }
-              </style>
-              <div style="padding:0 10px;" class="image-w">
-                <img
-                  width="274"
-                  height="200"
-                  src="/images/Screenshot-2024-09-14-at-6.18.37-AM-274x200.jpg"
-                  class="attachment-medium size-medium wp-post-image"
-                  alt="The Art of Taking Requests: A DJ’s Perspective"
-                  decoding="async"
-                  loading="lazy"
-                />
-              </div>
-            </a>
-            <h4>
-              <a
-                href="/blog/the-art-of-taking-requests-a-djs-perspective/"
-                rel="bookmark"
-              >
-                The Art of Taking Requests: A DJ&#8217;s Perspective
-              </a>
-            </h4>
-          </section>
-          <section class="col-3 col-12-medium">
-            <a
-              href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/"
-              rel="nofollow"
-            >
-              <style>
-                .image-w img {
-                  width: 100%;
-                  height: auto;
-                }
-              </style>
-              <div style="padding:0 10px;" class="image-w">
-                <img
-                  width="300"
-                  height="200"
-                  src="/images/10-i-4lhqfht-l-300x200.jpg"
-                  class="attachment-medium size-medium wp-post-image"
-                  alt="A Guide to Planning for Your Wedding with DJ Misha"
-                  decoding="async"
-                  loading="lazy"
-                />
-              </div>
-            </a>
-            <h4>
-              <a
-                href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/"
-                rel="bookmark"
-              >
-                A Guide to Planning for Your Wedding with DJ Misha
-              </a>
-            </h4>
-          </section>
+          {
+            homeBlogPosts.map((post) => (
+              <section class="col-3 col-12-medium">
+                <a href={`/blog/${post.slug}/`} rel="nofollow">
+                  <div style="padding:0 10px;" class="image-w">
+                    <img
+                      width={post.imageWidth}
+                      height={post.imageHeight}
+                      src={post.image}
+                      class="attachment-medium size-medium wp-post-image"
+                      alt={post.title}
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  </div>
+                </a>
+                <h4>
+                  <a href={`/blog/${post.slug}/`} rel="bookmark">
+                    {post.title}
+                  </a>
+                </h4>
+              </section>
+            ))
+          }
         </div>
       </div>
 
       <footer class="major">
-        <ul class="actions">
+        <ul class="actions special">
           <li>
             <a href="/blog/" class="button" rel="nofollow">More from our Blog</a
             >
@@ -529,13 +396,12 @@ const jsonLd = buildJsonLd();
       <header>
         <h2>Looking to hire a party or wedding DJ in San Diego?<br /></h2>
         <p>
-          Text <a href="tel:+16197862664" style="color: white;"
-            >(619) 786-2664</a
-          > with event details to receive a reply with availability
+          Text <a href={PHONE.href} style="color: white;">{PHONE.display}</a> with
+          event details to receive a reply with availability
         </p>
       </header>
       <div class="container 25%">
-        <ul class="actions">
+        <ul class="actions special">
           <li>
             <a href="/contact/" class="button special" rel="nofollow"
               >Hire DJ Misha</a

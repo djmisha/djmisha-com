@@ -1,5 +1,15 @@
 ---
 import { SITE_NAME } from '../data/schema';
+import { PHONE, SOCIAL } from '../data/config';
+import { footerDescriptions, DEFAULT_FOOTER_DESCRIPTION } from '../data/footer-descriptions';
+import Icon from './Icon.astro';
+import reviews from '../data/reviews.json';
+
+const reviewCount = reviews.totalReviews;
+const reviewRating = reviews.totalRating;
+
+const pathname = Astro.url.pathname;
+const footerDescription = footerDescriptions[pathname] || DEFAULT_FOOTER_DESCRIPTION;
 ---
 
 <!-- Footer -->
@@ -65,61 +75,62 @@ import { SITE_NAME } from '../data/schema';
     </div>
     <div class="col-4 col-12-medium">
       <aside>
-        <p class="sentance">
-          DJ Misha is a San Diego DJ for hire, specializing in weddings,
-          parties, and corporate events, with expertise in EDM, house, and dance
-          music. Mobile DJ services include sound systems and professional DJ
-          gear.<br /><br /><b
-            >Text or Call for a fast response <a href="tel:6197862664"
-              >(619) 786-2664</a
-            ></b
-          >
-        </p>
+        <div class="footer-overview">
+          <span class="footer-overview-icon"><Icon name="lightbulb" size="1.1em" /></span>
+          <p class="footer-overview-text">{footerDescription}</p>
+        </div>
       </aside>
     </div>
   </div>
 
+  <div class="footer-phone">
+    <a href={PHONE.href} class="footer-phone-number">
+      <Icon name="mobile" size="0.85em" />
+      {PHONE.display}
+    </a>
+    <small class="footer-phone-cta">Text or call for a fast response</small>
+  </div>
+
   <ul class="icons">
     <li>
-      <a
-        href="https://www.instagram.com/djmishasd/"
-        class="icon brands fa-instagram"
-        target="_blank"
-        title="DJ Misha"
-      >
+      <a href={SOCIAL.instagram} class="icon" target="_blank" title="DJ Misha">
+        <Icon name="instagram" size="1.925em" />
         <span class="label">San Diego DJ Misha Instagram</span>
       </a>
     </li>
     <li>
       <a
-        href="https://www.google.com/maps/place/DJ+Misha+-+San+Diego+DJ+for+Events+Party+Weddings+Club+Affordable+Prices+House+Dance+Music/@32.7990179,-117.2530949,9z/data=!4m5!3m4!1s0x0:0x3fae10d8742ab418!8m2!3d32.7990179!4d-117.2530949"
-        class="icon brands fa-google"
+        href={SOCIAL.google}
+        class="icon"
         target="_blank"
         title="San Diego DJ Google +"
         rel="noreferrer"
       >
+        <Icon name="google" size="1.75em" />
         <span class="label">San Diego DJ Google Business Profile</span>
       </a>
     </li>
     <li>
       <a
-        href="https://www.yelp.com/biz/dj-misha-san-diego-3"
-        class="icon brands fa-yelp"
+        href={SOCIAL.yelp}
+        class="icon"
         target="_blank"
         title="San Diego DJ Yelp"
         rel="noreferrer"
       >
+        <Icon name="yelp" size="1.75em" />
         <span class="label">San Diego DJ Yelp</span>
       </a>
     </li>
     <li>
       <a
-        href="https://www.facebook.com/djmishaSandiego"
-        class="icon brands fa-facebook"
+        href={SOCIAL.facebook}
+        class="icon"
         target="_blank"
         title="San Diego DJ Facebook"
         rel="noreferrer"
       >
+        <Icon name="facebook" size="1.75em" />
         <span class="label">San Diego DJ Facebook</span>
       </a>
     </li>
@@ -133,134 +144,35 @@ import { SITE_NAME } from '../data/schema';
           target="_blank"
           rel="noopener"
         >
-          <span class="ratings__text">5 Stars from 83 Reviews</span>
+          <span class="ratings__text"
+            >{reviewRating} Stars from {reviewCount} Reviews</span
+          >
 
           <span class="ratings__stars">
-            <span class="ratings__star"
-              ><svg
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                width="436.1px"
-                height="417.932px"
-                viewBox="31.95 41.034 436.1 417.932"
-                enable-background="new 31.95 41.034 436.1 417.932"
-                xml:space="preserve"
-              >
-                <path
-                  fill="#FAB117"
-                  d="M250,41.034c-8.091,0-14.808,5.448-16.902,12.901l-42.882,132.467H49.392
+            {
+              Array.from({ length: 5 }).map(() => (
+                <span class="ratings__star" aria-hidden="true">
+                  <svg
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="436.1px"
+                    height="417.932px"
+                    viewBox="31.95 41.034 436.1 417.932"
+                  >
+                    <path
+                      fill="#FAB117"
+                      d="M250,41.034c-8.091,0-14.808,5.448-16.902,12.901l-42.882,132.467H49.392
 	c-9.724,0-17.442,8.456-17.442,18.26c0,5.999,2.997,11.357,7.54,14.542c2.814,1.907,113.747,82.948,113.747,82.948
 	s-42.605,130.835-43.431,132.921c-0.63,1.907-1.083,4.001-1.083,6.175c0,9.812,7.897,17.718,17.622,17.718
 	c3.726,0,7.178-1.181,10.087-3.175L250,373.106c0,0,111.023,80.864,113.568,82.685c2.899,1.994,6.361,3.175,10.078,3.175
 	c9.726,0,17.631-7.994,17.631-17.718c0-2.174-0.45-4.268-1.092-6.175c-0.815-2.086-43.422-132.921-43.422-132.921
 	s110.924-81.042,113.744-82.948c4.543-3.185,7.542-8.543,7.542-14.63c0-9.717-7.542-18.172-17.267-18.172H309.961L266.893,53.935
 	C264.811,46.482,258.081,41.034,250,41.034z"
-                ></path>
-              </svg>
-            </span>
-            <span class="ratings__star"
-              ><svg
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                width="436.1px"
-                height="417.932px"
-                viewBox="31.95 41.034 436.1 417.932"
-                enable-background="new 31.95 41.034 436.1 417.932"
-                xml:space="preserve"
-              >
-                <path
-                  fill="#FAB117"
-                  d="M250,41.034c-8.091,0-14.808,5.448-16.902,12.901l-42.882,132.467H49.392
-	c-9.724,0-17.442,8.456-17.442,18.26c0,5.999,2.997,11.357,7.54,14.542c2.814,1.907,113.747,82.948,113.747,82.948
-	s-42.605,130.835-43.431,132.921c-0.63,1.907-1.083,4.001-1.083,6.175c0,9.812,7.897,17.718,17.622,17.718
-	c3.726,0,7.178-1.181,10.087-3.175L250,373.106c0,0,111.023,80.864,113.568,82.685c2.899,1.994,6.361,3.175,10.078,3.175
-	c9.726,0,17.631-7.994,17.631-17.718c0-2.174-0.45-4.268-1.092-6.175c-0.815-2.086-43.422-132.921-43.422-132.921
-	s110.924-81.042,113.744-82.948c4.543-3.185,7.542-8.543,7.542-14.63c0-9.717-7.542-18.172-17.267-18.172H309.961L266.893,53.935
-	C264.811,46.482,258.081,41.034,250,41.034z"
-                ></path>
-              </svg>
-            </span>
-            <span class="ratings__star"
-              ><svg
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                width="436.1px"
-                height="417.932px"
-                viewBox="31.95 41.034 436.1 417.932"
-                enable-background="new 31.95 41.034 436.1 417.932"
-                xml:space="preserve"
-              >
-                <path
-                  fill="#FAB117"
-                  d="M250,41.034c-8.091,0-14.808,5.448-16.902,12.901l-42.882,132.467H49.392
-	c-9.724,0-17.442,8.456-17.442,18.26c0,5.999,2.997,11.357,7.54,14.542c2.814,1.907,113.747,82.948,113.747,82.948
-	s-42.605,130.835-43.431,132.921c-0.63,1.907-1.083,4.001-1.083,6.175c0,9.812,7.897,17.718,17.622,17.718
-	c3.726,0,7.178-1.181,10.087-3.175L250,373.106c0,0,111.023,80.864,113.568,82.685c2.899,1.994,6.361,3.175,10.078,3.175
-	c9.726,0,17.631-7.994,17.631-17.718c0-2.174-0.45-4.268-1.092-6.175c-0.815-2.086-43.422-132.921-43.422-132.921
-	s110.924-81.042,113.744-82.948c4.543-3.185,7.542-8.543,7.542-14.63c0-9.717-7.542-18.172-17.267-18.172H309.961L266.893,53.935
-	C264.811,46.482,258.081,41.034,250,41.034z"
-                ></path>
-              </svg>
-            </span>
-            <span class="ratings__star"
-              ><svg
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                width="436.1px"
-                height="417.932px"
-                viewBox="31.95 41.034 436.1 417.932"
-                enable-background="new 31.95 41.034 436.1 417.932"
-                xml:space="preserve"
-              >
-                <path
-                  fill="#FAB117"
-                  d="M250,41.034c-8.091,0-14.808,5.448-16.902,12.901l-42.882,132.467H49.392
-	c-9.724,0-17.442,8.456-17.442,18.26c0,5.999,2.997,11.357,7.54,14.542c2.814,1.907,113.747,82.948,113.747,82.948
-	s-42.605,130.835-43.431,132.921c-0.63,1.907-1.083,4.001-1.083,6.175c0,9.812,7.897,17.718,17.622,17.718
-	c3.726,0,7.178-1.181,10.087-3.175L250,373.106c0,0,111.023,80.864,113.568,82.685c2.899,1.994,6.361,3.175,10.078,3.175
-	c9.726,0,17.631-7.994,17.631-17.718c0-2.174-0.45-4.268-1.092-6.175c-0.815-2.086-43.422-132.921-43.422-132.921
-	s110.924-81.042,113.744-82.948c4.543-3.185,7.542-8.543,7.542-14.63c0-9.717-7.542-18.172-17.267-18.172H309.961L266.893,53.935
-	C264.811,46.482,258.081,41.034,250,41.034z"
-                ></path>
-              </svg>
-            </span>
-            <span class="ratings__star"
-              ><svg
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                width="436.1px"
-                height="417.932px"
-                viewBox="31.95 41.034 436.1 417.932"
-                enable-background="new 31.95 41.034 436.1 417.932"
-                xml:space="preserve"
-              >
-                <path
-                  fill="#FAB117"
-                  d="M250,41.034c-8.091,0-14.808,5.448-16.902,12.901l-42.882,132.467H49.392
-	c-9.724,0-17.442,8.456-17.442,18.26c0,5.999,2.997,11.357,7.54,14.542c2.814,1.907,113.747,82.948,113.747,82.948
-	s-42.605,130.835-43.431,132.921c-0.63,1.907-1.083,4.001-1.083,6.175c0,9.812,7.897,17.718,17.622,17.718
-	c3.726,0,7.178-1.181,10.087-3.175L250,373.106c0,0,111.023,80.864,113.568,82.685c2.899,1.994,6.361,3.175,10.078,3.175
-	c9.726,0,17.631-7.994,17.631-17.718c0-2.174-0.45-4.268-1.092-6.175c-0.815-2.086-43.422-132.921-43.422-132.921
-	s110.924-81.042,113.744-82.948c4.543-3.185,7.542-8.543,7.542-14.63c0-9.717-7.542-18.172-17.267-18.172H309.961L266.893,53.935
-	C264.811,46.482,258.081,41.034,250,41.034z"
-                ></path>
-              </svg>
-            </span>
+                    />
+                  </svg>
+                </span>
+              ))
+            }
           </span>
         </a>
       </div>
@@ -273,18 +185,18 @@ import { SITE_NAME } from '../data/schema';
   </ul>
 
   <!-- Scripts -->
-  <script is:inline src="/js/jquery.min.js"></script>
-  <script is:inline src="/js/jquery.scrolly.min.js"></script>
-  <script is:inline src="/js/jquery.dropotron.min.js"></script>
-  <script is:inline src="/js/jquery.scrollex.min.js"></script>
-  <script is:inline src="/js/browser.min.js"></script>
-  <script is:inline src="/js/breakpoints.min.js"></script>
-  <script is:inline src="/js/util.js"></script>
-  <script is:inline src="/js/main.js"></script>
-  <script is:inline src="/js/custom.js"></script>
+  <script is:inline defer src="/js/jquery.min.js"></script>
+  <script is:inline defer src="/js/jquery.scrolly.min.js"></script>
+  <script is:inline defer src="/js/jquery.dropotron.min.js"></script>
+  <script is:inline defer src="/js/jquery.scrollex.min.js"></script>
+  <script is:inline defer src="/js/browser.min.js"></script>
+  <script is:inline defer src="/js/breakpoints.min.js"></script>
+  <script is:inline defer src="/js/util.js"></script>
+  <script is:inline defer src="/js/main.js"></script>
+  <script is:inline defer src="/js/custom.js"></script>
 
   <!-- FancyBox -->
-  <script is:inline src="/js/jquery.fancybox.min.js"></script>
+  <script is:inline defer src="/js/jquery.fancybox.min.js"></script>
   <script is:inline>
     jQuery(function () {
       // Auto-detect image links
@@ -330,17 +242,18 @@ import { SITE_NAME } from '../data/schema';
     });
   </script>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script
-    is:inline
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=UA-7759036-2"></script>
+  <!-- Google Analytics
+       NOTE: Universal Analytics (UA-7759036-2) was sunset by Google in July 2023.
+       Replace with your GA4 measurement ID (G-XXXXXXXXXX) to restore tracking.
+       See: https://support.google.com/analytics/answer/9744165
+  -->
+  <!--
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'UA-7759036-2');
+    gtag('config', 'G-XXXXXXXXXX');
   </script>
+  -->
 </footer>

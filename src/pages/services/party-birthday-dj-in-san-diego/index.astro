@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../../layouts/PageLayout.astro';
+import Icon from '../../../components/Icon.astro';
 import { buildJsonLd } from '../../../data/schema';
 const desc =
   'Hire a DJ for your private party, birthdays and special events. Top rated DJs services, customer focused, professional. Learn more...';
@@ -99,7 +100,7 @@ const jsonLd = buildJsonLd({
         and then we played an amazing 4 hour set without any direction needed
         from us. Had all the people dancing. 10/10
         <br /><br />
-        <i class="fas fa-user"></i> Quinn T. via Google
+        <Icon name="user" size="0.85em" /> Quinn T. via Google
       </p>
     </center>
   </div>
@@ -146,7 +147,7 @@ const jsonLd = buildJsonLd({
         His music got everyone on the dance floor, and we were there for hours!
         It was so much fun!
         <br /><br />
-        <i class="fas fa-user"></i> Jennifer. via Google
+        <Icon name="user" size="0.85em" /> Jennifer. via Google
       </p>
     </center>
   </div>

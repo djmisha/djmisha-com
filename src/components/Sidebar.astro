@@ -1,4 +1,6 @@
 ---
+import { blogPosts } from '../data/blog-posts';
+
 /**
  * Sidebar Gallery Configuration
  *
@@ -19,6 +21,8 @@ const galleryImages = Array.from({ length: GALLERY_TOTAL }, (_, i) => ({
   thumb: `/images/zola-gallery/thumbs/dj-misha-gallery-${i + 1}.jpg`,
   alt: `DJ Misha Gallery Photo ${i + 1}`,
 }));
+
+const sidebarPosts = blogPosts.slice(0, 4);
 ---
 
 <section id="sidebar">
@@ -69,55 +73,17 @@ const galleryImages = Array.from({ length: GALLERY_TOTAL }, (_, i) => ({
       <p class="sidebar-title">From the Blog</p>
 
       <div class="sidebar-blog-cards" id="sidebar-blog-cards">
-        <a
-          class="sidebar-blog-card"
-          href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/"
-        >
-          <span
-            class="sidebar-blog-card__img"
-            style="background-image: url(/images/epic-DJ-set-wedding-dance-party-298x200.jpg)"
-          ></span>
-          <span class="sidebar-blog-card__title"
-            >Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your
-            Vision</span
-          >
-        </a>
-        <a
-          class="sidebar-blog-card"
-          href="/blog/crafting-the-perfect-toast-dj-tips-for-a-memorable-wedding-speech/"
-        >
-          <span
-            class="sidebar-blog-card__img"
-            style="background-image: url(/images/wedding-dj-toast-296x200.jpg)"
-          ></span>
-          <span class="sidebar-blog-card__title"
-            >Crafting the Perfect Toast: DJ Tips for a Memorable Wedding Speech</span
-          >
-        </a>
-        <a
-          class="sidebar-blog-card"
-          href="/blog/the-art-of-taking-requests-a-djs-perspective/"
-        >
-          <span
-            class="sidebar-blog-card__img"
-            style="background-image: url(/images/Screenshot-2024-09-14-at-6.18.37-AM-274x200.jpg)"
-          ></span>
-          <span class="sidebar-blog-card__title"
-            >The Art of Taking Requests: A DJ&#8217;s Perspective</span
-          >
-        </a>
-        <a
-          class="sidebar-blog-card"
-          href="/blog/a-guide-to-planning-for-your-wedding-with-dj-misha/"
-        >
-          <span
-            class="sidebar-blog-card__img"
-            style="background-image: url(/images/10-i-4lhqfht-l-300x200.jpg)"
-          ></span>
-          <span class="sidebar-blog-card__title"
-            >A Guide to Planning for Your Wedding with DJ Misha</span
-          >
-        </a>
+        {
+          sidebarPosts.map((post) => (
+            <a class="sidebar-blog-card" href={`/blog/${post.slug}/`}>
+              <span
+                class="sidebar-blog-card__img"
+                style={`background-image: url(${post.image})`}
+              />
+              <span class="sidebar-blog-card__title">{post.title}</span>
+            </a>
+          ))
+        }
       </div>
     </section><hr />
 

@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import Testimonial from '../../components/Testimonial.astro';
 import { buildJsonLd } from '../../data/schema';
 const jsonLd = buildJsonLd({
   '@context': 'http://schema.org/',
@@ -232,16 +233,10 @@ const jsonLd = buildJsonLd({
     impossible to replicate.
   </p>
 
-  <div class="home-testi testi-full">
-    <center>
-      <p>
-        His music got everyone on the dance floor, and we were there for hours!
-        It was so much fun!
-        <br /><br />
-        <i class="fas fa-user"></i> Jennifer. via Google
-      </p>
-    </center>
-  </div>
+  <Testimonial
+    quote="His music got everyone on the dance floor, and we were there for hours! It was so much fun!"
+    author="Jennifer. via Google"
+  />
 
   <h2 class="wp-block-heading" id="working-with-clients-on-music">
     Working With Clients on Music
@@ -280,17 +275,10 @@ const jsonLd = buildJsonLd({
     both personal and universally fun.
   </p>
 
-  <div class="home-testi testi-full">
-    <center>
-      <p>
-        Misha was great to work with. We told him the vibe we were looking for
-        and then we played an amazing 4 hour set without any direction needed
-        from us. Had all the people dancing. 10/10
-        <br /><br />
-        <i class="fas fa-user"></i> Quinn T. via Google
-      </p>
-    </center>
-  </div>
+  <Testimonial
+    quote="Misha was great to work with. We told him the vibe we were looking for and then we played an amazing 4 hour set without any direction needed from us. Had all the people dancing. 10/10"
+    author="Quinn T. via Google"
+  />
 
   <h2 class="wp-block-heading" id="executing-the-music-on-event-day">
     Executing the Music on Event Day

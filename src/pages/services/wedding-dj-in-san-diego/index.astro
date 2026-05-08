@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../../layouts/PageLayout.astro';
+import Testimonial from '../../../components/Testimonial.astro';
 import { buildJsonLd } from '../../../data/schema';
 const desc =
   'Looking for the best DJ near you? Hire our top-rated wedding DJ in San Diego, and learn about our services, pricing, and one of a kind music experience.';
@@ -189,19 +190,10 @@ const jsonLd = buildJsonLd(
     most authentic way.
   </p>
 
-  <div class="home-testi testi-full">
-    <center>
-      <p>
-        What a TREAT!! What a VIBE!! DJ Misha and his saxophonist were one of
-        our favorite parts of our wedding night!! He was so easy to work with
-        and no one left the dance floor all night. He collaborates in the most
-        authentic way, where you provide inspiration for the playlist and then
-        he adds his special touch and makes it even better than you thought!!
-        <br /><br />
-        <i class="fas fa-user"></i> Rachael Brennan via Google
-      </p>
-    </center>
-  </div>
+  <Testimonial
+    quote="What a TREAT!! What a VIBE!! DJ Misha and his saxophonist were one of our favorite parts of our wedding night!! He was so easy to work with and no one left the dance floor all night. He collaborates in the most authentic way, where you provide inspiration for the playlist and then he adds his special touch and makes it even better than you thought!!"
+    author="Rachael Brennan via Google"
+  />
 
   <p>
     <em
@@ -263,27 +255,10 @@ const jsonLd = buildJsonLd(
     to enjoy.&nbsp;
   </p>
 
-  <div class="home-testi testi-full">
-    <center>
-      <p>
-        DJ Misha was an incredible partner with us for our wedding, from the
-        planning phase to the actual day of we seriously could not have asked
-        for a better performance.
-        <br /><br />
-        Through the planning phase, he was very communicative and easy to reach which
-        made our lives a lot easier. We met a few times to discuss our style of music,
-        shared a playlist of our music preferences and style, and what we were going
-        for with the after party and he was always receptive and transparent with
-        his recommendations and feedback, which we truly appreciated.
-        <br /><br />
-        DJ Misha curated a set list of disco, house, and dance music for our after
-        party that exceeded our expectations in every way. The sax player layered
-        on to the performance helped make the best day of our lives even better.
-        <br /><br />
-        <i class="fas fa-user"></i> Chris R via Google
-      </p>
-    </center>
-  </div>
+  <Testimonial
+    quote="DJ Misha was an incredible partner with us for our wedding, from the planning phase to the actual day of we seriously could not have asked for a better performance.<br /><br />Through the planning phase, he was very communicative and easy to reach which made our lives a lot easier. We met a few times to discuss our style of music, shared a playlist of our music preferences and style, and what we were going for with the after party and he was always receptive and transparent with his recommendations and feedback, which we truly appreciated.<br /><br />DJ Misha curated a set list of disco, house, and dance music for our after party that exceeded our expectations in every way. The sax player layered on to the performance helped make the best day of our lives even better."
+    author="Chris R via Google"
+  />
 
   <h2 class="wp-block-heading" id="timeline">
     The Timeline of Your Wedding Day Music
@@ -394,27 +369,10 @@ const jsonLd = buildJsonLd(
     night away.
   </p>
 
-  <div class="home-testi testi-full">
-    <center>
-      <p>
-        DJ Misha was an absolute pleasure to work with! We consulted with Misha
-        to perform at our wedding in Nantucket, MA. Despite communicating with
-        him from across the country, Misha was extremely responsive throughout
-        every stage of our planning process providing us with a lot of ease and
-        comfort.
-        <br /><br />
-        The music for our wedding was very important to us, and Misha understood our
-        vision from the very beginning. While we provided some guidance so that he
-        could understand our style, we let him take a lot of creative freedom in curating
-        the final playlist and it could not have been more perfect. As the bride,
-        I did not leave the dance floor once, and neither did any of our guests. It
-        was an absolute blast of a dance party and we could not recommend Misha enough!
-        Would highly recommend for your wedding or next party.
-        <br /><br />
-        <i class="fas fa-user"></i> Amanda Liew via Google
-      </p>
-    </center>
-  </div>
+  <Testimonial
+    quote="DJ Misha was an absolute pleasure to work with! We consulted with Misha to perform at our wedding in Nantucket, MA. Despite communicating with him from across the country, Misha was extremely responsive throughout every stage of our planning process providing us with a lot of ease and comfort.<br /><br />The music for our wedding was very important to us, and Misha understood our vision from the very beginning. While we provided some guidance so that he could understand our style, we let him take a lot of creative freedom in curating the final playlist and it could not have been more perfect. As the bride, I did not leave the dance floor once, and neither did any of our guests. It was an absolute blast of a dance party and we could not recommend Misha enough! Would highly recommend for your wedding or next party."
+    author="Amanda Liew via Google"
+  />
 
   <h2 class="wp-block-heading" id="package">Our Wedding DJ Service Package</h2>
 

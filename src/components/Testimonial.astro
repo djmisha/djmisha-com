@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+
+/**
+ * Testimonial component — renders a styled quote card.
+ *
+ * Two modes:
+ * - Simple (default): Full quote displayed, used on inner pages
+ * - Interactive: Has a teaser snippet, used on homepage with click-to-expand
+ */
+export interface Props {
+  quote: string;
+  author: string;
+  teaser?: string;
+}
+
+const { quote, author, teaser } = Astro.props;
+const hasTeaser = !!teaser;
+---
+
+<div class={`home-testi ${hasTeaser ? '' : 'testi-full'}`}>
+  {
+    hasTeaser ? (
+      <>
+        <h3>
+          <Fragment set:html={quote} />
+          <>
+            <br />
+            <br />
+          </>
+          <Icon name="user" size="0.85em" /> {author}
+        </h3>
+        <div class="t-short">{teaser}</div>
+      </>
+    ) : (
+      <center>
+        <p>
+          <Fragment set:html={quote} />
+          <>
+            <br />
+            <br />
+          </>
+          <Icon name="user" size="0.85em" /> {author}
+        </p>
+      </center>
+    )
+  }
+</div>

@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import Testimonial from '../../components/Testimonial.astro';
 import { buildJsonLd } from '../../data/schema';
 
 const jsonLd = buildJsonLd(
@@ -151,31 +152,22 @@ const jsonLd = buildJsonLd(
   <p>
     Keeping the dance floor moving is the top priority for DJ Misha. A renowned
     performance that has rocked stages from the W Hotel's main stage and <a
-      href="/san-diego-dj-in-a-secret-room/"
-      >clubs throughout the San Diego area</a
-    > to the <a href="/djing-at-uncorked-wine-festival-2017-in-san-diego/"
+      href="/music/">clubs throughout the San Diego area</a
+    > to the <a href="/services/corporate-event-dj-in-san-diego/"
       >Uncorked Wine Festival</a
     >, corporate events for Intel and Banana Republic, and <a
       href="/services/party-birthday-dj-in-san-diego/">private parties</a
     > throughout the United States is at the core of what DJ Misha brings to the table.
     Combine that with a professional attitude, top-of-the-line equipment, and connections
-    to <a href="/vendors/">vendors</a> that strive to make your night exceptional
+    to <a href="/services/">vendors</a> that strive to make your night exceptional
     and it's no question why DJ Misha is the best party DJ for bringing your event
     to a whole new level.
   </p>
 
-  <div class="home-testi testi-full">
-    <center>
-      <p>
-        We hired DJ Misha along with live sax player for our company Holiday
-        Party and were beyond impressed with the great duo! Misha was very
-        dependable, responsive, and accommodating. They catered to the crowd,
-        event, and made the party! Very very talented!
-        <br /><br />
-        <i class="fas fa-user"></i> Emily Z. via Yelp
-      </p>
-    </center>
-  </div>
+  <Testimonial
+    quote="We hired DJ Misha along with live sax player for our company Holiday Party and were beyond impressed with the great duo! Misha was very dependable, responsive, and accommodating. They catered to the crowd, event, and made the party! Very very talented!"
+    author="Emily Z. via Yelp"
+  />
 
   <h2 class="wp-block-heading">
     Live Sax and DJ Packages, Saxophone Player and DJ Experiences &amp; More
@@ -307,19 +299,10 @@ const jsonLd = buildJsonLd(
     a limitless combination.&nbsp;
   </p>
 
-  <div class="home-testi testi-full">
-    <center>
-      <p>
-        We hired DJ Misha and his saxophone playing partner for our company
-        Holiday Party in December and I have never gotten so much positive
-        feedback from all who attended. They were the perfect combination of
-        live music and DJ songs and kept the dance floor full the entire night!
-        I would recommend them for any party or event.
-        <br /><br />
-        <i class="fas fa-user"></i> Tori, KPMG Holiday Party
-      </p>
-    </center>
-  </div>
+  <Testimonial
+    quote="We hired DJ Misha and his saxophone playing partner for our company Holiday Party in December and I have never gotten so much positive feedback from all who attended. They were the perfect combination of live music and DJ songs and kept the dance floor full the entire night! I would recommend them for any party or event."
+    author="Tori, KPMG Holiday Party"
+  />
 
   <h3 class="wp-block-heading">DJ services also include:&nbsp;</h3>
 
@@ -401,17 +384,10 @@ const jsonLd = buildJsonLd(
     </figure>
   </div>
 
-  <div class="home-testi testi-full">
-    <center>
-      <p>
-        Misha was great to work with. We told him the vibe we were looking for
-        and then we played an amazing 4 hour set without any direction needed
-        from us. Had all the people dancing. 10/10
-        <br /><br />
-        <i class="fas fa-user"></i> Quinn T. via Google
-      </p>
-    </center>
-  </div>
+  <Testimonial
+    quote="Misha was great to work with. We told him the vibe we were looking for and then we played an amazing 4 hour set without any direction needed from us. Had all the people dancing. 10/10"
+    author="Quinn T. via Google"
+  />
 
   <h2 class="wp-block-heading">Electronic Music DJ + Saxophone FAQs</h2>
 
@@ -482,16 +458,10 @@ const jsonLd = buildJsonLd(
     and make any announcements throughout the night.
   </p>
 
-  <div class="home-testi testi-full">
-    <center>
-      <p>
-        His music got everyone on the dance floor, and we were there for hours!
-        It was so much fun!
-        <br /><br />
-        <i class="fas fa-user"></i> Jennifer. via Google
-      </p>
-    </center>
-  </div>
+  <Testimonial
+    quote="His music got everyone on the dance floor, and we were there for hours! It was so much fun!"
+    author="Jennifer. via Google"
+  />
 
   <h3 class="wp-block-heading">What's included in a DJ package?</h3>
 

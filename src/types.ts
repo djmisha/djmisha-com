@@ -19,7 +19,6 @@ export interface BaseLayoutProps extends SEOProps {
   bodyClass?: string;
   isHome?: boolean;
   extraHeadContent?: string;
-  useFancybox?: boolean;
 }
 
 /** Props for layouts with a page heading and optional extra head content */

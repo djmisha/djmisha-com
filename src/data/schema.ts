@@ -6,32 +6,34 @@
  * via the helper function.
  */
 
+import { SITE_URL, PHONE, SOCIAL } from './config';
+
 export const SITE_NAME =
   'San Diego DJ for Weddings, Parties & Corporate Events – House Music, EDM & Dance';
 
 const organization = {
   '@context': 'http://schema.org/',
-  '@id': 'https://djmisha.com',
+  '@id': SITE_URL,
   '@type': 'Organization',
   name: SITE_NAME,
-  url: 'https://djmisha.com',
+  url: SITE_URL,
   logo: {
     '@type': 'ImageObject',
-    url: '/images/Best-San-Diego-DJ-djmisha.com-12-768x512.jpg',
+    url: `${SITE_URL}/images/Best-San-Diego-DJ-djmisha.com-12-768x512.jpg`,
     width: 400,
   },
   sameAs: [
-    'https://www.instagram.com/djmishasd/',
-    'https://www.youtube.com/@djmisha',
-    'https://www.facebook.com/djmishaSandiego',
-    'https://www.yelp.com/biz/dj-misha-san-diego-3',
-    'https://www.gigtown.com/artists/dj-misha',
-    'https://www.gigsalad.com/dj_misha_san_diego',
-    'https://goo.gl/maps/2rRm8kBYePqaPbVE6',
-    'https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha',
+    SOCIAL.instagram,
+    SOCIAL.youtube,
+    SOCIAL.facebook,
+    SOCIAL.yelp,
+    SOCIAL.gigtown,
+    SOCIAL.gigsalad,
+    SOCIAL.googleShort,
+    SOCIAL.zola,
   ],
   contactPoint: {
-    telephone: '+1-619-786-2664',
+    telephone: PHONE.tel,
     contactType: 'customer service',
   },
 };
@@ -39,10 +41,10 @@ const organization = {
 const webSite = {
   '@context': 'http://schema.org/',
   '@type': 'WebSite',
-  url: 'https://djmisha.com',
+  url: SITE_URL,
   name: SITE_NAME,
   about:
-    'DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more. \r\n',
+    'DJ Misha is San Diego DJ for parties, corporate events and weddings. Playing house music, EDM, club, dance and much more.',
 };
 
 const localBusiness = {
@@ -50,8 +52,8 @@ const localBusiness = {
   '@id': '#LocalBusiness',
   '@type': 'LocalBusiness',
   name: SITE_NAME,
-  url: 'https://djmisha.com/',
-  image: '/images/i-4LhQfht-L.jpg',
+  url: `${SITE_URL}/`,
+  image: `${SITE_URL}/images/i-4LhQfht-L.jpg`,
   priceRange: 'Contact For Pricing',
   address: [
     {
@@ -61,7 +63,7 @@ const localBusiness = {
       addressRegion: 'CA',
       postalCode: '92109',
       addressCountry: 'US',
-      telephone: '+1-619-786-2664',
+      telephone: PHONE.tel,
     },
   ],
   employees: ['DJ Misha'],
@@ -72,9 +74,9 @@ const person = {
   '@type': 'Person',
   jobTitle: 'DJ',
   name: 'DJ Misha',
-  telephone: '+1-619-786-2664',
-  url: 'https://djmisha.com/about/',
-  image: '/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg',
+  telephone: PHONE.tel,
+  url: `${SITE_URL}/about/`,
+  image: `${SITE_URL}/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg`,
 };
 
 export const baseSchemas = [organization, webSite, localBusiness, person];
