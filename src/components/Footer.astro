@@ -185,18 +185,18 @@ const footerDescription = footerDescriptions[pathname] || DEFAULT_FOOTER_DESCRIP
   </ul>
 
   <!-- Scripts -->
-  <script is:inline defer src="/js/jquery.min.js"></script>
-  <script is:inline defer src="/js/jquery.scrolly.min.js"></script>
-  <script is:inline defer src="/js/jquery.dropotron.min.js"></script>
-  <script is:inline defer src="/js/jquery.scrollex.min.js"></script>
-  <script is:inline defer src="/js/browser.min.js"></script>
-  <script is:inline defer src="/js/breakpoints.min.js"></script>
-  <script is:inline defer src="/js/util.js"></script>
-  <script is:inline defer src="/js/main.js"></script>
-  <script is:inline defer src="/js/custom.js"></script>
+  <script is:inline src="/js/jquery.min.js"></script>
+  <script is:inline src="/js/jquery.scrolly.min.js"></script>
+  <script is:inline src="/js/jquery.dropotron.min.js"></script>
+  <script is:inline src="/js/jquery.scrollex.min.js"></script>
+  <script is:inline src="/js/browser.min.js"></script>
+  <script is:inline src="/js/breakpoints.min.js"></script>
+  <script is:inline src="/js/util.js"></script>
+  <script is:inline src="/js/main.js"></script>
+  <script is:inline src="/js/custom.js"></script>
 
   <!-- FancyBox -->
-  <script is:inline defer src="/js/jquery.fancybox.min.js"></script>
+  <script is:inline src="/js/jquery.fancybox.min.js"></script>
   <script is:inline>
     jQuery(function () {
       // Auto-detect image links
@@ -242,18 +242,4 @@ const footerDescription = footerDescriptions[pathname] || DEFAULT_FOOTER_DESCRIP
     });
   </script>
 
-  <!-- Google Analytics
-       NOTE: Universal Analytics (UA-7759036-2) was sunset by Google in July 2023.
-       Replace with your GA4 measurement ID (G-XXXXXXXXXX) to restore tracking.
-       See: https://support.google.com/analytics/answer/9744165
-  -->
-  <!--
-  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-  -->
 </footer>
