@@ -5658,3 +5658,108 @@ body.contact-page #footer {
   height: 15px;
   width: 15px;
 }
+
+/* ========== SERVICE BOXES ========== */
+
+.service-box {
+  padding: 2em;
+  border-radius: var(--border-radius);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.service-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.service-box__title {
+  color: var(--color-text-strong);
+  font-size: 1.35em;
+  font-weight: 300;
+  line-height: 1.5em;
+  margin: 0 0 0.5em 0;
+}
+
+.service-box__subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.9em;
+  font-style: italic;
+  margin: 0 0 1em 0;
+}
+
+.service-box__description {
+  color: var(--color-text);
+  margin: 0 0 1.5em 0;
+}
+
+.service-box__price {
+  color: var(--color-text-strong);
+  font-size: 1.1em;
+  font-weight: 300;
+  margin: 0 0 1.5em 0;
+}
+
+/* Service Box Color Variants */
+
+.service-box--dark {
+  background-color: var(--color-bg-secondary);
+}
+
+.service-box--darker {
+  background-color: var(--color-bg-tertiary);
+}
+
+.service-box--accent {
+  background-color: var(--color-accent);
+}
+
+.service-box--accent-hover {
+  background-color: var(--color-accent-hover);
+}
+
+.service-box--primary {
+  background-color: var(--color-bg-primary);
+}
+
+/* Ensure white/light text on all variants for WCAG AA contrast */
+.service-box--dark,
+.service-box--darker,
+.service-box--accent,
+.service-box--accent-hover,
+.service-box--primary {
+  color: var(--color-text);
+}
+
+.service-box--dark .service-box__title,
+.service-box--darker .service-box__title,
+.service-box--accent .service-box__title,
+.service-box--accent-hover .service-box__title,
+.service-box--primary .service-box__title,
+.service-box--dark .service-box__price,
+.service-box--darker .service-box__price,
+.service-box--accent .service-box__price,
+.service-box--accent-hover .service-box__price,
+.service-box--primary .service-box__price {
+  color: var(--color-text-strong);
+}
+
+/* ========== SERVICE BOXES: Responsive ========== */
+
+@media screen and (max-width: 980px) {
+  .service-box {
+    padding: 1.75em;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .service-box {
+    padding: 1.5em;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .service-box__title {
+    font-size: 1.2em;
+  }
+}
