@@ -1,0 +1,674 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Design System — DJ Misha Premium Rebrand"
+  description="Living reference page for the Obsidian & Gold premium rebrand visual elements."
+  bodyClass="design-system-page"
+>
+  <main class="ds" id="main-content">
+    <!-- Page Header -->
+    <header class="ds-header">
+      <p class="section-label">Design System</p>
+      <h1>Obsidian &amp; Gold</h1>
+      <p class="ds-intro">A living reference for every visual element of the DJ Misha premium rebrand. Use this page as a guide when refactoring existing content pages.</p>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 1. COLOR SWATCHES -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="ds-section" aria-labelledby="colors-heading">
+      <p class="section-label">Tokens</p>
+      <h2 id="colors-heading">Color Palette</h2>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <h3>Backgrounds</h3>
+      <div class="ds-swatches">
+        <div class="ds-swatch" style="background-color: var(--bg-primary);">
+          <span class="ds-swatch-label">--bg-primary<br>#0A0A0A</span>
+        </div>
+        <div class="ds-swatch" style="background-color: var(--bg-secondary);">
+          <span class="ds-swatch-label">--bg-secondary<br>#111111</span>
+        </div>
+        <div class="ds-swatch" style="background-color: var(--bg-tertiary);">
+          <span class="ds-swatch-label">--bg-tertiary<br>#161616</span>
+        </div>
+        <div class="ds-swatch" style="background-color: var(--bg-card);">
+          <span class="ds-swatch-label">--bg-card<br>#131313</span>
+        </div>
+        <div class="ds-swatch" style="background-color: rgba(10, 10, 10, 0.82); border: 1px solid var(--border);">
+          <span class="ds-swatch-label">--bg-overlay<br>rgba(10,10,10,0.82)</span>
+        </div>
+      </div>
+
+      <h3>Gold Accent Scale</h3>
+      <div class="ds-swatches">
+        <div class="ds-swatch" style="background-color: var(--gold);">
+          <span class="ds-swatch-label ds-swatch-label--dark">--gold<br>#C9A96E</span>
+        </div>
+        <div class="ds-swatch" style="background-color: var(--gold-light);">
+          <span class="ds-swatch-label ds-swatch-label--dark">--gold-light<br>#E8C98A</span>
+        </div>
+        <div class="ds-swatch" style="background-color: var(--gold-dark);">
+          <span class="ds-swatch-label">--gold-dark<br>#9A7B44</span>
+        </div>
+        <div class="ds-swatch" style="background-color: var(--gold-champagne);">
+          <span class="ds-swatch-label ds-swatch-label--dark">--gold-champagne<br>#F2E6C8</span>
+        </div>
+      </div>
+
+      <h3>Text Colors</h3>
+      <div class="ds-swatches">
+        <div class="ds-swatch ds-swatch--text" style="background-color: var(--bg-primary);">
+          <span style="color: var(--text-primary);">--text-primary #F5F0E8</span>
+        </div>
+        <div class="ds-swatch ds-swatch--text" style="background-color: var(--bg-primary);">
+          <span style="color: var(--text-secondary);">--text-secondary #A89880</span>
+        </div>
+        <div class="ds-swatch ds-swatch--text" style="background-color: var(--bg-primary);">
+          <span style="color: var(--text-muted);">--text-muted #5A5248</span>
+        </div>
+        <div class="ds-swatch ds-swatch--text" style="background-color: var(--bg-primary);">
+          <span style="color: var(--text-accent);">--text-accent #C9A96E</span>
+        </div>
+      </div>
+
+      <h3>Borders</h3>
+      <div class="ds-swatches">
+        <div class="ds-swatch" style="background-color: var(--border);">
+          <span class="ds-swatch-label">--border<br>#2A2420</span>
+        </div>
+        <div class="ds-swatch" style="background-color: var(--border-strong);">
+          <span class="ds-swatch-label">--border-strong<br>#3D3530</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 2. TYPOGRAPHY SCALE -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="ds-section" aria-labelledby="typography-heading">
+      <p class="section-label">Typography</p>
+      <h2 id="typography-heading">Type Scale</h2>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <div class="ds-type-specimen">
+        <h1>Heading 1 — Cormorant Garamond Italic</h1>
+        <p class="ds-type-meta">font-display · 300 · clamp(44px, 7vw, 88px) · italic</p>
+
+        <h2>Heading 2 — Cormorant Garamond</h2>
+        <p class="ds-type-meta">font-display · 400 · clamp(30px, 4vw, 52px)</p>
+
+        <h3>Heading 3 — Cormorant Garamond</h3>
+        <p class="ds-type-meta">font-display · 400 · clamp(22px, 3vw, 34px)</p>
+
+        <h4>Heading 4 — Cormorant Garamond</h4>
+        <p class="ds-type-meta">font-display · 400 · 20px</p>
+
+        <h5>Heading 5 — Cormorant Garamond</h5>
+        <p class="ds-type-meta">font-display · 400</p>
+
+        <h6>Heading 6 — Cormorant Garamond</h6>
+        <p class="ds-type-meta">font-display · 400</p>
+      </div>
+
+      <h3>Body Text</h3>
+      <p>This is standard body text set in Jost at 300 weight, 15px, with 1.75 line-height. The warm cream color (#F5F0E8 for primary, #A89880 for secondary) ensures comfortable reading on the dark obsidian backgrounds. Maximum line width is capped at 620px for optimal readability.</p>
+
+      <h3>Accent Italic</h3>
+      <p class="accent-italic">This is the accent italic style — Playfair Display italic, used sparingly for testimonial quotes and decorative pull-quote moments. It adds editorial elegance.</p>
+
+      <h3>Section Labels</h3>
+      <p class="section-label">This is a section label — Jost 500, 10px, uppercase, 0.22em tracking, gold</p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 3. BUTTONS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="ds-section" aria-labelledby="buttons-heading">
+      <p class="section-label">Interactive</p>
+      <h2 id="buttons-heading">Button Variants</h2>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <h3>Primary Button (Outline Gold)</h3>
+      <p class="ds-type-meta">Default CTA — transparent bg, gold border, gold text. Hover fills gold.</p>
+      <div class="ds-button-row">
+        <a href="#" class="button" onclick="return false;">Inquire About Your Event</a>
+        <a href="#" class="button" onclick="return false;">Reserve Your Date</a>
+      </div>
+
+      <h3>Secondary Button (Ghost)</h3>
+      <p class="ds-type-meta">Secondary actions — muted border, muted text. Hover turns gold.</p>
+      <div class="ds-button-row">
+        <a href="#" class="button alt" onclick="return false;">Learn More</a>
+        <a href="#" class="button alt" onclick="return false;">View Services</a>
+      </div>
+
+      <h3>Accent Button (Gold Fill)</h3>
+      <p class="ds-type-meta">Single high-priority CTA per page — gold background, dark text.</p>
+      <div class="ds-button-row">
+        <a href="#" class="button primary" onclick="return false;">Book Now</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 4. CARDS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="ds-section" aria-labelledby="cards-heading">
+      <p class="section-label">Components</p>
+      <h2 id="cards-heading">Card Components</h2>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <h3>Standard Card</h3>
+      <div class="ds-card-grid">
+        <article class="box">
+          <h3>Corporate Events</h3>
+          <p>Concert-grade audio systems paired with curated playlists for Fortune 500 companies, product launches, and gala dinners.</p>
+        </article>
+        <article class="box">
+          <h3>Weddings</h3>
+          <p>Bespoke musical experiences crafted around your vision — from ceremony to last dance.</p>
+        </article>
+      </div>
+
+      <h3>Gold-Top-Accent Card</h3>
+      <div class="ds-card-grid">
+        <article class="box gold-top-accent">
+          <h3>Private Events</h3>
+          <p>Intimate gatherings elevated through seamless sound design and live saxophone performance.</p>
+        </article>
+        <article class="box gold-top-accent">
+          <h3>Destination Events</h3>
+          <p>From Estancia La Jolla to international venues — premium entertainment that travels with you.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 5. TESTIMONIALS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="ds-section" aria-labelledby="testimonials-heading">
+      <p class="section-label">Social Proof</p>
+      <h2 id="testimonials-heading">Testimonial Blocks</h2>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <blockquote>
+        <p>DJ Misha transformed our corporate gala into an unforgettable experience. The saxophone performance during cocktail hour was the highlight of the evening.</p>
+        <cite>— Sarah Chen, VP of Events, Intel Corporation</cite>
+      </blockquote>
+
+      <blockquote>
+        <p>From the ceremony to the last dance, every moment was perfectly scored. Our guests are still talking about the music months later.</p>
+        <cite>— Michael &amp; David, Wedding at The Lodge at Torrey Pines</cite>
+      </blockquote>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 6. SECTION DIVIDERS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="ds-section" aria-labelledby="dividers-heading">
+      <p class="section-label">Layout</p>
+      <h2 id="dividers-heading">Section Dividers</h2>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <h3>Gold Gradient HR</h3>
+      <p class="ds-type-meta">linear-gradient transparent → gold → transparent, 0.6 opacity, max-width 480px</p>
+      <hr />
+
+      <h3>Ornamental Diamond Divider</h3>
+      <p class="ds-type-meta">Flex layout with border lines and ✦ character in gold</p>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <h3>Standard Section Border</h3>
+      <p class="ds-type-meta">1px solid var(--border) — used between content areas</p>
+      <div class="ds-standard-border"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 7. NAVIGATION LINK STATES -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="ds-section" aria-labelledby="nav-heading">
+      <p class="section-label">Navigation</p>
+      <h2 id="nav-heading">Navigation Link States</h2>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <div class="ds-nav-demo" role="navigation" aria-label="Navigation demo">
+        <a href="#" class="ds-nav-link" onclick="return false;">Default State</a>
+        <a href="#" class="ds-nav-link ds-nav-link--hover" onclick="return false;">Hover State</a>
+        <a href="#" class="ds-nav-link ds-nav-link--active" onclick="return false;" aria-current="page">Active State</a>
+      </div>
+      <p class="ds-type-meta">Jost 500 · 11px · uppercase · 0.16em tracking · secondary → gold on hover · gold + bottom border when active</p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 8. SPACING SCALE -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="ds-section" aria-labelledby="spacing-heading">
+      <p class="section-label">Layout</p>
+      <h2 id="spacing-heading">Spacing Scale</h2>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <div class="ds-spacing-scale">
+        <div class="ds-spacing-item">
+          <span class="ds-spacing-label">--space-xs (4px)</span>
+          <div class="ds-spacing-bar" style="width: var(--space-xs); min-width: 4px;"></div>
+        </div>
+        <div class="ds-spacing-item">
+          <span class="ds-spacing-label">--space-sm (8px)</span>
+          <div class="ds-spacing-bar" style="width: var(--space-sm);"></div>
+        </div>
+        <div class="ds-spacing-item">
+          <span class="ds-spacing-label">--space-md (16px)</span>
+          <div class="ds-spacing-bar" style="width: var(--space-md);"></div>
+        </div>
+        <div class="ds-spacing-item">
+          <span class="ds-spacing-label">--space-lg (32px)</span>
+          <div class="ds-spacing-bar" style="width: var(--space-lg);"></div>
+        </div>
+        <div class="ds-spacing-item">
+          <span class="ds-spacing-label">--space-xl (64px)</span>
+          <div class="ds-spacing-bar" style="width: var(--space-xl);"></div>
+        </div>
+        <div class="ds-spacing-item">
+          <span class="ds-spacing-label">--space-2xl (120px)</span>
+          <div class="ds-spacing-bar" style="width: var(--space-2xl);"></div>
+        </div>
+        <div class="ds-spacing-item">
+          <span class="ds-spacing-label">--space-3xl (180px)</span>
+          <div class="ds-spacing-bar" style="width: var(--space-3xl);"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 9. STAT BLOCKS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="ds-section" aria-labelledby="stats-heading">
+      <p class="section-label">Credibility</p>
+      <h2 id="stats-heading">Stat Blocks</h2>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">2,000+</span>
+          <span class="stat-label">Events Performed</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Five-Star Reviews</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Corporate Clients</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 10. FOOTER PATTERNS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="ds-section ds-section--footer-demo" aria-labelledby="footer-heading">
+      <p class="section-label">Footer</p>
+      <h2 id="footer-heading">Footer Patterns</h2>
+      <div class="ornament-divider">
+        <span></span>
+        <span class="diamond">&#10022;</span>
+        <span></span>
+      </div>
+
+      <div class="ds-footer-demo">
+        <div class="ds-footer-demo-inner">
+          <h3 class="footer-heading">DJ Misha</h3>
+          <p class="footer-text">San Diego's premier DJ and live saxophone performer for corporate events, weddings, and private celebrations.</p>
+
+          <h3 class="footer-heading">Quick Links</h3>
+          <nav aria-label="Footer demo links">
+            <a href="#" class="footer-link" onclick="return false;">Services</a>
+            <a href="#" class="footer-link" onclick="return false;">About</a>
+            <a href="#" class="footer-link" onclick="return false;">Reviews</a>
+            <a href="#" class="footer-link" onclick="return false;">Contact</a>
+          </nav>
+
+          <div class="ds-copyright-bar">
+            <p>&copy; 2024 DJ Misha. All rights reserved. San Diego, California.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════
+     DESIGN SYSTEM PAGE — Layout-specific styles only.
+     All component demonstrations use site.css tokens directly.
+     ═══════════════════════════════════════════════════════════ */
+
+  .ds {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+  }
+
+  .ds-header {
+    padding: var(--space-3xl) 0 var(--space-2xl);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .ds-intro {
+    color: var(--text-secondary);
+    font-size: 17px;
+    max-width: 620px;
+  }
+
+  .ds-section {
+    padding: var(--space-2xl) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ds-section:last-child {
+    border-bottom: none;
+  }
+
+  /* Color Swatches Grid */
+  .ds-swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+
+  .ds-swatch {
+    aspect-ratio: 1.4;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-sm);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .ds-swatch--text {
+    aspect-ratio: auto;
+    padding: var(--space-md);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ds-swatch--text span {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  .ds-swatch-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+  }
+
+  .ds-swatch-label--dark {
+    color: #0A0A0A;
+  }
+
+  /* Typography Specimen */
+  .ds-type-specimen {
+    margin: var(--space-lg) 0;
+  }
+
+  .ds-type-specimen h1,
+  .ds-type-specimen h2,
+  .ds-type-specimen h3,
+  .ds-type-specimen h4,
+  .ds-type-specimen h5,
+  .ds-type-specimen h6 {
+    margin-bottom: var(--space-xs);
+  }
+
+  .ds-type-meta {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-lg);
+    max-width: none;
+  }
+
+  /* Button Row */
+  .ds-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin: var(--space-md) 0 var(--space-lg);
+  }
+
+  /* Card Grid */
+  .ds-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+
+  /* Navigation Demo */
+  .ds-nav-demo {
+    display: flex;
+    gap: var(--space-xl);
+    padding: var(--space-lg);
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .ds-nav-link {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-base);
+    padding-bottom: 2px;
+  }
+
+  .ds-nav-link--hover {
+    color: var(--gold);
+  }
+
+  .ds-nav-link--active {
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+  }
+
+  /* Spacing Scale */
+  .ds-spacing-scale {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+
+  .ds-spacing-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .ds-spacing-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-secondary);
+    min-width: 160px;
+    letter-spacing: 0.02em;
+  }
+
+  .ds-spacing-bar {
+    height: 12px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+    border-radius: var(--radius-sm);
+    max-width: 100%;
+  }
+
+  /* Standard Border Demo */
+  .ds-standard-border {
+    border-top: 1px solid var(--border);
+    margin: var(--space-lg) 0;
+  }
+
+  /* Footer Demo */
+  .ds-footer-demo {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    margin-top: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ds-footer-demo::before {
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .ds-footer-demo-inner {
+    padding-top: var(--space-lg);
+  }
+
+  .footer-heading {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .footer-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+    max-width: none;
+  }
+
+  .footer-link {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: color var(--transition-base);
+    margin-right: var(--space-lg);
+  }
+
+  .footer-link:hover {
+    color: var(--gold);
+  }
+
+  .ds-copyright-bar {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  .ds-copyright-bar p {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    font-family: var(--font-body);
+    max-width: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .ds {
+      padding: var(--space-lg) var(--space-lg) var(--space-2xl);
+    }
+
+    .ds-header {
+      padding: var(--space-2xl) 0 var(--space-xl);
+    }
+
+    .ds-section {
+      padding: var(--space-xl) 0;
+    }
+
+    .ds-swatches {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .ds-nav-demo {
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .ds-spacing-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+
+    .ds-spacing-bar {
+      max-width: 80vw;
+    }
+  }
+</style>
