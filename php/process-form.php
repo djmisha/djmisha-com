@@ -259,7 +259,7 @@ $ownerHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
 
 $ownerSent = true;
 foreach ($OWNER_EMAILS as $ownerAddr) {
-    if (!mail($ownerAddr, $ownerSubject, $ownerHtml, $ownerHeaders)) {
+    if (!mail($ownerAddr, $ownerSubject, $ownerHtml, $ownerHeaders, '-f ' . $FROM_EMAIL)) {
         $ownerSent = false;
     }
 }
@@ -270,7 +270,7 @@ $confirmHeaders  = "From: " . $FROM_NAME . " <" . $FROM_EMAIL . ">\r\n";
 $confirmHeaders .= "Reply-To: info@djmisha.com\r\n";
 $confirmHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-$confirmSent = mail($data['email'], $confirmSubject, $confirmationHtml, $confirmHeaders);
+$confirmSent = mail($data['email'], $confirmSubject, $confirmationHtml, $confirmHeaders, '-f ' . $FROM_EMAIL);
 
 // ── Check for mail failures ─────────────────────────────────────────────────
 if (!$ownerSent || !$confirmSent) {
