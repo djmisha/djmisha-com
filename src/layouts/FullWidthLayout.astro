@@ -1,7 +1,7 @@
 ---
 import type { PageLayoutProps } from '../types';
 
-export type Props = PageLayoutProps;
+export type Props = PageLayoutProps & { bodyClass?: string };
 
 import BaseLayout from './BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
@@ -11,6 +11,7 @@ const {
   title,
   heading,
   description = '',
+  bodyClass = '',
   canonicalUrl,
   ogTitle,
   ogDescription,
@@ -29,6 +30,7 @@ const h1Text = heading || title;
 <BaseLayout
   title={title}
   description={description}
+  bodyClass={bodyClass}
   canonicalUrl={canonicalUrl}
   ogTitle={ogTitle}
   ogDescription={ogDescription}

@@ -4349,6 +4349,20 @@ body.contact-page #footer {
   display: none;
 }
 
+body.contact-page #content > p,
+body.contact-page #content > h2,
+body.contact-page #content > .wp-block-image {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.contact-page .cf-form-card {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Contact Button Main Navigayion */
 
 #header nav ul li#menu-item-716 {
@@ -4547,19 +4561,14 @@ body.contact-page #footer {
 
 /* Contact Form */
 
+.cf-form-card {
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+  padding: 2.5em;
+}
+
 .cf-form {
   max-width: 100%;
-}
-
-.cf-required-legend {
-  font-size: 0.85em;
-  color: var(--color-text-muted);
-  margin-bottom: 1.5em;
-}
-
-.cf-required-asterisk {
-  color: var(--color-accent);
-  margin-left: 0.2em;
 }
 
 .cf-row {
@@ -4614,6 +4623,15 @@ body.contact-page #footer {
   font-size: 15pt;
   font-weight: 100;
   transition: border-color 0.2s ease-in-out;
+}
+
+.cf-input::placeholder,
+.cf-textarea::placeholder {
+  font-size: 0.85em;
+}
+
+.cf-select {
+  font-size: 0.95em;
 }
 
 .cf-input,
@@ -4673,13 +4691,17 @@ body.contact-page #footer {
 .cf-checkbox-group {
   border: 0;
   padding: 0;
-  margin: 0;
+  margin: 1.5em 0;
+}
+
+.cf-checkbox-group .cf-description {
+  margin-bottom: 20px;
 }
 
 .cf-checkbox-options {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 0.5em;
 }
 
 .cf-checkbox-label {
@@ -4736,7 +4758,8 @@ body.contact-page #footer {
 }
 
 .cf-submit-wrapper {
-  margin-top: 1em;
+  margin-top: 4em;
+  text-align: center;
 }
 
 .cf-submit-btn {
@@ -4756,6 +4779,7 @@ body.contact-page #footer {
   font-weight: 300;
   font-size: 1em;
   height: 3em;
+  min-width: 300px;
   padding: 0 2.25em;
   text-align: center;
   text-decoration: none;
@@ -4822,6 +4846,10 @@ body.contact-page #footer {
 /* Contact Form — Responsive */
 
 @media screen and (max-width: 768px) {
+  .cf-form-card {
+    padding: 1em;
+  }
+
   .cf-row {
     flex-direction: column;
   }

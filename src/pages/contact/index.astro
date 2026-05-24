@@ -1,5 +1,5 @@
 ---
-import ContactLayout from '../../layouts/ContactLayout.astro';
+import FullWidthLayout from '../../layouts/FullWidthLayout.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import { buildJsonLd } from '../../data/schema';
 
@@ -7,56 +7,38 @@ const jsonLd = buildJsonLd({
   '@context': 'http://schema.org/',
   '@type': 'WebPage',
   url: 'https://djmisha.com/contact/',
-  headline: 'Contact San Diego DJ for Pricing and Bookings',
+  headline: 'Reserve Your Date',
   mainEntityOfPage: 'https://djmisha.com/contact/',
   about:
-    'Welcome! I’m DJ Misha, and I’m excited you’re considering me for your upcoming celebration. With years of experience crafting unforgettable moments, I specialize in creating the perfect musical atmosphere for any occasion. From elegant weddings to vibrant private parties and sophisticated corporate events, we bring our passion and expertise to venues both locally and worldwide.…',
+    'Welcome! I\u2019m DJ Misha, and I\u2019m excited you\u2019re considering me for your upcoming celebration. With years of experience crafting unforgettable moments, I specialize in creating the perfect musical atmosphere for any occasion. From elegant weddings to vibrant private parties and sophisticated corporate events, we bring our passion and expertise to venues both locally and worldwide.\u2026',
 });
 const contactDesc =
-  "Hire a DJ near you. Reach out to DJ Misha today to receive availably and pricing for your event, party or wedding. Get fast response. Let's Party! \uD83E\uDD73";
+  "Hire a DJ near you. Reach out to DJ Misha today to receive availability and pricing for your event, party or wedding. Get fast response. Let's Party! \uD83E\uDD73";
 ---
 
-<ContactLayout
-  title="Contact San Diego DJ for Pricing and Bookings"
-  heading="Contact San Diego DJ for Pricing and Bookings"
+<FullWidthLayout
+  title="Book DJ Misha - San Diego & Destination Event DJ"
+  heading="Reserve Your Date"
   description={contactDesc}
+  bodyClass="contact-page"
   canonicalUrl="https://djmisha.com/contact/"
-  ogTitle="Contact San Diego DJ for Pricing and Bookings"
+  ogTitle="Book DJ Misha - San Diego & Destination Event DJ"
   ogImage="https://djmisha.com/images/logo-djmisha.png"
   ogUrl="https://djmisha.com/contact/"
   ogType="website"
-  twitterTitle="Contact San Diego DJ for Pricing and Bookings"
+  twitterTitle="Book DJ Misha - San Diego & Destination Event DJ"
   twitterImage="https://djmisha.com/images/logo-djmisha.png"
   jsonLd={jsonLd}
 >
   <div class="wp-block-image">
-    <figure class="alignright size-large">
-      <img decoding="async" src="/images/expert.png" alt="" />
-    </figure>
+    <figure class="alignright size-large"><img decoding="async" src="/images/expert.png" alt="" /></figure>
   </div>
 
-  <p>
-    Welcome! I&#8217;m DJ Misha, and I&#8217;m excited you&#8217;re considering
-    me for your upcoming celebration. With years of experience crafting
-    unforgettable moments, I specialize in creating the perfect musical
-    atmosphere for any occasion.
-  </p>
+  <p>Welcome! I&#8217;m DJ Misha, and I&#8217;m excited you&#8217;re considering me for your upcoming celebration. With years of experience crafting unforgettable moments, I specialize in creating the perfect musical atmosphere for any occasion.</p>
 
-  <p>
-    From elegant weddings to vibrant private parties and sophisticated corporate
-    events, we bring our passion and expertise to venues both locally and
-    worldwide. The mission is simple: to keep your dance floor entertained and
-    your guests talking about your event long after it&#8217;s over.
-  </p>
+  <p>From elegant weddings to vibrant private parties and sophisticated corporate events, we bring our passion and expertise to venues both locally and worldwide. The mission is simple: to keep your dance floor entertained and your guests talking about your event long after it&#8217;s over.</p>
 
-  <p>Ready to start planning?</p>
-
-  <p>
-    Fill out the quick form below with your event details and I&#8217;ll
-    promptly respond with availability and pricing tailored to your celebration.
-  </p>
-
-  <p>Looking forward to helping make your event extraordinary!</p>
+  <p>Ready to start planning? Fill out the quick form below with your event details and I&#8217;ll promptly respond with availability and pricing tailored to your celebration. Looking forward to helping make your event extraordinary!</p>
 
   <ContactForm />
-</ContactLayout>
+</FullWidthLayout>

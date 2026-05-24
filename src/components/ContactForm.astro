@@ -4,10 +4,8 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 ---
 
 <meta name="recaptcha-site-key" content={recaptchaSiteKey} />
+<div class="cf-form-card">
 <div class="cf-form-wrapper">
-  <p class="cf-required-legend">
-    "<span class="cf-required-asterisk">*</span>" indicates required fields
-  </p>
 
   <form id="contact-form" class="cf-form" novalidate>
     <!-- Row 1: Name, Email, Phone (3-column on desktop) -->
@@ -15,7 +13,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       <!-- Field 1: Name -->
       <div id="cf-field-name" class="cf-field-group">
         <label class="cf-label" for="cf-input-name"
-          >Name:<span class="cf-required-asterisk">*</span></label
+          >Name:</label
         >
         <input
           type="text"
@@ -31,7 +29,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       <!-- Field 2: Email Address -->
       <div id="cf-field-email" class="cf-field-group">
         <label class="cf-label" for="cf-input-email"
-          >Email Address:<span class="cf-required-asterisk">*</span></label
+          >Email Address:</label
         >
         <input
           type="email"
@@ -47,7 +45,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       <!-- Field 3: Phone Number -->
       <div id="cf-field-phone" class="cf-field-group">
         <label class="cf-label" for="cf-input-phone"
-          >Phone Number:<span class="cf-required-asterisk">*</span></label
+          >Phone Number:</label
         >
         <input
           type="text"
@@ -66,9 +64,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       <!-- Field 4: Event Type -->
       <div id="cf-field-event_type" class="cf-field-group">
         <label class="cf-label" for="cf-input-event_type"
-          >I need an awesome DJ for my:<span class="cf-required-asterisk"
-            >*</span
-          ></label
+          >I need an awesome DJ for my:</label
         >
         <select
           id="cf-input-event_type"
@@ -90,9 +86,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       <!-- Field 5: Attendance -->
       <div id="cf-field-attendance" class="cf-field-group">
         <label class="cf-label" for="cf-input-attendance"
-          >I am expecting an attendance of:<span class="cf-required-asterisk"
-            >*</span
-          ></label
+          >I am expecting an attendance of:</label
         >
         <select
           id="cf-input-attendance"
@@ -105,7 +99,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
           <option value="50 – 75 people">50 – 75 people</option>
           <option value="75 – 100 people">75 – 100 people</option>
           <option value="100 – 125 people">100 – 125 people</option>
-          <option value="125 - 150 people">125 - 150 people</option>
+          <option value="125 – 150 people">125 – 150 people</option>
           <option value="150 – 200 people">150 – 200 people</option>
           <option value="200 people or more">200 people or more</option>
         </select>
@@ -114,47 +108,46 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       </div>
     </div>
 
-    <!-- Field 6: Venue/Location (full width) -->
-    <div id="cf-field-venue" class="cf-field-group">
-      <label class="cf-label" for="cf-input-venue"
-        >The event will be held at the following venue and location:<span
-          class="cf-required-asterisk">*</span
-        ></label
-      >
-      <input
-        type="text"
-        id="cf-input-venue"
-        name="venue"
-        class="cf-input"
-        placeholder="Venue name and city"
-        aria-required="true"
-      />
-      <span id="cf-error-venue" class="cf-error-message" role="alert"></span>
-    </div>
+    <!-- Row 3: Venue, Date/Time (2-column on desktop) -->
+    <div class="cf-row cf-row-2col">
+      <!-- Field 6: Venue/Location -->
+      <div id="cf-field-venue" class="cf-field-group">
+        <label class="cf-label" for="cf-input-venue"
+          >The event will be held at the following venue and location:</label
+        >
+        <input
+          type="text"
+          id="cf-input-venue"
+          name="venue"
+          class="cf-input"
+          placeholder="Venue name and city"
+          aria-required="true"
+        />
+        <span id="cf-error-venue" class="cf-error-message" role="alert"></span>
+      </div>
 
-    <!-- Field 7: Date/Time (full width) -->
-    <div id="cf-field-date_time" class="cf-field-group">
-      <label class="cf-label" for="cf-input-date_time"
-        >The DATE and START/END time of my event is:<span
-          class="cf-required-asterisk">*</span
-        ></label
-      >
-      <input
-        type="text"
-        id="cf-input-date_time"
-        name="date_time"
-        class="cf-input"
-        placeholder="e.g. June 15, 2026 — 5:00 PM to 10:00 PM"
-        aria-required="true"
-      />
-      <span id="cf-error-date_time" class="cf-error-message" role="alert"
-      ></span>
+      <!-- Field 7: Date/Time -->
+      <div id="cf-field-date_time" class="cf-field-group">
+        <label class="cf-label" for="cf-input-date_time"
+          >The DATE and START/END time of my event is:</label
+        >
+        <input
+          type="text"
+          id="cf-input-date_time"
+          name="date_time"
+          class="cf-input"
+          placeholder="e.g. June 15, 2026 — 5:00 PM to 10:00 PM"
+          aria-required="true"
+        />
+        <span id="cf-error-date_time" class="cf-error-message" role="alert"
+        ></span>
+      </div>
     </div>
 
     <!-- Field 8: Select a service (full width, description above dropdown) -->
     <div id="cf-field-service" class="cf-field-group">
       <label class="cf-label" for="cf-input-service"
-        >Select a service<span class="cf-required-asterisk">*</span></label
+        >Select a service</label
       >
       <p class="cf-description" id="cf-description-service">
         Rates shown are starting points based on typical timelines. Final
@@ -168,8 +161,8 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
         aria-required="true"
       >
         <option value="" disabled selected>Select an option</option>
-        <option value="DJ + Saxophone — 4 hrs (from $3500 – $5000)"
-          >DJ + Saxophone — 4 hrs (from $3500 – $5000)</option
+        <option value="DJ + Saxophone — 4 hrs (from $4000 – $5000)"
+          >DJ + Saxophone — 4 hrs (from $4000 – $5000)</option
         >
         <option value="DJ for Wedding —  4 hrs (from $2500)"
           >DJ for Wedding — 4 hrs (from $2500)</option
@@ -187,9 +180,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     <!-- Field 9: Vibes/Mood Checkboxes (full width, description above checkboxes) -->
     <fieldset id="cf-field-vibes" class="cf-field-group cf-checkbox-group">
       <legend class="cf-label"
-        >The vibes and mood at my event will be:<span
-          class="cf-required-asterisk">*</span
-        ></legend
+        >The vibes and mood at my event will be:</legend
       >
       <p class="cf-description" id="cf-description-vibes">
         Please select all that may apply
@@ -223,7 +214,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     <!-- Field 10: Message (full width) -->
     <div id="cf-field-message" class="cf-field-group">
       <label class="cf-label" for="cf-input-message"
-        >Message:<span class="cf-required-asterisk">*</span></label
+        >Message:</label
       >
       <textarea
         id="cf-input-message"
@@ -277,6 +268,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     style="display:none;"
   >
   </div>
+</div>
 </div>
 
 <script
