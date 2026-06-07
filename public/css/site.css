@@ -3448,7 +3448,13 @@ body.is-touch .spotlight {
 }
 
 .wrapper.style2 {
-  background: linear-gradient(to bottom, var(--color-accent-subtle), var(--color-accent-subtle)), var(--color-bg-secondary);
+  background:
+    linear-gradient(
+      to bottom,
+      var(--color-accent-subtle),
+      var(--color-accent-subtle)
+    ),
+    var(--color-bg-secondary);
   border-top: 3px solid var(--color-accent);
   border-bottom: 3px solid var(--color-accent);
 }
@@ -4106,7 +4112,7 @@ span#logo a {
   padding-left: 30px;
   font-size: 16px;
   float: right;
-  color: var(--color-text-strong)d7b;
+  color: var(--color-text-strong) d7b;
 }
 .callout {
   font-size: 18px;
@@ -5471,7 +5477,7 @@ body.contact-page .cf-form-card {
   /* Footer */
 
   #footer {
-    padding: 3em .25em;
+    padding: 3em 0.25em;
   }
 
   #footer .copyright {
@@ -5729,7 +5735,9 @@ body.contact-page .cf-form-card {
 .service-box {
   padding: 2em;
   border-radius: var(--border-radius);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
 
 .service-box:hover {
@@ -5827,4 +5835,9 @@ body.contact-page .cf-form-card {
   .service-box__title {
     font-size: 1.2em;
   }
+}
+
+/* ========== RECAPTCHA ========== */
+.grecaptcha-badge {
+  visibility: hidden;
 }
