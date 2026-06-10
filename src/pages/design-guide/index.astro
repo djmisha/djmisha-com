@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import CenteredTextBlock from '../../components/CenteredTextBlock.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import FaqItem from '../../components/FaqItem.astro';
+import TestimonialSlideshow from '../../components/TestimonialSlideshow.astro';
+
+const reviewIds = ['c83dba55', 'fcb52150', '94fe245a'];
+---
+
+<BaseLayout
+  title="Design Guide - DJ Misha"
+  description="Design guide page demonstrating reusable page components"
+  bodyClass="landing"
+>
+  <Navigation />
+
+  <HeroSection
+    backgroundImage="/images/banner.jpg"
+    alt="Wedding DJ in San Diego"
+  >
+    <h1 slot="tagline">Wedding DJ in San Diego</h1>
+    <p slot="subTagline">The Perfect Soundtrack for Your Special Day</p>
+  </HeroSection>
+
+  <CenteredTextBlock>
+    <h2>The Perfect Soundtrack for Your Special Day</h2>
+    <p>
+      Think about the most fun wedding you've attended. What do you remember?
+      There's a good chance your time on the dance floor stands out. The music
+      was pumping; the atmosphere was electric; and every song seemed to capture
+      the essence of the couple's love story. That's the kind of unforgettable
+      experience DJ Misha strives to create.
+    </p>
+    <p>
+      The music is one of the most important parts of the reception, and with DJ
+      Misha, it's not just about playing track after track — it's about creating
+      a seamless blend of music that enhances the overall atmosphere of the
+      night. He works closely with every couple to design the perfect live DJ
+      set, making their wedding a dance party that creates lasting memories for
+      years to come.
+    </p>
+    <p>
+      <strong
+        >Your wedding is about you. Let's make the music match your vision.</strong
+      >
+    </p>
+  </CenteredTextBlock>
+
+  <FaqSection>
+    <FaqItem question="Can a Wedding DJ Take Song Requests?">
+      <p>
+        Absolutely, and the decision is entirely up to you. Your DJ is available
+        to take requests if that is something you would like. Sometimes,
+        requests can provide useful feedback from the audience and add a fun,
+        interactive element to the party. However, our primary commitment is to
+        you. The DJ will always prioritize your vision and the seamless flow of
+        the musical journey we've planned together, ensuring any request fits
+        the atmosphere and never disrupts the energy on the dance floor.
+      </p>
+    </FaqItem>
+    <FaqItem question="What Questions Should I Ask My Wedding DJ?">
+      <p>
+        Before hiring a wedding DJ, you'll want to ask certain questions to make
+        sure they meet your needs for your special day. Here are some helpful
+        questions to consider: What is your experience with DJ-ing weddings? How
+        many have you done? Do you have testimonials from past clients? Do you
+        have backup equipment in case of technical issues? How do you handle
+        song requests and do-not-play lists? Can you make announcements during
+        the event? Do you offer additional services? What is your policy on
+        overtime? Is there an additional charge? How far in advance should we
+        book your services? What is your cancellation or rescheduling policy?
+      </p>
+    </FaqItem>
+    <FaqItem question="How Many Hours Does a DJ Play at a Wedding?">
+      <p>
+        Our DJ services can be used throughout the entirety of your wedding day,
+        from before the ceremony to the end of the reception. Our wedding
+        package typically includes 4 hours of reception music. Custom packages
+        can be created based on your individual needs.
+      </p>
+    </FaqItem>
+    <FaqItem question="Does DJ Misha Perform at Destination Weddings?">
+      <p>
+        Yes! DJ Misha is available for national and international travel.
+        Whether you're in San Diego or hosting a destination wedding in a unique
+        location, he can bring the music to you. Reach out to us with details
+        like your wedding location and date, because travel to any destination
+        is possible. For destination weddings, DJ Misha will take care of all
+        travel booking and equipment rentals that are required for a remote
+        performance, ensuring there is no additional work for you. He will also
+        handle all the coordination between vendors and event planners too,
+        making your destination wedding planning an easy and efficient process.
+      </p>
+    </FaqItem>
+  </FaqSection>
+
+  <TestimonialSlideshow reviewIds={reviewIds} />
+
+  <Footer />
+</BaseLayout>

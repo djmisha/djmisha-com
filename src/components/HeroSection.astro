@@ -1,0 +1,153 @@
+---
+export interface Props {
+  backgroundImage: string;
+  alt: string;
+  scrollTarget?: string;
+}
+
+const { backgroundImage, alt, scrollTarget = '#content' } = Astro.props;
+
+const hasTagline = Astro.slots.has('tagline');
+const hasSubTagline = Astro.slots.has('subTagline');
+---
+
+<section
+  class="hero-section"
+  style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;`}
+  aria-label={alt}
+>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    {
+      hasTagline && (
+        <div class="hero-tagline">
+          <slot name="tagline" />
+        </div>
+      )
+    }
+    {hasTagline && hasSubTagline && <hr class="hero-divider" />}
+    {
+      hasSubTagline && (
+        <div class="hero-subtagline">
+          <slot name="subTagline" />
+        </div>
+      )
+    }
+  </div>
+  <a href={scrollTarget} class="hero-scroll-indicator" aria-label="Scroll down">
+    <span class="hero-scroll-arrow">&#8595;</span>
+  </a>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #ffffff;
+    padding: 0 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-tagline {
+    font-size: 2.2rem;
+    line-height: 1.1;
+    margin: 0 0 0.3em 0;
+    font-weight: bold;
+  }
+
+  .hero-divider {
+    width: 4em;
+    height: 3px;
+    border: none;
+    background: var(--color-accent, #ff2d8a);
+    margin: 0 0 0.4em 0;
+  }
+
+  .hero-subtagline {
+    font-size: 1.5rem;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 2em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    border-bottom: none;
+    font-size: 2rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .hero-scroll-indicator:hover {
+    opacity: 1;
+  }
+
+  .hero-scroll-arrow {
+    display: inline-block;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-tagline {
+      font-size: max(24px, 1.4rem);
+      line-height: 1.15;
+    }
+
+    .hero-subtagline {
+      font-size: max(16px, 1rem);
+    }
+
+    .hero-section {
+      font-size: max(16px, 1rem);
+    }
+  }
+</style>

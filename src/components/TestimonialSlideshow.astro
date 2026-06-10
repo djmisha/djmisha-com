@@ -1,0 +1,140 @@
+---
+export interface Props {
+  reviewIds: string[];
+}
+
+import reviewsData from '../data/reviews.json';
+
+const { reviewIds } = Astro.props;
+
+const reviews = reviewIds
+  .map((id) => reviewsData.reviews.find((r) => r.id === id))
+  .filter((r): r is (typeof reviewsData.reviews)[number] => r !== undefined)
+  .filter((r) => r.text.trim().length > 0);
+---
+
+{
+  reviews.length > 0 && (
+    <section class="testimonial-slideshow">
+      <div class="embla" data-testimonial-carousel>
+        <div class="embla__container">
+          {reviews.map((review) => (
+            <div class="embla__slide">
+              <blockquote class="testimonial-text">{review.text}</blockquote>
+              <p class="testimonial-author">— {review.author}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="embla__dots" data-testimonial-dots>
+        {reviews.map((_, index) => (
+          <button
+            class={`embla__dot${index === 0 ? ' embla__dot--active' : ''}`}
+            data-dot-index={index}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+
+  const viewport = document.querySelector(
+    '[data-testimonial-carousel]',
+  ) as HTMLElement | null;
+  const dotsContainer = document.querySelector(
+    '[data-testimonial-dots]',
+  ) as HTMLElement | null;
+
+  if (viewport && dotsContainer) {
+    const embla = EmblaCarousel(viewport, { loop: false });
+    const dots = dotsContainer.querySelectorAll('.embla__dot');
+
+    const updateDots = () => {
+      const selected = embla.selectedScrollSnap();
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('embla__dot--active', index === selected);
+      });
+    };
+
+    embla.on('select', updateDots);
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        embla.scrollTo(index);
+      });
+    });
+  }
+</script>
+
+<style>
+  .testimonial-slideshow {
+    padding: 4em 2em;
+    max-width: 70em;
+    margin: 0 auto;
+  }
+
+  .embla {
+    overflow: hidden;
+  }
+
+  .embla__container {
+    display: flex;
+  }
+
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    padding: 0 1em;
+    text-align: center;
+  }
+
+  .testimonial-text {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    font-style: italic;
+    color: #333;
+    margin: 0 0 1.5em 0;
+    padding: 0;
+    border: none;
+  }
+
+  .testimonial-author {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+    margin: 0;
+  }
+
+  .embla__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+    margin-top: 2em;
+  }
+
+  .embla__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #999;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .embla__dot:hover {
+    border-color: #333;
+  }
+
+  .embla__dot--active {
+    background: #333;
+    border-color: #333;
+  }
+</style>

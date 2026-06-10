@@ -1,0 +1,105 @@
+---
+const html = await Astro.slots.render('default');
+const hasContent = html && html.trim().length > 0;
+---
+
+{
+  hasContent && (
+    <section class="faq-section">
+      <slot />
+    </section>
+  )
+}
+
+<script>
+  document.querySelectorAll('.faq-section').forEach((section) => {
+    section.querySelectorAll('.faq-question').forEach((button) => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        const item = button.parentElement;
+        const answer = item?.querySelector('.faq-answer') as HTMLElement | null;
+        const icon = button.querySelector('.faq-icon') as HTMLElement | null;
+
+        if (expanded) {
+          button.setAttribute('aria-expanded', 'false');
+          if (answer) answer.hidden = true;
+          if (icon) icon.classList.remove('faq-icon--rotated');
+        } else {
+          button.setAttribute('aria-expanded', 'true');
+          if (answer) answer.hidden = false;
+          if (icon) icon.classList.add('faq-icon--rotated');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq-section {
+    padding: 4em 2em;
+    max-width: 70em;
+    margin: 0 auto;
+  }
+
+  .faq-section :global(.faq-item) {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .faq-section :global(.faq-item:first-child) {
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .faq-section :global(.faq-question) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.25em 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: normal;
+    text-align: left;
+    color: inherit;
+    font-family: inherit;
+  }
+
+  .faq-section :global(.faq-question:hover) {
+    opacity: 0.7;
+  }
+
+  .faq-section :global(.faq-question:focus-visible) {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  .faq-section :global(.faq-icon) {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 1em;
+  }
+
+  .faq-section :global(.faq-icon--rotated) {
+    transform: rotate(45deg);
+  }
+
+  .faq-section :global(.faq-answer) {
+    padding: 0 0 1.25em 0;
+  }
+
+  .faq-section :global(.faq-question-text) {
+    font-size: inherit;
+    font-weight: normal;
+    margin: 0;
+  }
+
+  .faq-section :global(.faq-answer p) {
+    margin: 0;
+    line-height: 1.6;
+    color: inherit;
+  }
+</style>
