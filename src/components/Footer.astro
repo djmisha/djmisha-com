@@ -1,7 +1,10 @@
 ---
 import { SITE_NAME } from '../data/schema';
 import { PHONE, SOCIAL } from '../data/config';
-import { footerDescriptions, DEFAULT_FOOTER_DESCRIPTION } from '../data/footer-descriptions';
+import {
+  footerDescriptions,
+  DEFAULT_FOOTER_DESCRIPTION,
+} from '../data/footer-descriptions';
 import Icon from './Icon.astro';
 import reviews from '../data/reviews.json';
 
@@ -9,15 +12,16 @@ const reviewCount = reviews.totalReviews;
 const reviewRating = reviews.totalRating;
 
 const pathname = Astro.url.pathname;
-const footerDescription = footerDescriptions[pathname] || DEFAULT_FOOTER_DESCRIPTION;
+const footerDescription =
+  footerDescriptions[pathname] || DEFAULT_FOOTER_DESCRIPTION;
 ---
 
 <!-- Footer -->
 <footer id="footer">
   <div class="lets-chat">
     <a href="/contact/" class="show-form" rel="nofollow"
-      ><img src="/images/expert.png" alt="Book Now, Let's Chat" />
-      <span>Book Now<br />Let's Chat</span>
+      ><img src="/images/expert.png" alt="Book Your Date, Let's Connect" />
+      <span>Book Your Date<br />Let's Connect</span>
     </a>
   </div>
 
@@ -57,9 +61,6 @@ const footerDescription = footerDescriptions[pathname] || DEFAULT_FOOTER_DESCRIP
         </li>
         <li><a href="/services/wedding-dj-in-san-diego/">Wedding DJ</a></li>
         <li>
-          <a href="/services/destination-wedding-dj/">Destination Wedding DJ</a>
-        </li>
-        <li>
           <a
             href="/services/corporate-event-dj-in-san-diego/"
             title="Corporate Event DJ in San Diego">Corporate Event DJ</a
@@ -71,12 +72,17 @@ const footerDescription = footerDescriptions[pathname] || DEFAULT_FOOTER_DESCRIP
             title="Party & Birthday DJ in San Diego">Party &amp; Birthday DJ</a
           >
         </li>
+        <li>
+          <a href="/services/destination-wedding-dj/">Destination DJ</a>
+        </li>
       </ul>
     </div>
     <div class="col-4 col-12-medium">
       <aside>
         <div class="footer-overview">
-          <span class="footer-overview-icon"><Icon name="lightbulb" size="1.1em" /></span>
+          <span class="footer-overview-icon"
+            ><Icon name="lightbulb" size="1.1em" /></span
+          >
           <p class="footer-overview-text">{footerDescription}</p>
         </div>
       </aside>
@@ -241,5 +247,4 @@ const footerDescription = footerDescriptions[pathname] || DEFAULT_FOOTER_DESCRIP
       });
     });
   </script>
-
 </footer>
