@@ -381,9 +381,9 @@ h6 a {
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 1.75em;
   line-height: 1.5em;
-  letter-spacing: -0.025em;
+  /* letter-spacing: -0.025em; */
 }
 
 h3 {
@@ -4332,8 +4332,8 @@ p iframe {
 
 .testi-partial .t-short {
   display: block;
-  font-size: 35px;
-  line-height: 40px;
+  font-size: 1.5em;
+  line-height: 1.7em;
   color: var(--color-text-strong);
   pointer-events: none;
 }
