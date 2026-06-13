@@ -691,8 +691,9 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     background: var(--color-bg-secondary);
   }
 
-  .mscf-input--error {
-    border-color: var(--color-accent) !important;
+  .mscf-input--error,
+  .mscf-input--error:focus {
+    border-color: var(--color-accent);
   }
 
   /* ── Textarea ────────────────────────────────────────────────────────── */
@@ -725,8 +726,9 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     border-color: var(--color-accent);
   }
 
-  .mscf-textarea.mscf-input--error {
-    border-color: var(--color-accent) !important;
+  .mscf-textarea.mscf-input--error,
+  .mscf-textarea.mscf-input--error:focus {
+    border-color: var(--color-accent);
   }
 
   /* ── Error messages ──────────────────────────────────────────────────── */
