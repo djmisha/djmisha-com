@@ -1,0 +1,1114 @@
+---
+// MultiStepContactForm.astro — Full-screen modal multi-step contact form
+// CSS classes prefixed with mscf- (multi-step contact form)
+export interface Props {
+  /** Text displayed on the trigger button */
+  triggerText?: string;
+}
+const { triggerText = 'Get a Quote' } = Astro.props;
+const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+---
+
+<meta name="recaptcha-site-key" content={recaptchaSiteKey} />
+
+<!-- ── Trigger button ─────────────────────────────────────────────────── -->
+<button id="mscf-trigger-btn" class="mscf-trigger-btn" type="button">
+  {triggerText}
+</button>
+
+<!-- ── Full-screen modal ──────────────────────────────────────────────── -->
+<div
+  id="mscf-modal"
+  class="mscf-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="mscf-modal-heading"
+  aria-hidden="true"
+>
+  <!-- Backdrop (click to close) -->
+  <div class="mscf-backdrop" aria-hidden="true"></div>
+
+  <!-- Modal container -->
+  <div class="mscf-container">
+    <!-- ── Header: back button + progress ────────────────────────────── -->
+    <div class="mscf-header">
+      <button
+        id="mscf-back-btn"
+        class="mscf-back-btn"
+        type="button"
+        aria-label="Close form"
+      >
+        <svg
+          class="mscf-back-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            d="M15 18l-6-6 6-6"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"></path>
+        </svg>
+        <span class="mscf-back-label">Close</span>
+      </button>
+
+      <!-- Progress indicator -->
+      <div class="mscf-progress-area" aria-live="polite" aria-atomic="true">
+        <div
+          class="mscf-progress-track"
+          role="progressbar"
+          aria-valuemin="1"
+          aria-valuemax="5"
+        >
+          <div
+            id="mscf-progress-fill"
+            class="mscf-progress-fill"
+            style="width:20%"
+          >
+          </div>
+        </div>
+        <div class="mscf-step-dots" aria-hidden="true">
+          <span class="mscf-step-dot mscf-step-dot--active" data-step="1"
+          ></span>
+          <span class="mscf-step-dot" data-step="2"></span>
+          <span class="mscf-step-dot" data-step="3"></span>
+          <span class="mscf-step-dot" data-step="4"></span>
+          <span class="mscf-step-dot" data-step="5"></span>
+        </div>
+        <span id="mscf-step-label" class="mscf-step-label" aria-live="polite"
+          >Step 1 of 5</span
+        >
+      </div>
+    </div>
+
+    <!-- ── Scrollable body ────────────────────────────────────────────── -->
+    <div id="mscf-modal-body" class="mscf-modal-body">
+      <form id="mscf-form" class="mscf-form" novalidate>
+        <!-- ── Step 1: Contact info ─────────────────────────────────── -->
+        <div class="mscf-step" data-step="1">
+          <h2 id="mscf-modal-heading" class="mscf-step-heading">
+            Tell us about yourself
+          </h2>
+          <p class="mscf-step-subhead">
+            Just a few quick details to get us started.
+          </p>
+
+          <!-- Name -->
+          <div id="mscf-field-name" class="mscf-field-group">
+            <label class="mscf-label" for="mscf-input-name">Full Name</label>
+            <input
+              type="text"
+              id="mscf-input-name"
+              name="name"
+              class="mscf-input"
+              placeholder="Your full name"
+              autocomplete="name"
+              aria-required="true"
+            />
+            <span id="mscf-error-name" class="mscf-error-msg" role="alert"
+            ></span>
+          </div>
+
+          <!-- Email -->
+          <div id="mscf-field-email" class="mscf-field-group">
+            <label class="mscf-label" for="mscf-input-email"
+              >Email Address</label
+            >
+            <input
+              type="email"
+              id="mscf-input-email"
+              name="email"
+              class="mscf-input"
+              placeholder="you@example.com"
+              autocomplete="email"
+              aria-required="true"
+            />
+            <span id="mscf-error-email" class="mscf-error-msg" role="alert"
+            ></span>
+          </div>
+
+          <!-- Phone -->
+          <div id="mscf-field-phone" class="mscf-field-group">
+            <label class="mscf-label" for="mscf-input-phone">Phone Number</label
+            >
+            <input
+              type="tel"
+              id="mscf-input-phone"
+              name="phone"
+              class="mscf-input"
+              placeholder="(619) 555-1234"
+              autocomplete="tel"
+              aria-required="true"
+            />
+            <span id="mscf-error-phone" class="mscf-error-msg" role="alert"
+            ></span>
+          </div>
+        </div>
+
+        <!-- ── Step 2: Event details ─────────────────────────────────── -->
+        <div class="mscf-step" data-step="2" hidden>
+          <h2 class="mscf-step-heading">Tell us about your event</h2>
+          <p class="mscf-step-subhead">When is it, and how big a crowd?</p>
+
+          <!-- Event date & time -->
+          <div id="mscf-field-date_time" class="mscf-field-group">
+            <label class="mscf-label" for="mscf-input-date_time"
+              >Event Date &amp; Time</label
+            >
+            <input
+              type="text"
+              id="mscf-input-date_time"
+              name="date_time"
+              class="mscf-input"
+              placeholder="e.g. June 15, 2026 — 5:00 PM to 10:00 PM"
+              aria-required="true"
+            />
+            <span id="mscf-error-date_time" class="mscf-error-msg" role="alert"
+            ></span>
+          </div>
+
+          <!-- Attendance slider -->
+          <div id="mscf-field-attendance" class="mscf-field-group">
+            <label class="mscf-label" for="mscf-input-attendance">
+              Expected Attendance
+            </label>
+            <div class="mscf-slider-wrapper">
+              <div
+                id="mscf-slider-bubble"
+                class="mscf-slider-bubble"
+                aria-hidden="true"
+              >
+                25
+              </div>
+              <input
+                type="range"
+                id="mscf-input-attendance"
+                name="attendance"
+                class="mscf-slider"
+                min="25"
+                max="250"
+                step="5"
+                value="25"
+                aria-valuemin="25"
+                aria-valuemax="250"
+                aria-valuenow="25"
+                aria-label="Expected attendance"
+              />
+              <div class="mscf-slider-labels" aria-hidden="true">
+                <span>25</span>
+                <span>250+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Step 3: Mood selection ────────────────────────────────── -->
+        <div class="mscf-step" data-step="3" hidden>
+          <h2 class="mscf-step-heading">Set the mood</h2>
+          <p class="mscf-step-subhead">
+            Select all that apply — you can pick more than one.
+          </p>
+
+          <fieldset class="mscf-moods-fieldset">
+            <legend class="mscf-sr-only">Vibes and mood</legend>
+            <div class="mscf-mood-grid">
+              <!-- Group 1: Chill -->
+              <label class="mscf-mood-tile">
+                <input type="checkbox" name="vibes[]" value="Lounge" />
+                <span class="mscf-mood-name">🎵 Lounge</span>
+              </label>
+              <label class="mscf-mood-tile">
+                <input type="checkbox" name="vibes[]" value="Chillout" />
+                <span class="mscf-mood-name">✌️ Chillout</span>
+              </label>
+              <label class="mscf-mood-tile">
+                <input type="checkbox" name="vibes[]" value="Mellow" />
+                <span class="mscf-mood-name">🌙 Mellow</span>
+              </label>
+
+              <!-- Group 2: Dance -->
+              <label class="mscf-mood-tile">
+                <input type="checkbox" name="vibes[]" value="Groovy" />
+                <span class="mscf-mood-name">🕺 Groovy</span>
+              </label>
+              <label class="mscf-mood-tile">
+                <input type="checkbox" name="vibes[]" value="Funky" />
+                <span class="mscf-mood-name">🎸 Funky</span>
+              </label>
+              <label class="mscf-mood-tile">
+                <input type="checkbox" name="vibes[]" value="Vibing" />
+                <span class="mscf-mood-name">💃 Vibing</span>
+              </label>
+
+              <!-- Group 3: High energy -->
+              <label class="mscf-mood-tile">
+                <input type="checkbox" name="vibes[]" value="Epic" />
+                <span class="mscf-mood-name">🔥 Epic</span>
+              </label>
+              <label class="mscf-mood-tile">
+                <input type="checkbox" name="vibes[]" value="Total Rager" />
+                <span class="mscf-mood-name">🎉 Total Rager</span>
+              </label>
+              <label class="mscf-mood-tile">
+                <input type="checkbox" name="vibes[]" value="Party Rocker" />
+                <span class="mscf-mood-name">🎊 Party Rocker</span>
+              </label>
+            </div>
+            <span id="mscf-error-vibes" class="mscf-error-msg" role="alert"
+            ></span>
+          </fieldset>
+        </div>
+
+        <!-- ── Step 4: Service selection ─────────────────────────────── -->
+        <div class="mscf-step" data-step="4" hidden>
+          <h2 class="mscf-step-heading">Choose your package</h2>
+          <p class="mscf-step-subhead">
+            These are <strong>starting rates</strong> — final pricing depends on date,
+            location, and event details. Select the option that best fits your event.
+          </p>
+
+          <fieldset class="mscf-services-fieldset">
+            <legend class="mscf-sr-only">Service packages</legend>
+            <div class="mscf-service-grid">
+              <label class="mscf-service-card">
+                <input
+                  type="radio"
+                  name="mscf-service"
+                  value="DJ + Saxophone — 4 hrs (from $4,000 – $5,000)"
+                />
+                <div class="mscf-service-card-body">
+                  <div class="mscf-service-icon">🎷</div>
+                  <div class="mscf-service-name">DJ + Saxophone</div>
+                  <div class="mscf-service-duration">4 hours</div>
+                  <div class="mscf-service-price">from $4,000 – $5,000</div>
+                </div>
+                <div class="mscf-service-check" aria-hidden="true">✓</div>
+              </label>
+
+              <label class="mscf-service-card">
+                <input
+                  type="radio"
+                  name="mscf-service"
+                  value="DJ for Wedding — 4 hrs (from $2,500)"
+                />
+                <div class="mscf-service-card-body">
+                  <div class="mscf-service-icon">💍</div>
+                  <div class="mscf-service-name">DJ for Wedding</div>
+                  <div class="mscf-service-duration">4 hours</div>
+                  <div class="mscf-service-price">from $2,500</div>
+                </div>
+                <div class="mscf-service-check" aria-hidden="true">✓</div>
+              </label>
+
+              <label class="mscf-service-card">
+                <input
+                  type="radio"
+                  name="mscf-service"
+                  value="DJ for Corporate Event — 4 hrs (from $2,500)"
+                />
+                <div class="mscf-service-card-body">
+                  <div class="mscf-service-icon">🏢</div>
+                  <div class="mscf-service-name">DJ for Corporate Event</div>
+                  <div class="mscf-service-duration">4 hours</div>
+                  <div class="mscf-service-price">from $2,500</div>
+                </div>
+                <div class="mscf-service-check" aria-hidden="true">✓</div>
+              </label>
+
+              <label class="mscf-service-card">
+                <input
+                  type="radio"
+                  name="mscf-service"
+                  value="DJ for Private Party — 4 hrs (from $2,000)"
+                />
+                <div class="mscf-service-card-body">
+                  <div class="mscf-service-icon">🎉</div>
+                  <div class="mscf-service-name">DJ for Private Party</div>
+                  <div class="mscf-service-duration">4 hours</div>
+                  <div class="mscf-service-price">from $2,000</div>
+                </div>
+                <div class="mscf-service-check" aria-hidden="true">✓</div>
+              </label>
+            </div>
+            <span id="mscf-error-service" class="mscf-error-msg" role="alert"
+            ></span>
+          </fieldset>
+        </div>
+
+        <!-- ── Step 5: Message ──────────────────────────────────────── -->
+        <div class="mscf-step" data-step="5" hidden>
+          <h2 class="mscf-step-heading">Anything else we should know?</h2>
+          <p class="mscf-step-subhead">
+            Tell us about your event — the more detail, the better we can help.
+          </p>
+
+          <div id="mscf-field-message" class="mscf-field-group">
+            <label class="mscf-label" for="mscf-input-message"
+              >Your Message</label
+            >
+            <textarea
+              id="mscf-input-message"
+              name="message"
+              class="mscf-textarea"
+              placeholder="Tell us about your event, vision, special requests..."
+              aria-required="true"
+              rows="7"></textarea>
+            <span id="mscf-error-message" class="mscf-error-msg" role="alert"
+            ></span>
+          </div>
+
+          <!-- Error banner (submission-level errors) -->
+          <div
+            id="mscf-error-banner"
+            class="mscf-error-banner"
+            role="alert"
+            style="display:none;"
+          >
+          </div>
+        </div>
+
+        <!-- ── Honeypot: hidden from real users, bots fill it ──────── -->
+        <div style="position:absolute;left:-9999px;" aria-hidden="true">
+          <label for="mscf-input-website">Website</label>
+          <input
+            type="text"
+            id="mscf-input-website"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- ── Timing: set by JS on modal open ─────────────────────── -->
+        <input
+          type="hidden"
+          id="mscf-form-loaded"
+          name="form_loaded_at"
+          value=""
+        />
+
+        <!-- ── Action bar: Next (steps 1–4) / Submit (step 5) ──────── -->
+        <div class="mscf-action-bar">
+          <button
+            id="mscf-next-btn"
+            type="button"
+            class="mscf-btn mscf-btn--primary"
+            disabled
+            aria-label="Continue to next step"
+          >
+            Next <span class="mscf-btn-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <button
+            id="mscf-submit-btn"
+            type="button"
+            class="mscf-btn mscf-btn--primary"
+            style="display:none;"
+            disabled
+            aria-label="Submit inquiry"
+          >
+            <span class="mscf-submit-text">Submit Inquiry</span>
+            <span class="mscf-spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+      </form>
+    </div><!-- /mscf-modal-body -->
+  </div><!-- /mscf-container -->
+</div><!-- /mscf-modal -->
+
+<script
+  src={`https://www.google.com/recaptcha/enterprise.js?render=${recaptchaSiteKey}`}
+  async
+  defer></script>
+<script src="/js/multi-step-contact-form.js" defer></script>
+
+<style>
+  /* ── Trigger button ───────────────────────────────────────────────────── */
+  .mscf-trigger-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: var(--color-accent);
+    border: 0;
+    border-radius: var(--border-radius);
+    color: var(--color-text-strong);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-weight: 300;
+    font-size: 1em;
+    height: 3em;
+    padding: 0 2.25em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .mscf-trigger-btn:hover {
+    background-color: var(--color-accent-hover);
+  }
+
+  .mscf-trigger-btn:active {
+    background-color: var(--color-accent-active);
+  }
+
+  /* ── Modal overlay ───────────────────────────────────────────────────── */
+  .mscf-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9900;
+    align-items: flex-start;
+    justify-content: center;
+    background: var(--color-overlay);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mscf-modal.mscf-modal--open {
+    display: flex;
+  }
+
+  .mscf-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+  }
+
+  /* ── Modal container ─────────────────────────────────────────────────── */
+  .mscf-container {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    min-height: 100dvh;
+    background: var(--color-bg-primary);
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .mscf-modal {
+      align-items: flex-start;
+      padding: 2rem 0 4rem;
+    }
+
+    .mscf-container {
+      min-height: auto;
+      border-radius: var(--border-radius);
+      box-shadow: 0 20px 60px var(--color-shadow-strong);
+      margin-top: 2rem;
+    }
+  }
+
+  /* ── Header ──────────────────────────────────────────────────────────── */
+  .mscf-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--color-border-faint);
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    background: var(--color-bg-primary);
+    z-index: 10;
+  }
+
+  /* ── Back button ─────────────────────────────────────────────────────── */
+  .mscf-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 0.9em;
+    font-weight: 300;
+    padding: 0.4em 0.6em 0.4em 0.2em;
+    border-radius: var(--border-radius);
+    transition: color 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .mscf-back-btn:hover {
+    color: var(--color-text-strong);
+  }
+
+  .mscf-back-icon {
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+  }
+
+  /* ── Progress area ───────────────────────────────────────────────────── */
+  .mscf-progress-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+  }
+
+  .mscf-progress-track {
+    height: 4px;
+    background: var(--color-border-faint);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .mscf-progress-fill {
+    height: 100%;
+    background: var(--color-accent);
+    border-radius: 99px;
+    transition: width 0.35s ease;
+  }
+
+  .mscf-step-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .mscf-step-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-border);
+    transition:
+      background 0.2s,
+      transform 0.2s;
+  }
+
+  .mscf-step-dot--active {
+    background: var(--color-accent);
+    transform: scale(1.35);
+  }
+
+  .mscf-step-dot--complete {
+    background: var(--color-accent);
+    opacity: 0.45;
+  }
+
+  .mscf-step-label {
+    font-size: 0.72em;
+    color: var(--color-text-muted);
+    font-weight: 300;
+  }
+
+  /* ── Modal body (scrollable) ─────────────────────────────────────────── */
+  .mscf-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 1.5rem 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .mscf-modal-body {
+      padding: 0 2.5rem 3rem;
+    }
+  }
+
+  /* ── Form ────────────────────────────────────────────────────────────── */
+  .mscf-form {
+    max-width: 100%;
+  }
+
+  /* ── Step panels ─────────────────────────────────────────────────────── */
+  .mscf-step {
+    padding-top: 2rem;
+  }
+
+  .mscf-step-heading {
+    font-size: 1.45em;
+    font-weight: 400;
+    color: var(--color-text-strong);
+    margin: 0 0 0.4em;
+    line-height: 1.25;
+  }
+
+  .mscf-step-subhead {
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    font-weight: 300;
+    margin: 0 0 2rem;
+    line-height: 1.5;
+  }
+
+  .mscf-step-subhead strong {
+    color: var(--color-text);
+    font-weight: 400;
+  }
+
+  /* ── Field groups ────────────────────────────────────────────────────── */
+  .mscf-field-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .mscf-label {
+    display: block;
+    font-size: 0.85em;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    margin-bottom: 0.45em;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* ── Text / email / tel inputs ───────────────────────────────────────── */
+  .mscf-input {
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    color: var(--color-text-strong);
+    display: block;
+    font-family: var(--font-family);
+    font-size: 1.05em;
+    font-weight: 300;
+    height: 3.2em;
+    outline: none;
+    padding: 0 1em;
+    width: 100%;
+    transition: border-color 0.2s;
+  }
+
+  .mscf-input::placeholder {
+    color: var(--color-text-muted);
+    font-size: 0.9em;
+  }
+
+  .mscf-input:focus {
+    border-color: var(--color-accent);
+    background: var(--color-bg-secondary);
+  }
+
+  .mscf-input--error {
+    border-color: var(--color-accent) !important;
+  }
+
+  /* ── Textarea ────────────────────────────────────────────────────────── */
+  .mscf-textarea {
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    color: var(--color-text-strong);
+    display: block;
+    font-family: var(--font-family);
+    font-size: 1.05em;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 180px;
+    outline: none;
+    padding: 0.85em 1em;
+    resize: vertical;
+    width: 100%;
+    transition: border-color 0.2s;
+  }
+
+  .mscf-textarea::placeholder {
+    color: var(--color-text-muted);
+    font-size: 0.9em;
+  }
+
+  .mscf-textarea:focus {
+    border-color: var(--color-accent);
+  }
+
+  .mscf-textarea.mscf-input--error {
+    border-color: var(--color-accent) !important;
+  }
+
+  /* ── Error messages ──────────────────────────────────────────────────── */
+  .mscf-error-msg {
+    display: none;
+    font-size: 0.8em;
+    color: var(--color-accent);
+    margin-top: 0.4em;
+  }
+
+  /* ── Attendance slider ───────────────────────────────────────────────── */
+  .mscf-slider-wrapper {
+    position: relative;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .mscf-slider-bubble {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-50%);
+    background: var(--color-accent);
+    color: var(--color-text-strong);
+    border-radius: 6px;
+    font-size: 0.82em;
+    font-weight: 600;
+    padding: 0.2em 0.55em;
+    pointer-events: none;
+    white-space: nowrap;
+    transition: left 0.05s;
+  }
+
+  .mscf-slider-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--color-accent);
+  }
+
+  .mscf-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: 99px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .mscf-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      transform 0.15s;
+  }
+
+  .mscf-slider::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+  }
+
+  .mscf-slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .mscf-slider:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px var(--color-accent-subtle);
+  }
+
+  .mscf-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78em;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+
+  /* ── Mood tiles (step 3) ─────────────────────────────────────────────── */
+  .mscf-moods-fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mscf-mood-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 420px) {
+    .mscf-mood-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .mscf-mood-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    transition:
+      border-color 0.2s,
+      background-color 0.2s;
+    position: relative;
+  }
+
+  .mscf-mood-tile:hover {
+    border-color: var(--color-border-medium);
+    background: var(--color-bg-hover);
+  }
+
+  .mscf-mood-tile input[type='checkbox'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .mscf-mood-name {
+    font-size: 0.88em;
+    font-weight: 300;
+    color: var(--color-text);
+    line-height: 1.3;
+  }
+
+  .mscf-mood-tile:has(input:checked) {
+    border-color: var(--color-accent);
+    background: var(--color-accent-subtle);
+  }
+
+  .mscf-mood-tile:has(input:checked) .mscf-mood-name {
+    color: var(--color-text-strong);
+  }
+
+  .mscf-mood-tile:has(input:focus-visible) {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* ── Service cards (step 4) ──────────────────────────────────────────── */
+  .mscf-services-fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mscf-service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+  }
+
+  @media (max-width: 440px) {
+    .mscf-service-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .mscf-service-card {
+    display: block;
+    position: relative;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+      border-color 0.2s,
+      background-color 0.2s;
+  }
+
+  .mscf-service-card:hover {
+    border-color: var(--color-border-medium);
+    background: var(--color-bg-hover);
+  }
+
+  .mscf-service-card input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .mscf-service-card-body {
+    padding: 1.25rem 1rem;
+    text-align: center;
+  }
+
+  .mscf-service-icon {
+    font-size: 1.8em;
+    margin-bottom: 0.4rem;
+  }
+
+  .mscf-service-name {
+    font-size: 0.95em;
+    font-weight: 400;
+    color: var(--color-text-strong);
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+
+  .mscf-service-duration {
+    font-size: 0.78em;
+    color: var(--color-text-muted);
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+
+  .mscf-service-price {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .mscf-service-check {
+    display: none;
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    background: var(--color-accent);
+    border-radius: 50%;
+    color: white;
+    font-size: 0.75em;
+    line-height: 1.4rem;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .mscf-service-card--selected {
+    border-color: var(--color-accent);
+    background: var(--color-accent-subtle);
+  }
+
+  .mscf-service-card--selected .mscf-service-check {
+    display: block;
+  }
+
+  .mscf-service-card:has(input:checked) {
+    border-color: var(--color-accent);
+    background: var(--color-accent-subtle);
+  }
+
+  .mscf-service-card:has(input:checked) .mscf-service-check {
+    display: block;
+  }
+
+  .mscf-service-card:has(input:focus-visible) {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* ── Action bar ──────────────────────────────────────────────────────── */
+  .mscf-action-bar {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+  }
+
+  /* ── Buttons ─────────────────────────────────────────────────────────── */
+  .mscf-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    font-family: var(--font-family);
+    font-weight: 300;
+    font-size: 1em;
+    height: 3.2em;
+    min-width: 200px;
+    padding: 0 2.5em;
+    text-align: center;
+    transition:
+      background-color 0.2s,
+      opacity 0.2s;
+    white-space: nowrap;
+  }
+
+  .mscf-btn--primary {
+    background: var(--color-border);
+    color: var(--color-text-strong);
+    opacity: 0.35;
+  }
+
+  .mscf-btn--primary:not(:disabled) {
+    background: var(--color-accent);
+    opacity: 1;
+  }
+
+  .mscf-btn--primary:not(:disabled):hover {
+    background: var(--color-accent-hover);
+  }
+
+  .mscf-btn--primary:not(:disabled):active {
+    background: var(--color-accent-active);
+  }
+
+  .mscf-btn--primary:disabled {
+    cursor: default;
+  }
+
+  .mscf-btn-arrow {
+    font-size: 1.1em;
+    line-height: 1;
+  }
+
+  /* ── Submit spinner ──────────────────────────────────────────────────── */
+  .mscf-spinner {
+    display: none;
+    width: 1em;
+    height: 1em;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: mscf-spin 0.6s linear infinite;
+  }
+
+  .mscf-btn--loading .mscf-submit-text {
+    opacity: 0.7;
+  }
+
+  .mscf-btn--loading .mscf-spinner {
+    display: inline-block;
+  }
+
+  @keyframes mscf-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* ── Error banner ────────────────────────────────────────────────────── */
+  .mscf-error-banner {
+    background: var(--color-accent-subtle);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--border-radius);
+    color: var(--color-accent);
+    font-size: 0.9em;
+    margin-top: 1.25rem;
+    padding: 1em 1.5em;
+  }
+
+  /* ── Screen-reader only ──────────────────────────────────────────────── */
+  .mscf-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
