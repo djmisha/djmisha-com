@@ -32,6 +32,21 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
   <div class="mscf-container">
     <!-- ── Header: back button + progress ────────────────────────────── -->
     <div class="mscf-header">
+      <!-- Full-width progress bar pinned to top of header -->
+      <div
+        class="mscf-progress-track"
+        role="progressbar"
+        aria-valuemin="1"
+        aria-valuemax="5"
+      >
+        <div
+          id="mscf-progress-fill"
+          class="mscf-progress-fill"
+          style="width:20%"
+        >
+        </div>
+      </div>
+
       <button
         id="mscf-back-btn"
         class="mscf-back-btn"
@@ -55,21 +70,8 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
         <span class="mscf-back-label">Close</span>
       </button>
 
-      <!-- Progress indicator -->
+      <!-- Step dots + label, right-aligned -->
       <div class="mscf-progress-area" aria-live="polite" aria-atomic="true">
-        <div
-          class="mscf-progress-track"
-          role="progressbar"
-          aria-valuemin="1"
-          aria-valuemax="5"
-        >
-          <div
-            id="mscf-progress-fill"
-            class="mscf-progress-fill"
-            style="width:20%"
-          >
-          </div>
-        </div>
         <div class="mscf-step-dots" aria-hidden="true">
           <span class="mscf-step-dot mscf-step-dot--active" data-step="1"
           ></span>
@@ -239,11 +241,11 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
               </label>
               <label class="mscf-mood-tile">
                 <input type="checkbox" name="vibes[]" value="Chillout" />
-                <span class="mscf-mood-name">✌️ Chillout</span>
+                <span class="mscf-mood-name">😎 Chillout</span>
               </label>
               <label class="mscf-mood-tile">
                 <input type="checkbox" name="vibes[]" value="Mellow" />
-                <span class="mscf-mood-name">🌙 Mellow</span>
+                <span class="mscf-mood-name">🏖️ Mellow</span>
               </label>
 
               <!-- Group 2: Dance -->
@@ -275,9 +277,9 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
               </label>
 
               <!-- Group 4: Festival -->
-              <label class="mscf-mood-tile mscf-mood-tile--wide">
+              <label class="mscf-mood-tile">
                 <input type="checkbox" name="vibes[]" value="Festival / Rave" />
-                <span class="mscf-mood-name">🏖️ Festival / Rave</span>
+                <span class="mscf-mood-name">🪩 Festival / Rave</span>
               </label>
             </div>
             <span id="mscf-error-vibes" class="mscf-error-msg" role="alert"
@@ -532,10 +534,12 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 
   /* ── Header ──────────────────────────────────────────────────────────── */
   .mscf-header {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.65rem 1.25rem;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+    height: 3.5em;
     border-bottom: 1px solid var(--color-border-faint);
     flex-shrink: 0;
     background: var(--color-bg-primary);
@@ -570,28 +574,27 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     flex-shrink: 0;
   }
 
-  /* ── Progress area ───────────────────────────────────────────────────── */
+  /* ── Progress area (dots + label, right side) ───────────────────────── */
   .mscf-progress-area {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-    min-width: 0;
+    align-items: flex-end;
+    gap: 0.25rem;
   }
 
   .mscf-progress-track {
-    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 3px;
     background: var(--color-border-faint);
-    border-radius: 99px;
     overflow: hidden;
   }
 
   .mscf-progress-fill {
     height: 100%;
     background: rgba(255, 255, 255, 0.55);
-    border-radius: 99px;
     transition: width 0.35s ease;
   }
 
@@ -624,7 +627,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     font-size: 0.68em;
     color: var(--color-text-muted);
     font-weight: 300;
-    text-align: center;
+    text-align: right;
   }
 
   /* ── Modal body (scrollable) ─────────────────────────────────────────── */
@@ -917,11 +920,6 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     outline-offset: 2px;
   }
 
-  .mscf-mood-tile--wide {
-    grid-column: 1 / -1;
-    max-width: calc(33.333% - 0.5rem);
-  }
-
   /* ── Service cards (step 4) ──────────────────────────────────────────── */
   .mscf-services-fieldset {
     border: 0;
@@ -974,9 +972,10 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
   }
 
   .mscf-service-icon {
-    font-size: 1.5em;
+    font-size: 1.65em;
     flex-shrink: 0;
     line-height: 1;
+    padding: 0 0.85rem;
   }
 
   .mscf-service-info {
