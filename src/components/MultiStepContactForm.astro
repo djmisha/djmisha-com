@@ -151,7 +151,24 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
         <!-- ── Step 2: Event details ─────────────────────────────────── -->
         <div class="mscf-step" data-step="2" hidden>
           <h2 class="mscf-step-heading">Tell us about your event</h2>
-          <p class="mscf-step-subhead">When is it, and how big a crowd?</p>
+          <p class="mscf-step-subhead">
+            Where is it, when is it, and how big a crowd?
+          </p>
+
+          <!-- Venue / Location -->
+          <div id="mscf-field-venue" class="mscf-field-group">
+            <label class="mscf-label" for="mscf-input-venue"
+              >Venue / Location</label
+            >
+            <input
+              type="text"
+              id="mscf-input-venue"
+              name="venue"
+              class="mscf-input"
+              placeholder="e.g. The Grand Ballroom, San Diego, CA"
+              autocomplete="off"
+            />
+          </div>
 
           <!-- Event date & time -->
           <div id="mscf-field-date_time" class="mscf-field-group">
@@ -256,6 +273,12 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
                 <input type="checkbox" name="vibes[]" value="Party Rocker" />
                 <span class="mscf-mood-name">🎊 Party Rocker</span>
               </label>
+
+              <!-- Group 4: Festival -->
+              <label class="mscf-mood-tile mscf-mood-tile--wide">
+                <input type="checkbox" name="vibes[]" value="Festival / Rave" />
+                <span class="mscf-mood-name">🏖️ Festival / Rave</span>
+              </label>
             </div>
             <span id="mscf-error-vibes" class="mscf-error-msg" role="alert"
             ></span>
@@ -264,14 +287,14 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 
         <!-- ── Step 4: Service selection ─────────────────────────────── -->
         <div class="mscf-step" data-step="4" hidden>
-          <h2 class="mscf-step-heading">Choose your package</h2>
+          <h2 class="mscf-step-heading">Choose your service</h2>
           <p class="mscf-step-subhead">
             These are starting rates — final pricing depends on date, location,
             and event details. Select the option that best fits your event.
           </p>
 
           <fieldset class="mscf-services-fieldset">
-            <legend class="mscf-sr-only">Service packages</legend>
+            <legend class="mscf-sr-only">Service options</legend>
             <div class="mscf-service-grid">
               <label class="mscf-service-card">
                 <input
@@ -281,9 +304,15 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
                 />
                 <div class="mscf-service-card-body">
                   <div class="mscf-service-icon">🎷</div>
-                  <div class="mscf-service-name">DJ + Saxophone</div>
-                  <div class="mscf-service-duration">4 hours</div>
-                  <div class="mscf-service-price">from $4,000 – $5,000</div>
+                  <div class="mscf-service-info">
+                    <div class="mscf-service-name">DJ + Saxophone</div>
+                    <div class="mscf-service-meta">
+                      <span class="mscf-service-duration">4 hours</span>
+                      <span class="mscf-service-price"
+                        >from $4,000 – $5,000</span
+                      >
+                    </div>
+                  </div>
                 </div>
                 <div class="mscf-service-check" aria-hidden="true">✓</div>
               </label>
@@ -292,13 +321,17 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
                 <input
                   type="radio"
                   name="mscf-service"
-                  value="DJ for Wedding — 4 hrs (from $2,500)"
+                  value="Wedding — 4 hrs (from $2,500)"
                 />
                 <div class="mscf-service-card-body">
                   <div class="mscf-service-icon">💍</div>
-                  <div class="mscf-service-name">DJ for Wedding</div>
-                  <div class="mscf-service-duration">4 hours</div>
-                  <div class="mscf-service-price">from $2,500</div>
+                  <div class="mscf-service-info">
+                    <div class="mscf-service-name">Wedding</div>
+                    <div class="mscf-service-meta">
+                      <span class="mscf-service-duration">4 hours</span>
+                      <span class="mscf-service-price">from $2,500</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="mscf-service-check" aria-hidden="true">✓</div>
               </label>
@@ -307,13 +340,17 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
                 <input
                   type="radio"
                   name="mscf-service"
-                  value="DJ for Corporate Event — 4 hrs (from $2,500)"
+                  value="Corporate Events — 4 hrs (from $2,500)"
                 />
                 <div class="mscf-service-card-body">
                   <div class="mscf-service-icon">🏢</div>
-                  <div class="mscf-service-name">DJ for Corporate Event</div>
-                  <div class="mscf-service-duration">4 hours</div>
-                  <div class="mscf-service-price">from $2,500</div>
+                  <div class="mscf-service-info">
+                    <div class="mscf-service-name">Corporate Events</div>
+                    <div class="mscf-service-meta">
+                      <span class="mscf-service-duration">4 hours</span>
+                      <span class="mscf-service-price">from $2,500</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="mscf-service-check" aria-hidden="true">✓</div>
               </label>
@@ -322,13 +359,17 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
                 <input
                   type="radio"
                   name="mscf-service"
-                  value="DJ for Private Party — 4 hrs (from $2,000)"
+                  value="Private Party — 4 hrs (from $2,000)"
                 />
                 <div class="mscf-service-card-body">
                   <div class="mscf-service-icon">🎉</div>
-                  <div class="mscf-service-name">DJ for Private Party</div>
-                  <div class="mscf-service-duration">4 hours</div>
-                  <div class="mscf-service-price">from $2,000</div>
+                  <div class="mscf-service-info">
+                    <div class="mscf-service-name">Private Party</div>
+                    <div class="mscf-service-meta">
+                      <span class="mscf-service-duration">4 hours</span>
+                      <span class="mscf-service-price">from $2,000</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="mscf-service-check" aria-hidden="true">✓</div>
               </label>
@@ -876,6 +917,11 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     outline-offset: 2px;
   }
 
+  .mscf-mood-tile--wide {
+    grid-column: 1 / -1;
+    max-width: calc(33.333% - 0.5rem);
+  }
+
   /* ── Service cards (step 4) ──────────────────────────────────────────── */
   .mscf-services-fieldset {
     border: 0;
@@ -886,7 +932,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
   .mscf-service-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
 
   @media (max-width: 440px) {
@@ -921,62 +967,66 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
   }
 
   .mscf-service-card-body {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto auto;
-    align-items: start;
-    gap: 0 0.75rem;
-    padding: 1.1rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 0.85rem;
   }
 
   .mscf-service-icon {
-    grid-column: 1;
-    grid-row: 1 / 4;
-    font-size: 1.6em;
-    align-self: center;
+    font-size: 1.5em;
+    flex-shrink: 0;
     line-height: 1;
   }
 
+  .mscf-service-info {
+    flex: 1;
+    min-width: 0;
+  }
+
   .mscf-service-name {
-    grid-column: 2;
-    grid-row: 1;
-    font-size: 0.98em;
+    font-size: 1.05em;
     font-weight: 600;
     color: var(--color-text-strong);
-    line-height: 1.25;
-    margin-bottom: 0.2rem;
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+    text-align: left;
+  }
+
+  .mscf-service-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.4rem;
   }
 
   .mscf-service-duration {
-    grid-column: 2;
-    grid-row: 2;
-    font-size: 0.75em;
+    font-size: 0.72em;
     color: var(--color-text-muted);
     font-weight: 300;
-    margin-bottom: 0.35rem;
+    flex-shrink: 0;
   }
 
   .mscf-service-price {
-    grid-column: 2;
-    grid-row: 3;
-    font-size: 0.85em;
+    font-size: 0.72em;
     font-weight: 400;
     color: var(--color-text-muted);
-    letter-spacing: 0.01em;
+    text-align: right;
+    white-space: nowrap;
   }
 
   .mscf-service-check {
     display: none;
     position: absolute;
-    top: 0.55rem;
-    right: 0.55rem;
-    width: 1.25rem;
-    height: 1.25rem;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 1.1rem;
+    height: 1.1rem;
     background: var(--color-accent);
     border-radius: 50%;
     color: white;
-    font-size: 0.7em;
-    line-height: 1.25rem;
+    font-size: 0.65em;
+    line-height: 1.1rem;
     text-align: center;
     font-weight: 700;
   }

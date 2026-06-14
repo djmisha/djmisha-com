@@ -3,7 +3,7 @@
  * User Confirmation Email Template — mscf-user-confirmation.php
  *
  * Receives $data array with multi-step form fields:
- *   name, email, phone, date_time, attendance, vibes[], service, message
+ *   name, email, phone, venue, date_time, attendance, vibes[], service, message
  * All user-supplied values are escaped with htmlspecialchars().
  */
 
@@ -68,6 +68,9 @@ if (!empty($data['vibes']) && is_array($data['vibes'])) {
 <b>Name:</b> <?= $e($data['name']) ?><br>
 <b>Email Address:</b> <?= $e($data['email']) ?><br>
 <b>Phone Number:</b> <?= $e($data['phone']) ?><br>
+<?php if (!empty($data['venue'])): ?>
+<b>Venue / Location:</b> <?= $e($data['venue']) ?><br>
+<?php endif; ?>
 <b>Event Date &amp; Time:</b> <?= $e($data['date_time']) ?><br>
 <b>Expected Attendance:</b> <?= $e($data['attendance']) ?><br>
 <b>Select a service:</b> <?= $e($data['service']) ?><br>

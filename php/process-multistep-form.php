@@ -15,8 +15,7 @@
  *   9. Send emails
  *  10. Return success JSON
  *
- * Fields: name, email, phone, date_time, attendance, vibes[], service, message
- * Removed from original form: event_type, venue
+ * Fields: name, email, phone, venue, date_time, attendance, vibes[], service, message
  */
 
 // ── Suppress error display ──────────────────────────────────────────────────
@@ -159,6 +158,7 @@ if (!$LOCAL_DEV) {
 $name       = trim(strip_tags($_POST['name'] ?? ''));
 $email      = trim(strip_tags($_POST['email'] ?? ''));
 $phone      = trim(strip_tags($_POST['phone'] ?? ''));
+$venue      = trim(strip_tags($_POST['venue'] ?? ''));
 $date_time  = trim(strip_tags($_POST['date_time'] ?? ''));
 $attendance = trim(strip_tags($_POST['attendance'] ?? ''));
 $service    = trim(strip_tags($_POST['service'] ?? ''));
@@ -176,7 +176,7 @@ $vibes = array_values(array_filter(array_map(function ($v) {
 }));
 
 // Reject newline characters in single-line fields (header injection protection)
-$singleLineFields = [$name, $email, $phone, $date_time, $attendance, $service];
+$singleLineFields = [$name, $email, $phone, $venue, $date_time, $attendance, $service];
 foreach ($vibes as $v) {
     $singleLineFields[] = $v;
 }
@@ -214,6 +214,7 @@ $data = [
     'name'       => $name,
     'email'      => $email,
     'phone'      => $phone,
+    'venue'      => $venue,
     'date_time'  => $date_time,
     'attendance' => $attendance,
     'service'    => $service,

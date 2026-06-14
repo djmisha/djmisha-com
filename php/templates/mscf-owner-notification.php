@@ -3,7 +3,7 @@
  * Owner Notification Email Template — mscf-owner-notification.php
  *
  * Receives $data array with multi-step form fields:
- *   name, email, phone, date_time, attendance, vibes[], service, message
+ *   name, email, phone, venue, date_time, attendance, vibes[], service, message
  * All user-supplied values are escaped with htmlspecialchars().
  *
  * Headers set by process-multistep-form.php:
@@ -38,6 +38,9 @@ if (!empty($data['vibes']) && is_array($data['vibes'])) {
 <b>Name:</b> <?= $e($data['name']) ?><br>
 <b>Email Address:</b> <a href="mailto:<?= $e($data['email']) ?>" style="color:#1a73e8;"><?= $e($data['email']) ?></a><br>
 <b>Phone Number:</b> <?= $e($data['phone']) ?><br>
+<?php if (!empty($data['venue'])): ?>
+<b>Venue / Location:</b> <?= $e($data['venue']) ?><br>
+<?php endif; ?>
 <b>Event Date &amp; Time:</b> <?= $e($data['date_time']) ?><br>
 <b>Expected Attendance:</b> <?= $e($data['attendance']) ?><br>
 <b>Select a service:</b> <?= $e($data['service']) ?><br>

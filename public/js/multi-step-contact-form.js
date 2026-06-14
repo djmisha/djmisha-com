@@ -28,6 +28,7 @@
     name: '',
     email: '',
     phone: '',
+    venue: '',
     date_time: '',
     attendance: '25',
     moods: [],
@@ -289,6 +290,7 @@
       setVal('mscf-input-email', state.email);
       setVal('mscf-input-phone', state.phone);
     } else if (n === 2) {
+      setVal('mscf-input-venue', state.venue);
       setVal('mscf-input-date_time', state.date_time);
       var slider = byId('mscf-input-attendance');
       if (slider) {
@@ -471,6 +473,15 @@
       });
     }
 
+    // Step 2 — venue / location
+    var venueEl = byId('mscf-input-venue');
+    if (venueEl) {
+      venueEl.addEventListener('input', function () {
+        state.venue = this.value;
+        saveState();
+      });
+    }
+
     // Step 2 — date / time
     var dtEl = byId('mscf-input-date_time');
     if (dtEl) {
@@ -571,6 +582,7 @@
     params.append('name', state.name);
     params.append('email', state.email);
     params.append('phone', state.phone);
+    params.append('venue', state.venue);
     params.append('date_time', state.date_time);
     params.append('attendance', state.attendance);
     state.moods.forEach(function (mood) {
