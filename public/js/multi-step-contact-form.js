@@ -30,7 +30,7 @@
     phone: '',
     venue: '',
     date_time: '',
-    attendance: '25',
+    attendance: '100',
     moods: [],
     service: '',
     message: '',
