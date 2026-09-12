@@ -23,6 +23,7 @@ const {
   twitterImage,
   jsonLd,
   extraHeadContent,
+  noindex = false,
 } = Astro.props;
 
 // Fall back to meta description when OG/Twitter descriptions aren't explicitly set
@@ -52,6 +53,14 @@ function esc(s?: string): string {
 <!doctype html>
 <html lang="en">
   <head>
+    {
+      /* Mark JS as available before paint so progressive-disclosure sections can
+        collapse without a flash of expanded content. No-JS keeps all content visible. */
+    }
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+
     {/* 1. Title */}
     <title>{title}</title>
 
@@ -73,6 +82,9 @@ function esc(s?: string): string {
 
     {/* 4. Canonical URL */}
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    {/* Robots noindex (demo / non-canonical pages) */}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     {/* 5. Open Graph meta tags */}
     <meta property="og:site_name" content={siteName} />

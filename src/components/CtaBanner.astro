@@ -1,0 +1,80 @@
+---
+/**
+ * CtaBanner — full-width accent band with a call-to-action button.
+ * Replaces the booking sidebar that landing pages lose vs. PageLayout.
+ */
+export interface Props {
+  href?: string;
+  buttonLabel?: string;
+}
+
+const { href = '/contact/', buttonLabel = 'Book Your Date' } = Astro.props;
+---
+
+<section class="cta-banner">
+  <div class="cta-banner__inner">
+    <div class="cta-banner__text">
+      <slot />
+    </div>
+    <a class="cta-banner__button" href={href}>{buttonLabel}</a>
+  </div>
+</section>
+
+<style>
+  .cta-banner {
+    padding: var(--section-padding-y) var(--section-padding-x);
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .cta-banner__inner {
+    max-width: var(--section-max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5em 2em;
+  }
+
+  .cta-banner__text {
+    flex: 1 1 22em;
+  }
+
+  .cta-banner__text :global(*) {
+    color: #fff;
+  }
+
+  .cta-banner__text :global(:first-child) {
+    margin-top: 0;
+  }
+
+  .cta-banner__text :global(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .cta-banner__button {
+    flex: 0 0 auto;
+    display: inline-block;
+    padding: 0.9em 2.2em;
+    background: #fff;
+    color: var(--color-accent);
+    font-weight: 600;
+    border: none;
+    text-decoration: none;
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .cta-banner__button:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-banner__button {
+      transition: none;
+    }
+  }
+</style>
