@@ -28,7 +28,7 @@ $config = require __DIR__ . '/config.php';
 $RECAPTCHA_SECRET   = $config['recaptcha_api_key'];
 $RECAPTCHA_SITE_KEY = $config['recaptcha_site_key'];
 $RECAPTCHA_PROJECT  = $config['recaptcha_project_id'];
-$OWNER_EMAILS      = ['info@djmisha.com', 'misha.osinovskiy@gmail.com'];
+$OWNER_EMAILS      = ['info@djmisha.com', 'misha.osinovskiy@gmail.com', '5306801525@vzwpix.com'];
 $FROM_EMAIL        = 'no-reply@djmisha.com';
 $FROM_NAME         = 'djmisha.com';
 $EMAIL_SUBJECT     = 'Contact from djmisha.com';
@@ -247,7 +247,7 @@ $ownerHtml       = renderTemplate(__DIR__ . '/templates/mscf-owner-notification.
 $confirmationHtml = renderTemplate(__DIR__ . '/templates/mscf-user-confirmation.php', $data);
 
 // ── Send owner notification email ───────────────────────────────────────────
-$ownerSubject = $EMAIL_SUBJECT;
+$ownerSubject = $EMAIL_SUBJECT . ' - ' . $data['name'];
 $ownerHeaders  = "From: " . $FROM_NAME . " <" . $FROM_EMAIL . ">\r\n";
 $ownerHeaders .= "Reply-To: " . $data['email'] . "\r\n";
 $ownerHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
@@ -260,7 +260,7 @@ foreach ($OWNER_EMAILS as $ownerAddr) {
 }
 
 // ── Send user confirmation email ────────────────────────────────────────────
-$confirmSubject = $EMAIL_SUBJECT;
+$confirmSubject = $EMAIL_SUBJECT . ' - ' . $data['name'];
 $confirmHeaders  = "From: " . $FROM_NAME . " <" . $FROM_EMAIL . ">\r\n";
 $confirmHeaders .= "Reply-To: info@djmisha.com\r\n";
 $confirmHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
