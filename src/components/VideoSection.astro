@@ -1,0 +1,115 @@
+---
+/**
+ * VideoSection — full-width band with a click-to-load YouTube facade. The
+ * iframe is only injected on interaction, so the embed never blocks initial load.
+ */
+import SectionHeading from './SectionHeading.astro';
+
+export interface Props {
+  videoId: string;
+  title: string;
+  eyebrow?: string;
+  heading?: string;
+  alt?: boolean;
+  id?: string;
+}
+
+const { videoId, title, eyebrow, heading, alt = false, id } = Astro.props;
+const thumb = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<section id={id} class:list={['video-section', { 'section--alt': alt }]}>
+  <div class="video-section__inner">
+    {heading && <SectionHeading eyebrow={eyebrow} title={heading} />}
+    <button
+      class="video-facade"
+      type="button"
+      data-video-id={videoId}
+      data-video-title={title}
+      style={`background-image: url('${thumb}');`}
+      aria-label={`Play video: ${title}`}
+    >
+      <span class="video-facade__play" aria-hidden="true">▶</span>
+    </button>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.video-facade').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-video-id');
+      const title = btn.getAttribute('data-video-title') ?? '';
+      if (!id) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+      iframe.title = title;
+      iframe.allow =
+        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.loading = 'lazy';
+      iframe.className = 'video-embed';
+      btn.replaceWith(iframe);
+    });
+  });
+</script>
+
+<style>
+  .video-section {
+    padding: var(--section-padding-y) var(--section-padding-x);
+  }
+
+  .video-section__inner {
+    max-width: var(--section-max-width);
+    margin: 0 auto;
+  }
+
+  .video-facade,
+  .video-section__inner :global(.video-embed) {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+  }
+
+  .video-facade {
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .video-facade::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    transition: background-color 0.2s ease;
+  }
+
+  .video-facade:hover::after {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .video-facade__play {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 1.4rem;
+    padding-left: 0.2em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-facade::after {
+      transition: none;
+    }
+  }
+</style>

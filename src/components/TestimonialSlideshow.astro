@@ -1,11 +1,15 @@
 ---
+import SectionHeading from './SectionHeading.astro';
+
 export interface Props {
   reviewIds: string[];
+  eyebrow?: string;
+  heading?: string;
 }
 
 import reviewsData from '../data/reviews.json';
 
-const { reviewIds } = Astro.props;
+const { reviewIds, eyebrow, heading } = Astro.props;
 
 const reviews = reviewIds
   .map((id) => reviewsData.reviews.find((r) => r.id === id))
@@ -16,10 +20,19 @@ const reviews = reviewIds
 {
   reviews.length > 0 && (
     <section class="testimonial-slideshow">
+      {heading && <SectionHeading eyebrow={eyebrow} title={heading} />}
       <div class="embla" data-testimonial-carousel>
         <div class="embla__container">
           {reviews.map((review) => (
             <div class="embla__slide">
+              {review.rating > 0 && (
+                <p
+                  class="testimonial-stars"
+                  aria-label={`${review.rating} out of 5 stars`}
+                >
+                  {'★'.repeat(review.rating)}
+                </p>
+              )}
               <blockquote class="testimonial-text">{review.text}</blockquote>
               <p class="testimonial-author">— {review.author}</p>
             </div>
@@ -42,15 +55,17 @@ const reviews = reviewIds
 <script>
   import EmblaCarousel from 'embla-carousel';
 
-  const viewport = document.querySelector(
-    '[data-testimonial-carousel]',
-  ) as HTMLElement | null;
-  const dotsContainer = document.querySelector(
-    '[data-testimonial-dots]',
-  ) as HTMLElement | null;
+  document.querySelectorAll('.testimonial-slideshow').forEach((slideshow) => {
+    const viewport = slideshow.querySelector(
+      '[data-testimonial-carousel]',
+    ) as HTMLElement | null;
+    const dotsContainer = slideshow.querySelector(
+      '[data-testimonial-dots]',
+    ) as HTMLElement | null;
 
-  if (viewport && dotsContainer) {
-    const embla = EmblaCarousel(viewport, { loop: false });
+    if (!viewport || !dotsContainer) return;
+
+    const embla = EmblaCarousel(viewport, { loop: true });
     const dots = dotsContainer.querySelectorAll('.embla__dot');
 
     const updateDots = () => {
@@ -67,18 +82,25 @@ const reviews = reviewIds
         embla.scrollTo(index);
       });
     });
-  }
+  });
 </script>
 
 <style>
   .testimonial-slideshow {
-    padding: 4em 2em;
-    max-width: 70em;
+    padding: var(--section-padding-y) var(--section-padding-x);
+    max-width: var(--section-max-width);
     margin: 0 auto;
   }
 
   .embla {
     overflow: hidden;
+  }
+
+  .testimonial-stars {
+    margin: 0 0 0.75em 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--color-star-filled);
   }
 
   .embla__container {
@@ -88,15 +110,20 @@ const reviews = reviewIds
   .embla__slide {
     flex: 0 0 100%;
     min-width: 0;
+    min-height: 14em;
     padding: 0 1em;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .testimonial-text {
     font-size: 1.15rem;
     line-height: 1.7;
     font-style: italic;
-    color: #333;
+    color: var(--color-text);
     margin: 0 0 1.5em 0;
     padding: 0;
     border: none;
@@ -105,36 +132,48 @@ const reviews = reviewIds
   .testimonial-author {
     font-size: 1rem;
     font-weight: 600;
-    color: #555;
+    color: var(--color-text-muted);
     margin: 0;
   }
 
   .embla__dots {
     display: flex;
     justify-content: center;
-    gap: 0.5em;
+    gap: 0.25em;
     margin-top: 2em;
   }
 
+  /* Button is a 44px tap target; the visible dot is the ::before pseudo. */
   .embla__dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 2px solid #999;
+    width: 44px;
+    height: 44px;
+    border: none;
     background: transparent;
     cursor: pointer;
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .embla__dot::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    background: transparent;
     transition:
       background-color 0.3s ease,
       border-color 0.3s ease;
   }
 
-  .embla__dot:hover {
-    border-color: #333;
+  .embla__dot:hover::before {
+    border-color: var(--color-text);
   }
 
-  .embla__dot--active {
-    background: #333;
-    border-color: #333;
+  .embla__dot--active::before {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
   }
 </style>

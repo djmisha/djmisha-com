@@ -1,0 +1,83 @@
+---
+/**
+ * TimelineItem — one entry in a TimelineSection: a marker, title, an always-
+ * visible overview (default slot), and an optional `details` slot. When the
+ * parent TimelineSection is `expandable`, the details are collapsed (when JS is
+ * on) and revealed by the section-level button. Details are always in the HTML.
+ */
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+const hasDetails = Astro.slots.has('details');
+---
+
+<li class="timeline-item">
+  <h3 class="timeline-item__title">{title}</h3>
+  <div class="timeline-item__body">
+    <slot />
+  </div>
+  {
+    hasDetails && (
+      <div class="collapsible timeline-item__more" data-collapsed>
+        <div class="collapsible__inner">
+          <div class="timeline-item__more-content">
+            <slot name="details" />
+          </div>
+        </div>
+      </div>
+    )
+  }
+</li>
+
+<style>
+  .timeline-item {
+    position: relative;
+    padding: 0 0 2.5em 2.25em;
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  /* The marker dot, sitting on the spine */
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.35em;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 4px var(--color-bg-primary);
+  }
+
+  .timeline-item__title {
+    margin: 0 0 0.5em 0;
+    font-size: 1.25rem;
+    color: var(--color-text-strong);
+  }
+
+  .timeline-item__body :global(:first-child) {
+    margin-top: 0;
+  }
+
+  .timeline-item__body :global(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .timeline-item__more-content {
+    padding-top: 0.75em;
+  }
+
+  .timeline-item__more-content :global(:first-child) {
+    margin-top: 0;
+  }
+
+  .timeline-item__more-content :global(:last-child) {
+    margin-bottom: 0;
+  }
+</style>
