@@ -1,0 +1,92 @@
+---
+/**
+ * PricingCallout — highlight band that foregrounds a price as the focal stat.
+ * Pass the supporting copy as the default slot; content stays identical.
+ */
+import SectionHeading from './SectionHeading.astro';
+
+export interface Props {
+  price: string;
+  caption?: string;
+  alt?: boolean;
+  id?: string;
+  eyebrow?: string;
+  heading?: string;
+}
+
+const { price, caption, alt = false, id, eyebrow, heading } = Astro.props;
+---
+
+<section id={id} class:list={['pricing-callout', { 'section--alt': alt }]}>
+  {
+    heading && (
+      <div class="pricing-callout__heading">
+        <SectionHeading eyebrow={eyebrow} title={heading} />
+      </div>
+    )
+  }
+  <div class="pricing-callout__inner">
+    <div class="pricing-callout__stat">
+      <span class="pricing-callout__price">{price}</span>
+      {caption && <span class="pricing-callout__caption">{caption}</span>}
+    </div>
+    <div class="pricing-callout__body">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-callout {
+    padding: var(--section-padding-y) var(--section-padding-x);
+  }
+
+  .pricing-callout__heading {
+    max-width: var(--section-max-width);
+    margin: 0 auto;
+  }
+
+  .pricing-callout__inner {
+    max-width: var(--section-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 16em) 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    background: var(--color-bg-secondary);
+    border-left: 4px solid var(--color-accent);
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .pricing-callout__stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-callout__price {
+    font-size: clamp(2.2rem, 6vw, 3.25rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-accent);
+  }
+
+  .pricing-callout__caption {
+    margin-top: 0.5em;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .pricing-callout__body :global(:first-child) {
+    margin-top: 0;
+  }
+
+  .pricing-callout__body :global(:last-child) {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 600px) {
+    .pricing-callout__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

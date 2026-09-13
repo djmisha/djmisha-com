@@ -1,0 +1,42 @@
+---
+/**
+ * CenteredTextBlock — an intro/prose band. Defaults to centered narrow text;
+ * pass align="left" for a wider, left-aligned, better-organized intro.
+ */
+export interface Props {
+  align?: 'center' | 'left';
+  id?: string;
+}
+
+const { align = 'center', id } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={['centered-text-block', `centered-text-block--${align}`]}
+>
+  <div class="centered-text-block__content">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .centered-text-block {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .centered-text-block__content {
+    margin: 0 auto;
+    padding: 0 var(--section-padding-x);
+  }
+
+  .centered-text-block--center .centered-text-block__content {
+    max-width: var(--section-text-measure);
+    text-align: center;
+  }
+
+  .centered-text-block--left .centered-text-block__content {
+    max-width: 52rem;
+    text-align: left;
+  }
+</style>
