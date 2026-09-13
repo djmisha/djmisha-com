@@ -15,21 +15,21 @@ $e = function ($value) {
 };
 
 $lines = [];
-$lines[] = 'NEW EVENT SUBMITTED:';
-$lines[] = 'NAME: ' . $e($data['name'] ?? '');
-$lines[] = 'EMAIL: ' . $e($data['email'] ?? '');
-$lines[] = 'PHONE: ' . $e($data['phone'] ?? '');
-$lines[] = 'DATE: ' . $e($data['date_time'] ?? '');
-$lines[] = 'VENUE: ' . $e($data['venue'] ?? '');
-$lines[] = 'EVENT TYPE: ' . $e($data['service'] ?? '');
-$lines[] = 'ATTENDANCE: ' . $e($data['attendance'] ?? '');
+$lines[] = 'New lead from djmisha.com:';
+$lines[] = 'Name: ' . $e($data['name'] ?? '');
+$lines[] = 'Email: ' . $e($data['email'] ?? '');
+$lines[] = 'Phone: ' . $e($data['phone'] ?? '');
+$lines[] = 'Date: ' . $e($data['date_time'] ?? '');
+$lines[] = 'Venue: ' . $e($data['venue'] ?? '');
+$lines[] = 'Type: ' . $e($data['service'] ?? '');
+$lines[] = 'Attendance: ' . $e($data['attendance'] ?? '');
 
 if (!empty($data['vibes']) && is_array($data['vibes'])) {
-    $lines[] = 'VIBES: ' . implode(', ', array_map($e, $data['vibes']));
+    $lines[] = 'Vibes: ' . implode(', ', array_map($e, $data['vibes']));
 }
 
 if (!empty($data['message'])) {
-    $lines[] = 'MESSAGE: ' . $e($data['message']);
+    $lines[] = 'Message: ' . $e($data['message']);
 }
 
 $body = implode("\r\n", $lines);
