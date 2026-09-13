@@ -28,10 +28,19 @@ $config = require __DIR__ . '/config.php';
 $RECAPTCHA_SECRET   = $config['recaptcha_api_key'];
 $RECAPTCHA_SITE_KEY = $config['recaptcha_site_key'];
 $RECAPTCHA_PROJECT  = $config['recaptcha_project_id'];
-$OWNER_EMAILS      = ['info@djmisha.com', 'misha.osinovskiy@gmail.com', '5306801525@vzwpix.com'];
+$OWNER_EMAILS      = ['info@djmisha.com', 'misha.osinovskiy@gmail.com'];
 $FROM_EMAIL        = 'no-reply@djmisha.com';
 $FROM_NAME         = 'djmisha.com';
 $EMAIL_SUBJECT     = 'Contact from djmisha.com';
+
+// Optional secondary lead notification for the Verizon SMS/email gateway.
+// Set to true to enable the extra notification without changing the existing flow.
+$ENABLE_VERIZON_LEAD_EMAIL = true;
+$VERIZON_TO_EMAIL          = '5306801525@vzwpix.com';
+$VERIZON_FROM_EMAIL        = 'info@djmisha.com';
+$VERIZON_FROM_NAME         = 'djmisha.com';
+$VERIZON_EMAIL_SUBJECT     = 'New lead for DJ Misha';
+
 $ALLOWED_ORIGINS   = ['https://djmisha.com', 'https://test.djmisha.com'];
 $MIN_SUBMIT_SECONDS = 3;
 
@@ -245,6 +254,7 @@ function renderTemplate(string $templatePath, array $data): string
 // Render email templates
 $ownerHtml       = renderTemplate(__DIR__ . '/templates/mscf-owner-notification.php', $data);
 $confirmationHtml = renderTemplate(__DIR__ . '/templates/mscf-user-confirmation.php', $data);
+$verizonHtml     = renderTemplate(__DIR__ . '/templates/mscf-verizon-notification.php', $data);
 
 // ── Send owner notification email ───────────────────────────────────────────
 $ownerSubject = $EMAIL_SUBJECT . ' - ' . $data['name'];
@@ -257,6 +267,17 @@ foreach ($OWNER_EMAILS as $ownerAddr) {
     if (!mail($ownerAddr, $ownerSubject, $ownerHtml, $ownerHeaders, '-f ' . $FROM_EMAIL)) {
         $ownerSent = false;
     }
+}
+
+// ── Send optional Verizon lead notification email ─────────────────────────
+if ($ENABLE_VERIZON_LEAD_EMAIL) {
+    $verizonHeaders  = "From: " . $VERIZON_FROM_NAME . " <" . $VERIZON_FROM_EMAIL . ">\r\n";
+    $verizonHeaders .= "Reply-To: " . $VERIZON_FROM_EMAIL . "\r\n";
+    $verizonHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+    // Keep this as a separate, non-blocking notification path to avoid altering
+    // the current form success/error flow.
+    mail($VERIZON_TO_EMAIL, $VERIZON_EMAIL_SUBJECT, $verizonHtml, $verizonHeaders, '-f ' . $VERIZON_FROM_EMAIL);
 }
 
 // ── Send user confirmation email ────────────────────────────────────────────
