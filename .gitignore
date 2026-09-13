@@ -34,3 +34,6 @@ vrt-output/
 tests/
 .kiro/
 
+# AI configs
+launch.json
+opencode.json

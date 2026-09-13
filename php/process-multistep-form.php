@@ -1,8 +1,8 @@
 <?php
 /**
- * Contact Form Processor — php/process-form.php
+ * Multi-Step Contact Form Processor — php/process-multistep-form.php
  *
- * Handles contact form submissions from djmisha.com.
+ * Handles multi-step contact form submissions from djmisha.com.
  * Request flow:
  *   1. Reject non-POST → 405
  *   2. CSRF check (Origin/Referer) → 403
@@ -14,6 +14,8 @@
  *   8. Validate email & phone → 422
  *   9. Send emails
  *  10. Return success JSON
+ *
+ * Fields: name, email, phone, venue, date_time, attendance, vibes[], service, message
  */
 
 // ── Suppress error display ──────────────────────────────────────────────────
@@ -26,10 +28,18 @@ $config = require __DIR__ . '/config.php';
 $RECAPTCHA_SECRET   = $config['recaptcha_api_key'];
 $RECAPTCHA_SITE_KEY = $config['recaptcha_site_key'];
 $RECAPTCHA_PROJECT  = $config['recaptcha_project_id'];
-$OWNER_EMAILS      = ['info@djmisha.com', 'misha.osinovskiy@gmail.com', '5306801525@vzwpix.com'];
+$OWNER_EMAILS      = ['info@djmisha.com', 'misha.osinovskiy@gmail.com'];
 $FROM_EMAIL        = 'no-reply@djmisha.com';
 $FROM_NAME         = 'djmisha.com';
 $EMAIL_SUBJECT     = 'Contact from djmisha.com';
+
+// Optional secondary lead notification for the Verizon SMS/email gateway.
+// Set to true to enable the extra notification without changing the existing flow.
+$ENABLE_VERIZON_LEAD_EMAIL = true;
+$VERIZON_TO_EMAIL          = '5306801525@vzwpix.com';
+$VERIZON_FROM_EMAIL        = 'info@djmisha.com';
+$VERIZON_FROM_NAME         = 'djmisha.com';
+
 $ALLOWED_ORIGINS   = ['https://djmisha.com', 'https://test.djmisha.com'];
 $MIN_SUBMIT_SECONDS = 3;
 
@@ -42,7 +52,6 @@ $LOCAL_DEV = (
 if ($LOCAL_DEV) {
     $ALLOWED_ORIGINS = ['http://' . $_SERVER['HTTP_HOST']];
 }
-$MIN_SUBMIT_SECONDS = 3; // Minimum seconds between form load and submit
 
 // ── JSON response helper ────────────────────────────────────────────────────
 /**
@@ -99,8 +108,6 @@ if ($formLoadedAt <= 0 || ($now - $formLoadedAt) < $MIN_SUBMIT_SECONDS) {
     // Submitted too fast (or missing timestamp) — likely a bot
     jsonResponse(true, 'Thank you! Your message has been sent successfully.');
 }
-
-$clientIp = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
 
 // ── 5. reCAPTCHA Enterprise verification (skipped in local dev mode) ────────
 if (!$LOCAL_DEV) {
@@ -159,10 +166,9 @@ if (!$LOCAL_DEV) {
 $name       = trim(strip_tags($_POST['name'] ?? ''));
 $email      = trim(strip_tags($_POST['email'] ?? ''));
 $phone      = trim(strip_tags($_POST['phone'] ?? ''));
-$event_type = trim(strip_tags($_POST['event_type'] ?? ''));
-$attendance = trim(strip_tags($_POST['attendance'] ?? ''));
 $venue      = trim(strip_tags($_POST['venue'] ?? ''));
 $date_time  = trim(strip_tags($_POST['date_time'] ?? ''));
+$attendance = trim(strip_tags($_POST['attendance'] ?? ''));
 $service    = trim(strip_tags($_POST['service'] ?? ''));
 $message    = trim(strip_tags($_POST['message'] ?? ''));
 
@@ -178,7 +184,7 @@ $vibes = array_values(array_filter(array_map(function ($v) {
 }));
 
 // Reject newline characters in single-line fields (header injection protection)
-$singleLineFields = [$name, $email, $phone, $event_type, $attendance, $venue, $date_time, $service];
+$singleLineFields = [$name, $email, $phone, $venue, $date_time, $attendance, $service];
 foreach ($vibes as $v) {
     $singleLineFields[] = $v;
 }
@@ -193,10 +199,8 @@ if (
     $name === '' ||
     $email === '' ||
     $phone === '' ||
-    $event_type === '' ||
-    $attendance === '' ||
-    $venue === '' ||
     $date_time === '' ||
+    $attendance === '' ||
     $service === '' ||
     $message === '' ||
     empty($vibes)
@@ -218,10 +222,9 @@ $data = [
     'name'       => $name,
     'email'      => $email,
     'phone'      => $phone,
-    'event_type' => $event_type,
-    'attendance' => $attendance,
     'venue'      => $venue,
     'date_time'  => $date_time,
+    'attendance' => $attendance,
     'service'    => $service,
     'vibes'      => $vibes,
     'message'    => $message,
@@ -248,8 +251,9 @@ function renderTemplate(string $templatePath, array $data): string
 }
 
 // Render email templates
-$ownerHtml       = renderTemplate(__DIR__ . '/templates/owner-notification.php', $data);
-$confirmationHtml = renderTemplate(__DIR__ . '/templates/user-confirmation.php', $data);
+$ownerHtml       = renderTemplate(__DIR__ . '/templates/mscf-owner-notification.php', $data);
+$confirmationHtml = renderTemplate(__DIR__ . '/templates/mscf-user-confirmation.php', $data);
+$verizonHtml     = renderTemplate(__DIR__ . '/templates/mscf-verizon-notification.php', $data);
 
 // ── Send owner notification email ───────────────────────────────────────────
 $ownerSubject = $EMAIL_SUBJECT . ' - ' . $data['name'];
@@ -262,6 +266,17 @@ foreach ($OWNER_EMAILS as $ownerAddr) {
     if (!mail($ownerAddr, $ownerSubject, $ownerHtml, $ownerHeaders, '-f ' . $FROM_EMAIL)) {
         $ownerSent = false;
     }
+}
+
+// ── Send optional Verizon lead notification email ─────────────────────────
+if ($ENABLE_VERIZON_LEAD_EMAIL) {
+    $verizonHeaders  = "From: " . $VERIZON_FROM_NAME . " <" . $VERIZON_FROM_EMAIL . ">\r\n";
+    $verizonHeaders .= "Reply-To: " . $VERIZON_FROM_EMAIL . "\r\n";
+    $verizonHeaders .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+    // Keep this as a separate, non-blocking notification path to avoid altering
+    // the current form success/error flow.
+    mail($VERIZON_TO_EMAIL, '', $verizonHtml, $verizonHeaders, '-f ' . $VERIZON_FROM_EMAIL);
 }
 
 // ── Send user confirmation email ────────────────────────────────────────────

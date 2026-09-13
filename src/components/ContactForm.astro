@@ -155,8 +155,8 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
           aria-required="true"
         >
           <option value="" disabled selected>Select an option</option>
-          <option value="DJ + Saxophone — 4 hrs (from $4000 — $5000)"
-            >DJ + Saxophone — 4 hrs (from $4000 — $5000)</option
+          <option value="DJ + Saxophone — 4 hrs (from $4000 – $5000)"
+            >DJ + Saxophone — 4 hrs (from $4000 – $5000)</option
           >
           <option value="DJ for Wedding —  4 hrs (from $2500)"
             >DJ for Wedding — 4 hrs (from $2500)</option
@@ -172,42 +172,39 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
         ></span>
       </div>
 
-      <!-- Field 9: Vibes/Mood Checkboxes (full width, description above checkboxes) -->
-      <fieldset id="cf-field-vibes" class="cf-field-group cf-checkbox-group">
-        <legend class="cf-label">The vibes and mood at my event will be:</legend
-        >
-        <p class="cf-description" id="cf-description-vibes">
-          Please select all that may apply
-        </p>
-        <div class="cf-checkbox-options">
-          <label class="cf-checkbox-label">
-            <input
-              type="checkbox"
-              name="vibes[]"
-              value="Lounge, Chillout, Mellow"
-              aria-describedby="cf-description-vibes"
-            />
-            Lounge, Chillout, Mellow
-          </label>
-          <label class="cf-checkbox-label">
-            <input
-              type="checkbox"
-              name="vibes[]"
-              value="Groovy, Funky, Vibing"
-            />
-            Groovy, Funky, Vibing
-          </label>
-          <label class="cf-checkbox-label">
-            <input
-              type="checkbox"
-              name="vibes[]"
-              value="Epic, Total Rager, Party Rocker"
-            />
-            Epic, Total Rager, Party Rocker
-          </label>
-        </div>
-        <span id="cf-error-vibes" class="cf-error-message" role="alert"></span>
-      </fieldset>
+    <!-- Field 9: Vibes/Mood Checkboxes (full width, description above checkboxes) -->
+    <fieldset id="cf-field-vibes" class="cf-field-group cf-checkbox-group">
+      <legend class="cf-label"
+        >The vibes and mood at my event will be:</legend
+      >
+      <p class="cf-description" id="cf-description-vibes">
+        Please select all that may apply
+      </p>
+      <div class="cf-checkbox-options">
+        <label class="cf-checkbox-label">
+          <input
+            type="checkbox"
+            name="vibes[]"
+            value="Lounge, Chillout, Mellow"
+            aria-describedby="cf-description-vibes"
+          />
+          Lounge, Chillout, Mellow
+        </label>
+        <label class="cf-checkbox-label">
+          <input type="checkbox" name="vibes[]" value="Groovy, Funky, Vibing" />
+          Groovy, Funky, Vibing
+        </label>
+        <label class="cf-checkbox-label">
+          <input
+            type="checkbox"
+            name="vibes[]"
+            value="Epic, Total Rager, Party Rocker"
+          />
+          Epic, Total Rager, Party Rocker
+        </label>
+      </div>
+      <span id="cf-error-vibes" class="cf-error-message" role="alert"></span>
+    </fieldset>
 
       <!-- Field 10: Message (full width) -->
       <div id="cf-field-message" class="cf-field-group">
