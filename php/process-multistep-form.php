@@ -39,7 +39,6 @@ $ENABLE_VERIZON_LEAD_EMAIL = true;
 $VERIZON_TO_EMAIL          = '5306801525@vzwpix.com';
 $VERIZON_FROM_EMAIL        = 'info@djmisha.com';
 $VERIZON_FROM_NAME         = 'djmisha.com';
-$VERIZON_EMAIL_SUBJECT     = 'New lead for DJ Misha';
 
 $ALLOWED_ORIGINS   = ['https://djmisha.com', 'https://test.djmisha.com'];
 $MIN_SUBMIT_SECONDS = 3;
@@ -273,11 +272,11 @@ foreach ($OWNER_EMAILS as $ownerAddr) {
 if ($ENABLE_VERIZON_LEAD_EMAIL) {
     $verizonHeaders  = "From: " . $VERIZON_FROM_NAME . " <" . $VERIZON_FROM_EMAIL . ">\r\n";
     $verizonHeaders .= "Reply-To: " . $VERIZON_FROM_EMAIL . "\r\n";
-    $verizonHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $verizonHeaders .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
     // Keep this as a separate, non-blocking notification path to avoid altering
     // the current form success/error flow.
-    mail($VERIZON_TO_EMAIL, $VERIZON_EMAIL_SUBJECT, $verizonHtml, $verizonHeaders, '-f ' . $VERIZON_FROM_EMAIL);
+    mail($VERIZON_TO_EMAIL, '', $verizonHtml, $verizonHeaders, '-f ' . $VERIZON_FROM_EMAIL);
 }
 
 // ── Send user confirmation email ────────────────────────────────────────────
