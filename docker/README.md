@@ -22,15 +22,15 @@ npm run build
 
 ### 2. Update PHP config for local testing
 
-In `php/process-form.php`, temporarily change:
+In `php/process-multistep-form.php`, temporarily change:
 
 ```php
-$ALLOWED_ORIGIN = 'http://localhost:8080';
+$ALLOWED_ORIGINS = ['http://' . $_SERVER['HTTP_HOST']];
 ```
 
 For reCAPTCHA, either:
-- Register a test site key at https://www.google.com/recaptcha/admin with `localhost` as the domain, then update the keys in `php/process-form.php` and `src/components/ContactForm.astro`
-- Or comment out the reCAPTCHA verification block in `php/process-form.php` (steps 5a–5c) for quick local testing
+- Register a test site key at https://www.google.com/recaptcha/admin with `localhost` as the domain, then update the keys in `php/process-multistep-form.php` and `src/components/MultiStepContactForm.astro`
+- Or comment out the reCAPTCHA verification block in `php/process-multistep-form.php` (lines 113–165) for quick local testing
 
 ### 3. Start the container
 
@@ -55,10 +55,10 @@ docker compose down
 
 ### 7. Revert before deploying
 
-Change `$ALLOWED_ORIGIN` back to `'https://djmisha.com'` and restore your production reCAPTCHA keys.
+Change `$ALLOWED_ORIGINS` back to `['https://djmisha.com', 'https://test.djmisha.com']` and restore your production reCAPTCHA keys.
 
 ## Notes
 
 - All emails sent by `mail()` are captured by MailHog. View them at http://localhost:8025 — no real emails are sent.
 - The honeypot and timing checks work normally in the container.
-- The CSRF check validates against `$ALLOWED_ORIGIN`, so make sure it matches `http://localhost:8080` during local testing.
+- The CSRF check validates against `$ALLOWED_ORIGINS`, so make sure it matches `http://localhost:8080` during local testing.
