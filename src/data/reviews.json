@@ -2,7 +2,7 @@
   "lastFetched": "2026-05-06T18:37:31.659Z",
   "placeId": "ChIJE04UMcv_3IARGLQqdNgQ_j8",
   "totalRating": 5,
-  "totalReviews": 83,
+  "totalReviews": 86,
   "keywords": [
     "saxophonist",
     "dancing",
@@ -12,14 +12,56 @@
     "easy to work with"
   ],
   "keywordCounts": {
-    "saxophonist": 14,
-    "dancing": 36,
-    "dance floor": 12,
-    "playlist": 2,
-    "music selection": 23,
-    "easy to work with": 10
+    "saxophonist": 16,
+    "dancing": 39,
+    "dance floor": 14,
+    "playlist": 3,
+    "music selection": 24,
+    "easy to work with": 11
   },
   "reviews": [
+    {
+      "id": "1690f927",
+      "author": "Jacob Stover",
+      "rating": 5,
+      "text": "Misha and Jason were absolutely incredible and truly one of the highlights of our wedding weekend. From the very beginning, they were organized, thoughtful, incredibly easy to work with, and genuinely invested in making our wedding exactly what we wanted.\n\nWhat really sets them apart is that they didn’t feel like a DJ, they felt like having an incredible live wedding band. The energy they brought to our reception was unreal. Between Misha DJing and Jason on the sax, they were constantly interacting with our guests, getting out onto the dance floor, playing alongside our wedding party, and keeping everyone engaged throughout the night. It never felt like they were simply standing behind a DJ booth playing music, they were part of the party.\n\nThey performed at both our wedding reception and our afterparty, and somehow kept the energy going all night. They knew when to turn things up, how to read the room, and how to make moments feel spontaneous and personal. Our friends and family absolutely loved them.\n\nBeyond how talented and entertaining they are, they were also just wonderful people to work with. They were communicative, prepared, flexible, and thoughtful about every detail leading up to the wedding, which made the entire process incredibly easy for us.\n\nIf you’re getting married and are trying to decide between the energy of a live band and the versatility of a DJ, Misha and Jason give you the best of both worlds. They made our reception feel like a live show while still giving us everything we wanted from a DJ.\n\nWe cannot recommend Misha and Jason highly enough. They were phenomenal entertainers and a huge part of what made our wedding so much fun. We would hire them again in a heartbeat!",
+      "time": 1788220800,
+      "date": "2026-09-01",
+      "keywords": [
+        "saxophonist",
+        "dancing",
+        "dance floor",
+        "easy to work with"
+      ],
+      "profilePhoto": null
+    },
+    {
+      "id": "64ab3eeb",
+      "author": "Jared Peter-Contesse",
+      "rating": 5,
+      "text": "Misha and the saxophonist Jason created an amazing atmosphere for our wedding that kept the dance floor packed all night!",
+      "time": 1787356800,
+      "date": "2026-08-22",
+      "keywords": [
+        "saxophonist",
+        "dancing",
+        "dance floor"
+      ],
+      "profilePhoto": null
+    },
+    {
+      "id": "5d22a79a",
+      "author": "Kline Fielden",
+      "rating": 5,
+      "text": "DJ Misha was incredible at our wedding. He was able to curate a playlist that incorporated the music we wanted to listen to along with additional music that our guests really enjoyed.",
+      "time": 1787356800,
+      "date": "2026-08-22",
+      "keywords": [
+        "playlist",
+        "music selection"
+      ],
+      "profilePhoto": null
+    },
     {
       "id": "c83dba55",
       "author": "Kimmy J",
