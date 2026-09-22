@@ -7,14 +7,9 @@ import Icon from './Icon.astro';
 export interface Props {
   title: string;
   icon?: import('./Icon.astro').Props['name'];
-  /**
-   * Render the title as a <p> instead of an <h3>. Use inside a disclosable
-   * FeatureGrid so the original prose's <h3>s remain the canonical headings.
-   */
-  headingless?: boolean;
 }
 
-const { title, icon, headingless = false } = Astro.props;
+const { title, icon } = Astro.props;
 ---
 
 <article class="feature-card">
@@ -25,13 +20,7 @@ const { title, icon, headingless = false } = Astro.props;
       </span>
     )
   }
-  {
-    headingless ? (
-      <p class="feature-card__title">{title}</p>
-    ) : (
-      <h3 class="feature-card__title">{title}</h3>
-    )
-  }
+  <h3 class="feature-card__title">{title}</h3>
   <div class="feature-card__body">
     <slot />
   </div>

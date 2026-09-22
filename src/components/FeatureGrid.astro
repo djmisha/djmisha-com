@@ -3,37 +3,17 @@
  * FeatureGrid — responsive container for FeatureCard items (auto-fit columns).
  * Optional eyebrow/heading via SectionHeading. Use `.section--alt` band by
  * passing alt={true}.
- *
- * When `disclosable` is set and a `full` slot is provided, the condensed cards
- * (default slot) become the summary and the `full` slot (the original long-form
- * SEO prose) is revealed on click via the Disclosure primitive (swap mode).
  */
 import SectionHeading from './SectionHeading.astro';
-import Disclosure from './Disclosure.astro';
 
 export interface Props {
   eyebrow?: string;
   heading?: string;
   alt?: boolean;
   id?: string;
-  disclosable?: boolean;
-  showLabel?: string;
-  hideLabel?: string;
 }
 
-const {
-  eyebrow,
-  heading,
-  alt = false,
-  id,
-  disclosable = false,
-  showLabel = 'See longer explanations',
-  hideLabel = 'Show condensed view',
-} = Astro.props;
-
-const hasFull = Astro.slots.has('full');
-const useDisclosure = disclosable && hasFull;
-const detailsId = `${id ?? 'feature-grid'}-full`;
+const { eyebrow, heading, alt = false, id } = Astro.props;
 ---
 
 <section id={id} class:list={['feature-grid', { 'section--alt': alt }]}>
@@ -46,27 +26,9 @@ const detailsId = `${id ?? 'feature-grid'}-full`;
         </div>
       )
     }
-    {
-      useDisclosure ? (
-        <Disclosure
-          mode="swap"
-          showLabel={showLabel}
-          hideLabel={hideLabel}
-          id={detailsId}
-        >
-          <div slot="summary" class="feature-grid__items">
-            <slot />
-          </div>
-          <div slot="details" class="feature-grid__full">
-            <slot name="full" />
-          </div>
-        </Disclosure>
-      ) : (
-        <div class="feature-grid__items">
-          <slot />
-        </div>
-      )
-    }
+    <div class="feature-grid__items">
+      <slot />
+    </div>
   </div>
 </section>
 

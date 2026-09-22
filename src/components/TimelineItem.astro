@@ -1,17 +1,12 @@
 ---
 /**
- * TimelineItem — one entry in a TimelineSection: a marker, title, an always-
- * visible overview (default slot), and an optional `details` slot. When the
- * parent TimelineSection is `expandable`, the details are collapsed (when JS is
- * on) and revealed by the section-level button. Details are always in the HTML.
+ * TimelineItem — one entry in a TimelineSection: a marker, title, and body.
  */
 export interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-
-const hasDetails = Astro.slots.has('details');
 ---
 
 <li class="timeline-item">
@@ -19,17 +14,6 @@ const hasDetails = Astro.slots.has('details');
   <div class="timeline-item__body">
     <slot />
   </div>
-  {
-    hasDetails && (
-      <div class="collapsible timeline-item__more" data-collapsed>
-        <div class="collapsible__inner">
-          <div class="timeline-item__more-content">
-            <slot name="details" />
-          </div>
-        </div>
-      </div>
-    )
-  }
 </li>
 
 <style>
@@ -66,18 +50,6 @@ const hasDetails = Astro.slots.has('details');
   }
 
   .timeline-item__body :global(:last-child) {
-    margin-bottom: 0;
-  }
-
-  .timeline-item__more-content {
-    padding-top: 0.75em;
-  }
-
-  .timeline-item__more-content :global(:first-child) {
-    margin-top: 0;
-  }
-
-  .timeline-item__more-content :global(:last-child) {
     margin-bottom: 0;
   }
 </style>

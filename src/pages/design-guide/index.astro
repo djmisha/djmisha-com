@@ -77,45 +77,8 @@ const navLinks = [
     eyebrow="Why DJ Misha"
     heading="Why Choose DJ Misha for Your Wedding"
     alt={true}
-    disclosable
   >
-    <FeatureCard
-      title="Crafts a Personalized Music Experience"
-      icon="star"
-      headingless
-    >
-      <p>
-        By tailoring a new set list for every event, DJ Misha transforms each
-        wedding into a one-of-a-kind music experience that reflects your unique
-        tastes and preferences.
-      </p>
-    </FeatureCard>
-    <FeatureCard
-      title="Blends Technical Skill & Artistic Talent"
-      icon="lightbulb"
-      headingless
-    >
-      <p>
-        Throughout DJ Misha's career, he has focused on collecting and curating
-        music that drives dance floor energy and taps into the audience's
-        emotions.
-      </p>
-    </FeatureCard>
-    <FeatureCard
-      title="Creates a Memorable Celebration"
-      icon="check"
-      headingless
-    >
-      <p>
-        Whether you're local to San Diego or having a destination wedding, DJ
-        Misha is focused on entertaining you and your guests during the most
-        special day of your life, which is why he is dedicated to creating
-        something special just for you.
-      </p>
-    </FeatureCard>
-
-    <Fragment slot="full">
-      <h3 class="wp-block-heading">Crafts a Personalized Music Experience</h3>
+    <FeatureCard title="Crafts a Personalized Music Experience" icon="star">
       <p>
         By tailoring a new set list for every event, DJ Misha transforms each
         wedding into a one-of-a-kind music experience that reflects your unique
@@ -124,10 +87,11 @@ const navLinks = [
         suited to the moment by monitoring the energy of the room and adjusting
         his set to keep the atmosphere lively and upbeat.
       </p>
-
-      <h3 class="wp-block-heading">
-        Blends Technical Skill &amp; Artistic Talent
-      </h3>
+    </FeatureCard>
+    <FeatureCard
+      title="Blends Technical Skill & Artistic Talent"
+      icon="lightbulb"
+    >
       <p>
         Throughout DJ Misha's career, he has focused on collecting and curating
         music that drives dance floor energy and taps into the audience's
@@ -136,8 +100,8 @@ const navLinks = [
         cohesive experience. By bringing a unique sound to every wedding, DJ
         Misha creates a feeling that lasts long after the music stops.
       </p>
-
-      <h3 class="wp-block-heading">Creates a Memorable Celebration</h3>
+    </FeatureCard>
+    <FeatureCard title="Creates a Memorable Celebration" icon="check">
       <p>
         Whether you're local to San Diego or having a destination wedding, DJ
         Misha is focused on entertaining you and your guests during the most
@@ -147,14 +111,13 @@ const navLinks = [
         celebration. At the end of the day, he wants to bring your vision to
         life, so you can dance the night away with friends and family.
       </p>
-    </Fragment>
+    </FeatureCard>
   </FeatureGrid>
 
   <TimelineSection
     id="timeline"
     eyebrow="The night"
     heading="The Timeline of Your Wedding Day Music"
-    expandable
   >
     <TimelineItem title="Ceremony">
       <p>
@@ -162,38 +125,35 @@ const navLinks = [
         you're bound to get the chills and feel emotional. For a perfect
         execution, here's what to consider.
       </p>
-      <Fragment slot="details">
-        <ul class="wp-block-list">
-          <li>
-            <strong>Before the Ceremony: </strong>Play soft music about 30
-            minutes before the start, as the guests are arriving and taking
-            their seats. Once the ceremony is ready to begin, an announcement
-            will likely be made for guests to take their seats.
-          </li>
-          <li>
-            <strong>Wedding Procession: </strong>The arrival of the groom,
-            family, ring bearer, and flower girls can each all walk down the
-            aisle to one song. A different song should be played for the arrival
-            of the bride, highlighting their unique entrance.
-          </li>
-          <li>
-            <strong>During the Ceremony:</strong> You'll want to have a quality microphone
-            for the officiant. It's a good idea to practice with the officiant for
-            the moments when they'll need to turn the mic to the couple to give their
-            vows.
-          </li>
-          <li>
-            <strong>After the Ceremony:</strong> Choose a powerful and exciting song
-            for the couple to walk off together after the ceremony.
-          </li>
-        </ul>
-        <p>
-          To put all of this together, you'll need a good sound technician to
-          control the volume, make the transitions at the right moments, and
-          prevent any issues like microphone feedback or volume being too low
-          for guests to hear.
-        </p>
-      </Fragment>
+      <ul class="wp-block-list">
+        <li>
+          <strong>Before the Ceremony: </strong>Play soft music about 30 minutes
+          before the start, as the guests are arriving and taking their seats.
+          Once the ceremony is ready to begin, an announcement will likely be
+          made for guests to take their seats.
+        </li>
+        <li>
+          <strong>Wedding Procession: </strong>The arrival of the groom, family,
+          ring bearer, and flower girls can each all walk down the aisle to one
+          song. A different song should be played for the arrival of the bride,
+          highlighting their unique entrance.
+        </li>
+        <li>
+          <strong>During the Ceremony:</strong> You'll want to have a quality microphone
+          for the officiant. It's a good idea to practice with the officiant for the
+          moments when they'll need to turn the mic to the couple to give their vows.
+        </li>
+        <li>
+          <strong>After the Ceremony:</strong> Choose a powerful and exciting song
+          for the couple to walk off together after the ceremony.
+        </li>
+      </ul>
+      <p>
+        To put all of this together, you'll need a good sound technician to
+        control the volume, make the transitions at the right moments, and
+        prevent any issues like microphone feedback or volume being too low for
+        guests to hear.
+      </p>
     </TimelineItem>
 
     <TimelineItem title="Cocktail Hour">
@@ -203,21 +163,19 @@ const navLinks = [
         into the dinner venue. For the bride, groom and family, this is often
         the time for photos.
       </p>
-      <Fragment slot="details">
-        <ul class="wp-block-list">
-          <li>
-            <strong>Type of Music:</strong> The music during the cocktail hour is
-            passive and sets the mood for the night. The volume should be medium since
-            it's not the main focus. You could hire an instrumental musician, or you
-            could make a playlist for our DJ to play.
-          </li>
-          <li>
-            <strong>End of the Cocktail Hour: </strong>Towards the end of the
-            hour, an announcement can be made to ask people to take their seats
-            at dinner.
-          </li>
-        </ul>
-      </Fragment>
+      <ul class="wp-block-list">
+        <li>
+          <strong>Type of Music:</strong> The music during the cocktail hour is passive
+          and sets the mood for the night. The volume should be medium since it's
+          not the main focus. You could hire an instrumental musician, or you could
+          make a playlist for our DJ to play.
+        </li>
+        <li>
+          <strong>End of the Cocktail Hour: </strong>Towards the end of the
+          hour, an announcement can be made to ask people to take their seats at
+          dinner.
+        </li>
+      </ul>
     </TimelineItem>
 
     <TimelineItem title="Dinner & Toasts">
@@ -226,24 +184,22 @@ const navLinks = [
         at a low to medium level. Keep in mind the music will often be
         interrupted by other activities.
       </p>
-      <Fragment slot="details">
-        <ul class="wp-block-list">
-          <li>
-            <strong>Introducing the Wedding Party: </strong>Before dinner, the
-            wedding party is typically introduced. Pick one song for their
-            entrance, and make sure all names are clearly spelled out on your
-            wedding timeline so that they are easy to read and pronounce.
-          </li>
-          <li>
-            <strong>Toasts: </strong>Giving toasts<strong> </strong>requires
-            special attention. They almost always go longer than expected, so
-            you should plan for an additional 30 minutes. Since most people
-            aren't public speakers, help prepare them by sending a few tips and
-            maybe a short YouTube video with best practices. This can make a big
-            difference!
-          </li>
-        </ul>
-      </Fragment>
+      <ul class="wp-block-list">
+        <li>
+          <strong>Introducing the Wedding Party: </strong>Before dinner, the
+          wedding party is typically introduced. Pick one song for their
+          entrance, and make sure all names are clearly spelled out on your
+          wedding timeline so that they are easy to read and pronounce.
+        </li>
+        <li>
+          <strong>Toasts: </strong>Giving toasts<strong> </strong>requires
+          special attention. They almost always go longer than expected, so you
+          should plan for an additional 30 minutes. Since most people aren't
+          public speakers, help prepare them by sending a few tips and maybe a
+          short YouTube video with best practices. This can make a big
+          difference!
+        </li>
+      </ul>
     </TimelineItem>
 
     <TimelineItem title="Dancing">
@@ -252,15 +208,13 @@ const navLinks = [
         forefront. The volume goes up; there are fewer interruptions, if any;
         and people are on the dance floor having a good time.
       </p>
-      <Fragment slot="details">
-        <p>
-          <strong>Dancing is the time for your DJ to shine</strong>, and if
-          you've chosen the right one, they'll bring their A game on your
-          special evening. Hopefully you're giving them the autonomy to do their
-          best work – from there the only thing left to do is to have fun, enjoy
-          yourself, and dance the night away.
-        </p>
-      </Fragment>
+      <p>
+        <strong>Dancing is the time for your DJ to shine</strong>, and if you've
+        chosen the right one, they'll bring their A game on your special
+        evening. Hopefully you're giving them the autonomy to do their best work
+        – from there the only thing left to do is to have fun, enjoy yourself,
+        and dance the night away.
+      </p>
     </TimelineItem>
   </TimelineSection>
 

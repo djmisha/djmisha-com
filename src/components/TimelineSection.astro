@@ -2,10 +2,6 @@
 /**
  * TimelineSection — vertical timeline container for TimelineItem entries.
  *
- * When `expandable` is set, a single section-level "See more details" button
- * reveals the `details` slot of every TimelineItem at once (additive: each
- * item's overview stays visible). All details are server-rendered and only
- * collapsed when JS is active, so they remain crawlable on load.
  */
 import SectionHeading from './SectionHeading.astro';
 
@@ -14,27 +10,12 @@ export interface Props {
   heading?: string;
   alt?: boolean;
   id?: string;
-  expandable?: boolean;
-  showLabel?: string;
-  hideLabel?: string;
 }
 
-const {
-  eyebrow,
-  heading,
-  alt = false,
-  id,
-  expandable = false,
-  showLabel = 'See more details',
-  hideLabel = 'Hide details',
-} = Astro.props;
+const { eyebrow, heading, alt = false, id } = Astro.props;
 ---
 
-<section
-  id={id}
-  class:list={['timeline-section', { 'section--alt': alt }]}
-  data-timeline
->
+<section id={id} class:list={['timeline-section', { 'section--alt': alt }]}>
   <div class="timeline-section__inner">
     {heading && <SectionHeading eyebrow={eyebrow} title={heading} />}
     {
@@ -47,46 +28,8 @@ const {
     <ol class="timeline">
       <slot />
     </ol>
-    {
-      expandable && (
-        <div class="disclosure-actions">
-          <button
-            class="button disclosure-toggle"
-            type="button"
-            data-timeline-toggle
-            data-show={showLabel}
-            data-hide={hideLabel}
-            aria-expanded="false"
-          >
-            <span data-label>{showLabel}</span>
-          </button>
-        </div>
-      )
-    }
   </div>
 </section>
-
-<script>
-  document.querySelectorAll('[data-timeline-toggle]').forEach((btn) => {
-    const root = btn.closest('[data-timeline]');
-    if (!root) return;
-    const regions = root.querySelectorAll('.collapsible');
-    const label = btn.querySelector('[data-label]');
-
-    btn.addEventListener('click', () => {
-      const open = root.hasAttribute('data-open');
-      root.toggleAttribute('data-open', !open);
-      // open === true means currently expanded -> collapse all (add data-collapsed)
-      regions.forEach((r) => r.toggleAttribute('data-collapsed', open));
-      btn.setAttribute('aria-expanded', String(!open));
-      if (label) {
-        label.textContent = open
-          ? ((btn as HTMLElement).dataset.show ?? '')
-          : ((btn as HTMLElement).dataset.hide ?? '');
-      }
-    });
-  });
-</script>
 
 <style>
   .timeline-section {

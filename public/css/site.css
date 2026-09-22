@@ -102,66 +102,6 @@
   max-width: var(--section-text-measure);
 }
 
-/* ========== PROGRESSIVE DISCLOSURE (SEO-safe) ========== */
-
-/*
-  Collapsible content for "show condensed by default, reveal full original copy"
-  patterns. The full copy is ALWAYS in the server-rendered HTML (crawlable on
-  load). It is only collapsed once JS proves it is running (html.js, set by an
-  inline head script). With JS off — and before first paint — everything is
-  visible and the toggle buttons are hidden, so no content is ever lost.
-*/
-.collapsible {
-  display: grid;
-  grid-template-rows: 1fr;
-}
-
-.collapsible__inner {
-  overflow: hidden;
-}
-
-html.js .collapsible {
-  transition: grid-template-rows 0.3s ease;
-}
-
-html.js .collapsible[data-collapsed] {
-  grid-template-rows: 0fr;
-}
-
-html.js .collapsible[data-collapsed] .collapsible__inner {
-  visibility: hidden;
-  transition: visibility 0.3s;
-}
-
-/*
-  Disclosure toggle reuses the site's standard .button (square, outlined).
-  Only the behavior is added here: centering, spacing, the +/- affordance, and
-  hiding the button when JS is unavailable (it does nothing without JS, and the
-  content stays fully visible).
-*/
-.disclosure-actions {
-  text-align: center;
-}
-
-.disclosure-toggle {
-  margin-top: 1.75em;
-}
-
-/* +/- affordance, kept in sync with the button's expanded state (no JS needed) */
-.disclosure-toggle::after {
-  content: '+';
-  margin-left: 0.6em;
-  font-weight: 300;
-}
-
-.disclosure-toggle[aria-expanded='true']::after {
-  content: '\2212';
-}
-
-html:not(.js) .disclosure-toggle {
-  display: none;
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;
