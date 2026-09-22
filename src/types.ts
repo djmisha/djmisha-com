@@ -19,6 +19,16 @@ export interface BaseLayoutProps extends SEOProps {
   bodyClass?: string;
   isHome?: boolean;
   extraHeadContent?: string;
+  /** When true, emit a robots noindex meta tag (e.g. demo/non-canonical pages) */
+  noindex?: boolean;
+}
+
+/** Props for the full-width landing layout (hero-led pages, no sidebar) */
+export interface LandingLayoutProps extends SEOProps {
+  bodyClass?: string;
+  isHome?: boolean;
+  extraHeadContent?: string;
+  noindex?: boolean;
 }
 
 /** Props for layouts with a page heading and optional extra head content */

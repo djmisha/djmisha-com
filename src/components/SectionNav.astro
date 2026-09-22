@@ -1,0 +1,92 @@
+---
+/**
+ * SectionNav — horizontal anchor pills linking to in-page section ids.
+ * Sticky under the site nav by default. Replaces a bare <ul> table of contents.
+ */
+export interface NavLink {
+  label: string;
+  href: string;
+}
+
+export interface Props {
+  links: NavLink[];
+  sticky?: boolean;
+}
+
+const { links, sticky = false } = Astro.props;
+---
+
+<nav
+  class:list={['section-nav', { 'section-nav--sticky': sticky }]}
+  aria-label="On this page"
+>
+  <ul class="section-nav__list">
+    {
+      links.map((link) => (
+        <li>
+          <a class="section-nav__link" href={link.href}>
+            {link.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .section-nav {
+    background: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border-faint);
+    padding: 0.75em var(--section-padding-x);
+  }
+
+  .section-nav--sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  /* Single row that scrolls sideways when the (often long, SEO-rich) link
+     text overflows, instead of wrapping. */
+  .section-nav__list {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: var(--section-max-width);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5em 0.75em;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .section-nav__link {
+    display: inline-block;
+    flex: 0 0 auto;
+    padding: 0.4em 1em;
+    border: 1px solid var(--color-pill-border);
+    border-radius: 999px;
+    background: var(--color-pill-bg);
+    color: var(--color-text);
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .section-nav__link:hover {
+    background: var(--color-pill-bg-hover);
+    border-color: var(--color-accent);
+    color: var(--color-text-strong);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .section-nav__link {
+      transition: none;
+    }
+  }
+</style>

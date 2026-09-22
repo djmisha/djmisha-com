@@ -1,0 +1,65 @@
+---
+/**
+ * FeatureGrid — responsive container for FeatureCard items (auto-fit columns).
+ * Optional eyebrow/heading via SectionHeading. Use `.section--alt` band by
+ * passing alt={true}.
+ */
+import SectionHeading from './SectionHeading.astro';
+
+export interface Props {
+  eyebrow?: string;
+  heading?: string;
+  alt?: boolean;
+  id?: string;
+}
+
+const { eyebrow, heading, alt = false, id } = Astro.props;
+---
+
+<section id={id} class:list={['feature-grid', { 'section--alt': alt }]}>
+  <div class="feature-grid__inner">
+    {heading && <SectionHeading eyebrow={eyebrow} title={heading} />}
+    {
+      Astro.slots.has('intro') && (
+        <div class="feature-grid__intro">
+          <slot name="intro" />
+        </div>
+      )
+    }
+    <div class="feature-grid__items">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-grid {
+    padding: var(--section-padding-y) var(--section-padding-x);
+  }
+
+  .feature-grid__inner {
+    max-width: var(--section-max-width);
+    margin: 0 auto;
+  }
+
+  .feature-grid__intro {
+    max-width: var(--section-text-measure);
+    margin: 0 auto var(--section-heading-gap, 2.5rem);
+    text-align: center;
+  }
+
+  .feature-grid__intro > :global(:first-child) {
+    margin-top: 0;
+  }
+
+  .feature-grid__intro > :global(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .feature-grid__items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+</style>

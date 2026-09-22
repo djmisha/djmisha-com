@@ -1,0 +1,65 @@
+---
+/**
+ * TimelineSection — vertical timeline container for TimelineItem entries.
+ *
+ */
+import SectionHeading from './SectionHeading.astro';
+
+export interface Props {
+  eyebrow?: string;
+  heading?: string;
+  alt?: boolean;
+  id?: string;
+}
+
+const { eyebrow, heading, alt = false, id } = Astro.props;
+---
+
+<section id={id} class:list={['timeline-section', { 'section--alt': alt }]}>
+  <div class="timeline-section__inner">
+    {heading && <SectionHeading eyebrow={eyebrow} title={heading} />}
+    {
+      Astro.slots.has('intro') && (
+        <div class="timeline-section__intro">
+          <slot name="intro" />
+        </div>
+      )
+    }
+    <ol class="timeline">
+      <slot />
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline-section {
+    padding: var(--section-padding-y) var(--section-padding-x);
+  }
+
+  .timeline-section__inner {
+    max-width: var(--section-text-measure);
+    margin: 0 auto;
+  }
+
+  .timeline-section__intro > :global(:last-child) {
+    margin-bottom: 2em;
+  }
+
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  /* The vertical spine */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.4375rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: var(--color-border);
+  }
+</style>
