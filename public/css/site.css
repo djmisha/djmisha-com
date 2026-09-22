@@ -114,13 +114,6 @@
   border: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html.js .collapsible,
-  .collapsible__inner {
-    transition: none;
-  }
-}
-
 /* ========== SKIP LINK (Accessibility) ========== */
 
 .skip-link {
