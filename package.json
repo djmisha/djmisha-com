@@ -13,7 +13,7 @@
     "format:check": "prettier --check 'public/css/site.css' 'src/**/*.{astro,ts,js}'"
   },
   "dependencies": {
-    "astro": "^5.18.1"
+    "astro": "^7.3.3"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
