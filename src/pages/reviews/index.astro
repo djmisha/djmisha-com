@@ -5,6 +5,13 @@ import { extractInitials } from '../../lib/reviews-helpers.mjs';
 import reviewsData from '../../data/reviews.json';
 
 const { totalRating, totalReviews, keywords, reviews } = reviewsData;
+const reviewsWithText = reviews.filter(
+  (review) => review.text.trim().length > 0,
+);
+const ratingOnlyReviews = reviews.filter(
+  (review) => review.text.trim().length === 0,
+);
+const displayReviews = [...reviewsWithText, ...ratingOnlyReviews];
 
 // Compute badge counts from actual review keyword tags (ensures consistency
 // between the number shown on the pill and the cards displayed when clicked)
@@ -66,8 +73,14 @@ const reviewsDesc =
   <!-- Review Cards -->
   <div class="reviews-grid">
     {
-      reviews.map((review) => (
-        <div class="review-card" data-keywords={review.keywords.join(',')}>
+      displayReviews.map((review) => (
+        <div
+          class:list={[
+            'review-card',
+            review.text.length > 500 && 'review-card--featured',
+          ]}
+          data-keywords={review.keywords.join(',')}
+        >
           <div class="review-card-header">
             {review.profilePhoto ? (
               <img
@@ -106,22 +119,34 @@ const reviewsDesc =
     }
   </div>
 
-  <section id="five" class="wrapper style2 special fade">
-    <!-- <div class="container"> -->
-    <header>
-      <h2>San Diego DJ Reviews and Testimonials</h2>
-      <p>Read more testimonials for DJ Misha on his Google profile.</p>
-    </header>
-    <div class="container 25%">
-      <a
-        class="button fit special"
-        href="https://www.google.com/maps/place/DJ+Misha/@32.7990179,-117.2530949,9z/data=!3m1!5s0x80dc019320e5a943:0x21495feab25fb788!4m18!1m9!3m8!1s0x80dbffcb31404e13:0x3fae10d8742ab418!2sDJ+Misha!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z!3m7!1s0x80dbffcb31404e13:0x3fae10d8742ab418!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z"
-        target="_blank"
-        rel="noopener">Google Reviews</a
-      >
+  <section
+    slot="full-width-bottom"
+    id="five"
+    class="reviews-cta wrapper style2 special fade"
+  >
+    <div class="container">
+      <header>
+        <h2>San Diego DJ Reviews and Testimonials</h2>
+        <p>Read more testimonials for DJ Misha on his Google profile.</p>
+      </header>
+      <ul class="actions special">
+        <li>
+          <a
+            class="button special"
+            href="https://www.google.com/maps/place/DJ+Misha/@32.7990179,-117.2530949,9z/data=!3m1!5s0x80dc019320e5a943:0x21495feab25fb788!4m18!1m9!1s0x80dbffcb31404e13:0x3fae10d8742ab418!2sDJ+Misha!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z!3m7!1s0x80dbffcb31404e13:0x3fae10d8742ab418!8m2!3d32.798797!4d-117.2528273!9m1!1b1!16s%2Fg%2F1hm4n666z"
+            target="_blank"
+            rel="noopener">Google Reviews</a
+          >
+        </li>
+      </ul>
     </div>
-    <!-- </div> -->
   </section>
 
   <script src="/js/reviews-filter.js" defer></script>
 </FullWidthLayout>
+
+<style>
+  .review-text {
+    white-space: pre-line;
+  }
+</style>
