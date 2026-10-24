@@ -70,16 +70,6 @@ function displayValues(array $values, array $labels): string
     ));
 }
 
-function validEmail(string $email): bool
-{
-    return $email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
-}
-
-function safeHeaderValue(string $value): string
-{
-    return preg_replace('/[\r\n]+/', '', $value) ?? '';
-}
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     jsonResponse(false, ['errors' => ['request' => 'Method not allowed.']], 405);
 }
@@ -90,7 +80,6 @@ if ($honeypot !== '') {
 }
 
 $name = trim(strip_tags(cleanText($_POST['name'] ?? '')));
-$email = cleanText($_POST['email'] ?? '');
 $timeline = cleanText($_POST['timeline'] ?? '');
 $spaceTypeOther = cleanText($_POST['space_type_other'] ?? '');
 $weddingPriorities = cleanText($_POST['wedding_priorities'] ?? '');
@@ -108,9 +97,9 @@ $budgetTouched = cleanText($_POST['budget_touched'] ?? '');
 $allowedParts = ['ceremony', 'cocktail_hour', 'reception'];
 $allowedSpaces = ['ballroom', 'tent_or_marquee', 'outdoors', 'barn', 'inside_a_house', 'other', 'backyard'];
 $allowedMoments = ['grand_entrance', 'first_dance', 'parent_dances', 'cake_cutting', 'bouquet_garter', 'last_dance', 'not_sure_yet'];
-$allowedMusicStyles = ['pop', 'dance_pop', 'disco', 'funk', 'edm', 'house', 'tech_house', 'hip_hop', 'rnb', 'sing_alongs', 'punk_rock', 'rock', 'country', 'latin', 'reggaeton', 'reggae', 'dancehall', 'soul', 'motown', 'indie', 'alternative', 'classic_rock', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
+$allowedMusicStyles = ['dance', 'pop', 'disco', 'funk', 'edm', 'house', 'tech_house', 'hip_hop', 'rnb', 'sing_alongs', 'rock', 'country', 'latin', 'reggaeton', 'reggae', 'dancehall', 'soul', 'indie', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
 $allowedLighting = ['uplighting', 'basic_dance_floor_lighting', 'advanced_dance_floor_buildout', 'whole_room_lighting', 'not_interested'];
-$allowedAddons = ['live_saxophone', 'live_guitar', 'live_violin', 'portrait_lounge', 'none'];
+$allowedAddons = ['live_saxophone', 'live_guitar', 'live_violin', 'portrait_lounge', 'lighting_design', 'none'];
 $allowedDecisionStages = ['browsing', 'comparing_vendors', 'few_questions', 'only_dj'];
 $allowedContactMethods = ['text', 'email', 'phone_call'];
 $allowedBestTimes = ['mornings', 'afternoons', 'evenings', 'no_preference'];
@@ -122,10 +111,6 @@ $errors = [];
 
 if ($name === '' || textLength($name) > 100) {
     $errors['name'] = 'Please provide a name under 100 characters.';
-}
-
-if (textLength($email) > 254 || !validEmail($email)) {
-    $errors['email'] = 'Please enter a valid email address.';
 }
 
 $partsOfDay = cleanArrayValues($_POST['parts_of_day'] ?? [], $allowedParts);
@@ -273,7 +258,7 @@ $choiceLabels = [
     'last_dance' => 'Last dance or send-off',
     'not_sure_yet' => "I'm not sure yet",
     'pop' => 'Pop',
-    'dance_pop' => 'Dance pop',
+    'dance' => 'Dance',
     'disco' => 'Disco',
     'funk' => 'Funk',
     'edm' => 'EDM',
@@ -282,7 +267,6 @@ $choiceLabels = [
     'hip_hop' => 'Hip hop',
     'rnb' => 'R&B',
     'sing_alongs' => 'Sing-alongs',
-    'punk_rock' => 'Punk rock',
     'rock' => 'Rock',
     'country' => 'Country',
     'latin' => 'Latin',
@@ -290,10 +274,7 @@ $choiceLabels = [
     'reggae' => 'Reggae',
     'dancehall' => 'Dancehall',
     'soul' => 'Soul',
-    'motown' => 'Motown',
     'indie' => 'Indie',
-    'alternative' => 'Alternative',
-    'classic_rock' => 'Classic rock',
     '1970s' => "70's",
     '1980s' => "80's",
     '1990s' => "90's",
@@ -313,7 +294,8 @@ $choiceLabels = [
     'live_saxophone' => 'Live saxophone',
     'live_guitar' => 'Live guitar',
     'live_violin' => 'Live violin',
-    'portrait_lounge' => 'Portrait lounge (a.k.a. photo booth)',
+    'portrait_lounge' => 'Portrait lounge',
+    'lighting_design' => 'Lighting design',
     'none' => 'None of these',
     'browsing' => "I'm just getting started and browsing",
     'comparing_vendors' => "I'm comparing different vendors",
@@ -346,15 +328,14 @@ $planningStyleLabels = [
     4 => 'Very particular',
     5 => 'Total Bridezilla',
 ];
-$to = 'info@djmisha.com';
-$subject = 'Planning Form: ' . $name;
+$to = 'info@djmisha.com, misha.osinovskiy@gmail.com';
+$subject = 'Contact from djmisha.com - ' . $name;
 $timestamp = (new DateTimeImmutable('now', new DateTimeZone('America/Los_Angeles')))
     ->format('M j, Y g:i A T');
 
 $bodyLines = [
     'PLANNING FORM SUBMITTED',
     'Name: ' . $name,
-    'Email: ' . $email,
     'Preferred contact method: ' . $choiceLabels[$contactMethod],
     'Best time to reach you: ' . ($bestTime !== '' ? $choiceLabels[$bestTime] : 'No preference'),
     'Submitted: ' . $timestamp,
@@ -390,8 +371,7 @@ $bodyLines = [
 
 $body = implode("\n", $bodyLines);
 $headers = [
-    'From: ' . safeHeaderValue('no-reply@djmisha.com'),
-    'Reply-To: ' . safeHeaderValue($email),
+    'From: no-reply@djmisha.com',
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8'
 ];

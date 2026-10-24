@@ -10,7 +10,7 @@
 
 ## 1. Goal
 
-After a prospective couple submits the main contact form, they receive an email containing a link to a second, short form. That link carries their **name** and **email** in the query string, so they never retype them. The second form collects the logistics and preferences that the contact form doesn't (timeline, spaces, music taste, lighting, add-ons, budget, decision stage) so that by the time DJ Misha talks to them, he already knows most of what he needs. The final step lets them request a 2:00 PM Pacific call on a weekday.
+After a prospective couple submits the main contact form, they receive an email containing a link to a second, short form. That link carries their **name** in the query string, so they never retype it. The second form collects the logistics and preferences that the contact form doesn't (timeline, spaces, music taste, lighting, add-ons, budget, decision stage) so that by the time DJ Misha talks to them, he already knows most of what he needs. The final step lets them request a 2:00 PM Pacific video call on a weekday.
 
 This form is used only to vet **wedding** clients, so there is **no event-type branching** and no wedding-only conditional logic. Every question is shown to everyone.
 
@@ -59,19 +59,18 @@ The static Astro page includes only its feature-local stylesheet and script. The
 The page is opened from an emailed link such as:
 
 ```
-https://djmisha.com/wedding-planning/?name=Hannah%20Mattson&email=hanmattson%40gmail.com
+https://djmisha.com/wedding-planning/?name=Hannah%20Mattson
 ```
 
-| Param   | Required | Handling                                                                                                               |
-| ------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `name`  | Yes      | Trim, strip tags, max 100 chars. Escape on output. Derive first name (first whitespace-separated token) for greetings. |
-| `email` | Yes      | Trim, validate with `filter_var(FILTER_VALIDATE_EMAIL)`, max 254 chars. Escape on output.                              |
+| Param  | Required | Handling                                                                                                              |
+| ------ | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| `name` | Yes      | Trim, strip tags, max 100 chars. Display as text. Derive first name (first whitespace-separated token) for greetings. |
 
-- Treat query values as **untrusted**. The page assigns them through DOM `textContent` and request fields, not HTML interpolation. The processor strips tags from the name, validates the email and escapes no HTML because the mail body is plain text.
-- **Access gate:** if either value is missing or invalid and there is no saved verified form state, hide the questionnaire and show an access message asking the visitor to use the personalized email link. There is no fallback name/email entry form.
-- Name and email are **carried through the form as hidden fields** and are not re-asked in the normal path.
+- Treat the name as an untrusted display string, not a security credential. The page assigns it through DOM `textContent`; the processor strips tags and control characters and enforces the 100-character limit.
+- **Access gate:** if the name is missing and there is no saved form state with a name, hide the questionnaire and show an access message asking the visitor to use the personalized link. A name in the URL is not authentication; this page does not use the name to authorize access.
+- The name is carried through the form as a hidden field and is not re-asked in the normal path. No client email is requested, carried in the URL or form, or used by this feature.
 - **Generating the emailed link** (the contact form sending the email) is **out of scope**. This plan only receives the link. The owner will wire up the link separately.
-- After valid link parameters are read, the page removes the query string with `history.replaceState`. Previously verified visitors may resume using feature-specific `localStorage` state.
+- After a non-empty name is read, the page removes the query string with `history.replaceState`. Visitors may resume using feature-specific `localStorage` state matched by name.
 
 ### Indexing and caching
 
@@ -93,7 +92,7 @@ https://djmisha.com/wedding-planning/?name=Hannah%20Mattson&email=hanmattson%40g
 
 - Always visible. A progress bar showing the proportion complete, plus text such as `Step 7 of 18`. The step-specific eyebrow appears immediately above the question; the progress header has no section label.
 - Updates reactively as the user moves forward or back, with a smooth animation (respect `prefers-reduced-motion`).
-- Welcome screen states the expected length: "About 3 minutes."
+- Welcome screen copy: "A few quick questions to help us focus on what matters most to you. It only takes a few minutes."
 
 ### 5.3 Keep them moving and motivated
 
@@ -109,7 +108,7 @@ https://djmisha.com/wedding-planning/?name=Hannah%20Mattson&email=hanmattson%40g
 - **Reactive:** transitions, inline validation, selection states, and slider feedback are handled by the feature-local script.
 - Continue remains visible on question steps and validates on click; the final step shows only the submit button. Back preserves answers.
 - On step changes the page scrolls to the top and focuses the first focusable control in the active step.
-- **Autosave:** save answers to the feature-specific `pf-state-v1` key in `localStorage` (try/catch every access; the form must work if storage is unavailable). Restore progress and resume only when the saved name/email match the current verified identity; discard state associated with a different identity. Clear on successful submit. No expiry or per-email keying is currently implemented.
+- **Autosave:** save answers to the feature-specific `pf-state-v1` key in `localStorage` (try/catch every access; the form must work if storage is unavailable). Restore progress and resume when a saved name is available. Clear on successful submit. No expiry or per-name keying is currently implemented. Older saved email values are discarded.
 - **Mobile-first.** Large touch targets (min 44px), thumb-friendly layout, no horizontal scrolling.
 - **Accessibility currently implemented:** choice controls use labeled inputs and fieldsets; focus styles and keyboard-operable slider handles are provided; the progress header is `aria-live="polite"`. Errors are shown inline. Dedicated screen-reader testing remains outstanding.
 
@@ -132,15 +131,15 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 **Step 2: `timeline`** (textarea, required)
 
 - Question: **What does your timeline look like?**
-- Helper: "Ballpark is totally fine. Include rough start and end times for each part, and we'll fine-tune together later."
-- Visible helper examples appear on separate lines: Ceremony 4:30-5:00; Cocktail hour 5:00-7:00; Reception; Dinner 7:00-8:00; Dancing 8:00-10:30.
+- Helper: "Ballpark is totally fine. Include rough start and end times for each part."
+- Placeholder: `Example: Ceremony 4:30-5:00pm, Cocktail hour 5:00-6:00pm, Dinner 6:00-7:00pm, Dancing 8:00-10:00pm`
 - Max 2,000 chars.
 
 **Step 3: `space_type`** (multi-select, required, min 1)
 
 - Question: **Tell us about the space(s) where the music will happen.**
 - Helper: "Select all that apply. This helps us plan power, weather coverage, and setup."
-- Options, in display order: Ballroom; Tent or marquee; Outdoors; Barn; Inside a house; Other; Backyard
+- Options, in display order: Ballroom; Outdoors; Tent or marquee; Inside a house; Backyard; Barn; Other
 - Choosing **Other** reveals required `space_type_other` (text, max 150).
 
 **Step 4: `key_moments`** (multi-select, required, min 1)
@@ -167,18 +166,19 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 
 - Question: **What do you want to hear on the dance floor?**
 - Helper: "Pick as many as you like."
-- Options: Pop; Dance pop; Disco; Funk; EDM; House; Tech house; Hip hop; R&B; Sing-alongs; Punk rock; Rock; Country; Latin; Reggaeton; Reggae; Dancehall; Soul; Motown; Indie; Alternative; Classic rock. Then a line break, followed by the decade choices 70's; 80's; 90's; 2000's; 2010's; 2020's.
+- Options: Dance; Pop; Disco; Funk; EDM; House; Tech house; Hip hop; R&B; Sing-alongs; Rock; Country; Latin; Reggaeton; Reggae; Dancehall; Soul; Indie. Then a line break, followed by the decade choices 70's; 80's; 90's; 2000's; 2010's; 2020's.
 
 **Step 8: `songs_to_skip`** (textarea, optional)
 
-- Question: **Any songs you definitely do NOT want played?**
-- Helper: "A handful of examples is plenty."
-- Placeholder: `For example: Cupid Shuffle, Y.M.C.A., Sweet Caroline`
+- Question: **Is there any music you would NOT like to hear?**
+- Helper: "List any songs or artists you would not like to hear."
+- Placeholder: `Songs or artists you would not like to hear`
 - Max 1,500 chars. Include a visible "Skip" affordance or allow Continue with an empty value.
 
 **Step 9: `music_involvement`** (5-stop slider, required interaction)
 
 - Question: **How involved do you want to be in planning the music?**
+- Helper: "Any selection is okay. It just helps us plan for your day."
 - Stops (submit the integer 1-5; the processor derives the display label):
 
 | Stop | Label                                                                    |
@@ -217,13 +217,13 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 
 **Step 12: `addons`** (multi-select, required, min 1)
 
-- Question: **Interested in any add-ons?**
-- Helper: "Through trusted third-party vendors and longtime collaborators."
-- Options, in this order: Live saxophone; Live guitar; Live violin; **Portrait lounge (a.k.a. photo booth)**; **None of these** (exclusive, shown below the others)
+- Question: **Interested in any additional services?**
+- Helper: "In partnership with longtime collaborators and trusted vendors."
+- Options, in this order: Live saxophone; Live guitar; Live violin; **Portrait lounge**; Lighting design; **None of these** (exclusive, shown below the others)
 
 **Step 13: `budget`** (dual-handle range slider)
 
-- Question: **Please tell us your ballpark target budget range.**
+- Question: **Please tell us your ballpark budget range for DJ, music, and related services.**
 - Small explainer under the slider: "This helps us more closely match our services to your budget."
 - Range: **$2,500 to $10,000**, step $250. The top end is displayed as **$10,000+**.
 - Both handles start at the **extremes** (full range) so the form doesn't anchor them low or high. Display the live selection, for example `$4,000 - $7,500`.
@@ -245,7 +245,7 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 **Step 15: `wedding_priorities`** (textarea, optional)
 
 - Question: **Tell us what is most important to you on your wedding day.**
-- Helper: "A sentence or two is plenty. What matters most to you, and what would make the day feel like you?"
+- Helper: "The more detail you share, the better we can understand what matters to you and how to help make your day feel right."
 - Field name: `wedding_priorities`; max 1,000 chars.
 
 **Step 16: `contact_method`** (single-select, required)
@@ -257,8 +257,8 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 
 **Step 17: `anything_else`** (textarea, optional)
 
-- Question: **Anything else, and your most burning questions?**
-- Helper: "What are your most burning questions for DJ Misha? What would make this the right fit for you?"
+- Question: **What are your most burning questions for DJ Misha?**
+- Helper: "What would make this the right fit for you?"
 - Max 2,000 chars.
 
 ### Section 5: Meet DJ Misha
@@ -266,8 +266,8 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 **Step 18: `meeting_day`** (single radio group, **not** a calendar)
 
 - Heading: **Let's talk it through.**
-- Copy: "DJ Misha personally meets with couples to see if it's a good match. Pick the weekday that works best for a quick call at **2:00 PM Pacific**."
-- Helper: "2:00 PM Pacific is 3:00 Mountain, 4:00 Central, and 5:00 Eastern. We'll confirm the exact date by email."
+- Copy: "DJ Misha personally meets with couples if it's a good match. Pick the weekday that works best for a video call at **2:00 PM Pacific**."
+- Helper: "We'll confirm the exact date by email."
 - Options (radio): Monday; Tuesday; Wednesday; Thursday; Friday
 - No qualification logic. Everyone can choose.
 - **Optional:** include a quiet "Skip for now" link that submits without a day. Final button: **Send to DJ Misha**.
@@ -276,13 +276,13 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 ### Welcome screen (before Step 1)
 
 - Greeting: "Hi {FirstName}!"
-- Body: "A few quick questions so DJ Misha shows up already knowing your day. It takes about 3 minutes."
-- Button: **Let's go**
+- Body: "A few quick questions to help us focus on what matters most to you. It only takes a few minutes. DJ Misha will review your answers and come prepared to continue the conversation, focusing on the details that matter most to you."
+- No separate welcome button; the standard **Continue** action advances to Step 1.
 
 ### Thank-you screen (after successful submit)
 
 - Heading: "You're all set, {FirstName}!"
-- Body: "DJ Misha will review your answers and follow up at {email}."
+- Body: "DJ Misha will review your answers."
 - If `meeting_day` was chosen: "We'll confirm your call for {Weekday} at 2:00 PM Pacific by email."
 - No navigation away required. Clear autosaved data.
 
@@ -293,7 +293,7 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 POST `FormData` to `/php/process-wedding-planning.php` via `fetch`. Fields:
 
 ```text
-name, email: hidden; validated query values or restored verified state
+name: hidden; query value or restored saved state
 parts_of_day[]: ceremony | cocktail_hour | reception
 timeline: required string, 10-2,000 characters
 space_type[]: ballroom | tent_or_marquee | outdoors | barn | inside_a_house | other | backyard
@@ -301,12 +301,12 @@ space_type_other: optional string, max 150 characters; required when other is se
 key_moments[]: grand_entrance | first_dance | parent_dances | cake_cutting | bouquet_garter | last_dance | not_sure_yet
 mc_style: light_professional | front_and_center
 coordinator: yes | no | not_sure
-music_styles[]: pop | dance_pop | disco | funk | edm | house | tech_house | hip_hop | rnb | sing_alongs | punk_rock | rock | country | latin | reggaeton | reggae | dancehall | soul | motown | indie | alternative | classic_rock | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s
+music_styles[]: dance | pop | disco | funk | edm | house | tech_house | hip_hop | rnb | sing_alongs | rock | country | latin | reggaeton | reggae | dancehall | soul | indie | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s
 songs_to_skip: optional string, max 1,500 characters
 music_involvement: integer 1-5; processor derives the display label
 planning_style: integer 1-5; processor derives the display label
 lighting[]: uplighting | basic_dance_floor_lighting | advanced_dance_floor_buildout | whole_room_lighting | not_interested
-addons[]: live_saxophone | live_guitar | live_violin | portrait_lounge | none
+addons[]: live_saxophone | live_guitar | live_violin | portrait_lounge | lighting_design | none
 budget_min, budget_max: integers 2500-10000, increments of 250, minimum $250 gap
 budget_touched: "true" | "false"
 decision_stage: browsing | comparing_vendors | few_questions | only_dj
@@ -332,11 +332,11 @@ Self-contained. No `include`/`require` of existing site files.
 
 **Validation and sanitization**
 
-- Re-validate everything server-side: required fields, enums, array contents and exclusivity for the lighting `not_interested` and add-ons `none` choices, numeric ranges (`budget_min <= budget_max`, both within 2500-10000, multiples of 250), and the string limits above. Validate `name` at max 100 characters and `email` at max 254 characters.
+- Re-validate everything server-side: required fields, enums, array contents and exclusivity for the lighting `not_interested` and add-ons `none` choices, numeric ranges (`budget_min <= budget_max`, both within 2500-10000, multiples of 250), and the string limits above. Validate `name` at max 100 characters.
 - Require the budget handles to remain at least $250 apart, matching the client-side slider.
 - Trim all strings. Strip control characters. **Strip CR/LF from anything used in mail headers** (header injection).
-- Validate `email` with `filter_var`. No phone number is required or accepted as a questionnaire field.
-- The email is plain text, so encode/strip control characters and keep header values safe; do not interpolate values as HTML.
+- No client email or phone number is accepted as a questionnaire field.
+- The email body is plain text; strip control characters from submitted values and do not interpolate values as HTML.
 
 **Spam and abuse protection**
 
@@ -348,8 +348,8 @@ Self-contained. No `include`/`require` of existing site files.
 - Send mail with PHP's native `mail()` function; the feature does not include the shared processor or depend on shared mail configuration.
 - To: `info@djmisha.com`
 - From: `no-reply@djmisha.com`.
-- Reply-To: the validated client email.
-- Subject: `Planning Form: {Name}`
+- No `Reply-To` header is set.
+- Subject: `Contact from djmisha.com - {Name}` (exactly matching the owner notification subject used by the main contact form, so related messages have the same subject).
 - Send **no** confirmation email to the client (out of scope).
 - Log send failures with `error_log` and no personal details or full payloads.
 
@@ -357,7 +357,7 @@ Self-contained. No `include`/`require` of existing site files.
 
 ```
 PLANNING FORM SUBMITTED
-Name, Email, Preferred contact method, Best time to reach you
+Name, Preferred contact method, Best time to reach you
 Submitted: {timestamp, Pacific}
 
 YOUR DAY
@@ -408,4 +408,4 @@ The following checks are part of the current implementation review:
 
 ## 11. Confirmed Owner Decisions
 
-Route `/wedding-planning/`; query parameters `name` and `email`; 18 separate question steps; valid link values are cleaned from the URL; invalid/missing values show an access message rather than a name/email fallback form; saved progress resumes; meeting day can be skipped; no phone number is collected; key-moments “I'm not sure yet” is not exclusive; no CSRF token, Origin/Referer validation, reCAPTCHA, or IP rate limiting; and the static page uses the noindex meta tag only, without shared server/header changes.
+Route `/wedding-planning/`; query parameter `name` only (display value, not authentication); 18 separate question steps; name is cleaned and removed from the URL after reading; missing names show an access message unless saved state is available; saved progress resumes by name; client email and phone number are not collected or used; meeting day can be skipped; key-moments “I'm not sure yet” is not exclusive; processor subject matches the main contact form's `Contact from djmisha.com - {Name}` subject; no client `Reply-To` header; no CSRF token, Origin/Referer validation, reCAPTCHA, or IP rate limiting; and the static page uses the noindex meta tag only, without shared server/header changes.

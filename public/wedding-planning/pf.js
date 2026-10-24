@@ -13,7 +13,6 @@
   const state = {
     currentStep: 0,
     name: '',
-    email: '',
     data: {},
     valid: false,
   };
@@ -27,7 +26,6 @@
   const nextBtn = document.getElementById('pf-next');
   const submitBtn = document.getElementById('pf-submit');
   const welcomeName = document.getElementById('pf-welcome-name');
-  const welcomeBtn = document.getElementById('pf-welcome-btn');
   const skipDayBtn = document.getElementById('pf-skip-day');
   const successName = document.getElementById('pf-success-name');
   const successMessage = document.getElementById('pf-success-message');
@@ -41,27 +39,19 @@
     return cleaned.length > 100 ? cleaned.slice(0, 100) : cleaned;
   }
 
-  function isValidEmail(raw) {
-    const email = String(raw || '').trim();
-    return email.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-  }
-
   function getInitialState() {
     const params = new URLSearchParams(window.location.search);
     const name = normalizeName(params.get('name'));
-    const email = String(params.get('email') || '').trim();
 
-    if (name && isValidEmail(email)) {
+    if (name) {
       state.name = name;
-      state.email = email;
       window.history.replaceState({}, '', window.location.pathname);
       return true;
     }
 
     const saved = readSavedState();
-    if (saved && saved.name && saved.email) {
+    if (saved && saved.name) {
       state.name = saved.name;
-      state.email = saved.email;
       return true;
     }
 
@@ -80,7 +70,11 @@
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
       const parsed = JSON.parse(raw);
-      if (parsed && parsed.name && parsed.email) {
+      if (parsed && typeof parsed.name === 'string' && parsed.name) {
+        delete parsed.email;
+        if (parsed.data && typeof parsed.data === 'object') {
+          delete parsed.data.email;
+        }
         return parsed;
       }
     } catch (error) {
@@ -93,7 +87,6 @@
     try {
       const payload = {
         name: state.name,
-        email: state.email,
         currentStep: state.currentStep,
         data: state.data,
         savedAt: Date.now(),
@@ -252,7 +245,6 @@
         if (
           input.tagName === 'TEXTAREA' ||
           input.type === 'text' ||
-          input.type === 'email' ||
           input.type === 'tel'
         ) {
           input.value = value || '';
@@ -484,14 +476,11 @@
     state.data = {
       ...state.data,
       name: state.name,
-      email: state.email,
       website: '',
     };
     const hiddenName = form.querySelector('[name="name"]');
-    const hiddenEmail = form.querySelector('[name="email"]');
     const hiddenWebsite = form.querySelector('[name="website"]');
     if (hiddenName) hiddenName.value = state.name;
-    if (hiddenEmail) hiddenEmail.value = state.email;
     if (hiddenWebsite) hiddenWebsite.value = '';
     saveState();
     return state.data;
@@ -632,7 +621,6 @@
 
     const payload = new FormData(form);
     payload.set('name', state.name);
-    payload.set('email', state.email);
     payload.set('website', '');
 
     submitBtn.disabled = true;
@@ -677,7 +665,6 @@
   }
 
   function bindEvents() {
-    welcomeBtn.addEventListener('click', () => goToStep(1));
     backBtn.addEventListener('click', () =>
       goToStep(Math.max(0, state.currentStep - 1)),
     );
@@ -741,13 +728,10 @@
     const meetingDay = form.querySelector(
       'input[name="meeting_day"]:checked',
     )?.value;
-    const followUp = state.email
-      ? `DJ Misha will review your answers and follow up at ${state.email}.`
-      : 'DJ Misha will review your answers and follow up soon.';
     const meetingConfirmation = meetingDay
       ? ` We’ll confirm your call for ${meetingDay[0].toUpperCase()}${meetingDay.slice(1)} at 2:00 PM Pacific by email.`
       : '';
-    const message = `${followUp}${meetingConfirmation}`;
+    const message = `DJ Misha will review your answers.${meetingConfirmation}`;
     successMessage.textContent = message;
     clearSavedState();
   }
@@ -759,12 +743,7 @@
     applyWelcomeText();
     bindEvents();
     const saved = readSavedState();
-    if (
-      saved &&
-      saved.name === state.name &&
-      saved.email === state.email &&
-      saved.currentStep
-    ) {
+    if (saved && saved.name === state.name && saved.currentStep) {
       state.currentStep = Math.min(saved.currentStep, MAX_STEPS);
       state.data = saved.data || {};
       restoreInputsFromState();

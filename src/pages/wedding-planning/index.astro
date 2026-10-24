@@ -38,7 +38,6 @@
         novalidate
       >
         <input type="hidden" name="name" value="" />
-        <input type="hidden" name="email" value="" />
         <input type="hidden" name="website" value="" />
 
         <header class="pf-header" aria-live="polite">
@@ -63,12 +62,13 @@
               <p class="pf-eyebrow">Welcome</p>
               <h1 id="pf-welcome-name">Hi there!</h1>
               <p class="pf-lead">
-                A few quick questions so DJ Misha shows up already knowing your
-                day. It takes about 3 minutes.
+                A few quick questions to help us focus on what matters most to
+                you. It only takes a few minutes.
               </p>
-              <button type="button" id="pf-welcome-btn" class="pf-primary-btn">
-                Let&apos;s go
-              </button>
+              <p class="pf-lead">
+                DJ Misha will review your answers and be prepared to continue
+                the conversation.
+              </p>
             </div>
           </section>
 
@@ -107,22 +107,16 @@
             <h2>What does your timeline look like?</h2>
             <p class="pf-help">
               Ballpark is totally fine. Include rough start and end times for
-              each part, and we&apos;ll fine-tune together later.
-            </p>
-            <p class="pf-help">
-              For example:<br />
-              Ceremony: 4:30-5:00<br />
-              Cocktail hour: 5:00-7:00<br />
-              Reception:<br />
-              Dinner: 7:00-8:00<br />
-              Dancing: 8:00-10:30
+              each part.
             </p>
             <textarea
               id="timeline"
               name="timeline"
               class="pf-input pf-textarea"
               rows="6"
-              maxlength="2000"></textarea>
+              maxlength="2000"
+              placeholder="Example: Ceremony 4:30-5:00pm, Cocktail hour 5:00-6:00pm, Dinner 6:00-7:00pm, Dancing 8:00-10:00pm"
+            ></textarea>
             <p class="pf-error" data-error-for="timeline"></p>
           </section>
 
@@ -140,20 +134,16 @@
                 <span>Ballroom</span>
               </label>
               <label class="pf-choice">
+                <input type="checkbox" name="space_type[]" value="outdoors" />
+                <span>Outdoors</span>
+              </label>
+              <label class="pf-choice">
                 <input
                   type="checkbox"
                   name="space_type[]"
                   value="tent_or_marquee"
                 />
                 <span>Tent or marquee</span>
-              </label>
-              <label class="pf-choice">
-                <input type="checkbox" name="space_type[]" value="outdoors" />
-                <span>Outdoors</span>
-              </label>
-              <label class="pf-choice">
-                <input type="checkbox" name="space_type[]" value="barn" />
-                <span>Barn</span>
               </label>
               <label class="pf-choice">
                 <input
@@ -163,6 +153,14 @@
                 />
                 <span>Inside a house</span>
               </label>
+              <label class="pf-choice">
+                <input type="checkbox" name="space_type[]" value="backyard" />
+                <span>Backyard</span>
+              </label>
+              <label class="pf-choice">
+                <input type="checkbox" name="space_type[]" value="barn" />
+                <span>Barn</span>
+              </label>
               <label class="pf-choice pf-choice--other">
                 <input
                   type="checkbox"
@@ -171,10 +169,6 @@
                   data-other-toggle="space_type_other"
                 />
                 <span>Other</span>
-              </label>
-              <label class="pf-choice">
-                <input type="checkbox" name="space_type[]" value="backyard" />
-                <span>Backyard</span>
               </label>
             </fieldset>
 
@@ -320,15 +314,15 @@
                 ><input
                   type="checkbox"
                   name="music_styles[]"
-                  value="pop"
-                /><span>Pop</span></label
+                  value="dance"
+                /><span>Dance</span></label
               >
               <label class="pf-chip"
                 ><input
                   type="checkbox"
                   name="music_styles[]"
-                  value="dance_pop"
-                /><span>Dance pop</span></label
+                  value="pop"
+                /><span>Pop</span></label
               >
               <label class="pf-chip"
                 ><input
@@ -390,13 +384,6 @@
                 ><input
                   type="checkbox"
                   name="music_styles[]"
-                  value="punk_rock"
-                /><span>Punk rock</span></label
-              >
-              <label class="pf-chip"
-                ><input
-                  type="checkbox"
-                  name="music_styles[]"
                   value="rock"
                 /><span>Rock</span></label
               >
@@ -446,29 +433,8 @@
                 ><input
                   type="checkbox"
                   name="music_styles[]"
-                  value="motown"
-                /><span>Motown</span></label
-              >
-              <label class="pf-chip"
-                ><input
-                  type="checkbox"
-                  name="music_styles[]"
                   value="indie"
                 /><span>Indie</span></label
-              >
-              <label class="pf-chip"
-                ><input
-                  type="checkbox"
-                  name="music_styles[]"
-                  value="alternative"
-                /><span>Alternative</span></label
-              >
-              <label class="pf-chip"
-                ><input
-                  type="checkbox"
-                  name="music_styles[]"
-                  value="classic_rock"
-                /><span>Classic rock</span></label
               >
               <span class="pf-chip-break" aria-hidden="true"></span>
               <label class="pf-chip"
@@ -523,16 +489,18 @@
             data-section="Your music"
             hidden
           >
-            <p class="pf-section-kicker">Songs to skip</p>
-            <h2>Any songs you definitely do NOT want played?</h2>
-            <p class="pf-help">A handful of examples is plenty.</p>
+            <p class="pf-section-kicker">Music preferences</p>
+            <h2>Is there any music you would NOT like to hear?</h2>
+            <p class="pf-help">
+              List any songs or artists you would not like to hear.
+            </p>
             <textarea
               id="songs_to_skip"
               name="songs_to_skip"
               class="pf-input pf-textarea"
               rows="5"
               maxlength="1500"
-              placeholder="For example: Cupid Shuffle, Y.M.C.A., Sweet Caroline"
+              placeholder="Songs or artists you would not like to hear"
             ></textarea>
             <p class="pf-error" data-error-for="songs_to_skip"></p>
           </section>
@@ -545,6 +513,9 @@
           >
             <p class="pf-section-kicker">Music planning</p>
             <h2>How involved do you want to be in planning the music?</h2>
+            <p class="pf-help">
+              Any selection is okay. It just helps us plan for your day.
+            </p>
             <div class="pf-slider-wrap">
               <input
                 id="music_involvement"
@@ -664,9 +635,9 @@
             hidden
           >
             <p class="pf-section-kicker">Add-ons</p>
-            <h2>Interested in any add-ons?</h2>
+            <h2>Interested in any additional services?</h2>
             <p class="pf-help">
-              Through trusted third-party vendors and longtime collaborators.
+              In partnership with longtime collaborators and trusted vendors.
             </p>
             <fieldset class="pf-choice-group pf-checkbox-group">
               <label class="pf-choice"
@@ -695,7 +666,14 @@
                   type="checkbox"
                   name="addons[]"
                   value="portrait_lounge"
-                /><span>Portrait lounge (a.k.a. photo booth)</span></label
+                /><span>Portrait lounge</span></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="checkbox"
+                  name="addons[]"
+                  value="lighting_design"
+                /><span>Lighting design</span></label
               >
               <label class="pf-choice pf-choice--exclusive"
                 ><input
@@ -716,7 +694,10 @@
             hidden
           >
             <p class="pf-section-kicker">Budget</p>
-            <h2>Please tell us your ballpark target budget range.</h2>
+            <h2>
+              Please tell us your ballpark budget range for DJ, music, and
+              related services.
+            </h2>
             <p class="pf-help">
               This helps us more closely match our services to your budget.
             </p>
@@ -813,11 +794,11 @@
             data-section="Where you're at"
             hidden
           >
-            <p class="pf-section-kicker">A wedding or party you loved</p>
+            <p class="pf-section-kicker">Your wedding priorities</p>
             <h2>Tell us what is most important to you on your wedding day.</h2>
             <p class="pf-help">
-              A sentence or two is plenty. What matters most to you, and what
-              would make the day feel like you?
+              The more detail you share, the better we can understand what
+              matters to you and how to help make your day feel right.
             </p>
             <textarea
               id="wedding_priorities"
@@ -898,11 +879,8 @@
             hidden
           >
             <p class="pf-section-kicker">Anything else</p>
-            <h2>Anything else, and your most burning questions?</h2>
-            <p class="pf-help">
-              What are your most burning questions for DJ Misha? What would make
-              this the right fit for you?
-            </p>
+            <h2>What are your most burning questions for DJ Misha?</h2>
+            <p class="pf-help">What would make this the right fit for you?</p>
             <textarea
               id="anything_else"
               name="anything_else"
@@ -918,16 +896,13 @@
             data-section="Meet DJ Misha"
             hidden
           >
-            <p class="pf-section-kicker">Meet DJ Misha</p>
-            <h2>Let&apos;s talk it through.</h2>
+            <p class="pf-section-kicker">Let&apos;s talk it through.</p>
+            <h2>Meet & Greet with DJ Misha</h2>
             <p class="pf-help">
-              DJ Misha personally meets with couples to see if it&apos;s a good
-              match. Pick the weekday that works best for a quick call at <strong
-                >2:00 PM Pacific</strong
-              >.
+              DJ Misha personally meets with couples. Pick the weekday that
+              works best for a video call at <strong>2:00 PM Pacific</strong>.
             </p>
             <p class="pf-help pf-help--muted">
-              2:00 PM Pacific is 3:00 Mountain, 4:00 Central, and 5:00 Eastern.
               We&apos;ll confirm the exact date by email.
             </p>
 
