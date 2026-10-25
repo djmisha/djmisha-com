@@ -1,6 +1,6 @@
 (function () {
   const STORAGE_KEY = 'pf-state-v1';
-  const MAX_STEPS = 18;
+  const MAX_STEPS = 19;
   const ALLOWED_REPEAT_FIELDS = [
     'parts_of_day',
     'space_type',
@@ -74,6 +74,8 @@
         delete parsed.email;
         if (parsed.data && typeof parsed.data === 'object') {
           delete parsed.data.email;
+          delete parsed.data.music_involvement;
+          delete parsed.data.music_involvement_touched;
         }
         return parsed;
       }
@@ -111,8 +113,8 @@
     progressFill.style.width = `${ratio}%`;
     stepLabel.textContent =
       state.currentStep === 0
-        ? 'Step 1 of 18'
-        : `Step ${state.currentStep} of 18`;
+        ? 'Step 1 of 19'
+        : `Step ${state.currentStep} of 19`;
     backBtn.hidden = state.currentStep <= 0;
     nextBtn.hidden = state.currentStep >= MAX_STEPS;
     submitBtn.hidden = state.currentStep < MAX_STEPS;
@@ -245,7 +247,8 @@
         if (
           input.tagName === 'TEXTAREA' ||
           input.type === 'text' ||
-          input.type === 'tel'
+          input.type === 'tel' ||
+          input.type === 'hidden'
         ) {
           input.value = value || '';
         }
@@ -302,6 +305,86 @@
     });
   }
 
+  function formatTimelineTime(value) {
+    const [hours, minutes] = value.split(':').map(Number);
+    const period = hours >= 12 ? 'PM' : 'AM';
+    const displayHour = hours % 12 || 12;
+    return `${displayHour}:${String(minutes).padStart(2, '0')} ${period}`;
+  }
+
+  function updateTimelineSections() {
+    const selectedParts = new Set(
+      Array.from(
+        form.querySelectorAll('input[name="parts_of_day[]"]:checked'),
+        (input) => input.value,
+      ),
+    );
+    const sectionVisibility = {
+      ceremony: selectedParts.has('ceremony'),
+      cocktail_hour: selectedParts.has('cocktail_hour'),
+      reception_dinner: selectedParts.has('reception'),
+      dance_party: selectedParts.has('reception'),
+      afterparty: selectedParts.has('afterparty'),
+    };
+
+    Object.entries(sectionVisibility).forEach(([section, visible]) => {
+      const element = form.querySelector(
+        `[data-timeline-section="${section}"]`,
+      );
+      if (element) element.hidden = !visible;
+    });
+
+    form.querySelectorAll('[data-time-display]').forEach((display) => {
+      const input = document.getElementById(display.dataset.timeDisplay);
+      if (input && /^\d{2}:\d{2}$/.test(input.value)) {
+        display.textContent = formatTimelineTime(input.value);
+      }
+    });
+  }
+
+  function adjustTimelineTime(button) {
+    const input = document.getElementById(button.dataset.timeField);
+    if (!input) return;
+    const [hours, minutes] = input.value.split(':').map(Number);
+    const currentMinutes = hours * 60 + minutes;
+    const direction = Number(button.dataset.direction);
+    const updatedMinutes =
+      (currentMinutes + direction * 30 + 24 * 60) % (24 * 60);
+    const updatedHours = Math.floor(updatedMinutes / 60);
+    const updatedRemainder = updatedMinutes % 60;
+    input.value = `${String(updatedHours).padStart(2, '0')}:${String(updatedRemainder).padStart(2, '0')}`;
+
+    if (input.name.endsWith('_end')) {
+      const timelineSections = [
+        'ceremony',
+        'cocktail_hour',
+        'reception_dinner',
+        'dance_party',
+        'afterparty',
+      ];
+      const currentSection = input.name
+        .replace(/^timeline_/, '')
+        .replace(/_end$/, '');
+      const currentIndex = timelineSections.indexOf(currentSection);
+      const nextSection = timelineSections
+        .slice(currentIndex + 1)
+        .find(
+          (section) =>
+            !form.querySelector(`[data-timeline-section="${section}"]`).hidden,
+        );
+      if (nextSection) {
+        const nextStart = form.querySelector(
+          `[name="timeline_${nextSection}_start"]`,
+        );
+        if (nextStart) nextStart.value = input.value;
+      }
+    }
+
+    updateTimelineSections();
+    syncFormDataFromInputs();
+    saveState();
+  }
+
   function validateCurrentStep() {
     clearErrors();
     const step = state.currentStep;
@@ -320,11 +403,7 @@
     }
 
     if (step === 2) {
-      const value = safeTrim(form.querySelector('[name="timeline"]').value);
-      if (!value || value.length < 10) {
-        showError('timeline', 'Please give us a rough timeline.');
-        return false;
-      }
+      return true;
     }
 
     if (step === 3) {
@@ -388,21 +467,23 @@
     }
 
     if (step === 9) {
-      const input = form.querySelector('[name="music_involvement"]');
-      const value = Number(input.value || 0);
-      if (input.dataset.touched !== 'true' || value < 1 || value > 5) {
+      const selected = form.querySelectorAll(
+        'input[name="music_involvement[]"]:checked',
+      );
+      if (selected.length < 1) {
         showError(
           'music_involvement',
-          'Please choose your music planning level.',
+          'Please choose at least one music planning option.',
         );
         return false;
       }
     }
 
     if (step === 10) {
-      const input = form.querySelector('[name="planning_style"]');
-      const value = Number(input.value || 0);
-      if (input.dataset.touched !== 'true' || value < 1 || value > 5) {
+      const selected = form.querySelector(
+        'input[name="planning_style"]:checked',
+      );
+      if (!selected) {
         showError('planning_style', 'Please choose your planning style.');
         return false;
       }
@@ -446,6 +527,19 @@
 
     if (step === 14) {
       const selected = form.querySelector(
+        'input[name="spending_mindset"]:checked',
+      );
+      if (!selected) {
+        showError(
+          'spending_mindset',
+          'Please choose the spending approach that feels right for you.',
+        );
+        return false;
+      }
+    }
+
+    if (step === 15) {
+      const selected = form.querySelector(
         'input[name="decision_stage"]:checked',
       );
       if (!selected) {
@@ -457,7 +551,7 @@
       }
     }
 
-    if (step === 16) {
+    if (step === 17) {
       const selected = form.querySelector(
         'input[name="contact_method"]:checked',
       );
@@ -484,23 +578,6 @@
     if (hiddenWebsite) hiddenWebsite.value = '';
     saveState();
     return state.data;
-  }
-
-  function populateSliderLabel(inputId, readoutId, values) {
-    const input = document.getElementById(inputId);
-    const readout = document.getElementById(readoutId);
-    if (!input || !readout) return;
-
-    input.addEventListener('input', () => {
-      const value = Number(input.value);
-      readout.textContent = values[value] || 'Pick a level';
-      input.dataset.touched = 'true';
-    });
-
-    const currentValue = Number(input.value);
-    if (input.dataset.touched === 'true' && values[currentValue]) {
-      readout.textContent = values[currentValue];
-    }
   }
 
   function attachBudgetBehaviour() {
@@ -691,11 +768,18 @@
 
     document
       .querySelectorAll(
-        'input[name="key_moments[]"], input[name="lighting[]"], input[name="addons[]"], input[data-exclusive], input[data-other-toggle]',
+        'input[name="parts_of_day[]"], input[name="key_moments[]"], input[name="lighting[]"], input[name="addons[]"], input[data-exclusive], input[data-other-toggle]',
       )
       .forEach((input) => {
-        input.addEventListener('change', () => handleExclusiveSelection(input));
+        input.addEventListener('change', () => {
+          handleExclusiveSelection(input);
+          if (input.name === 'parts_of_day[]') updateTimelineSections();
+        });
       });
+
+    form.querySelectorAll('.pf-time-adjust').forEach((button) => {
+      button.addEventListener('click', () => adjustTimelineTime(button));
+    });
 
     document.querySelectorAll('[data-toggle-target]').forEach((toggle) => {
       toggle.addEventListener('change', toggleSubFields);
@@ -703,22 +787,6 @@
 
     document.querySelectorAll('[data-other-toggle]').forEach((toggle) => {
       toggle.addEventListener('change', toggleSubFields);
-    });
-
-    populateSliderLabel('music_involvement', 'music_involvement_label', {
-      1: 'I trust you completely. Surprise me.',
-      2: "Here's the vibe and some songs I love. You take it from there.",
-      3: "I'll give you must-plays and do-not-plays, and you handle the rest.",
-      4: "I'll make playlists to give you a good idea for each portion of the day.",
-      5: "I'll give you playlists and want them played in exact order.",
-    });
-
-    populateSliderLabel('planning_style', 'planning_style_label', {
-      1: 'Super chill',
-      2: 'Certain things I care about',
-      3: 'Somewhat particular',
-      4: 'Very particular',
-      5: 'Total Bridezilla',
     });
   }
 
@@ -754,6 +822,7 @@
     attachBudgetBehaviour();
     goToStep(state.currentStep);
     toggleSubFields();
+    updateTimelineSections();
   }
 
   initialize();

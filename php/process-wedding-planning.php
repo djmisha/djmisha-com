@@ -80,7 +80,33 @@ if ($honeypot !== '') {
 }
 
 $name = trim(strip_tags(cleanText($_POST['name'] ?? '')));
-$timeline = cleanText($_POST['timeline'] ?? '');
+$timelineValues = [
+    'ceremony' => [
+        'label' => 'Ceremony',
+        'start' => cleanText($_POST['timeline_ceremony_start'] ?? ''),
+        'end' => cleanText($_POST['timeline_ceremony_end'] ?? ''),
+    ],
+    'cocktail_hour' => [
+        'label' => 'Cocktail hour',
+        'start' => cleanText($_POST['timeline_cocktail_hour_start'] ?? ''),
+        'end' => cleanText($_POST['timeline_cocktail_hour_end'] ?? ''),
+    ],
+    'reception_dinner' => [
+        'label' => 'Reception & Dinner',
+        'start' => cleanText($_POST['timeline_reception_dinner_start'] ?? ''),
+        'end' => cleanText($_POST['timeline_reception_dinner_end'] ?? ''),
+    ],
+    'dance_party' => [
+        'label' => 'Dance party',
+        'start' => cleanText($_POST['timeline_dance_party_start'] ?? ''),
+        'end' => cleanText($_POST['timeline_dance_party_end'] ?? ''),
+    ],
+    'afterparty' => [
+        'label' => 'Afterparty',
+        'start' => cleanText($_POST['timeline_afterparty_start'] ?? ''),
+        'end' => cleanText($_POST['timeline_afterparty_end'] ?? ''),
+    ],
+];
 $spaceTypeOther = cleanText($_POST['space_type_other'] ?? '');
 $weddingPriorities = cleanText($_POST['wedding_priorities'] ?? '');
 $anythingElse = cleanText($_POST['anything_else'] ?? '');
@@ -88,13 +114,26 @@ $meetingDay = cleanText($_POST['meeting_day'] ?? '');
 $contactMethod = cleanText($_POST['contact_method'] ?? '');
 $bestTime = cleanText($_POST['best_time'] ?? '');
 $songsToSkip = cleanText($_POST['songs_to_skip'] ?? '');
+$songsToSkipCategories = cleanArrayValues($_POST['songs_to_skip_categories'] ?? [], [
+    'overplayed_wedding_classics',
+    'traditional_line_dances',
+    'cheesy_gimmick_songs',
+    'grandmas_golden_oldies',
+    'explicit_unedited_tracks',
+]);
+$spendingMindset = cleanText($_POST['spending_mindset'] ?? '');
 $budgetMin = integerValue($_POST['budget_min'] ?? null);
 $budgetMax = integerValue($_POST['budget_max'] ?? null);
-$musicInvolvement = integerValue($_POST['music_involvement'] ?? null);
-$planningStyle = integerValue($_POST['planning_style'] ?? null);
+$musicInvolvement = cleanArrayValues($_POST['music_involvement'] ?? [], [
+    'trust_expert',
+    'vibe_demographic_guide',
+    'curated_playlists',
+    'structured_timeline_flow',
+]);
+$planningStyle = cleanText($_POST['planning_style'] ?? '');
 $budgetTouched = cleanText($_POST['budget_touched'] ?? '');
 
-$allowedParts = ['ceremony', 'cocktail_hour', 'reception'];
+$allowedParts = ['ceremony', 'cocktail_hour', 'reception', 'afterparty'];
 $allowedSpaces = ['ballroom', 'tent_or_marquee', 'outdoors', 'barn', 'inside_a_house', 'other', 'backyard'];
 $allowedMoments = ['grand_entrance', 'first_dance', 'parent_dances', 'cake_cutting', 'bouquet_garter', 'last_dance', 'not_sure_yet'];
 $allowedMusicStyles = ['dance', 'pop', 'disco', 'funk', 'edm', 'house', 'tech_house', 'hip_hop', 'rnb', 'sing_alongs', 'rock', 'country', 'latin', 'reggaeton', 'reggae', 'dancehall', 'soul', 'indie', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
@@ -102,10 +141,18 @@ $allowedLighting = ['uplighting', 'basic_dance_floor_lighting', 'advanced_dance_
 $allowedAddons = ['live_saxophone', 'live_guitar', 'live_violin', 'portrait_lounge', 'lighting_design', 'none'];
 $allowedDecisionStages = ['browsing', 'comparing_vendors', 'few_questions', 'only_dj'];
 $allowedContactMethods = ['text', 'email', 'phone_call'];
+$allowedSpendingMindsets = ['firm_target', 'balanced_approach', 'vision_driven', 'unrestricted'];
 $allowedBestTimes = ['mornings', 'afternoons', 'evenings', 'no_preference'];
 $allowedCoordinatorValues = ['yes', 'no', 'not_sure'];
 $allowedMeetingDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
 $allowedMcStyles = ['light_professional', 'front_and_center'];
+$songsToSkipCategoryLabels = [
+    'overplayed_wedding_classics' => 'Overplayed Wedding Classics - The usual suspects you’ve heard at every single reception',
+    'traditional_line_dances' => 'Traditional Line Dances - Cha Cha Slide, Cupid Shuffle, Macarena — keep it strictly off the floor',
+    'cheesy_gimmick_songs' => 'Cheesy / Gimmick Songs - Sing-alongs, party props, or anything that feels a bit too “carnival DJ”',
+    'grandmas_golden_oldies' => 'Grandma’s Golden Oldies - Decades-old slow tracks that slow the party down to a crawl',
+    'explicit_unedited_tracks' => 'Explicit / Unedited Tracks - Keep the lyrics clean for mixed-generation crowds',
+];
 
 $errors = [];
 
@@ -120,8 +167,44 @@ if (is_array($partsOfDay) && count($partsOfDay) < 1) {
     $errors['parts_of_day'] = 'Please select a valid option for your day.';
 }
 
-if (textLength($timeline) < 10 || textLength($timeline) > 2000) {
-    $errors['timeline'] = 'Please tell us a rough timeline.';
+$timelineSectionKeys = [];
+if (is_array($partsOfDay)) {
+    if (in_array('ceremony', $partsOfDay, true)) {
+        $timelineSectionKeys[] = 'ceremony';
+    }
+    if (in_array('cocktail_hour', $partsOfDay, true)) {
+        $timelineSectionKeys[] = 'cocktail_hour';
+    }
+    if (in_array('reception', $partsOfDay, true)) {
+        $timelineSectionKeys[] = 'reception_dinner';
+        $timelineSectionKeys[] = 'dance_party';
+    }
+    if (in_array('afterparty', $partsOfDay, true)) {
+        $timelineSectionKeys[] = 'afterparty';
+    }
+}
+
+$timelineLines = [];
+foreach ($timelineSectionKeys as $sectionKey) {
+    $section = $timelineValues[$sectionKey];
+    $start = $section['start'];
+    $end = $section['end'];
+    if ($start === '' && $end === '') {
+        continue;
+    }
+
+    if (
+        !preg_match('/^(?:[01]\d|2[0-3]):(?:00|30)$/', $start) ||
+        !preg_match('/^(?:[01]\d|2[0-3]):(?:00|30)$/', $end)
+    ) {
+        $errors['timeline'] = 'Please choose valid timeline times in 30-minute increments.';
+        continue;
+    }
+
+    $timelineLines[] = $section['label'] . ': '
+        . DateTimeImmutable::createFromFormat('!H:i', $start)->format('g:i A')
+        . ' - '
+        . DateTimeImmutable::createFromFormat('!H:i', $end)->format('g:i A');
 }
 
 $spaceType = cleanArrayValues($_POST['space_type'] ?? [], $allowedSpaces);
@@ -161,11 +244,18 @@ if (is_array($musicStyles) && count($musicStyles) < 1) {
     $errors['music_styles'] = 'Please select valid music styles.';
 }
 
-if ($musicInvolvement === null || $musicInvolvement < 1 || $musicInvolvement > 5) {
-    $errors['music_involvement'] = 'Please choose a music planning level.';
+if (is_array($musicInvolvement) && count($musicInvolvement) < 1) {
+    $errors['music_involvement'] = 'Please choose at least one music planning option.';
+} elseif ($musicInvolvement === null) {
+    $errors['music_involvement'] = 'Please choose valid music planning options.';
 }
 
-if ($planningStyle === null || $planningStyle < 1 || $planningStyle > 5) {
+if (!in_array($planningStyle, [
+    'super_chill',
+    'guided_organized',
+    'detail_oriented_vision_driven',
+    'full_on_event_director',
+], true)) {
     $errors['planning_style'] = 'Please choose your planning style.';
 }
 
@@ -211,12 +301,26 @@ if ($decisionStage === '' || !in_array($decisionStage, $allowedDecisionStages, t
     $errors['decision_stage'] = 'Please pick where you are in your decision.';
 }
 
+$spendingMindsetLabels = [
+    'firm_target' => 'Firm Target - Staying strictly within our selected price range is a primary priority for us.',
+    'balanced_approach' => 'Balanced Approach - We’d prefer to stay near our target, but can adjust slightly for priority items that make a big difference.',
+    'vision_driven' => 'Vision-Driven - Our budget is flexible, and we are willing to invest more for high-impact details and seamless quality.',
+    'unrestricted' => 'Unrestricted - Money is not a constraining factor; our focus is on curating a fully custom, top-tier experience.',
+];
+if ($spendingMindset === '' || !in_array($spendingMindset, $allowedSpendingMindsets, true)) {
+    $errors['spending_mindset'] = 'Please choose a valid spending approach.';
+}
+
 if (textLength($weddingPriorities) > 1000) {
     $errors['wedding_priorities'] = 'Please keep your wedding priorities under 1,000 characters.';
 }
 
-if (textLength($songsToSkip) > 1500) {
-    $errors['songs_to_skip'] = 'Please keep your song notes under 1,500 characters.';
+if ($songsToSkipCategories === null) {
+    $errors['songs_to_skip'] = 'Please choose valid music categories to avoid.';
+}
+
+if (textLength($songsToSkip) > 500) {
+    $errors['songs_to_skip'] = 'Please keep your song notes under 500 characters.';
 }
 
 if ($contactMethod === '' || !in_array($contactMethod, $allowedContactMethods, true)) {
@@ -315,18 +419,16 @@ $choiceLabels = [
     'friday' => 'Friday',
 ];
 $musicInvolvementLabels = [
-    1 => 'I trust you completely. Surprise me.',
-    2 => "Here's the vibe and some songs I love. You take it from there.",
-    3 => "I'll give you must-plays and do-not-plays, and you handle the rest.",
-    4 => "I'll make playlists to give you a good idea for each portion of the day.",
-    5 => "I'll give you playlists and want them played in exact order.",
+    'trust_expert' => 'Trust the Expert: Hands-Off - We trust your expertise! We’d love for you to read the crowd, take the wheel, and surprise us with great music throughout the event.',
+    'vibe_demographic_guide' => 'Vibe & Demographic Guide: High-Level Direction - We’d like to share our favorite genres, overall vibe, and guest demographics, then let you craft the flow around those guidelines.',
+    'curated_playlists' => 'Curated Playlists: Specific Songs & Favorites - We have specific playlists or must-play/do-not-play lists we’d like to provide to ensure our personal favorites are included.',
+    'structured_timeline_flow' => 'Structured Timeline & Flow: Detailed Vision - We have a specific vision for how we want the energy and music to unfold across different parts of the event (e.g., cocktail hour vs. peak dance floor).',
 ];
 $planningStyleLabels = [
-    1 => 'Super chill',
-    2 => 'Certain things I care about',
-    3 => 'Somewhat particular',
-    4 => 'Very particular',
-    5 => 'Total Bridezilla',
+    'super_chill' => 'Super Chill & Go-With-the-Flow - I’m relaxed, trust the process completely, and just want everyone to have a good time. Tell me where to stand and what to play!',
+    'guided_organized' => 'Guided & Organized - I have a good sense of what I want and like staying on top of details, but I’m totally open to expert advice and ideas.',
+    'detail_oriented_vision_driven' => 'Detail-Oriented & Vision-Driven - I have a very specific vision for the day. I love clear timelines, prompt communication, and getting every little detail just right.',
+    'full_on_event_director' => 'Full-On Event Director - I know exactly what I want, down to the minute. I’m hands-on, highly detailed, and executing a flawless event is my top priority!',
 ];
 $to = 'info@djmisha.com, misha.osinovskiy@gmail.com';
 $subject = 'Contact from djmisha.com - ' . $name;
@@ -342,7 +444,7 @@ $bodyLines = [
     '',
     'YOUR DAY',
     'Parts of your day: ' . displayValues($partsOfDay ?? [], $choiceLabels),
-    'Timeline: ' . $timeline,
+    'Timeline: ' . ($timelineLines !== [] ? "\n" . implode("\n", $timelineLines) : 'Not provided'),
     'Spaces: ' . displayValues($spaceType ?? [], $choiceLabels) . ($spaceTypeOther !== '' ? ' / ' . $spaceTypeOther : ''),
     'Key moments to highlight: ' . displayValues($keyMoments ?? [], $choiceLabels),
     'MC style: ' . $choiceLabels[$mcStyle],
@@ -350,15 +452,17 @@ $bodyLines = [
     '',
     'YOUR MUSIC',
     'Music genres and decades: ' . displayValues($musicStyles ?? [], $choiceLabels),
-    'Songs to skip: ' . $songsToSkip,
-    'Music involvement: ' . $musicInvolvement . '/5 - ' . $musicInvolvementLabels[$musicInvolvement],
-    'Planning style: ' . $planningStyle . '/5 - ' . $planningStyleLabels[$planningStyle],
+    'Do not play categories: ' . displayValues($songsToSkipCategories ?? [], $songsToSkipCategoryLabels),
+    'Specific song/artist exclusions: ' . $songsToSkip,
+    'Music involvement: ' . displayValues($musicInvolvement ?? [], $musicInvolvementLabels),
+    'Planning style: ' . $planningStyleLabels[$planningStyle],
     '',
     'THE EXTRAS',
     'Lighting: ' . displayValues($lighting ?? [], $choiceLabels),
     'Add-ons: ' . displayValues($addons ?? [], $choiceLabels),
     'Budget: $' . number_format($budgetMin) . ' - $' . number_format($budgetMax),
     'Budget range: ' . ($budgetTouched === 'true' ? 'Adjusted by couple' : 'Not adjusted from default'),
+    'Spending mindset: ' . $spendingMindsetLabels[$spendingMindset],
     '',
     'WHERE YOU ARE',
     'Decision stage: ' . $choiceLabels[$decisionStage],

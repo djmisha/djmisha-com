@@ -207,6 +207,71 @@ h2 {
   font-size: 0.9rem;
 }
 
+.pf-timeline-stepper {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--pf-border);
+}
+
+.pf-timeline-stepper h3 {
+  margin: 0 0 0.75rem;
+  color: var(--pf-text-strong);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.pf-time-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.35rem;
+}
+
+.pf-time-label {
+  color: var(--pf-text-soft);
+}
+
+.pf-time-control {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pf-time-control output {
+  min-width: 4.5rem;
+  color: var(--pf-text-strong);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.pf-time-adjust {
+  width: 3rem;
+  height: 3rem;
+  min-width: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--pf-border);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--pf-text-strong);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.pf-time-adjust:hover,
+.pf-time-adjust:focus-visible {
+  border-color: var(--pf-accent);
+}
+
+.pf-time-adjust:focus-visible {
+  outline: 2px solid var(--pf-accent);
+  outline-offset: 2px;
+}
+
 .pf-lead {
   color: var(--pf-text);
   font-size: 1.05rem;
@@ -328,6 +393,7 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  text-align: left;
 }
 
 .pf-card-title {
@@ -393,6 +459,28 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
+}
+
+.pf-no-go-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pf-no-go-grid .pf-chip {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.pf-no-go-grid .pf-chip span {
+  display: block;
+}
+
+.pf-no-go-grid .pf-chip small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--pf-text-soft);
+  font-size: 0.75rem;
+  font-weight: 300;
 }
 
 .pf-chip-break {
@@ -494,8 +582,8 @@ input[type='range'] {
 .pf-budget-handle {
   position: absolute;
   top: 50%;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 3.6rem;
+  height: 3.6rem;
   background: var(--pf-accent);
   border: 2px solid #fff;
   transform: translate(-50%, -50%);
@@ -533,6 +621,10 @@ input[type='range'] {
   }
 
   .pf-choice-group {
+    grid-template-columns: 1fr;
+  }
+
+  .pf-no-go-grid {
     grid-template-columns: 1fr;
   }
 

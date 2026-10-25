@@ -47,7 +47,7 @@
 
           <div class="pf-header-row">
             <div class="pf-progress-meta">
-              <div id="pf-step-label" class="pf-step-label">Step 1 of 18</div>
+              <div id="pf-step-label" class="pf-step-label">Step 1 of 19</div>
             </div>
           </div>
         </header>
@@ -98,25 +98,352 @@
                 />
                 <span>Reception</span>
               </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="parts_of_day[]"
+                  value="afterparty"
+                />
+                <span>Afterparty</span>
+              </label>
             </fieldset>
             <p class="pf-error" data-error-for="parts_of_day"></p>
           </section>
 
           <section class="pf-step" data-step="2" data-section="Your day" hidden>
             <p class="pf-section-kicker">Your timeline</p>
-            <h2>What does your timeline look like?</h2>
+            <h2>What does your event timeline look like?</h2>
             <p class="pf-help">
-              Ballpark is totally fine. Include rough start and end times for
-              each part.
+              Optional. Tap the buttons to tweak your estimated start and end
+              times in 30-minute steps — no typing required! Don’t worry if
+              these aren’t locked in yet; rough estimates are perfect.
             </p>
-            <textarea
-              id="timeline"
-              name="timeline"
-              class="pf-input pf-textarea"
-              rows="6"
-              maxlength="2000"
-              placeholder="Example: Ceremony 4:30-5:00pm, Cocktail hour 5:00-6:00pm, Dinner 6:00-7:00pm, Dancing 8:00-10:00pm"
-            ></textarea>
+            <div
+              class="pf-timeline-stepper"
+              data-timeline-section="ceremony"
+              hidden
+            >
+              <h3>💍 Ceremony</h3>
+              <div class="pf-time-row">
+                <span class="pf-time-label">Start</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_ceremony_start"
+                    data-direction="-1"
+                    aria-label="Earlier ceremony start time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_ceremony_start"
+                    for="timeline_ceremony_start">4:30 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_ceremony_start"
+                    data-direction="1"
+                    aria-label="Later ceremony start time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_ceremony_start"
+                  name="timeline_ceremony_start"
+                  value="16:30"
+                />
+              </div>
+              <div class="pf-time-row">
+                <span class="pf-time-label">End</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_ceremony_end"
+                    data-direction="-1"
+                    aria-label="Earlier ceremony end time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_ceremony_end"
+                    for="timeline_ceremony_end">5:30 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_ceremony_end"
+                    data-direction="1"
+                    aria-label="Later ceremony end time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_ceremony_end"
+                  name="timeline_ceremony_end"
+                  value="17:30"
+                />
+              </div>
+            </div>
+            <div
+              class="pf-timeline-stepper"
+              data-timeline-section="cocktail_hour"
+              hidden
+            >
+              <h3>🍸 Cocktail Hour</h3>
+              <div class="pf-time-row">
+                <span class="pf-time-label">Start</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_cocktail_hour_start"
+                    data-direction="-1"
+                    aria-label="Earlier cocktail hour start time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_cocktail_hour_start"
+                    for="timeline_cocktail_hour_start">5:30 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_cocktail_hour_start"
+                    data-direction="1"
+                    aria-label="Later cocktail hour start time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_cocktail_hour_start"
+                  name="timeline_cocktail_hour_start"
+                  value="17:30"
+                />
+              </div>
+              <div class="pf-time-row">
+                <span class="pf-time-label">End</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_cocktail_hour_end"
+                    data-direction="-1"
+                    aria-label="Earlier cocktail hour end time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_cocktail_hour_end"
+                    for="timeline_cocktail_hour_end">6:30 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_cocktail_hour_end"
+                    data-direction="1"
+                    aria-label="Later cocktail hour end time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_cocktail_hour_end"
+                  name="timeline_cocktail_hour_end"
+                  value="18:30"
+                />
+              </div>
+            </div>
+            <div
+              class="pf-timeline-stepper"
+              data-timeline-section="reception_dinner"
+              hidden
+            >
+              <h3>🍽️ Reception &amp; Dinner</h3>
+              <div class="pf-time-row">
+                <span class="pf-time-label">Start</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_reception_dinner_start"
+                    data-direction="-1"
+                    aria-label="Earlier reception and dinner start time"
+                    >−</button
+                  >
+                  <output
+                    data-time-display="timeline_reception_dinner_start"
+                    for="timeline_reception_dinner_start">6:30 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_reception_dinner_start"
+                    data-direction="1"
+                    aria-label="Later reception and dinner start time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_reception_dinner_start"
+                  name="timeline_reception_dinner_start"
+                  value="18:30"
+                />
+              </div>
+              <div class="pf-time-row">
+                <span class="pf-time-label">End</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_reception_dinner_end"
+                    data-direction="-1"
+                    aria-label="Earlier reception and dinner end time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_reception_dinner_end"
+                    for="timeline_reception_dinner_end">8:00 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_reception_dinner_end"
+                    data-direction="1"
+                    aria-label="Later reception and dinner end time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_reception_dinner_end"
+                  name="timeline_reception_dinner_end"
+                  value="20:00"
+                />
+              </div>
+            </div>
+            <div
+              class="pf-timeline-stepper"
+              data-timeline-section="dance_party"
+              hidden
+            >
+              <h3>🪩 Dance Party</h3>
+              <div class="pf-time-row">
+                <span class="pf-time-label">Start</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_dance_party_start"
+                    data-direction="-1"
+                    aria-label="Earlier dance party start time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_dance_party_start"
+                    for="timeline_dance_party_start">8:00 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_dance_party_start"
+                    data-direction="1"
+                    aria-label="Later dance party start time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_dance_party_start"
+                  name="timeline_dance_party_start"
+                  value="20:00"
+                />
+              </div>
+              <div class="pf-time-row">
+                <span class="pf-time-label">End</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_dance_party_end"
+                    data-direction="-1"
+                    aria-label="Earlier dance party end time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_dance_party_end"
+                    for="timeline_dance_party_end">10:00 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_dance_party_end"
+                    data-direction="1"
+                    aria-label="Later dance party end time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_dance_party_end"
+                  name="timeline_dance_party_end"
+                  value="22:00"
+                />
+              </div>
+            </div>
+            <div
+              class="pf-timeline-stepper"
+              data-timeline-section="afterparty"
+              hidden
+            >
+              <h3>🎉 Afterparty</h3>
+              <div class="pf-time-row">
+                <span class="pf-time-label">Start</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_afterparty_start"
+                    data-direction="-1"
+                    aria-label="Earlier afterparty start time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_afterparty_start"
+                    for="timeline_afterparty_start">10:00 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_afterparty_start"
+                    data-direction="1"
+                    aria-label="Later afterparty start time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_afterparty_start"
+                  name="timeline_afterparty_start"
+                  value="22:00"
+                />
+              </div>
+              <div class="pf-time-row">
+                <span class="pf-time-label">End</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_afterparty_end"
+                    data-direction="-1"
+                    aria-label="Earlier afterparty end time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_afterparty_end"
+                    for="timeline_afterparty_end">12:00 AM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_afterparty_end"
+                    data-direction="1"
+                    aria-label="Later afterparty end time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_afterparty_end"
+                  name="timeline_afterparty_end"
+                  value="00:00"
+                />
+              </div>
+            </div>
             <p class="pf-error" data-error-for="timeline"></p>
           </section>
 
@@ -256,7 +583,7 @@
           <section class="pf-step" data-step="5" data-section="Your day" hidden>
             <p class="pf-section-kicker">MC style</p>
             <h2>What kind of MC style fits your day?</h2>
-            <fieldset class="pf-choice-group pf-radio-group">
+            <fieldset class="pf-choice-group pf-checkbox-group">
               <label class="pf-choice pf-card-choice">
                 <input
                   type="radio"
@@ -492,16 +819,108 @@
             <p class="pf-section-kicker">Music preferences</p>
             <h2>Is there any music you would NOT like to hear?</h2>
             <p class="pf-help">
-              List any songs or artists you would not like to hear.
+              Let’s protect your dance floor! Check any categories below that
+              make you cringe, and we’ll make sure they stay far away from the
+              speakers.
             </p>
-            <textarea
-              id="songs_to_skip"
-              name="songs_to_skip"
-              class="pf-input pf-textarea"
-              rows="5"
-              maxlength="1500"
-              placeholder="Songs or artists you would not like to hear"
-            ></textarea>
+            <fieldset
+              class="pf-chip-grid pf-no-go-grid"
+              aria-label="Music categories to avoid"
+            >
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_categories[]"
+                  value="overplayed_wedding_classics"
+                />
+                <span>
+                  <span aria-hidden="true">🔁</span> Overplayed Wedding Classics
+                  <small
+                    >The usual suspects you’ve heard at every single reception</small
+                  >
+                </span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_categories[]"
+                  value="traditional_line_dances"
+                />
+                <span>
+                  <span aria-hidden="true">🕺</span> Traditional Line Dances
+                  <small
+                    >Cha Cha Slide, Cupid Shuffle, Macarena — keep it strictly
+                    off the floor</small
+                  >
+                </span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_categories[]"
+                  value="cheesy_gimmick_songs"
+                />
+                <span>
+                  <span aria-hidden="true">🎭</span> Cheesy / Gimmick Songs
+                  <small
+                    >Sing-alongs, party props, or anything that feels a bit too
+                    “carnival DJ”</small
+                  >
+                </span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_categories[]"
+                  value="grandmas_golden_oldies"
+                />
+                <span>
+                  <span aria-hidden="true">🪩</span> Grandma’s Golden Oldies
+                  <small
+                    >Decades-old slow tracks that slow the party down to a crawl</small
+                  >
+                </span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_categories[]"
+                  value="explicit_unedited_tracks"
+                />
+                <span>
+                  <span aria-hidden="true">🔇</span> Explicit / Unedited Tracks
+                  <small
+                    >Keep the lyrics clean for mixed-generation crowds</small
+                  >
+                </span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_write_in_enabled"
+                  value="yes"
+                  data-other-toggle="songs_to_skip_write_in"
+                />
+                <span>✍️ Add specific song/artist exclusions</span>
+              </label>
+            </fieldset>
+            <div
+              id="songs_to_skip_write_in_wrap"
+              class="pf-inline-field"
+              hidden
+            >
+              <label class="pf-field-label" for="songs_to_skip">
+                Specific song/artist exclusions (optional)
+              </label>
+              <input
+                id="songs_to_skip"
+                name="songs_to_skip"
+                type="text"
+                class="pf-input"
+                maxlength="500"
+                placeholder="Song titles or artists"
+              />
+            </div>
             <p class="pf-error" data-error-for="songs_to_skip"></p>
           </section>
 
@@ -512,31 +931,77 @@
             hidden
           >
             <p class="pf-section-kicker">Music planning</p>
-            <h2>How involved do you want to be in planning the music?</h2>
+            <h2 id="music-involvement-heading">
+              How would you like to handle your music planning?
+            </h2>
             <p class="pf-help">
-              Any selection is okay. It just helps us plan for your day.
+              Select all that apply. Every host approaches music differently —
+              some prefer full creative control, while others love leaving it in
+              our expert hands. There is no right or wrong way to collaborate!
+              Choose the options below that best match your comfort level.
             </p>
-            <div class="pf-slider-wrap">
-              <input
-                id="music_involvement"
-                name="music_involvement"
-                type="range"
-                min="1"
-                max="5"
-                step="1"
-                value=""
-              />
-              <div class="pf-slider-labels">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-              </div>
-              <div id="music_involvement_label" class="pf-slider-readout">
-                Pick a level
-              </div>
-            </div>
+            <fieldset
+              class="pf-choice-group pf-checkbox-group"
+              aria-labelledby="music-involvement-heading"
+            >
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="checkbox"
+                  name="music_involvement[]"
+                  value="trust_expert"
+                />
+                <span class="pf-card-title">Trust the Expert: Hands-Off</span>
+                <small>
+                  We trust your expertise! We’d love for you to read the crowd,
+                  take the wheel, and surprise us with great music throughout
+                  the event.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="checkbox"
+                  name="music_involvement[]"
+                  value="vibe_demographic_guide"
+                />
+                <span class="pf-card-title">
+                  Vibe &amp; Demographic Guide: High-Level Direction
+                </span>
+                <small>
+                  We’d like to share our favorite genres, overall vibe, and
+                  guest demographics, then let you craft the flow around those
+                  guidelines.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="checkbox"
+                  name="music_involvement[]"
+                  value="curated_playlists"
+                />
+                <span class="pf-card-title">
+                  Curated Playlists: Specific Songs &amp; Favorites
+                </span>
+                <small>
+                  We have specific playlists or must-play/do-not-play lists we’d
+                  like to provide to ensure our personal favorites are included.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="checkbox"
+                  name="music_involvement[]"
+                  value="structured_timeline_flow"
+                />
+                <span class="pf-card-title">
+                  Structured Timeline &amp; Flow: Detailed Vision
+                </span>
+                <small>
+                  We have a specific vision for how we want the energy and music
+                  to unfold across different parts of the event (e.g., cocktail
+                  hour vs. peak dance floor).
+                </small>
+              </label>
+            </fieldset>
             <p class="pf-error" data-error-for="music_involvement"></p>
           </section>
 
@@ -546,33 +1011,71 @@
             data-section="Your music"
             hidden
           >
-            <p class="pf-section-kicker">Planning style</p>
-            <h2>Where are you on the planning spectrum?</h2>
+            <p class="pf-section-kicker">Planning</p>
+            <h2 id="planning-style-heading">
+              How would you describe your event planning vibe?
+            </h2>
             <p class="pf-help">
-              Any level is okay. We just like to know upfront so we can show up
-              the right way.
+              Select one. No judgment here — whether you’re delegating
+              everything or organizing spreadsheets by color code, knowing your
+              style helps us communicate with you in the best way possible!
             </p>
-            <div class="pf-slider-wrap">
-              <input
-                id="planning_style"
-                name="planning_style"
-                type="range"
-                min="1"
-                max="5"
-                step="1"
-                value=""
-              />
-              <div class="pf-slider-labels">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-              </div>
-              <div id="planning_style_label" class="pf-slider-readout">
-                Pick a level
-              </div>
-            </div>
+            <fieldset
+              class="pf-choice-group pf-radio-group"
+              aria-labelledby="planning-style-heading"
+            >
+              <label class="pf-choice pf-card-choice">
+                <input type="radio" name="planning_style" value="super_chill" />
+                <span class="pf-card-title">
+                  Super Chill &amp; Go-With-the-Flow
+                </span>
+                <small>
+                  I’m relaxed, trust the process completely, and just want
+                  everyone to have a good time. Tell me where to stand and what
+                  to play!
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="planning_style"
+                  value="guided_organized"
+                />
+                <span class="pf-card-title">Guided &amp; Organized</span>
+                <small>
+                  I have a good sense of what I want and like staying on top of
+                  details, but I’m totally open to expert advice and ideas.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="planning_style"
+                  value="detail_oriented_vision_driven"
+                />
+                <span class="pf-card-title">
+                  Detail-Oriented &amp; Vision-Driven
+                </span>
+                <small>
+                  I have a very specific vision for the day. I love clear
+                  timelines, prompt communication, and getting every little
+                  detail just right.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="planning_style"
+                  value="full_on_event_director"
+                />
+                <span class="pf-card-title">Full-On Event Director</span>
+                <small>
+                  I know exactly what I want, down to the minute. I’m hands-on,
+                  highly detailed, and executing a flawless event is my top
+                  priority!
+                </small>
+              </label>
+            </fieldset>
             <p class="pf-error" data-error-for="planning_style"></p>
           </section>
 
@@ -747,6 +1250,75 @@
           <section
             class="pf-step"
             data-step="14"
+            data-section="The extras"
+            hidden
+          >
+            <p class="pf-section-kicker">Spending mindset</p>
+            <h2>How would you describe your approach to spending?</h2>
+            <p class="pf-help">
+              Why we ask about your approach: Every couple’s event priorities
+              and spending style are unique. Whether you’re working with a firm
+              target or planning an all-out celebration, there is no wrong
+              answer! Knowing how you view your budget helps us suggest options,
+              prioritize features, and tailor a proposal that feels entirely
+              comfortable for you.
+            </p>
+            <fieldset class="pf-choice-group pf-radio-group">
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="spending_mindset"
+                  value="firm_target"
+                />
+                <span class="pf-card-title">Firm Target</span>
+                <small>
+                  Staying strictly within our selected price range is a primary
+                  priority for us.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="spending_mindset"
+                  value="balanced_approach"
+                />
+                <span class="pf-card-title">Balanced Approach</span>
+                <small>
+                  We’d prefer to stay near our target, but can adjust slightly
+                  for priority items that make a big difference.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="spending_mindset"
+                  value="vision_driven"
+                />
+                <span class="pf-card-title">Vision-Driven</span>
+                <small>
+                  Our budget is flexible, and we are willing to invest more for
+                  high-impact details and seamless quality.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="spending_mindset"
+                  value="unrestricted"
+                />
+                <span class="pf-card-title">Unrestricted</span>
+                <small>
+                  Money is not a constraining factor; our focus is on curating a
+                  fully custom, top-tier experience.
+                </small>
+              </label>
+            </fieldset>
+            <p class="pf-error" data-error-for="spending_mindset"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="15"
             data-section="Where you're at"
             hidden
           >
@@ -790,7 +1362,7 @@
 
           <section
             class="pf-step"
-            data-step="15"
+            data-step="16"
             data-section="Where you're at"
             hidden
           >
@@ -811,7 +1383,7 @@
 
           <section
             class="pf-step"
-            data-step="16"
+            data-step="17"
             data-section="Where you're at"
             hidden
           >
@@ -874,7 +1446,7 @@
 
           <section
             class="pf-step"
-            data-step="17"
+            data-step="18"
             data-section="Where you're at"
             hidden
           >
@@ -892,7 +1464,7 @@
 
           <section
             class="pf-step"
-            data-step="18"
+            data-step="19"
             data-section="Meet DJ Misha"
             hidden
           >
@@ -958,7 +1530,7 @@
 
       <div id="pf-success" class="pf-success" hidden>
         <div class="pf-card pf-card--narrow">
-          <p class="pf-eyebrow">Done.</p>
+          <p class="pf-eyebrow">Done</p>
           <h1 id="pf-success-name">You&apos;re all set!</h1>
           <p id="pf-success-message">DJ Misha will be in touch.</p>
         </div>

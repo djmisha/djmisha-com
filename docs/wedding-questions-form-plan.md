@@ -85,12 +85,12 @@ https://djmisha.com/wedding-planning/?name=Hannah%20Mattson
 ### 5.1 Structure
 
 - **One step per view.** Each question below is its own step, shown one at a time, like the booking intake form. If the booking intake form's step granularity differs (for example, if it groups related fields per step), mirror its granularity instead.
-- There are 18 question steps, plus a welcome screen and thank-you screen. Each question step has a descriptive eyebrow naming that step; the progress header only shows the step count.
+- There are 19 question steps, plus a welcome screen and thank-you screen. Each question step has a descriptive eyebrow naming that step; the progress header only shows the step count.
 - Conditional sub-fields (for example, the “Other” space text field) appear **inside** their step and never add or remove steps, so the step count stays fixed and the progress indicator stays honest.
 
 ### 5.2 Progress indicator
 
-- Always visible. A progress bar showing the proportion complete, plus text such as `Step 7 of 18`. The step-specific eyebrow appears immediately above the question; the progress header has no section label.
+- Always visible. A progress bar showing the proportion complete, plus text such as `Step 7 of 19`. The step-specific eyebrow appears immediately above the question; the progress header has no section label.
 - Updates reactively as the user moves forward or back, with a smooth animation (respect `prefers-reduced-motion`).
 - Welcome screen copy: "A few quick questions to help us focus on what matters most to you. It only takes a few minutes."
 
@@ -126,14 +126,17 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 
 - Question: **Which parts of your day would you like us involved in?**
 - Helper: "Select all that apply."
-- Options: Ceremony; Cocktail hour; Reception
+- Options: Ceremony; Cocktail hour; Reception; Afterparty
 
-**Step 2: `timeline`** (textarea, required)
+**Step 2: `timeline_*_{start,end}`** (mobile-first tap steppers, optional)
 
-- Question: **What does your timeline look like?**
-- Helper: "Ballpark is totally fine. Include rough start and end times for each part."
-- Placeholder: `Example: Ceremony 4:30-5:00pm, Cocktail hour 5:00-6:00pm, Dinner 6:00-7:00pm, Dancing 8:00-10:00pm`
-- Max 2,000 chars.
+- Question: **What does your event timeline look like?**
+- Helper: "Optional. Tap the buttons to tweak your estimated start and end times in 30-minute steps—no typing required! Don’t worry if these aren’t locked in yet; rough estimates are perfect."
+- Show only the time sections matching Step 1 selections. Reception selection shows **Reception & Dinner** and **Dance Party** separately. Afterparty selection shows **Afterparty**.
+- Defaults: Ceremony 4:30–5:30 PM; Cocktail Hour 5:30–6:30 PM; Reception & Dinner 6:30–8:00 PM; Dance Party 8:00–10:00 PM; Afterparty 10:00 PM–12:00 AM (midnight).
+- Start/end times use [−] and [+] buttons with touch targets at least 48×48px. Taps adjust by 30 minutes, display as 12-hour times, and require no typing.
+- When an end time changes, update the next visible section’s start time to match. Stepper times wrap across midnight. Persist values while navigating and when resuming.
+- Times are optional; the processor validates provided values and includes selected sections with start/end times in the email.
 
 **Step 3: `space_type`** (multi-select, required, min 1)
 
@@ -168,44 +171,35 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 - Helper: "Pick as many as you like."
 - Options: Dance; Pop; Disco; Funk; EDM; House; Tech house; Hip hop; R&B; Sing-alongs; Rock; Country; Latin; Reggaeton; Reggae; Dancehall; Soul; Indie. Then a line break, followed by the decade choices 70's; 80's; 90's; 2000's; 2010's; 2020's.
 
-**Step 8: `songs_to_skip`** (textarea, optional)
+**Step 8: `songs_to_skip_categories[]`, `songs_to_skip`** (multi-select pills and conditional optional write-in)
 
 - Question: **Is there any music you would NOT like to hear?**
-- Helper: "List any songs or artists you would not like to hear."
-- Placeholder: `Songs or artists you would not like to hear`
-- Max 1,500 chars. Include a visible "Skip" affordance or allow Continue with an empty value.
+- Helper: "Let’s protect your dance floor! Check any categories below that make you cringe, and we’ll make sure they stay far away from the speakers."
+- Select any categories: Overplayed Wedding Classics; Traditional Line Dances; Cheesy / Gimmick Songs; Grandma’s Golden Oldies; Explicit / Unedited Tracks. Each pill includes a decorative icon and supporting description.
+- The "Add specific song/artist exclusions" pill reveals an optional write-in text field. `songs_to_skip` is limited to 500 characters.
+- All choices are optional. The processor validates category values and includes the selected categories and write-in answer in the email.
 
-**Step 9: `music_involvement`** (5-stop slider, required interaction)
+**Step 9: `music_involvement[]`** (multi-select visual button cards, required, min 1)
 
-- Question: **How involved do you want to be in planning the music?**
-- Helper: "Any selection is okay. It just helps us plan for your day."
-- Stops (submit the integer 1-5; the processor derives the display label):
+- Question: **How would you like to handle your music planning?**
+- Helper: "Select all that apply. Every host approaches music differently—some prefer full creative control, while others love leaving it in our expert hands. There is no right or wrong way to collaborate! Choose the options below that best match your comfort level."
+- Options:
+  - **Trust the Expert: Hands-Off:** "We trust your expertise! We’d love for you to read the crowd, take the wheel, and surprise us with great music throughout the event."
+  - **Vibe & Demographic Guide: High-Level Direction:** "We’d like to share our favorite genres, overall vibe, and guest demographics, then let you craft the flow around those guidelines."
+  - **Curated Playlists: Specific Songs & Favorites:** "We have specific playlists or must-play/do-not-play lists we’d like to provide to ensure our personal favorites are included."
+  - **Structured Timeline & Flow: Detailed Vision:** "We have a specific vision for how we want the energy and music to unfold across different parts of the event (e.g., cocktail hour vs. peak dance floor)."
+- Couples may select multiple options; at least one is required. Selections are restored when resuming, validated server-side, and included with their full descriptions in the email.
 
-| Stop | Label                                                                    |
-| ---- | ------------------------------------------------------------------------ |
-| 1    | I trust you completely. Surprise me.                                     |
-| 2    | Here's the vibe and some songs I love. You take it from there.           |
-| 3    | I'll give you must-plays and do-not-plays, and you handle the rest.      |
-| 4    | I'll make playlists to give you a good idea for each portion of the day. |
-| 5    | I'll give you playlists and want them played in exact order.             |
+**Step 10: `planning_style`** (single-select radio cards, required)
 
-- Show the current stop's label centered in a red pill with white text beneath the slider. The scale labels 1 and 5 align with the two ends of the track. The slider is required and must be interacted with before continuing; the selected value is retained when resuming.
-
-**Step 10: `planning_style`** (5-stop slider, required interaction)
-
-- Question: **Where are you on the planning spectrum?**
-- Helper: "Any level is okay. We just like to know upfront so we can show up the right way."
-- Stops (submit the integer 1-5; the processor derives the display label):
-
-| Stop | Label                       |
-| ---- | --------------------------- |
-| 1    | Super chill                 |
-| 2    | Certain things I care about |
-| 3    | Somewhat particular         |
-| 4    | Very particular             |
-| 5    | Total Bridezilla            |
-
-- Keep the tone playful. Same centered red pill, endpoint alignment, required-interaction, and resume behavior as Step 9.
+- Question: **How would you describe your event planning vibe?**
+- Helper: "Select one. No judgment here—whether you’re delegating everything or organizing spreadsheets by color code, knowing your style helps us communicate with you in the best way possible!"
+- Options:
+  - **Super Chill & Go-With-the-Flow:** "I’m relaxed, trust the process completely, and just want everyone to have a good time. Tell me where to stand and what to play!"
+  - **Guided & Organized:** "I have a good sense of what I want and like staying on top of details, but I’m totally open to expert advice and ideas."
+  - **Detail-Oriented & Vision-Driven:** "I have a very specific vision for the day. I love clear timelines, prompt communication, and getting every little detail just right."
+  - **Full-On Event Director:** "I know exactly what I want, down to the minute. I’m hands-on, highly detailed, and executing a flawless event is my top priority!"
+- Exactly one option is required. Selection is restored when resuming and validated server-side; the notification email includes the selected label and description.
 
 ### Section 3: The Extras
 
@@ -227,13 +221,24 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 - Small explainer under the slider: "This helps us more closely match our services to your budget."
 - Range: **$2,500 to $10,000**, step $250. The top end is displayed as **$10,000+**.
 - Both handles start at the **extremes** (full range) so the form doesn't anchor them low or high. Display the live selection, for example `$4,000 - $7,500`.
+- The two slider knobs are 3 times their previous size (3.6rem, about 58px square) to make them easier to grab on mobile.
 - Submit `budget_min`, `budget_max` (integers; `10000` means "$10,000 or more"), and `budget_touched` (`"true"`/`"false"`; true if the user moved either handle). The email must show whether the range was touched.
 - Both handles support pointer/touch dragging, clicking near the desired track position, and keyboard arrow keys. Keep a minimum $250 gap and constrain values to $2,500–$10,000 in $250 increments.
 - Continue is always enabled on this step.
 
+**Step 14: `spending_mindset`** (single-select visual button cards, required)
+
+- Question: **How would you describe your approach to spending?**
+- Helper: "Why we ask about your approach: Every couple’s event priorities and spending style are unique. Whether you’re working with a firm target or planning an all-out celebration, there is no wrong answer! Knowing how you view your budget helps us suggest options, prioritize features, and tailor a proposal that feels entirely comfortable for you."
+- Options:
+  - **Firm Target:** "Staying strictly within our selected price range is a primary priority for us."
+  - **Balanced Approach:** "We’d prefer to stay near our target, but can adjust slightly for priority items that make a big difference."
+  - **Vision-Driven:** "Our budget is flexible, and we are willing to invest more for high-impact details and seamless quality."
+  - **Unrestricted:** "Money is not a constraining factor; our focus is on curating a fully custom, top-tier experience."
+
 ### Section 4: Where You're At
 
-**Step 14: `decision_stage`** (single-select, required)
+**Step 15: `decision_stage`** (single-select, required)
 
 - Question: **Where are you in your decision?**
 - Options:
@@ -242,20 +247,20 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
   3. I'm very interested and just have a few questions for you
   4. You're the only DJ for us
 
-**Step 15: `wedding_priorities`** (textarea, optional)
+**Step 16: `wedding_priorities`** (textarea, optional)
 
 - Question: **Tell us what is most important to you on your wedding day.**
 - Helper: "The more detail you share, the better we can understand what matters to you and how to help make your day feel right."
 - Field name: `wedding_priorities`; max 1,000 chars.
 
-**Step 16: `contact_method`** (single-select, required)
+**Step 17: `contact_method`** (single-select, required)
 
 - Question: **What's the best way to reach you?**
 - Options: Text; Email; Phone call
 - No phone number is collected, regardless of selected contact method.
 - `best_time` (optional single-select chips): Mornings; Afternoons; Evenings; No preference. Label: "Best time to reach you".
 
-**Step 17: `anything_else`** (textarea, optional)
+**Step 18: `anything_else`** (textarea, optional)
 
 - Question: **What are your most burning questions for DJ Misha?**
 - Helper: "What would make this the right fit for you?"
@@ -263,7 +268,7 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 
 ### Section 5: Meet DJ Misha
 
-**Step 18: `meeting_day`** (single radio group, **not** a calendar)
+**Step 19: `meeting_day`** (single radio group, **not** a calendar)
 
 - Heading: **Let's talk it through.**
 - Copy: "DJ Misha personally meets with couples if it's a good match. Pick the weekday that works best for a video call at **2:00 PM Pacific**."
@@ -294,21 +299,27 @@ POST `FormData` to `/php/process-wedding-planning.php` via `fetch`. Fields:
 
 ```text
 name: hidden; query value or restored saved state
-parts_of_day[]: ceremony | cocktail_hour | reception
-timeline: required string, 10-2,000 characters
+parts_of_day[]: ceremony | cocktail_hour | reception | afterparty
+timeline_ceremony_start, timeline_ceremony_end: optional 24-hour times in 30-minute increments
+timeline_cocktail_hour_start, timeline_cocktail_hour_end: optional 24-hour times in 30-minute increments
+timeline_reception_dinner_start, timeline_reception_dinner_end: optional 24-hour times in 30-minute increments
+timeline_dance_party_start, timeline_dance_party_end: optional 24-hour times in 30-minute increments
+timeline_afterparty_start, timeline_afterparty_end: optional 24-hour times in 30-minute increments
 space_type[]: ballroom | tent_or_marquee | outdoors | barn | inside_a_house | other | backyard
 space_type_other: optional string, max 150 characters; required when other is selected
 key_moments[]: grand_entrance | first_dance | parent_dances | cake_cutting | bouquet_garter | last_dance | not_sure_yet
 mc_style: light_professional | front_and_center
 coordinator: yes | no | not_sure
 music_styles[]: dance | pop | disco | funk | edm | house | tech_house | hip_hop | rnb | sing_alongs | rock | country | latin | reggaeton | reggae | dancehall | soul | indie | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s
-songs_to_skip: optional string, max 1,500 characters
-music_involvement: integer 1-5; processor derives the display label
-planning_style: integer 1-5; processor derives the display label
+songs_to_skip_categories[]: overplayed_wedding_classics | traditional_line_dances | cheesy_gimmick_songs | grandmas_golden_oldies | explicit_unedited_tracks (optional multi-select)
+songs_to_skip: optional string, max 500 characters; revealed by the add-write-in pill
+music_involvement[]: trust_expert | vibe_demographic_guide | curated_playlists | structured_timeline_flow (one or more; processor validates and includes labels/descriptions in email)
+planning_style: super_chill | guided_organized | detail_oriented_vision_driven | full_on_event_director (one required; processor validates and includes label/description in email)
 lighting[]: uplighting | basic_dance_floor_lighting | advanced_dance_floor_buildout | whole_room_lighting | not_interested
 addons[]: live_saxophone | live_guitar | live_violin | portrait_lounge | lighting_design | none
 budget_min, budget_max: integers 2500-10000, increments of 250, minimum $250 gap
 budget_touched: "true" | "false"
+spending_mindset: firm_target | balanced_approach | vision_driven | unrestricted
 decision_stage: browsing | comparing_vendors | few_questions | only_dj
 wedding_priorities: optional string, max 1,000 characters
 contact_method: text | email | phone_call; no phone number field
@@ -332,7 +343,7 @@ Self-contained. No `include`/`require` of existing site files.
 
 **Validation and sanitization**
 
-- Re-validate everything server-side: required fields, enums, array contents and exclusivity for the lighting `not_interested` and add-ons `none` choices, numeric ranges (`budget_min <= budget_max`, both within 2500-10000, multiples of 250), and the string limits above. Validate `name` at max 100 characters.
+- Re-validate everything server-side: required fields, enums (including spending mindset), array contents and exclusivity for the lighting `not_interested` and add-ons `none` choices, numeric ranges (`budget_min <= budget_max`, both within 2500-10000, multiples of 250), and the string limits above. Validate `name` at max 100 characters.
 - Require the budget handles to remain at least $250 apart, matching the client-side slider.
 - Trim all strings. Strip control characters. **Strip CR/LF from anything used in mail headers** (header injection).
 - No client email or phone number is accepted as a questionnaire field.
@@ -361,13 +372,13 @@ Name, Preferred contact method, Best time to reach you
 Submitted: {timestamp, Pacific}
 
 YOUR DAY
-Parts of your day, Timeline, Spaces (+ other), Key moments to highlight, MC style, Planner or day-of coordinator
+Parts of your day, Timeline (selected sections with start/end times), Spaces (+ other), Key moments to highlight, MC style, Planner or day-of coordinator
 
 YOUR MUSIC
-Music genres and decades, Songs to skip, Music involvement (n/5: label), Planning style (n/5: label)
+Music genres and decades, Do-not-play categories and specific song/artist exclusions, Music involvement (all selected options with descriptions), Planning style (selected option with description)
 
 THE EXTRAS
-Lighting, Add-ons, Budget: $X - $Y (Adjusted by couple / Not adjusted from default)
+Lighting, Additional services, Budget: $X - $Y (Adjusted by couple / Not adjusted from default), Spending mindset: {selected label and description}
 
 WHERE YOU ARE
 Decision stage, Most important on your wedding day, Anything else
@@ -396,11 +407,11 @@ The following checks are part of the current implementation review:
 
 - Astro production build passes under Node 22.
 - Prettier checks pass for the Astro page, CSS, and JavaScript.
-- The form contains one active question view per step (18 total), with the welcome and success screens separate.
+- The form contains one active question view per step (19 total), with the welcome and success screens separate.
 - The current venue, key-moment, music genre/decade, lighting, add-on, decision-stage, contact-method, and weekday values are documented above and whitelisted by the processor.
 - The budget range is constrained in the browser and server-side to $2,500-$10,000 in $250 increments with a minimum $250 gap; its untouched/adjusted flag is included in the email.
 - The form has no submission-time or timestamp guard; the `website` honeypot is the only form-level spam check.
-- A jsdom end-to-end flow passed for all 18 questions, Other-space reveal/validation, selection exclusivity, untouched budget, final-step controls, reduced-motion behavior, and success state.
+- A jsdom end-to-end flow passed for all 19 questions, including spending mindset validation and submit payload, Other-space reveal/validation, selection exclusivity, untouched budget, final-step controls, reduced-motion behavior, and success state.
 - `npm test` cannot run a suite because no files match the configured `tests/**/*.test.{js,mjs}` patterns.
 - An actual mail delivery, PHP CLI lint, and visual/accessibility checks at multiple viewport sizes still require an environment with PHP/mail and browser testing.
 
@@ -408,4 +419,4 @@ The following checks are part of the current implementation review:
 
 ## 11. Confirmed Owner Decisions
 
-Route `/wedding-planning/`; query parameter `name` only (display value, not authentication); 18 separate question steps; name is cleaned and removed from the URL after reading; missing names show an access message unless saved state is available; saved progress resumes by name; client email and phone number are not collected or used; meeting day can be skipped; key-moments “I'm not sure yet” is not exclusive; processor subject matches the main contact form's `Contact from djmisha.com - {Name}` subject; no client `Reply-To` header; no CSRF token, Origin/Referer validation, reCAPTCHA, or IP rate limiting; and the static page uses the noindex meta tag only, without shared server/header changes.
+Route `/wedding-planning/`; query parameter `name` only (display value, not authentication); 19 separate question steps; name is cleaned and removed from the URL after reading; missing names show an access message unless saved state is available; saved progress resumes by name; client email and phone number are not collected or used; meeting day can be skipped; key-moments “I'm not sure yet” is not exclusive; processor subject matches the main contact form's `Contact from djmisha.com - {Name}` subject; no client `Reply-To` header; no CSRF token, Origin/Referer validation, reCAPTCHA, or IP rate limiting; and the static page uses the noindex meta tag only, without shared server/header changes.
