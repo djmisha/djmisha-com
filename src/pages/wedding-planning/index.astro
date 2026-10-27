@@ -571,6 +571,7 @@
                   type="checkbox"
                   name="key_moments[]"
                   value="not_sure_yet"
+                  data-exclusive="key_moments"
                 />
                 <span>I&apos;m not sure yet</span>
               </label>
@@ -581,7 +582,7 @@
           <section class="pf-step" data-step="5" data-section="Your day" hidden>
             <p class="pf-section-kicker">MC style</p>
             <h2>What kind of MC style fits your day?</h2>
-            <fieldset class="pf-choice-group pf-checkbox-group">
+            <fieldset class="pf-choice-group pf-radio-group">
               <label class="pf-choice pf-card-choice">
                 <input
                   type="radio"
@@ -1024,7 +1025,7 @@
                 <small>
                   I’m relaxed, trust the process completely, and just want
                   everyone to have a good time. Tell me where to stand and what
-                  to play!
+                  to do!
                 </small>
               </label>
               <label class="pf-choice pf-card-choice">
@@ -1101,7 +1102,7 @@
                   type="checkbox"
                   name="lighting[]"
                   value="advanced_dance_floor_buildout"
-                /><span>Advanced dance floor lighting build-out</span></label
+                /><span>Advanced club style lighting build-out</span></label
               >
               <label class="pf-choice"
                 ><input
@@ -1382,23 +1383,27 @@
             <p class="pf-section-kicker">How to reach you</p>
             <h2>What&apos;s the best way to reach you?</h2>
             <fieldset
-              class="pf-choice-group pf-radio-group"
+              class="pf-choice-group pf-checkbox-group"
               id="contact_method_group"
             >
               <label class="pf-choice"
-                ><input type="radio" name="contact_method" value="text" /><span
-                  >Text</span
-                ></label
-              >
-              <label class="pf-choice"
-                ><input type="radio" name="contact_method" value="email" /><span
-                  >Email</span
-                ></label
+                ><input
+                  type="checkbox"
+                  name="contact_method[]"
+                  value="text"
+                /><span>Text</span></label
               >
               <label class="pf-choice"
                 ><input
-                  type="radio"
-                  name="contact_method"
+                  type="checkbox"
+                  name="contact_method[]"
+                  value="email"
+                /><span>Email</span></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="checkbox"
+                  name="contact_method[]"
                   value="phone_call"
                 /><span>Phone call</span></label
               >
@@ -1408,32 +1413,38 @@
               <label class="pf-field-label">Best time to reach you</label>
               <div class="pf-chip-row">
                 <label class="pf-chip"
-                  ><input type="radio" name="best_time" value="mornings" /><span
-                    >Mornings</span
-                  ></label
+                  ><input
+                    type="checkbox"
+                    name="best_time[]"
+                    value="mornings"
+                  /><span>Mornings</span></label
                 >
                 <label class="pf-chip"
                   ><input
-                    type="radio"
-                    name="best_time"
+                    type="checkbox"
+                    name="best_time[]"
                     value="afternoons"
                   /><span>Afternoons</span></label
                 >
                 <label class="pf-chip"
-                  ><input type="radio" name="best_time" value="evenings" /><span
-                    >Evenings</span
-                  ></label
+                  ><input
+                    type="checkbox"
+                    name="best_time[]"
+                    value="evenings"
+                  /><span>Evenings</span></label
                 >
                 <label class="pf-chip"
                   ><input
-                    type="radio"
-                    name="best_time"
+                    type="checkbox"
+                    name="best_time[]"
                     value="no_preference"
+                    data-exclusive="best_time"
                   /><span>No preference</span></label
                 >
               </div>
             </div>
             <p class="pf-error" data-error-for="contact_method"></p>
+            <p class="pf-error" data-error-for="best_time"></p>
           </section>
 
           <section
@@ -1498,11 +1509,15 @@
                   >Friday</span
                 ></label
               >
+              <label class="pf-choice pf-choice--exclusive"
+                ><input
+                  type="radio"
+                  name="meeting_day"
+                  value="skip_for_now"
+                /><span>Skip for now</span></label
+              >
             </fieldset>
 
-            <button type="button" id="pf-skip-day" class="pf-text-btn"
-              >Skip for now</button
-            >
             <p class="pf-error" data-error-for="meeting_day"></p>
           </section>
         </div>

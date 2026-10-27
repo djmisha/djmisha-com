@@ -22,7 +22,12 @@ function cleanText($value): string
 
 function textLength(string $value): int
 {
-    return function_exists('mb_strlen') ? mb_strlen($value, 'UTF-8') : strlen($value);
+    if (function_exists('mb_strlen')) {
+        return mb_strlen($value, 'UTF-8');
+    }
+
+    $length = preg_match_all('/./us', $value);
+    return $length === false ? strlen($value) : $length;
 }
 
 function integerValue($value): ?int
@@ -38,7 +43,7 @@ function integerValue($value): ?int
 function cleanArrayValues($value, array $allowed): ?array
 {
     if (!is_array($value)) {
-        return [];
+        return null;
     }
 
     $clean = [];
@@ -111,25 +116,35 @@ $spaceTypeOther = cleanText($_POST['space_type_other'] ?? '');
 $weddingPriorities = cleanText($_POST['wedding_priorities'] ?? '');
 $anythingElse = cleanText($_POST['anything_else'] ?? '');
 $meetingDay = cleanText($_POST['meeting_day'] ?? '');
-$contactMethod = cleanText($_POST['contact_method'] ?? '');
-$bestTime = cleanText($_POST['best_time'] ?? '');
+$allowedContactMethods = ['text', 'email', 'phone_call'];
+$allowedBestTimes = ['mornings', 'afternoons', 'evenings', 'no_preference'];
+$contactMethod = cleanArrayValues($_POST['contact_method'] ?? [], $allowedContactMethods);
+$bestTime = cleanArrayValues($_POST['best_time'] ?? [], $allowedBestTimes);
 $songsToSkip = cleanText($_POST['songs_to_skip'] ?? '');
-$songsToSkipCategories = cleanArrayValues($_POST['songs_to_skip_categories'] ?? [], [
+$allowedSongsToSkipCategories = [
     'overplayed_wedding_classics',
     'traditional_line_dances',
     'cheesy_gimmick_songs',
     'grandmas_golden_oldies',
     'explicit_unedited_tracks',
-]);
+];
+$songsToSkipCategories = cleanArrayValues(
+    $_POST['songs_to_skip_categories'] ?? [],
+    $allowedSongsToSkipCategories
+);
 $spendingMindset = cleanText($_POST['spending_mindset'] ?? '');
 $budgetMin = integerValue($_POST['budget_min'] ?? null);
 $budgetMax = integerValue($_POST['budget_max'] ?? null);
-$musicInvolvement = cleanArrayValues($_POST['music_involvement'] ?? [], [
+$allowedMusicInvolvement = [
     'trust_expert',
     'vibe_demographic_guide',
     'curated_playlists',
     'structured_timeline_flow',
-]);
+];
+$musicInvolvement = cleanArrayValues(
+    $_POST['music_involvement'] ?? [],
+    $allowedMusicInvolvement
+);
 $planningStyle = cleanText($_POST['planning_style'] ?? '');
 $budgetTouched = cleanText($_POST['budget_touched'] ?? '');
 
@@ -140,24 +155,28 @@ $allowedMusicStyles = ['dance', 'pop', 'disco', 'funk', 'edm', 'house', 'tech_ho
 $allowedLighting = ['uplighting', 'basic_dance_floor_lighting', 'advanced_dance_floor_buildout', 'whole_room_lighting', 'not_interested'];
 $allowedAddons = ['live_saxophone', 'live_guitar', 'live_violin', 'portrait_lounge', 'lighting_design', 'none'];
 $allowedDecisionStages = ['browsing', 'comparing_vendors', 'few_questions', 'only_dj'];
-$allowedContactMethods = ['text', 'email', 'phone_call'];
 $allowedSpendingMindsets = ['firm_target', 'balanced_approach', 'vision_driven', 'unrestricted'];
-$allowedBestTimes = ['mornings', 'afternoons', 'evenings', 'no_preference'];
 $allowedCoordinatorValues = ['yes', 'no', 'not_sure'];
-$allowedMeetingDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+$allowedMeetingOptions = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'skip_for_now'];
 $allowedMcStyles = ['light_professional', 'front_and_center'];
+$allowedPlanningStyles = [
+    'super_chill',
+    'guided_organized',
+    'detail_oriented_vision_driven',
+    'full_on_event_director',
+];
 $songsToSkipCategoryLabels = [
     'overplayed_wedding_classics' => 'Overplayed Wedding Classics - The usual suspects you’ve heard at every single reception',
-    'traditional_line_dances' => 'Traditional Line Dances - Cha Cha Slide, Cupid Shuffle, Macarena — keep it strictly off the floor',
-    'cheesy_gimmick_songs' => 'Cheesy / Gimmick Songs - Sing-alongs, party props, or anything that feels a bit too “carnival DJ”',
-    'grandmas_golden_oldies' => 'Grandma’s Golden Oldies - Decades-old slow tracks that slow the party down to a crawl',
+    'traditional_line_dances' => 'Traditional Line Dances - Cha Cha Slide, Cupid Shuffle...',
+    'cheesy_gimmick_songs' => 'Cheesy / Gimmick Songs - Anything that feels a bit too “carnival DJ”',
+    'grandmas_golden_oldies' => 'Grandma’s Golden Oldies - Outdated tracks that slow the party down to a crawl',
     'explicit_unedited_tracks' => 'Explicit / Unedited Tracks - Keep the lyrics clean for mixed-generation crowds',
 ];
 
 $errors = [];
 
 if ($name === '' || textLength($name) > 100) {
-    $errors['name'] = 'Please provide a name under 100 characters.';
+    $errors['name'] = 'Please provide a name of 100 characters or fewer.';
 }
 
 $partsOfDay = cleanArrayValues($_POST['parts_of_day'] ?? [], $allowedParts);
@@ -214,10 +233,14 @@ if (is_array($spaceType) && count($spaceType) < 1) {
     $errors['space_type'] = 'Please select a valid space type.';
 }
 
-if (textLength($spaceTypeOther) > 150) {
-    $errors['space_type'] = 'Please keep the other space description under 150 characters.';
-} elseif (is_array($spaceType) && in_array('other', $spaceType, true) && $spaceTypeOther === '') {
-    $errors['space_type_other'] = 'Please tell us more about the other space type.';
+if (is_array($spaceType) && in_array('other', $spaceType, true)) {
+    if (textLength($spaceTypeOther) > 150) {
+        $errors['space_type'] = 'Please keep the other space description to 150 characters or fewer.';
+    } elseif ($spaceTypeOther === '') {
+        $errors['space_type'] = 'Please tell us more about the other space type.';
+    }
+} else {
+    $spaceTypeOther = '';
 }
 
 $keyMoments = cleanArrayValues($_POST['key_moments'] ?? [], $allowedMoments);
@@ -225,6 +248,8 @@ if (is_array($keyMoments) && count($keyMoments) < 1) {
     $errors['key_moments'] = 'Please choose at least one key moment.';
 } elseif ($keyMoments === null) {
     $errors['key_moments'] = 'Please choose a valid key moment.';
+} elseif (in_array('not_sure_yet', $keyMoments, true) && count($keyMoments) > 1) {
+    $errors['key_moments'] = 'Please choose either specific key moments or not sure yet.';
 }
 
 $mcStyle = cleanText($_POST['mc_style'] ?? '');
@@ -250,12 +275,7 @@ if (is_array($musicInvolvement) && count($musicInvolvement) < 1) {
     $errors['music_involvement'] = 'Please choose valid music planning options.';
 }
 
-if (!in_array($planningStyle, [
-    'super_chill',
-    'guided_organized',
-    'detail_oriented_vision_driven',
-    'full_on_event_director',
-], true)) {
+if (!in_array($planningStyle, $allowedPlanningStyles, true)) {
     $errors['planning_style'] = 'Please choose your planning style.';
 }
 
@@ -312,31 +332,37 @@ if ($spendingMindset === '' || !in_array($spendingMindset, $allowedSpendingMinds
 }
 
 if (textLength($weddingPriorities) > 1000) {
-    $errors['wedding_priorities'] = 'Please keep your wedding priorities under 1,000 characters.';
+    $errors['wedding_priorities'] = 'Please keep your wedding priorities to 1,000 characters or fewer.';
 }
 
 if ($songsToSkipCategories === null) {
     $errors['songs_to_skip'] = 'Please choose valid music categories to avoid.';
 }
 
-if (textLength($songsToSkip) > 500) {
-    $errors['songs_to_skip'] = 'Please keep your song notes under 500 characters.';
+if (cleanText($_POST['songs_to_skip_write_in_enabled'] ?? '') !== 'yes') {
+    $songsToSkip = '';
+} elseif (textLength($songsToSkip) > 500) {
+    $errors['songs_to_skip'] = 'Please keep your song notes to 500 characters or fewer.';
 }
 
-if ($contactMethod === '' || !in_array($contactMethod, $allowedContactMethods, true)) {
+if (is_array($contactMethod) && count($contactMethod) < 1) {
     $errors['contact_method'] = 'Please pick the best way to reach you.';
+} elseif ($contactMethod === null) {
+    $errors['contact_method'] = 'Please choose valid contact methods.';
 }
 
-if ($bestTime !== '' && !in_array($bestTime, $allowedBestTimes, true)) {
-    $errors['best_time'] = 'Please choose a valid time preference.';
+if ($bestTime === null) {
+    $errors['best_time'] = 'Please choose valid time preferences.';
+} elseif (in_array('no_preference', $bestTime, true) && count($bestTime) > 1) {
+    $errors['best_time'] = 'Please choose either specific times or no preference.';
 }
 
 if (textLength($anythingElse) > 2000) {
-    $errors['anything_else'] = 'Please keep your note under 2,000 characters.';
+    $errors['anything_else'] = 'Please keep your note to 2,000 characters or fewer.';
 }
 
-if ($meetingDay !== '' && !in_array($meetingDay, $allowedMeetingDays, true)) {
-    $errors['meeting_day'] = 'Please choose a valid weekday.';
+if (!in_array($meetingDay, $allowedMeetingOptions, true)) {
+    $errors['meeting_day'] = 'Please select a weekday or skip for now.';
 }
 
 if (!empty($errors)) {
@@ -347,6 +373,7 @@ $choiceLabels = [
     'ceremony' => 'Ceremony',
     'cocktail_hour' => 'Cocktail hour',
     'reception' => 'Reception',
+    'afterparty' => 'Afterparty',
     'ballroom' => 'Ballroom',
     'tent_or_marquee' => 'Tent or marquee',
     'outdoors' => 'Outdoors',
@@ -392,7 +419,7 @@ $choiceLabels = [
     'not_sure' => "I'm not sure yet",
     'uplighting' => 'Uplighting',
     'basic_dance_floor_lighting' => 'Basic dance floor lighting',
-    'advanced_dance_floor_buildout' => 'Advanced dance floor lighting build-out',
+    'advanced_dance_floor_buildout' => 'Advanced club style lighting build-out',
     'whole_room_lighting' => 'Whole-room lighting and décor',
     'not_interested' => "I'm not interested in lighting services",
     'live_saxophone' => 'Live saxophone',
@@ -417,6 +444,7 @@ $choiceLabels = [
     'wednesday' => 'Wednesday',
     'thursday' => 'Thursday',
     'friday' => 'Friday',
+    'skip_for_now' => 'Skip for now',
 ];
 $musicInvolvementLabels = [
     'trust_expert' => 'Trust the Expert: Hands-Off - We trust your expertise! We’d love for you to read the crowd, take the wheel, and surprise us with great music throughout the event.',
@@ -425,7 +453,7 @@ $musicInvolvementLabels = [
     'structured_timeline_flow' => 'Structured Timeline & Flow: Detailed Vision - We have a specific vision for how we want the energy and music to unfold across different parts of the event (e.g., cocktail hour vs. peak dance floor).',
 ];
 $planningStyleLabels = [
-    'super_chill' => 'Super Chill & Go-With-the-Flow - I’m relaxed, trust the process completely, and just want everyone to have a good time. Tell me where to stand and what to play!',
+    'super_chill' => 'Super Chill & Go-With-the-Flow - I’m relaxed, trust the process completely, and just want everyone to have a good time. Tell me where to stand and what to do!',
     'guided_organized' => 'Guided & Organized - I have a good sense of what I want and like staying on top of details, but I’m totally open to expert advice and ideas.',
     'detail_oriented_vision_driven' => 'Detail-Oriented & Vision-Driven - I have a very specific vision for the day. I love clear timelines, prompt communication, and getting every little detail just right.',
     'full_on_event_director' => 'Full-On Event Director - I know exactly what I want, down to the minute. I’m hands-on, highly detailed, and executing a flawless event is my top priority!',
@@ -438,8 +466,8 @@ $timestamp = (new DateTimeImmutable('now', new DateTimeZone('America/Los_Angeles
 $bodyLines = [
     'PLANNING FORM SUBMITTED',
     'Name: ' . $name,
-    'Preferred contact method: ' . $choiceLabels[$contactMethod],
-    'Best time to reach you: ' . ($bestTime !== '' ? $choiceLabels[$bestTime] : 'No preference'),
+    'Preferred contact method: ' . displayValues($contactMethod ?? [], $choiceLabels),
+    'Best time to reach you: ' . ($bestTime !== [] ? displayValues($bestTime, $choiceLabels) : 'No preference'),
     'Submitted: ' . $timestamp,
     '',
     'YOUR DAY',
@@ -470,7 +498,7 @@ $bodyLines = [
     'Anything else: ' . $anythingElse,
     '',
     'MEETING REQUEST',
-    'Requested weekday: ' . ($meetingDay !== '' ? $choiceLabels[$meetingDay] . ' at 2:00 PM Pacific (requested, not confirmed)' : 'Skipped')
+    'Requested weekday: ' . ($meetingDay === 'skip_for_now' ? 'Skipped' : $choiceLabels[$meetingDay] . ' at 2:00 PM Pacific (requested, not confirmed)')
 ];
 
 $body = implode("\n", $bodyLines);

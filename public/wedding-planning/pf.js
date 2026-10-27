@@ -26,7 +26,6 @@
   const nextBtn = document.getElementById('pf-next');
   const submitBtn = document.getElementById('pf-submit');
   const welcomeName = document.getElementById('pf-welcome-name');
-  const skipDayBtn = document.getElementById('pf-skip-day');
   const successName = document.getElementById('pf-success-name');
   const successMessage = document.getElementById('pf-success-message');
 
@@ -403,6 +402,42 @@
     }
 
     if (step === 2) {
+      const selectedParts = new Set(
+        Array.from(
+          form.querySelectorAll('input[name="parts_of_day[]"]:checked'),
+          (input) => input.value,
+        ),
+      );
+      const timelineSections = {
+        ceremony: selectedParts.has('ceremony'),
+        cocktail_hour: selectedParts.has('cocktail_hour'),
+        reception_dinner: selectedParts.has('reception'),
+        dance_party: selectedParts.has('reception'),
+        afterparty: selectedParts.has('afterparty'),
+      };
+
+      for (const [section, visible] of Object.entries(timelineSections)) {
+        if (!visible) continue;
+
+        const start = form.querySelector(
+          `[name="timeline_${section}_start"]`,
+        ).value;
+        const end = form.querySelector(
+          `[name="timeline_${section}_end"]`,
+        ).value;
+        if (start === '' && end === '') continue;
+        if (
+          !/^(?:[01]\d|2[0-3]):(?:00|30)$/.test(start) ||
+          !/^(?:[01]\d|2[0-3]):(?:00|30)$/.test(end)
+        ) {
+          showError(
+            'timeline',
+            'Please choose valid timeline times in 30-minute increments.',
+          );
+          return false;
+        }
+      }
+
       return true;
     }
 
@@ -433,6 +468,18 @@
       );
       if (selected.length < 1) {
         showError('key_moments', 'Please choose at least one key moment.');
+        return false;
+      }
+      if (
+        selected.length > 1 &&
+        form.querySelector(
+          'input[name="key_moments[]"][value="not_sure_yet"]:checked',
+        )
+      ) {
+        showError(
+          'key_moments',
+          'Please choose either specific key moments or not sure yet.',
+        );
         return false;
       }
     }
@@ -515,8 +562,10 @@
       const max = Number(form.querySelector('[name="budget_max"]').value || 0);
       if (
         min < 2500 ||
+        min > 10000 ||
+        max < 2500 ||
         max > 10000 ||
-        min > max ||
+        min + 250 > max ||
         min % 250 !== 0 ||
         max % 250 !== 0
       ) {
@@ -552,11 +601,35 @@
     }
 
     if (step === 17) {
-      const selected = form.querySelector(
-        'input[name="contact_method"]:checked',
+      const selectedContactMethods = form.querySelectorAll(
+        'input[name="contact_method[]"]:checked',
       );
-      if (!selected) {
+      if (selectedContactMethods.length < 1) {
         showError('contact_method', 'Please pick the best way to reach you.');
+        return false;
+      }
+
+      const selectedTimes = form.querySelectorAll(
+        'input[name="best_time[]"]:checked',
+      );
+      if (
+        selectedTimes.length > 1 &&
+        form.querySelector(
+          'input[name="best_time[]"][value="no_preference"]:checked',
+        )
+      ) {
+        showError(
+          'best_time',
+          'Please choose either specific times or no preference.',
+        );
+        return false;
+      }
+    }
+
+    if (step === 19) {
+      const selected = form.querySelector('input[name="meeting_day"]:checked');
+      if (!selected) {
+        showError('meeting_day', 'Please select a weekday or skip for now.');
         return false;
       }
     }
@@ -722,8 +795,15 @@
           'form',
           'We could not send your answers. Please try again.',
         ];
-        if (document.querySelector(`[data-error-for="${firstField}"]`)) {
-          showError(firstField, message);
+        const errorNode = Array.from(
+          document.querySelectorAll('.pf-error'),
+        ).find((node) => node.dataset.errorFor === firstField);
+        if (errorNode) {
+          const stepNode = errorNode.closest('.pf-step');
+          if (stepNode && stepNode.hidden) {
+            goToStep(Number(stepNode.dataset.step));
+          }
+          errorNode.textContent = message;
         } else {
           window.alert(message);
         }
@@ -760,12 +840,6 @@
       submitForm();
     });
 
-    skipDayBtn.addEventListener('click', () => {
-      const dayInputs = form.querySelectorAll('input[name="meeting_day"]');
-      dayInputs.forEach((input) => (input.checked = false));
-      submitForm();
-    });
-
     document
       .querySelectorAll(
         'input[name="parts_of_day[]"], input[name="key_moments[]"], input[name="lighting[]"], input[name="addons[]"], input[data-exclusive], input[data-other-toggle]',
@@ -796,9 +870,10 @@
     const meetingDay = form.querySelector(
       'input[name="meeting_day"]:checked',
     )?.value;
-    const meetingConfirmation = meetingDay
-      ? ` We’ll confirm your call for ${meetingDay[0].toUpperCase()}${meetingDay.slice(1)} at 2:00 PM Pacific by email.`
-      : '';
+    const meetingConfirmation =
+      meetingDay && meetingDay !== 'skip_for_now'
+        ? ` We’ll confirm your call for ${meetingDay[0].toUpperCase()}${meetingDay.slice(1)} at 2:00 PM Pacific by email.`
+        : '';
     const message = `DJ Misha will review your answers.${meetingConfirmation}`;
     successMessage.textContent = message;
     clearSavedState();
