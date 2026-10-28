@@ -461,6 +461,14 @@ h2 {
   gap: 0.6rem;
 }
 
+fieldset.pf-chip-row {
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
 .pf-no-go-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
