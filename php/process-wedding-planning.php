@@ -459,6 +459,8 @@ $planningStyleLabels = [
     'full_on_event_director' => 'Full-On Event Director - I know exactly what I want, down to the minute. I’m hands-on, highly detailed, and executing a flawless event is my top priority!',
 ];
 $to = 'info@djmisha.com, misha.osinovskiy@gmail.com';
+$fromEmail = 'no-reply@djmisha.com';
+$fromName = 'djmisha.com';
 $subject = 'Contact from djmisha.com - ' . $name;
 $timestamp = (new DateTimeImmutable('now', new DateTimeZone('America/Los_Angeles')))
     ->format('M j, Y g:i A T');
@@ -503,12 +505,13 @@ $bodyLines = [
 
 $body = implode("\n", $bodyLines);
 $headers = [
-    'From: no-reply@djmisha.com',
+    'From: ' . $fromName . ' <' . $fromEmail . '>',
+    'Reply-To: info@djmisha.com',
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8'
 ];
 
-$sent = mail($to, $subject, $body, implode("\r\n", $headers));
+$sent = mail($to, $subject, $body, implode("\r\n", $headers), '-f ' . $fromEmail);
 if (!$sent) {
     error_log('Failed to send wedding planning form email.');
     jsonResponse(false, ['errors' => ['form' => 'We could not send your answers. Please try again.']], 500);

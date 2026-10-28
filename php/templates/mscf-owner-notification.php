@@ -22,6 +22,8 @@ $vibesDisplay = '';
 if (!empty($data['vibes']) && is_array($data['vibes'])) {
     $vibesDisplay = implode(', ', array_map($e, $data['vibes']));
 }
+
+$weddingPlanningLink = 'https://djmisha.com/wedding-planning/?name=' . str_replace(' ', '%20', trim((string) ($data['name'] ?? '')));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +49,13 @@ if (!empty($data['vibes']) && is_array($data['vibes'])) {
 <b>Vibes &amp; mood:</b> <?= $vibesDisplay ?><br>
 <b>Message:</b><br>
 <?= $e($data['message']) ?>
+</p>
+
+<p style="margin-top:24px;">
+  <b>Wedding planning form link:</b><br>
+  <a href="<?= $weddingPlanningLink ?>" style="color:#1a73e8; word-break:break-word; text-decoration:underline;">
+    <?= $weddingPlanningLink ?>
+  </a>
 </p>
 
 </body>
