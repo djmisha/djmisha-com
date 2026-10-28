@@ -362,6 +362,10 @@ h2 {
     background var(--pf-transition);
 }
 
+.pf-choice[hidden] {
+  display: none;
+}
+
 .pf-choice-group input {
   position: absolute;
   opacity: 0;
