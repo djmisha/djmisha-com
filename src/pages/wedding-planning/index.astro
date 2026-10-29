@@ -1,0 +1,1839 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Wedding planning questions for DJ Misha. Share your timeline, music preferences, lighting needs, and planning details."
+    />
+    <title>Wedding Planning Questionnaire | DJ Misha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/wedding-planning/pf.css" />
+  </head>
+  <body class="pf-page">
+    <main class="pf-shell" aria-live="polite">
+      <div id="pf-access" class="pf-access" hidden>
+        <div class="pf-card pf-card--narrow">
+          <p class="pf-eyebrow">Access required</p>
+          <h1>We need your personalized link</h1>
+          <p>
+            Please use the link DJ Misha sent you. This questionnaire is only
+            available to couples who arrived from that personalized invitation.
+            Can&apos;t find it? Reply to DJ Misha by text or email to request a
+            new link.
+          </p>
+        </div>
+      </div>
+
+      <form
+        id="pf-form"
+        class="pf-form"
+        method="post"
+        action="/php/process-wedding-planning.php"
+        novalidate
+      >
+        <input type="hidden" name="name" value="" />
+        <input type="hidden" name="website" value="" />
+
+        <header class="pf-header" aria-live="polite">
+          <div class="pf-progress-track" aria-hidden="true">
+            <span id="pf-progress-fill" class="pf-progress-fill"></span>
+          </div>
+
+          <div class="pf-header-row">
+            <div class="pf-progress-meta">
+              <div id="pf-step-label" class="pf-step-label">Step 1 of 22</div>
+            </div>
+          </div>
+        </header>
+
+        <div class="pf-body">
+          <section
+            class="pf-step pf-screen"
+            data-step="0"
+            data-section="welcome"
+          >
+            <div class="pf-screen-card">
+              <p class="pf-eyebrow">Welcome</p>
+              <h1 id="pf-welcome-name">Hi there!</h1>
+              <p class="pf-lead">
+                Share your vision and logistics with DJ Misha so that we can
+                continue the conversation productively.
+              </p>
+              <p class="pf-lead">
+                It takes a few minutes, and ballpark answers are perfect.
+              </p>
+            </div>
+          </section>
+
+          <section class="pf-step" data-step="1" data-section="Your day" hidden>
+            <p class="pf-section-kicker">Parts of your day</p>
+            <h2>Which parts of your day would you like us involved in?</h2>
+            <p class="pf-help">Select all that apply.</p>
+
+            <fieldset class="pf-choice-group pf-checkbox-group">
+              <label class="pf-choice">
+                <input type="checkbox" name="parts_of_day[]" value="ceremony" />
+                <span>Ceremony</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="parts_of_day[]"
+                  value="cocktail_hour"
+                />
+                <span>Cocktail hour</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="parts_of_day[]"
+                  value="reception"
+                />
+                <span>Reception</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="parts_of_day[]"
+                  value="afterparty"
+                />
+                <span>Afterparty</span>
+              </label>
+            </fieldset>
+            <p class="pf-error" data-error-for="parts_of_day"></p>
+          </section>
+
+          <section class="pf-step" data-step="2" data-section="Your day" hidden>
+            <p class="pf-section-kicker">Your timeline</p>
+            <h2>What does your event timeline look like?</h2>
+            <p class="pf-help">
+              Tap the buttons to tweak your estimated start and end times in
+              30-minute steps. ballpark estimates are perfect.
+            </p>
+            <div
+              class="pf-timeline-stepper"
+              data-timeline-section="ceremony"
+              hidden
+            >
+              <h3>💍 Ceremony</h3>
+              <div class="pf-time-row">
+                <span class="pf-time-label">Start</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_ceremony_start"
+                    data-direction="-1"
+                    aria-label="Earlier ceremony start time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_ceremony_start"
+                    for="timeline_ceremony_start">4:30 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_ceremony_start"
+                    data-direction="1"
+                    aria-label="Later ceremony start time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_ceremony_start"
+                  name="timeline_ceremony_start"
+                  value="16:30"
+                />
+              </div>
+              <div class="pf-time-row">
+                <span class="pf-time-label">End</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_ceremony_end"
+                    data-direction="-1"
+                    aria-label="Earlier ceremony end time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_ceremony_end"
+                    for="timeline_ceremony_end">5:30 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_ceremony_end"
+                    data-direction="1"
+                    aria-label="Later ceremony end time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_ceremony_end"
+                  name="timeline_ceremony_end"
+                  value="17:30"
+                />
+              </div>
+              <input
+                type="hidden"
+                name="timeline_ceremony_touched"
+                value="false"
+              />
+            </div>
+            <div
+              class="pf-timeline-stepper"
+              data-timeline-section="cocktail_hour"
+              hidden
+            >
+              <h3>🍸 Cocktail Hour</h3>
+              <div class="pf-time-row">
+                <span class="pf-time-label">Start</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_cocktail_hour_start"
+                    data-direction="-1"
+                    aria-label="Earlier cocktail hour start time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_cocktail_hour_start"
+                    for="timeline_cocktail_hour_start">5:30 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_cocktail_hour_start"
+                    data-direction="1"
+                    aria-label="Later cocktail hour start time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_cocktail_hour_start"
+                  name="timeline_cocktail_hour_start"
+                  value="17:30"
+                />
+              </div>
+              <div class="pf-time-row">
+                <span class="pf-time-label">End</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_cocktail_hour_end"
+                    data-direction="-1"
+                    aria-label="Earlier cocktail hour end time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_cocktail_hour_end"
+                    for="timeline_cocktail_hour_end">6:30 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_cocktail_hour_end"
+                    data-direction="1"
+                    aria-label="Later cocktail hour end time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_cocktail_hour_end"
+                  name="timeline_cocktail_hour_end"
+                  value="18:30"
+                />
+              </div>
+              <input
+                type="hidden"
+                name="timeline_cocktail_hour_touched"
+                value="false"
+              />
+            </div>
+            <div
+              class="pf-timeline-stepper"
+              data-timeline-section="reception_dinner"
+              hidden
+            >
+              <h3>🍽️ Reception &amp; Dinner</h3>
+              <div class="pf-time-row">
+                <span class="pf-time-label">Start</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_reception_dinner_start"
+                    data-direction="-1"
+                    aria-label="Earlier reception and dinner start time"
+                    >−</button
+                  >
+                  <output
+                    data-time-display="timeline_reception_dinner_start"
+                    for="timeline_reception_dinner_start">6:30 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_reception_dinner_start"
+                    data-direction="1"
+                    aria-label="Later reception and dinner start time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_reception_dinner_start"
+                  name="timeline_reception_dinner_start"
+                  value="18:30"
+                />
+              </div>
+              <div class="pf-time-row">
+                <span class="pf-time-label">End</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_reception_dinner_end"
+                    data-direction="-1"
+                    aria-label="Earlier reception and dinner end time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_reception_dinner_end"
+                    for="timeline_reception_dinner_end">8:00 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_reception_dinner_end"
+                    data-direction="1"
+                    aria-label="Later reception and dinner end time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_reception_dinner_end"
+                  name="timeline_reception_dinner_end"
+                  value="20:00"
+                />
+              </div>
+              <input
+                type="hidden"
+                name="timeline_reception_dinner_touched"
+                value="false"
+              />
+            </div>
+            <div
+              class="pf-timeline-stepper"
+              data-timeline-section="dance_party"
+              hidden
+            >
+              <h3>🪩 Dance Party</h3>
+              <div class="pf-time-row">
+                <span class="pf-time-label">Start</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_dance_party_start"
+                    data-direction="-1"
+                    aria-label="Earlier dance party start time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_dance_party_start"
+                    for="timeline_dance_party_start">8:00 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_dance_party_start"
+                    data-direction="1"
+                    aria-label="Later dance party start time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_dance_party_start"
+                  name="timeline_dance_party_start"
+                  value="20:00"
+                />
+              </div>
+              <div class="pf-time-row">
+                <span class="pf-time-label">End</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_dance_party_end"
+                    data-direction="-1"
+                    aria-label="Earlier dance party end time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_dance_party_end"
+                    for="timeline_dance_party_end">10:00 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_dance_party_end"
+                    data-direction="1"
+                    aria-label="Later dance party end time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_dance_party_end"
+                  name="timeline_dance_party_end"
+                  value="22:00"
+                />
+              </div>
+              <input
+                type="hidden"
+                name="timeline_dance_party_touched"
+                value="false"
+              />
+            </div>
+            <div
+              class="pf-timeline-stepper"
+              data-timeline-section="afterparty"
+              hidden
+            >
+              <h3>🎉 Afterparty</h3>
+              <div class="pf-time-row">
+                <span class="pf-time-label">Start</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_afterparty_start"
+                    data-direction="-1"
+                    aria-label="Earlier afterparty start time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_afterparty_start"
+                    for="timeline_afterparty_start">10:00 PM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_afterparty_start"
+                    data-direction="1"
+                    aria-label="Later afterparty start time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_afterparty_start"
+                  name="timeline_afterparty_start"
+                  value="22:00"
+                />
+              </div>
+              <div class="pf-time-row">
+                <span class="pf-time-label">End</span>
+                <div class="pf-time-control">
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_afterparty_end"
+                    data-direction="-1"
+                    aria-label="Earlier afterparty end time">−</button
+                  >
+                  <output
+                    data-time-display="timeline_afterparty_end"
+                    for="timeline_afterparty_end">12:00 AM</output
+                  >
+                  <button
+                    type="button"
+                    class="pf-time-adjust"
+                    data-time-field="timeline_afterparty_end"
+                    data-direction="1"
+                    aria-label="Later afterparty end time">+</button
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  id="timeline_afterparty_end"
+                  name="timeline_afterparty_end"
+                  value="00:00"
+                />
+              </div>
+              <input
+                type="hidden"
+                name="timeline_afterparty_touched"
+                value="false"
+              />
+            </div>
+            <p class="pf-error" data-error-for="timeline"></p>
+          </section>
+
+          <section class="pf-step" data-step="3" data-section="Your day" hidden>
+            <p class="pf-section-kicker">Your spaces</p>
+            <h2>Tell us about the space(s) where the music will happen.</h2>
+            <p class="pf-help">
+              Select all that apply. This helps us plan sound systems and setup.
+            </p>
+
+            <fieldset class="pf-choice-group pf-checkbox-group">
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="space_type[]"
+                  value="indoor_event_space"
+                />
+                <span>Indoor Event Space</span>
+              </label>
+              <label class="pf-choice">
+                <input type="checkbox" name="space_type[]" value="ballroom" />
+                <span>Ballroom</span>
+              </label>
+              <label class="pf-choice">
+                <input type="checkbox" name="space_type[]" value="outdoors" />
+                <span>Outdoors</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="space_type[]"
+                  value="tent_or_marquee"
+                />
+                <span>Tent or marquee</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="space_type[]"
+                  value="inside_a_house"
+                />
+                <span>Inside a house</span>
+              </label>
+              <label class="pf-choice">
+                <input type="checkbox" name="space_type[]" value="backyard" />
+                <span>Backyard</span>
+              </label>
+              <label class="pf-choice pf-choice--other">
+                <input
+                  type="checkbox"
+                  name="space_type[]"
+                  value="other"
+                  data-other-toggle="space_type_other"
+                />
+                <span>Other</span>
+              </label>
+            </fieldset>
+
+            <div id="space_type_other_wrap" class="pf-inline-field" hidden>
+              <label class="pf-field-label" for="space_type_other"
+                >Other space type</label
+              >
+              <input
+                id="space_type_other"
+                name="space_type_other"
+                class="pf-input"
+                maxlength="150"
+                placeholder="Tell us more"
+              />
+            </div>
+            <p class="pf-error" data-error-for="space_type"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="4"
+            data-section="Your day"
+            data-conditional-step="sound"
+            hidden
+          >
+            <p class="pf-section-kicker">Sound</p>
+            <h2>Which of your spaces need their own sound system?</h2>
+            <p class="pf-help">
+              If a space is more than 50 feet away from the primary speakers or
+              in a different room it likely needs its own sound system.
+            </p>
+            <fieldset class="pf-choice-group pf-checkbox-group">
+              <label class="pf-choice" data-sound-space="ceremony" hidden>
+                <input
+                  type="checkbox"
+                  name="separate_sound[]"
+                  value="ceremony"
+                />
+                <span>Ceremony — This space needs a separate sound system.</span
+                >
+              </label>
+              <label class="pf-choice" data-sound-space="cocktail_hour" hidden>
+                <input
+                  type="checkbox"
+                  name="separate_sound[]"
+                  value="cocktail_hour"
+                />
+                <span>
+                  Cocktail hour — This space needs a separate sound system.
+                </span>
+              </label>
+              <label class="pf-choice" data-sound-space="reception" hidden>
+                <input
+                  type="checkbox"
+                  name="separate_sound[]"
+                  value="reception"
+                />
+                <span
+                  >Reception — This space needs a separate sound system.</span
+                >
+              </label>
+              <label class="pf-choice" data-sound-space="afterparty" hidden>
+                <input
+                  type="checkbox"
+                  name="separate_sound[]"
+                  value="afterparty"
+                />
+                <span
+                  >Afterparty — This space needs a separate sound system.</span
+                >
+              </label>
+              <label class="pf-choice pf-choice--exclusive">
+                <input
+                  type="checkbox"
+                  name="separate_sound[]"
+                  value="not_sure"
+                  data-exclusive="separate_sound"
+                />
+                <span>I&apos;m not sure yet. Please advise.</span>
+              </label>
+            </fieldset>
+          </section>
+
+          <section class="pf-step" data-step="5" data-section="Your day" hidden>
+            <p class="pf-section-kicker">Key moments</p>
+            <h2>Which key moments would you like to highlight?</h2>
+            <p class="pf-help">Select all that apply.</p>
+
+            <input type="hidden" name="key_moments_other_enabled" value="no" />
+            <fieldset class="pf-choice-group pf-checkbox-group">
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="key_moments[]"
+                  value="grand_entrance"
+                />
+                <span>Grand entrance</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="key_moments[]"
+                  value="first_dance"
+                />
+                <span>First dance</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="key_moments[]"
+                  value="parent_dances"
+                />
+                <span>Parent dances</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="key_moments[]"
+                  value="cake_cutting"
+                />
+                <span>Cake cutting</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="key_moments[]"
+                  value="bouquet_garter"
+                />
+                <span>Bouquet/garter</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="checkbox"
+                  name="key_moments[]"
+                  value="last_dance"
+                />
+                <span>Last dance or send-off</span>
+              </label>
+              <label class="pf-choice pf-choice--exclusive">
+                <input
+                  type="checkbox"
+                  name="key_moments[]"
+                  value="not_sure_yet"
+                  data-exclusive="key_moments"
+                />
+                <span>I&apos;m not sure yet</span>
+              </label>
+              <button
+                type="button"
+                class="pf-chip pf-write-in-toggle"
+                data-other-toggle="key_moments_other"
+                aria-expanded="false"
+                aria-controls="key_moments_other_wrap"
+                >✍️ Add more details</button
+              >
+            </fieldset>
+            <div id="key_moments_other_wrap" class="pf-inline-field" hidden>
+              <label class="pf-field-label" for="key_moments_other">
+                Anything else we should know about?
+              </label>
+              <p class="pf-help">
+                Cultural traditions, surprises, special dances, or any other
+                moment you want music built around.
+              </p>
+              <textarea
+                id="key_moments_other"
+                name="key_moments_other"
+                class="pf-input pf-textarea"
+                rows="4"
+                maxlength="1000"></textarea>
+            </div>
+            <p class="pf-error" data-error-for="key_moments_other"></p>
+            <p class="pf-error" data-error-for="key_moments"></p>
+          </section>
+
+          <section class="pf-step" data-step="6" data-section="Your day" hidden>
+            <p class="pf-section-kicker">MC style</p>
+            <h2>What kind of MC style fits your day?</h2>
+            <fieldset class="pf-choice-group pf-radio-group">
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="mc_style"
+                  value="light_professional"
+                />
+                <span class="pf-card-title">Light and professional</span>
+                <small>Keeps the event moving forward.</small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input type="radio" name="mc_style" value="front_and_center" />
+                <span class="pf-card-title">Front and center</span>
+                <small>Tells jokes, leads line dances, takes the stage.</small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input type="radio" name="mc_style" value="not_sure" />
+                <span class="pf-card-title">I&apos;m not sure yet</span>
+                <small>I&apos;d love your recommendation.</small>
+              </label>
+            </fieldset>
+            <p class="pf-error" data-error-for="mc_style"></p>
+          </section>
+
+          <section class="pf-step" data-step="7" data-section="Your day" hidden>
+            <p class="pf-section-kicker">Planner or coordinator</p>
+            <h2>Do you have a wedding planner or day-of coordinator?</h2>
+            <p class="pf-help">
+              These are different roles, so pick the one that fits best.
+            </p>
+
+            <fieldset
+              class="pf-choice-group pf-radio-group"
+              id="coordinator-group"
+            >
+              <label class="pf-choice">
+                <input
+                  type="radio"
+                  name="coordinator"
+                  value="wedding_planner"
+                />
+                <span>Wedding Planner</span>
+              </label>
+              <label class="pf-choice">
+                <input
+                  type="radio"
+                  name="coordinator"
+                  value="day_of_coordinator"
+                />
+                <span>Day-of Coordinator</span>
+              </label>
+              <label class="pf-choice">
+                <input type="radio" name="coordinator" value="both" />
+                <span>Both</span>
+              </label>
+              <label class="pf-choice">
+                <input type="radio" name="coordinator" value="diy" />
+                <span>I&apos;m DIY coordinating</span>
+              </label>
+              <label class="pf-choice">
+                <input type="radio" name="coordinator" value="not_sure" />
+                <span>I&apos;m not sure yet</span>
+              </label>
+            </fieldset>
+            <p class="pf-error" data-error-for="coordinator"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="8"
+            data-section="Your music"
+            hidden
+          >
+            <p class="pf-section-kicker">Music genres</p>
+            <h2>What do you want to hear on the dance floor?</h2>
+            <p class="pf-help">Pick as many as you like.</p>
+
+            <fieldset class="pf-choice-group pf-checkbox-group pf-chip-grid">
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="dance"
+                /><span>Dance</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="pop"
+                /><span>Pop</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="disco"
+                /><span>Disco</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="funk"
+                /><span>Funk</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="edm"
+                /><span>EDM</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="house"
+                /><span>House</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="tech_house"
+                /><span>Tech house</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="hip_hop"
+                /><span>Hip hop</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="rnb"
+                /><span>R&amp;B</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="sing_alongs"
+                /><span>Sing-alongs</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="rock"
+                /><span>Rock</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="country"
+                /><span>Country</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="latin"
+                /><span>Latin</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="reggaeton"
+                /><span>Reggaeton</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="reggae"
+                /><span>Reggae</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="dancehall"
+                /><span>Dancehall</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="soul"
+                /><span>Soul</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="indie"
+                /><span>Indie</span></label
+              >
+              <span class="pf-chip-break" aria-hidden="true"></span>
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="1970s"
+                /><span>70&apos;s</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="1980s"
+                /><span>80&apos;s</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="1990s"
+                /><span>90&apos;s</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="2000s"
+                /><span>2000&apos;s</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="2010s"
+                /><span>2010&apos;s</span></label
+              >
+              <label class="pf-chip"
+                ><input
+                  type="checkbox"
+                  name="music_styles[]"
+                  value="2020s"
+                /><span>2020&apos;s</span></label
+              >
+            </fieldset>
+            <p class="pf-error" data-error-for="music_styles"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="9"
+            data-section="Your music"
+            hidden
+          >
+            <p class="pf-section-kicker">Your favorites</p>
+            <h2>
+              Any songs or artists that make you lose it on the dance floor?
+            </h2>
+            <p class="pf-help">Feel free to paste a playlist link.</p>
+            <textarea
+              id="favorite_songs"
+              name="favorite_songs"
+              class="pf-input pf-textarea"
+              rows="5"
+              maxlength="1500"></textarea>
+            <p class="pf-error" data-error-for="favorite_songs"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="10"
+            data-section="Your music"
+            hidden
+          >
+            <p class="pf-section-kicker">Your guests</p>
+            <h2>Who will be on the dance floor?</h2>
+            <p class="pf-help">Select all that apply.</p>
+            <fieldset class="pf-chip-row pf-checkbox-group">
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="dancers[]"
+                  value="friends_my_age"
+                />
+                <span>Friends in my age group</span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="dancers[]"
+                  value="mixed_generations"
+                />
+                <span>Mixed generations</span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="dancers[]"
+                  value="older_relatives"
+                />
+                <span>Lots of older relatives</span>
+              </label>
+              <label class="pf-chip">
+                <input type="checkbox" name="dancers[]" value="kids" />
+                <span>Lots of kids</span>
+              </label>
+            </fieldset>
+            <p class="pf-error" data-error-for="dancers"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="11"
+            data-section="Your music"
+            hidden
+          >
+            <p class="pf-section-kicker">Music preferences</p>
+            <h2>Is there any music you would NOT like to hear?</h2>
+            <p class="pf-help">
+              Let’s protect your musical vision! Check any categories below that
+              make you cringe, and we’ll make sure they stay far away from the
+              speakers.
+            </p>
+            <fieldset
+              class="pf-chip-grid pf-no-go-grid"
+              aria-label="Music categories to avoid"
+            >
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_categories[]"
+                  value="overplayed_wedding_classics"
+                />
+                <span>
+                  <span aria-hidden="true">🔁</span> Overplayed Wedding Classics
+                  <small
+                    >The usual suspects you’ve heard at every single reception</small
+                  >
+                </span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_categories[]"
+                  value="traditional_line_dances"
+                />
+                <span>
+                  <span aria-hidden="true">🕺</span> Traditional Line Dances
+                  <small>Cha Cha Slide, Cupid Shuffle...</small>
+                </span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_categories[]"
+                  value="cheesy_gimmick_songs"
+                />
+                <span>
+                  <span aria-hidden="true">🎭</span> Cheesy / Gimmick Songs
+                  <small>Anything that feels a bit too “carnival”</small>
+                </span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_categories[]"
+                  value="throwback_slow_downs"
+                />
+                <span>
+                  <span aria-hidden="true">🪩</span> Throwback slow-downs
+                  <small>Classics that take the energy down.</small>
+                </span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_categories[]"
+                  value="explicit_unedited_tracks"
+                />
+                <span>
+                  <span aria-hidden="true">🔇</span> Explicit / Unedited Tracks
+                  <small
+                    >Keep the lyrics clean for mixed-generation crowds</small
+                  >
+                </span>
+              </label>
+              <label class="pf-chip">
+                <input
+                  type="checkbox"
+                  name="songs_to_skip_write_in_enabled"
+                  value="yes"
+                  data-other-toggle="songs_to_skip_write_in"
+                />
+                <span>✍️ Add specific song/artist exclusions</span>
+              </label>
+            </fieldset>
+            <div
+              id="songs_to_skip_write_in_wrap"
+              class="pf-inline-field"
+              hidden
+            >
+              <label class="pf-field-label" for="songs_to_skip">
+                Specific song/artist exclusions (optional)
+              </label>
+              <textarea
+                id="songs_to_skip"
+                name="songs_to_skip"
+                class="pf-input pf-textarea"
+                rows="3"
+                maxlength="1500"
+                placeholder="Song titles or artists"></textarea>
+            </div>
+            <p class="pf-error" data-error-for="songs_to_skip"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="12"
+            data-section="Your music"
+            hidden
+          >
+            <p class="pf-section-kicker">Music planning</p>
+            <h2 id="music-involvement-heading">
+              How would you like to handle your music planning?
+            </h2>
+            <p class="pf-help">
+              Mix and match. There is no wrong way to collaborate.
+            </p>
+            <fieldset
+              class="pf-choice-group pf-checkbox-group"
+              aria-labelledby="music-involvement-heading"
+            >
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="checkbox"
+                  name="music_involvement[]"
+                  value="trust_expert"
+                />
+                <span class="pf-card-title">Trust the Expert: Hands-Off</span>
+                <small>
+                  We trust your expertise! We’d love for you to read the crowd,
+                  take the wheel, and surprise us with great music throughout
+                  the event.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="checkbox"
+                  name="music_involvement[]"
+                  value="vibe_demographic_guide"
+                />
+                <span class="pf-card-title">
+                  Vibe Guide: High-Level Direction
+                </span>
+                <small>
+                  We’d like to share our favorite genres, overall vibe, and
+                  guest demographics, then let you craft the flow around those
+                  guidelines.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="checkbox"
+                  name="music_involvement[]"
+                  value="curated_playlists"
+                />
+                <span class="pf-card-title">
+                  Curated Playlists: Specific Songs &amp; Favorites
+                </span>
+                <small>
+                  We have specific playlists or must-play/do-not-play lists we’d
+                  like to provide to ensure our personal favorites are included.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="checkbox"
+                  name="music_involvement[]"
+                  value="structured_timeline_flow"
+                />
+                <span class="pf-card-title">
+                  Structured Timeline &amp; Flow: Detailed Vision
+                </span>
+                <small>
+                  We have a specific vision for how we want the energy and music
+                  to unfold across different parts of the event (e.g., cocktail
+                  hour vs. peak dance floor).
+                </small>
+              </label>
+            </fieldset>
+            <p class="pf-error" data-error-for="music_involvement"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="13"
+            data-section="Your music"
+            hidden
+          >
+            <p class="pf-section-kicker">Planning</p>
+            <h2 id="planning-style-heading">
+              How would you describe your event planning vibe?
+            </h2>
+            <p class="pf-help">
+              Select one. No judgment here — whether you’re delegating
+              everything or organizing spreadsheets by color code, knowing your
+              style helps us communicate with you in the best way possible!
+            </p>
+            <fieldset
+              class="pf-choice-group pf-radio-group"
+              aria-labelledby="planning-style-heading"
+            >
+              <label class="pf-choice pf-card-choice">
+                <input type="radio" name="planning_style" value="super_chill" />
+                <span class="pf-card-title">
+                  Super Chill &amp; Go-With-the-Flow
+                </span>
+                <small>
+                  I’m relaxed, trust the process completely, and just want
+                  everyone to have a good time. Tell me where to stand and what
+                  to do!
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="planning_style"
+                  value="guided_organized"
+                />
+                <span class="pf-card-title">Guided &amp; Organized</span>
+                <small>
+                  I have a good sense of what I want and like staying on top of
+                  details, but I’m totally open to expert advice and ideas.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="planning_style"
+                  value="detail_oriented_vision_driven"
+                />
+                <span class="pf-card-title">
+                  Detail-Oriented &amp; Vision-Driven
+                </span>
+                <small>
+                  I have a very specific vision for the day. I love clear
+                  timelines, prompt communication, and getting every little
+                  detail just right.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="planning_style"
+                  value="full_on_event_director"
+                />
+                <span class="pf-card-title">Full-On Event Director</span>
+                <small>
+                  I know exactly what I want, down to the minute. I’m hands-on,
+                  highly detailed, and executing a flawless event is my top
+                  priority!
+                </small>
+              </label>
+            </fieldset>
+            <p class="pf-error" data-error-for="planning_style"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="14"
+            data-section="The extras"
+            hidden
+          >
+            <p class="pf-section-kicker">Lighting</p>
+            <h2>Which lighting services interest you?</h2>
+            <p class="pf-help">Select all that apply.</p>
+
+            <fieldset class="pf-choice-group pf-checkbox-group">
+              <label class="pf-choice pf-card-choice"
+                ><input
+                  type="checkbox"
+                  name="lighting[]"
+                  value="uplighting"
+                /><span class="pf-card-title">Uplighting</span>
+                <small>Color washing the walls and room.</small></label
+              >
+              <label class="pf-choice pf-card-choice"
+                ><input
+                  type="checkbox"
+                  name="lighting[]"
+                  value="basic_dance_floor_lighting"
+                /><span class="pf-card-title">Basic dance floor lighting</span
+                ><small>Simple lights that give the dance floor energy.</small
+                ></label
+              >
+              <label class="pf-choice pf-card-choice"
+                ><input
+                  type="checkbox"
+                  name="lighting[]"
+                  value="advanced_dance_floor_buildout"
+                /><span class="pf-card-title"
+                  >Advanced club style lighting build-out</span
+                ><small
+                  >A full club-style show with moving lights and effects.</small
+                ></label
+              >
+              <label class="pf-choice pf-card-choice"
+                ><input
+                  type="checkbox"
+                  name="lighting[]"
+                  value="whole_room_lighting"
+                /><span class="pf-card-title"
+                  >Whole-room lighting and décor</span
+                ><small
+                  >Lighting that sets the mood across the whole venue.</small
+                ></label
+              >
+              <label class="pf-choice pf-card-choice pf-choice--exclusive">
+                <input
+                  type="checkbox"
+                  name="lighting[]"
+                  value="not_sure"
+                  data-exclusive="lighting"
+                />
+                <span class="pf-card-title"
+                  >Not sure yet. Show me what&apos;s possible.</span
+                >
+              </label>
+              <label class="pf-choice pf-choice--exclusive"
+                ><input
+                  type="checkbox"
+                  name="lighting[]"
+                  value="not_interested"
+                  data-exclusive="lighting"
+                /><span>I&apos;m not interested in lighting services.</span
+                ></label
+              >
+            </fieldset>
+            <p class="pf-error" data-error-for="lighting"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="15"
+            data-section="The extras"
+            hidden
+          >
+            <p class="pf-section-kicker">Add-ons</p>
+            <h2>Interested in any additional services?</h2>
+            <p class="pf-help">
+              In partnership with longtime collaborators and trusted vendors.
+            </p>
+            <fieldset class="pf-choice-group pf-checkbox-group">
+              <label class="pf-choice"
+                ><input
+                  type="checkbox"
+                  name="addons[]"
+                  value="live_saxophone"
+                /><span>Live saxophone</span></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="checkbox"
+                  name="addons[]"
+                  value="live_guitar"
+                /><span>Live guitar</span></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="checkbox"
+                  name="addons[]"
+                  value="live_violin"
+                /><span>Live violin</span></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="checkbox"
+                  name="addons[]"
+                  value="portrait_lounge"
+                /><span>Portrait lounge (a.k.a. photo booth)</span></label
+              >
+              <label class="pf-choice pf-choice--exclusive"
+                ><input
+                  type="checkbox"
+                  name="addons[]"
+                  value="none"
+                  data-exclusive="addons"
+                /><span>None of these</span></label
+              >
+            </fieldset>
+            <p class="pf-error" data-error-for="addons"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="16"
+            data-section="Priorities & budget"
+            hidden
+          >
+            <p class="pf-section-kicker">Wedding priorities</p>
+            <h2>Tell us what is most important to you on your wedding day.</h2>
+            <p class="pf-help">
+              The more detail you share, the better we can understand what
+              matters to you and how to help make your day feel right.
+            </p>
+            <textarea
+              id="wedding_priorities"
+              name="wedding_priorities"
+              class="pf-input pf-textarea"
+              rows="5"
+              maxlength="1000"
+              placeholder="e.g., everyone on the dancefloor, a smooth flow so we can enjoy the day, a favorite party we want to recreate..."
+            ></textarea>
+            <p class="pf-error" data-error-for="wedding_priorities"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="17"
+            data-section="Priorities & budget"
+            hidden
+          >
+            <p class="pf-section-kicker">Budget</p>
+            <h2>
+              What budget range feels comfortable for your music and
+              entertainment, including DJ, live musicians, lighting, and extras?
+            </h2>
+            <p class="pf-help">
+              This helps us more closely match services to your budget.
+            </p>
+
+            <div class="pf-budget-wrap">
+              <div class="pf-budget-value" id="budget_value">
+                $2,500 - $10,000
+              </div>
+              <div class="pf-budget-track-wrap">
+                <div
+                  id="budget-slider"
+                  class="pf-budget-slider"
+                  aria-label="Budget range"
+                >
+                  <div id="budget-rail" class="pf-budget-rail"></div>
+                  <div
+                    id="budget-low-handle"
+                    class="pf-budget-handle pf-budget-handle--low"
+                    tabindex="0"
+                    role="slider"
+                    aria-label="Minimum budget"
+                    aria-valuemin="2500"
+                    aria-valuemax="10000"
+                    aria-valuenow="2500"
+                  >
+                  </div>
+                  <div
+                    id="budget-high-handle"
+                    class="pf-budget-handle pf-budget-handle--high"
+                    tabindex="0"
+                    role="slider"
+                    aria-label="Maximum budget"
+                    aria-valuemin="2500"
+                    aria-valuemax="10000"
+                    aria-valuenow="10000"
+                  >
+                  </div>
+                </div>
+              </div>
+              <input type="hidden" name="budget_min" value="2500" />
+              <input type="hidden" name="budget_max" value="10000" />
+              <input type="hidden" name="budget_touched" value="false" />
+            </div>
+            <p class="pf-error" data-error-for="budget"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="18"
+            data-section="Priorities & budget"
+            hidden
+          >
+            <p class="pf-section-kicker">Spending mindset</p>
+            <h2>How would you describe your approach to spending?</h2>
+            <p class="pf-help">
+              No wrong answer. This helps us suggest options that feel
+              comfortable.
+            </p>
+            <fieldset class="pf-choice-group pf-radio-group">
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="spending_mindset"
+                  value="firm_target"
+                />
+                <span class="pf-card-title">Firm Target</span>
+                <small>
+                  Staying strictly within our selected price range is a primary
+                  priority for us.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="spending_mindset"
+                  value="balanced_approach"
+                />
+                <span class="pf-card-title">Balanced Approach</span>
+                <small>
+                  We’d prefer to stay near our target, but can adjust slightly
+                  for priority items that make a big difference.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="spending_mindset"
+                  value="vision_driven"
+                />
+                <span class="pf-card-title">Vision-Driven</span>
+                <small>
+                  Our budget is flexible, and we are willing to invest more for
+                  high-impact details and seamless quality.
+                </small>
+              </label>
+              <label class="pf-choice pf-card-choice">
+                <input
+                  type="radio"
+                  name="spending_mindset"
+                  value="unrestricted"
+                />
+                <span class="pf-card-title">Unrestricted</span>
+                <small>
+                  Money is not a constraining factor; our focus is on curating a
+                  fully custom, top-tier experience.
+                </small>
+              </label>
+            </fieldset>
+            <p class="pf-error" data-error-for="spending_mindset"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="19"
+            data-section="Where you're at"
+            hidden
+          >
+            <p class="pf-section-kicker">Decision stage</p>
+            <h2>Where are you in your decision?</h2>
+            <fieldset class="pf-choice-group pf-radio-group">
+              <label class="pf-choice"
+                ><input
+                  type="radio"
+                  name="decision_stage"
+                  value="browsing"
+                /><span>I&apos;m just getting started and browsing</span></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="radio"
+                  name="decision_stage"
+                  value="comparing_vendors"
+                /><span>I&apos;m comparing different vendors</span></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="radio"
+                  name="decision_stage"
+                  value="few_questions"
+                /><span
+                  >I&apos;m very interested and just have a few questions for
+                  you</span
+                ></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="radio"
+                  name="decision_stage"
+                  value="only_dj"
+                /><span>You&apos;re the only DJ for us</span></label
+              >
+            </fieldset>
+            <div
+              id="competing_vendors_wrap"
+              class="pf-inline-field"
+              data-decision-stage-field
+              hidden
+            >
+              <label class="pf-field-label" for="competing_vendors">
+                Who else are you considering?
+              </label>
+              <p class="pf-help">
+                It&apos;s a small town. We probably know them and are friends.
+              </p>
+              <input
+                id="competing_vendors"
+                name="competing_vendors"
+                class="pf-input"
+                maxlength="200"
+              />
+              <p class="pf-error" data-error-for="competing_vendors"></p>
+            </div>
+            <div class="pf-inline-field pf-inline-field--spaced">
+              <p class="pf-field-label">When are you hoping to decide?</p>
+              <fieldset class="pf-chip-row pf-radio-group">
+                <label class="pf-chip">
+                  <input
+                    type="radio"
+                    name="booking_timeline"
+                    value="this_week"
+                  />
+                  <span>This week</span>
+                </label>
+                <label class="pf-chip">
+                  <input
+                    type="radio"
+                    name="booking_timeline"
+                    value="within_2_weeks"
+                  />
+                  <span>Within 2 weeks</span>
+                </label>
+                <label class="pf-chip">
+                  <input
+                    type="radio"
+                    name="booking_timeline"
+                    value="within_1_month"
+                  />
+                  <span>1 month</span>
+                </label>
+                <label class="pf-chip">
+                  <input
+                    type="radio"
+                    name="booking_timeline"
+                    value="within_3_months"
+                  />
+                  <span>3 months</span>
+                </label>
+                <label class="pf-chip">
+                  <input
+                    type="radio"
+                    name="booking_timeline"
+                    value="not_sure"
+                  />
+                  <span>Not sure</span>
+                </label>
+              </fieldset>
+            </div>
+            <p class="pf-error" data-error-for="decision_stage"></p>
+            <p class="pf-error" data-error-for="booking_timeline"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="20"
+            data-section="Where you're at"
+            hidden
+          >
+            <p class="pf-section-kicker">How to reach you</p>
+            <h2>What&apos;s the best way to reach you?</h2>
+            <fieldset
+              class="pf-choice-group pf-checkbox-group"
+              id="contact_method_group"
+            >
+              <label class="pf-choice"
+                ><input
+                  type="checkbox"
+                  name="contact_method[]"
+                  value="text"
+                /><span>Text</span></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="checkbox"
+                  name="contact_method[]"
+                  value="email"
+                /><span>Email</span></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="checkbox"
+                  name="contact_method[]"
+                  value="phone_call"
+                /><span>Phone call</span></label
+              >
+            </fieldset>
+
+            <div class="pf-inline-field pf-inline-field--spaced">
+              <label class="pf-field-label">Best time to reach you</label>
+              <div class="pf-chip-row">
+                <label class="pf-chip"
+                  ><input
+                    type="checkbox"
+                    name="best_time[]"
+                    value="mornings"
+                  /><span>Mornings</span></label
+                >
+                <label class="pf-chip"
+                  ><input
+                    type="checkbox"
+                    name="best_time[]"
+                    value="afternoons"
+                  /><span>Afternoons</span></label
+                >
+                <label class="pf-chip"
+                  ><input
+                    type="checkbox"
+                    name="best_time[]"
+                    value="evenings"
+                  /><span>Evenings</span></label
+                >
+                <label class="pf-chip"
+                  ><input
+                    type="checkbox"
+                    name="best_time[]"
+                    value="no_preference"
+                    data-exclusive="best_time"
+                  /><span>No preference</span></label
+                >
+              </div>
+            </div>
+            <p class="pf-error" data-error-for="contact_method"></p>
+            <p class="pf-error" data-error-for="best_time"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="21"
+            data-section="Where you're at"
+            hidden
+          >
+            <p class="pf-section-kicker">Anything else</p>
+            <h2>What are your most burning questions for DJ Misha?</h2>
+            <p class="pf-help">
+              What would you need to hear from us to feel 100% confident
+              booking?
+            </p>
+            <textarea
+              id="anything_else"
+              name="anything_else"
+              class="pf-input pf-textarea"
+              rows="6"
+              maxlength="2000"></textarea>
+            <p class="pf-error" data-error-for="anything_else"></p>
+          </section>
+
+          <section
+            class="pf-step"
+            data-step="22"
+            data-section="Meet DJ Misha"
+            hidden
+          >
+            <p class="pf-section-kicker">Let&apos;s talk it through.</p>
+            <h2>Meet & Greet with DJ Misha</h2>
+            <p class="pf-help">
+              DJ Misha personally meets with couples. Pick the weekday that
+              works best for a video call at <strong>2:00 PM Pacific</strong>.
+            </p>
+            <p class="pf-help pf-help--muted">
+              We&apos;ll confirm the exact date by email.
+            </p>
+
+            <fieldset class="pf-choice-group pf-radio-group">
+              <label class="pf-choice"
+                ><input type="radio" name="meeting_day" value="monday" /><span
+                  >Monday</span
+                ></label
+              >
+              <label class="pf-choice"
+                ><input type="radio" name="meeting_day" value="tuesday" /><span
+                  >Tuesday</span
+                ></label
+              >
+              <label class="pf-choice"
+                ><input
+                  type="radio"
+                  name="meeting_day"
+                  value="wednesday"
+                /><span>Wednesday</span></label
+              >
+              <label class="pf-choice"
+                ><input type="radio" name="meeting_day" value="thursday" /><span
+                  >Thursday</span
+                ></label
+              >
+              <label class="pf-choice"
+                ><input type="radio" name="meeting_day" value="friday" /><span
+                  >Friday</span
+                ></label
+              >
+              <label class="pf-choice pf-choice--exclusive"
+                ><input
+                  type="radio"
+                  name="meeting_day"
+                  value="skip_for_now"
+                /><span>Skip for now</span></label
+              >
+            </fieldset>
+
+            <p class="pf-error" data-error-for="meeting_day"></p>
+          </section>
+        </div>
+
+        <div class="pf-actions">
+          <button type="button" id="pf-back" class="pf-back-btn" hidden>
+            Back
+          </button>
+          <button type="button" id="pf-next" class="pf-primary-btn"
+            >Continue</button
+          >
+          <button type="submit" id="pf-submit" class="pf-primary-btn" hidden>
+            Send to DJ Misha
+          </button>
+        </div>
+      </form>
+
+      <div id="pf-success" class="pf-success" hidden>
+        <div class="pf-card pf-card--narrow">
+          <p class="pf-eyebrow">Done</p>
+          <h1 id="pf-success-name">You&apos;re all set!</h1>
+          <h2>What happens next</h2>
+          <ol>
+            <li>DJ Misha will review your answers.</li>
+            <li>We&apos;ll be in touch.</li>
+            <li>We&apos;ll present a package that best fits your details.</li>
+          </ol>
+          <a id="pf-success-link" target="_blank" rel="noopener" hidden
+            >While you wait, read DJ Misha&apos;s Google reviews →</a
+          >
+        </div>
+      </div>
+    </main>
+
+    <script src="/wedding-planning/pf.js" defer></script>
+  </body>
+</html>
