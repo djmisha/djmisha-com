@@ -321,6 +321,19 @@ h2 {
   cursor: not-allowed;
 }
 
+.pf-success #pf-success-link {
+  color: var(--pf-accent);
+  transition: color var(--pf-transition);
+}
+
+.pf-success #pf-success-link:hover {
+  color: var(--pf-accent-hover);
+}
+
+.pf-success #pf-success-link:active {
+  color: var(--pf-accent-active);
+}
+
 .pf-actions {
   display: flex;
   justify-content: space-between;
