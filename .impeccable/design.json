@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T00:00:00.000Z",
+  "title": "Design System: DJ Misha",
+  "extensions": {
+    "colorMeta": {
+      "midnight-indigo": { "role": "neutral", "displayName": "Midnight Indigo", "canonical": "#1c1d26", "tonalRamp": ["#0c0d12", "#14151c", "#1c1d26", "#272833", "#242634", "#3a3c50", "#55576f", "#78798e"] },
+      "indigo-panel": { "role": "neutral", "displayName": "Indigo Panel", "canonical": "#272833" },
+      "indigo-shade": { "role": "neutral", "displayName": "Indigo Shade", "canonical": "#242634" },
+      "backroom-black": { "role": "neutral", "displayName": "Backroom Black", "canonical": "#181920" },
+      "ghost-fill": { "role": "neutral", "displayName": "Ghost Fill", "canonical": "rgba(255, 255, 255, 0.075)" },
+      "ghost-border": { "role": "neutral", "displayName": "Ghost Border", "canonical": "rgba(255, 255, 255, 0.3)" },
+      "afterglow-pink": { "role": "primary", "displayName": "Afterglow Pink", "canonical": "#ff2d8a", "tonalRamp": ["#5c0a26", "#8a0f39", "#c2164f", "#e6196f", "#ff2d8a", "#ff57a3", "#ff85bd", "#ffb8d8"] },
+      "afterglow-pink-hover": { "role": "primary", "displayName": "Afterglow Pink Hover", "canonical": "#ff57a3" },
+      "afterglow-pink-active": { "role": "primary", "displayName": "Afterglow Pink Active", "canonical": "#e6196f" },
+      "afterglow-pink-subtle": { "role": "primary", "displayName": "Afterglow Pink Subtle", "canonical": "rgba(255, 77, 166, 0.15)" },
+      "late-set-blue": { "role": "secondary", "displayName": "Late Set Blue", "canonical": "#5480f1" },
+      "backstage-green": { "role": "tertiary", "displayName": "Backstage Green", "canonical": "#39c088" },
+      "marquee-gold": { "role": "functional", "displayName": "Marquee Gold", "canonical": "#fbbf24" },
+      "marquee-white": { "role": "neutral", "displayName": "Marquee White", "canonical": "#ffffff" },
+      "dancefloor-white": { "role": "neutral", "displayName": "Dancefloor White", "canonical": "rgba(255, 255, 255, 0.75)" },
+      "dancefloor-white-muted": { "role": "neutral", "displayName": "Dancefloor White Muted", "canonical": "rgba(255, 255, 255, 0.5)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Homepage banner headline only." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings (h2) across every page." },
+      "title": { "displayName": "Title", "purpose": "Sub-section headings (h3), service box titles." },
+      "body": { "displayName": "Body", "purpose": "All running copy." },
+      "label": { "displayName": "Label", "purpose": "Pills, badges, meta text." }
+    },
+    "shadows": [
+      { "name": "ghost-border", "value": "inset 0 0 0 1px rgba(255, 255, 255, 0.3)", "purpose": "Default resting border on buttons, implemented as an inset shadow." },
+      { "name": "hover-lift", "value": "0 6px 20px rgba(0, 0, 0, 0.3)", "purpose": "Service box hover state, paired with translateY(-3px)." },
+      { "name": "header-separation", "value": "0 0 0.25em 0 rgba(0, 0, 0, 0.25)", "purpose": "Fixed header against scrolled content." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "0.2s ease-in-out", "purpose": "Default transition for background-color, color, border/box-shadow state changes." },
+      { "name": "ease-lift", "value": "0.2s ease-in-out (transform) / 0.3s ease-in-out (background)", "purpose": "Service box hover lift and background crossfade." }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "480px" },
+      { "name": "sm", "value": "736px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "980px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid accent CTA — the one action per section that matters most.",
+      "html": "<button class=\"ds-btn-primary\">Get a Quote</button>",
+      "css": ".ds-btn-primary { appearance: none; background-color: #ff2d8a; border: 0; border-radius: 0; color: #ffffff; cursor: pointer; display: inline-block; font-family: 'Poppins', Helvetica, sans-serif; font-weight: 300; height: 3em; line-height: 3em; padding: 0 2.25em; text-align: center; white-space: nowrap; transition: background-color 0.2s ease-in-out; } .ds-btn-primary:hover { background-color: #ff57a3; } .ds-btn-primary:active { background-color: #e6196f; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Default button treatment — transparent fill, ghost border, accent on hover.",
+      "html": "<button class=\"ds-btn-ghost\">Learn More</button>",
+      "css": ".ds-btn-ghost { appearance: none; background-color: transparent; border: 0; border-radius: 0; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3); color: #ffffff; cursor: pointer; display: inline-block; font-family: 'Poppins', Helvetica, sans-serif; font-weight: 300; height: 3em; line-height: 3em; padding: 0 2.25em; text-align: center; white-space: nowrap; transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; } .ds-btn-ghost:hover, .ds-btn-ghost:focus-visible { box-shadow: inset 0 0 0 1px #ff2d8a; color: #ff2d8a; }"
+    },
+    {
+      "name": "Keyword Pill",
+      "kind": "chip",
+      "refersTo": "pill-tag",
+      "description": "Review keyword filter pill with a count badge; active state fills with the accent.",
+      "html": "<button class=\"ds-pill\">dancing <span class=\"ds-pill-badge\">39</span></button>",
+      "css": ".ds-pill { appearance: none; border: 0; display: inline-flex; align-items: center; gap: 0.4em; padding: 0.5em 1.1em; border-radius: 2em; font-family: 'Poppins', Helvetica, sans-serif; font-size: 0.85em; font-weight: 300; cursor: pointer; white-space: nowrap; background: rgba(255,255,255,0.075); color: rgba(255,255,255,0.75); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2); transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; } .ds-pill:hover { background: rgba(255,255,255,0.12); color: #ffffff; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4); } .ds-pill-badge { background: rgba(255,255,255,0.15); border-radius: 1em; padding: 0.1em 0.5em; font-size: 0.8em; } .ds-pill.ds-pill--active { background: #ff2d8a; color: #ffffff; box-shadow: none; } .ds-pill.ds-pill--active .ds-pill-badge { background: rgba(255,255,255,0.25); }"
+    },
+    {
+      "name": "Review Card",
+      "kind": "card",
+      "refersTo": "review-card",
+      "description": "Static review display card — no hover motion, since it's read rather than acted on.",
+      "html": "<div class=\"ds-review-card\"><div class=\"ds-review-stars\">★★★★★</div><p class=\"ds-review-text\">\"Misha and Jason were absolutely incredible...\"</p><div class=\"ds-review-author\">Jacob Stover</div></div>",
+      "css": ".ds-review-card { background: #272833; border-radius: 0; padding: 1.5em; } .ds-review-stars { color: #fbbf24; margin-bottom: 0.6em; font-size: 1.1em; letter-spacing: 0.05em; } .ds-review-text { color: rgba(255,255,255,0.75); font-size: 0.9em; line-height: 1.7em; margin: 0 0 0.75em; } .ds-review-author { color: #ffffff; font-weight: 300; font-size: 0.95em; }"
+    },
+    {
+      "name": "Service Box",
+      "kind": "card",
+      "refersTo": "service-box",
+      "description": "Service/pricing card with a signature accent top-border and a hover lift.",
+      "html": "<div class=\"ds-service-box\"><h3 class=\"ds-service-box-title\">Wedding DJ</h3><p class=\"ds-service-box-subtitle\">Your Perfect Soundtrack</p><p class=\"ds-service-box-price\">Starting from $2,500</p></div>",
+      "css": ".ds-service-box { padding: 2em; border-radius: 0; border-top: 4px solid #ff2d8a; background: #272833; display: flex; flex-direction: column; transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; } .ds-service-box:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); } .ds-service-box-title { color: #ffffff; font-size: 1.35em; font-weight: 300; margin: 0 0 0.2em; } .ds-service-box-subtitle { color: rgba(255,255,255,0.5); font-size: 1.05em; font-style: italic; margin: 0 0 1em; padding-bottom: 1em; border-bottom: 1px solid rgba(255,255,255,0.3); } .ds-service-box-price { color: #ffffff; font-size: 1.1em; font-weight: 300; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Afterhours Club",
+    "overview": "The site reads like a room after midnight: a near-black indigo field with a single neon color doing all the emotional work. Everything else — type, borders, panels — stays quiet and flat so that one accent, Afterglow Pink, can carry every cue that matters: here's the button, here's what's active, here's the thing worth noticing. The effect should feel confident and composed, not loud — this room has to work for a couple deciding on their wedding soundtrack and for a corporate planner quietly checking credentials, often in the same browsing session.\n\nFlatness is deliberate, not an oversight: panels and buttons sit at 0px radius, bordered by a faint 1px ghost line rather than a shadow, so the interface feels like signage and glass rather than skeuomorphic UI chrome. Roundness is reserved entirely for things that are inherently round in life — a face in a circular portrait, a pulsing status dot, a wristband-shaped tag — never used as a general softening device.",
+    "keyCharacteristics": [
+      "Near-black indigo base, one neon accent, restrained everywhere else",
+      "Flat by default (0px radius); circular/pill shapes only for inherently round content",
+      "Ghost-bordered at rest, accent-bordered or lifted only on hover/active — depth is a response, not ambient decoration",
+      "Poppins at a light/thin weight throughout — presence comes from weight and spacing, not boldness",
+      "Must read as credible to a corporate vetter, not just exciting to a partygoer — energetic, never gaudy"
+    ],
+    "rules": [
+      { "name": "The Single Light Source Rule", "body": "Afterglow Pink is the only color allowed to mean \"act here\" or \"this is active.\" Late Set Blue and Backstage Green exist purely to tell homepage story chapters apart by their edge border — they never touch a button, link, or form control.", "section": "colors" },
+      { "name": "The No-Ambient-Color Rule", "body": "Surfaces lighten in flat neutral steps (Midnight Indigo → Indigo Panel → Indigo Shade → hover) — never by tinting toward the accent. A hovered neutral surface gets lighter, not pinker.", "section": "colors" },
+      { "name": "The Thin-Weight Rule", "body": "Body copy runs at Poppins Thin (100) — the lightest weight available. Nothing in running text goes bolder than 300 (strong/headings); if something needs to shout, it changes color or size before it changes weight.", "section": "typography" },
+      { "name": "The Dotted Underline Rule", "body": "Inline text links get a dotted 1px underline in the surrounding text color (not the accent) at rest, and switch to solid Afterglow Pink only on hover. A link should read as part of the sentence until touched.", "section": "typography" },
+      { "name": "The Ghost-Border Rule", "body": "Interactive elements default to a faint inset border, not a shadow. Depth is earned through interaction (hover/active), never applied at rest to make something look important.", "section": "elevation" },
+      { "name": "The Flat-Except-Round Rule", "body": "No soft corners. A radius is either 0, 50%, or 2em — never an in-between \"friendly\" rounding like 8px or 12px.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do keep Afterglow Pink rare — it should read as the one warm thing in a dark room, not a wash.",
+      "Do keep ratings/review proof visually prominent (stars, pill counts, avatar initials) — this audience includes corporate vetters checking credibility, not just couples browsing mood.",
+      "Do use flat corners, ghost borders, and thin type weight as the default register for any new UI; reach for the circle/pill exceptions only when the content is genuinely round or tag-shaped.",
+      "Do let depth (shadow, lift) appear only in response to interaction, never as resting decoration."
+    ],
+    "donts": [
+      "Don't introduce a second saturated accent color, gradient-heavy treatment, or neon-rave styling — the brief is \"energetic but corporate-safe,\" not festival-flyer maximalism.",
+      "Don't use Late Set Blue or Backstage Green anywhere but a homepage spotlight chapter border; they are not general-purpose secondary/tertiary brand colors.",
+      "Don't round a corner to anything between 0 and a full circle/pill — there is no \"soft card\" radius in this system.",
+      "Don't add a drop shadow to a static panel at rest; reserve shadows for hover/interaction feedback."
+    ]
+  }
+}
