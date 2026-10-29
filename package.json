@@ -13,6 +13,9 @@
     "format:check": "prettier --check 'public/css/site.css' 'src/**/*.{astro,ts,js}'"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.9",
+    "embla-carousel": "^8.6.0",
+    "typescript": "^5.9.3",
     "astro": "^7.4.2"
   },
   "devDependencies": {
@@ -24,6 +27,7 @@
     "pngjs": "^7.0.0",
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
+    "sharp": "^0.34.5",
     "sirv": "^3.0.2",
     "vitest": "^4.1.4",
     "yaml": "^2.8.3"

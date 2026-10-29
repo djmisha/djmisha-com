@@ -1,0 +1,76 @@
+---
+/**
+ * HighlightPanel — a single emphasized card for a featured block of copy
+ * (e.g. a "featured snippet" answer). Optional icon + heading.
+ */
+import Icon from './Icon.astro';
+
+export interface Props {
+  heading?: string;
+  icon?: import('./Icon.astro').Props['name'];
+  alt?: boolean;
+  id?: string;
+}
+
+const { heading, icon, alt = false, id } = Astro.props;
+---
+
+<section id={id} class:list={['highlight-panel', { 'section--alt': alt }]}>
+  <div class="highlight-panel__card">
+    {
+      (heading || icon) && (
+        <div class="highlight-panel__header">
+          {icon && (
+            <span class="highlight-panel__icon" aria-hidden="true">
+              <Icon name={icon} size="1.5em" />
+            </span>
+          )}
+          {heading && <h2 class="highlight-panel__heading">{heading}</h2>}
+        </div>
+      )
+    }
+    <div class="highlight-panel__body">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .highlight-panel {
+    padding: var(--section-padding-y) var(--section-padding-x);
+  }
+
+  .highlight-panel__card {
+    max-width: var(--section-max-width);
+    margin: 0 auto;
+    background: var(--color-bg-secondary);
+    border-top: 4px solid var(--color-accent);
+    padding: clamp(1.75rem, 4vw, 3rem);
+  }
+
+  .highlight-panel__header {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: 1em;
+  }
+
+  .highlight-panel__icon {
+    color: var(--color-accent);
+    display: inline-flex;
+  }
+
+  .highlight-panel__heading {
+    margin: 0;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    color: var(--color-text-strong);
+  }
+
+  .highlight-panel__body :global(:first-child) {
+    margin-top: 0;
+  }
+
+  .highlight-panel__body :global(:last-child) {
+    margin-bottom: 0;
+  }
+</style>

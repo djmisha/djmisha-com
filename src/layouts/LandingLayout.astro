@@ -1,0 +1,51 @@
+---
+import type { LandingLayoutProps } from '../types';
+
+export type Props = LandingLayoutProps;
+
+import BaseLayout from './BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const {
+  title,
+  description = '',
+  bodyClass = 'landing',
+  isHome = false,
+  canonicalUrl,
+  ogTitle,
+  ogDescription,
+  ogImage,
+  ogUrl,
+  ogType,
+  twitterTitle,
+  twitterDescription,
+  twitterImage,
+  jsonLd,
+  extraHeadContent,
+  noindex = false,
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  bodyClass={bodyClass}
+  isHome={isHome}
+  canonicalUrl={canonicalUrl}
+  ogTitle={ogTitle}
+  ogDescription={ogDescription}
+  ogImage={ogImage}
+  ogUrl={ogUrl}
+  ogType={ogType}
+  twitterTitle={twitterTitle}
+  twitterDescription={twitterDescription}
+  twitterImage={twitterImage}
+  jsonLd={jsonLd}
+  extraHeadContent={extraHeadContent}
+  noindex={noindex}
+>
+  <Navigation isHome={isHome} />
+  <slot />
+  <Footer />
+</BaseLayout>

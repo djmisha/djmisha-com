@@ -139,6 +139,18 @@ Scoped style rules:
 - The design system uses the HTML5 UP grid classes (`col-4`, `col-12-medium`, etc.) — continue using them for layout
 - Run `npm run format` after CSS changes
 
+### Never use bold text
+
+- The brand is light/thin: Poppins is loaded only at weights `200;300;400;500`, all headings use `font-weight: 300`, and `<strong>`/`<b>` are styled to `font-weight: 300` (emphasis is via brighter color, not weight).
+- Never set `font-weight: bold`, `600`, or `700` in any style. For emphasis use the existing light weights (`300`/`400`/`500`).
+- Preserve existing content emphasis tags (`<strong>`, `<em>`) verbatim during 1:1 content migration — they already render un-bold; just never add new bold styling.
+
+### Buttons: use existing styles only
+
+- Always use the site's existing `.button` class (with `.primary`, `.small`, `.large`, `.fit` modifiers) for any button or button-styled link.
+- Never add rounded corners. The site uses `--border-radius: 0` (square). Do not introduce `border-radius` on buttons or invent new button styles (no pill/rounded toggles).
+- If a button needs behavior-only CSS (e.g. show/hide), add the behavior with a separate utility class and keep `.button` for all appearance.
+
 ### Key design tokens
 
 ```css

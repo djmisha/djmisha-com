@@ -1,0 +1,56 @@
+---
+/**
+ * FeatureCard — a single card inside FeatureGrid: optional icon, title, body slot.
+ */
+import Icon from './Icon.astro';
+
+export interface Props {
+  title: string;
+  icon?: import('./Icon.astro').Props['name'];
+}
+
+const { title, icon } = Astro.props;
+---
+
+<article class="feature-card">
+  {
+    icon && (
+      <span class="feature-card__icon" aria-hidden="true">
+        <Icon name={icon} size="1.6em" />
+      </span>
+    )
+  }
+  <h3 class="feature-card__title">{title}</h3>
+  <div class="feature-card__body">
+    <slot />
+  </div>
+</article>
+
+<style>
+  .feature-card {
+    background: var(--color-bg-secondary);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border: 1px solid var(--color-border-faint);
+    height: 100%;
+  }
+
+  .feature-card__icon {
+    display: inline-flex;
+    color: var(--color-accent);
+    margin-bottom: 0.6em;
+  }
+
+  .feature-card__title {
+    margin: 0 0 0.5em 0;
+    font-size: 1.2rem;
+    color: var(--color-text-strong);
+  }
+
+  .feature-card__body :global(:first-child) {
+    margin-top: 0;
+  }
+
+  .feature-card__body :global(:last-child) {
+    margin-bottom: 0;
+  }
+</style>

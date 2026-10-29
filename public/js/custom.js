@@ -62,7 +62,7 @@ const detectScrollforWeddingVideo = function () {
 
 $(window).scroll(detectScrollforWeddingVideo);
 
-/* Book now, Lets Chat */
+/* Book Your Date, Let's Connect */
 
 const stickyContact = () => {
   const stickyContactTop = 1200;

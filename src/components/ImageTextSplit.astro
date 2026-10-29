@@ -1,0 +1,95 @@
+---
+/**
+ * ImageTextSplit — 50/50 image + text band. Set reverse={true} to flip sides
+ * for an alternating rhythm down the page. Replaces floated WordPress images.
+ */
+export interface Props {
+  image: string;
+  alt: string;
+  caption?: string;
+  reverse?: boolean;
+  alt_bg?: boolean;
+  id?: string;
+}
+
+const {
+  image,
+  alt,
+  caption,
+  reverse = false,
+  alt_bg = false,
+  id,
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    'image-text-split',
+    { 'image-text-split--reverse': reverse, 'section--alt': alt_bg },
+  ]}
+>
+  <div class="image-text-split__inner">
+    <figure class="image-text-split__media">
+      <img src={image} alt={alt} loading="lazy" decoding="async" />
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+    <div class="image-text-split__text">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .image-text-split {
+    padding: var(--section-padding-y) var(--section-padding-x);
+  }
+
+  .image-text-split__inner {
+    max-width: var(--section-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+
+  .image-text-split--reverse .image-text-split__media {
+    order: 2;
+  }
+
+  .image-text-split__media {
+    margin: 0;
+  }
+
+  .image-text-split__media img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .image-text-split__media figcaption {
+    margin-top: 0.6em;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .image-text-split__text :global(:first-child) {
+    margin-top: 0;
+  }
+
+  .image-text-split__text :global(:last-child) {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 720px) {
+    .image-text-split__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .image-text-split--reverse .image-text-split__media {
+      order: 0;
+    }
+  }
+</style>
