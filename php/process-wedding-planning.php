@@ -89,7 +89,7 @@ function displayLines(array $values, array $labels, string $empty = 'None select
         return $empty;
     }
 
-    return implode("\n\n", array_map(
+    return implode("\n", array_map(
         static fn(string $value): string => $labels[$value] ?? $value,
         $values
     ));
@@ -612,19 +612,17 @@ $soundAnswer = in_array('not_sure', $separateSound ?? [], true)
     : displayLines($separateSound ?? [], $separateSoundLabels);
 $bodyBlocks = [
     "LEAD SNAPSHOT\n" . $leadSnapshot,
-    "CONTACT DETAILS\n"
-        . 'Name: ' . $name . "\n"
-        . 'Submitted: ' . $timestamp,
+    "CONTACT DETAILS\nName: " . $name . "\nSubmitted: " . $timestamp,
     'YOUR DAY',
     "Which parts of your day would you like us involved in?\n" . displayLines($partsOfDay ?? [], $choiceLabels),
     "What does your event timeline look like?\n" . $timelineAnswer,
     "Tell us about the space(s) where the music will happen.\n"
         . displayLines($spaceType ?? [], $choiceLabels)
-        . ($spaceTypeOther !== '' ? "\n\nOther space type:\n" . $spaceTypeOther : ''),
+        . ($spaceTypeOther !== '' ? "\nOther space type:\n" . $spaceTypeOther : ''),
     "Which of your spaces need their own sound system?\n" . $soundAnswer,
     "Which key moments would you like to highlight?\n"
-        . displayLines($keyMoments ?? [], $choiceLabels)
-        . "\n\n\nAnything else we should know about?\n"
+        . displayLines($keyMoments ?? [], $choiceLabels),
+    "Anything else we should know about?\n"
         . ($keyMomentsOther !== '' ? $keyMomentsOther : 'Not provided'),
     "What kind of MC style fits your day?\n" . $choiceLabels[$mcStyle],
     "Do you have a wedding planner or day-of coordinator?\n" . $choiceLabels[$coordinator],
@@ -634,8 +632,8 @@ $bodyBlocks = [
         . ($favoriteSongs !== '' ? $favoriteSongs : 'Not provided'),
     "Who will be on the dance floor?\n" . displayLines($dancers ?? [], $choiceLabels),
     "Is there any music you would NOT like to hear?\n"
-        . displayLines($songsToSkipCategories ?? [], $songsToSkipCategoryLabels)
-        . "\n\n\nSpecific song/artist exclusions:\n"
+        . displayLines($songsToSkipCategories ?? [], $songsToSkipCategoryLabels),
+    "Specific song/artist exclusions:\n"
         . ($songsToSkip !== '' ? $songsToSkip : 'Not provided'),
     "How would you like to handle your music planning?\n"
         . displayLines($musicInvolvement ?? [], $musicInvolvementLabels),
@@ -651,12 +649,13 @@ $bodyBlocks = [
         . $budgetRange . ($budgetTouched === 'true' ? ' (adjusted)' : ' (default range, not adjusted)'),
     "How would you describe your approach to spending?\n" . $spendingSnapshotLabels[$spendingMindset],
     "WHERE YOU'RE AT",
-    "Where are you in your decision?\n" . $choiceLabels[$decisionStage]
-        . ($competingVendors !== '' ? "\n\n\nWho else are you considering?\n" . $competingVendors : ''),
+    "Where are you in your decision?\n" . $choiceLabels[$decisionStage],
+    "Who else are you considering?\n"
+        . ($competingVendors !== '' ? $competingVendors : 'Not provided'),
     "When are you hoping to decide?\n" . $bookingTimelineLabels[$bookingTimeline],
     "What's the best way to reach you?\n"
-        . displayLines($contactMethod ?? [], $choiceLabels)
-        . "\n\n\nBest time to reach you:\n"
+        . displayLines($contactMethod ?? [], $choiceLabels),
+    "Best time to reach you:\n"
         . displayLines($bestTime ?? [], $choiceLabels, 'No preference'),
     "What are your most burning questions for DJ Misha?\n"
         . ($anythingElse !== '' ? $anythingElse : 'Not provided'),
@@ -666,7 +665,7 @@ $bodyBlocks = [
         : $choiceLabels[$meetingDay] . ' at 2:00 PM Pacific (requested, not confirmed)'),
 ];
 
-$body = implode("\n\n\n", $bodyBlocks);
+$body = implode("\n\n", $bodyBlocks);
 $headers = [
     'From: ' . $fromName . ' <' . $fromEmail . '>',
     'Reply-To: info@djmisha.com',
