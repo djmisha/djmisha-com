@@ -27,12 +27,6 @@ _staging/
 
 # Various 
 
-archived-theme/
-existing-site/
-scripts/
-vrt-output/
-tests/
-.kiro/
 
 # AI configs
 launch.json

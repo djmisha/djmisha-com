@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
+// ── JSON response and input helpers ────────────────────────────────────────
 function jsonResponse(bool $ok, array $payload = [], int $status = 200): void
 {
     http_response_code($status);
@@ -95,15 +96,68 @@ function displayLines(array $values, array $labels, string $empty = 'None select
     ));
 }
 
+// ── 1. Reject non-POST requests ────────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     jsonResponse(false, ['errors' => ['request' => 'Method not allowed.']], 405);
 }
 
+// ── 2. Silently reject honeypot submissions ────────────────────────────────
 $honeypot = cleanText($_POST['website'] ?? '');
 if ($honeypot !== '') {
     jsonResponse(true, ['message' => 'Thank you. Your response has been received.']);
 }
 
+// ── 3. Define accepted form values ─────────────────────────────────────────
+$allowedContactMethods = ['text', 'email', 'phone_call'];
+$allowedBestTimes = ['mornings', 'afternoons', 'evenings', 'no_preference'];
+$allowedSongsToSkipCategories = [
+    'overplayed_wedding_classics',
+    'traditional_line_dances',
+    'cheesy_gimmick_songs',
+    'throwback_slow_downs',
+    'explicit_unedited_tracks',
+];
+$allowedMusicInvolvement = [
+    'trust_expert',
+    'vibe_demographic_guide',
+    'curated_playlists',
+    'structured_timeline_flow',
+];
+$allowedParts = ['ceremony', 'cocktail_hour', 'reception', 'afterparty'];
+$allowedSpaces = ['indoor_event_space', 'ballroom', 'outdoors', 'tent_or_marquee', 'inside_a_house', 'backyard', 'other'];
+$allowedSeparateSound = ['ceremony', 'cocktail_hour', 'reception', 'afterparty', 'not_sure'];
+$allowedMoments = ['grand_entrance', 'first_dance', 'parent_dances', 'cake_cutting', 'bouquet_garter', 'last_dance', 'not_sure_yet'];
+$allowedMusicStyles = ['dance', 'pop', 'disco', 'funk', 'edm', 'house', 'tech_house', 'hip_hop', 'rnb', 'sing_alongs', 'rock', 'country', 'latin', 'reggaeton', 'reggae', 'dancehall', 'soul', 'indie', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
+$allowedLighting = ['uplighting', 'basic_dance_floor_lighting', 'advanced_dance_floor_buildout', 'whole_room_lighting', 'not_sure', 'not_interested'];
+$allowedAddons = ['live_saxophone', 'live_guitar', 'live_violin', 'portrait_lounge', 'none'];
+$allowedDancers = ['friends_my_age', 'mixed_generations', 'older_relatives', 'kids'];
+$allowedDecisionStages = ['browsing', 'comparing_vendors', 'few_questions', 'only_dj'];
+$allowedSpendingMindsets = ['firm_target', 'balanced_approach', 'vision_driven', 'unrestricted'];
+$allowedCoordinatorValues = ['wedding_planner', 'day_of_coordinator', 'both', 'diy', 'not_sure'];
+$allowedBookingTimelines = [
+    'this_week',
+    'within_2_weeks',
+    'within_1_month',
+    'within_3_months',
+    'not_sure',
+];
+$allowedMeetingOptions = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'skip_for_now'];
+$allowedMcStyles = ['light_professional', 'front_and_center', 'not_sure'];
+$allowedPlanningStyles = [
+    'super_chill',
+    'guided_organized',
+    'detail_oriented_vision_driven',
+    'full_on_event_director',
+];
+$songsToSkipCategoryLabels = [
+    'overplayed_wedding_classics' => 'Overplayed Wedding Classics - The usual suspects you’ve heard at every single reception',
+    'traditional_line_dances' => 'Traditional Line Dances - Cha Cha Slide, Cupid Shuffle...',
+    'cheesy_gimmick_songs' => 'Cheesy / Gimmick Songs - Anything that feels a bit too “carnival”',
+    'throwback_slow_downs' => 'Throwback slow-downs - Classics that take the energy down.',
+    'explicit_unedited_tracks' => 'Explicit / Unedited Tracks - Keep the lyrics clean for mixed-generation crowds',
+];
+
+// ── 4. Sanitize submitted values ───────────────────────────────────────────
 $name = trim(strip_tags(cleanText($_POST['name'] ?? '')));
 $timelineValues = [
     'ceremony' => [
@@ -145,18 +199,9 @@ $keyMomentsOtherEnabled = cleanText($_POST['key_moments_other_enabled'] ?? 'no')
 $favoriteSongs = cleanMultilineText($_POST['favorite_songs'] ?? '');
 $competingVendors = cleanText($_POST['competing_vendors'] ?? '');
 $meetingDay = cleanText($_POST['meeting_day'] ?? '');
-$allowedContactMethods = ['text', 'email', 'phone_call'];
-$allowedBestTimes = ['mornings', 'afternoons', 'evenings', 'no_preference'];
 $contactMethod = cleanArrayValues($_POST['contact_method'] ?? [], $allowedContactMethods);
 $bestTime = cleanArrayValues($_POST['best_time'] ?? [], $allowedBestTimes);
 $songsToSkip = cleanMultilineText($_POST['songs_to_skip'] ?? '');
-$allowedSongsToSkipCategories = [
-    'overplayed_wedding_classics',
-    'traditional_line_dances',
-    'cheesy_gimmick_songs',
-    'throwback_slow_downs',
-    'explicit_unedited_tracks',
-];
 $songsToSkipCategories = cleanArrayValues(
     $_POST['songs_to_skip_categories'] ?? [],
     $allowedSongsToSkipCategories,
@@ -165,12 +210,6 @@ $songsToSkipCategories = cleanArrayValues(
 $spendingMindset = cleanText($_POST['spending_mindset'] ?? '');
 $budgetMin = integerValue($_POST['budget_min'] ?? null);
 $budgetMax = integerValue($_POST['budget_max'] ?? null);
-$allowedMusicInvolvement = [
-    'trust_expert',
-    'vibe_demographic_guide',
-    'curated_playlists',
-    'structured_timeline_flow',
-];
 $musicInvolvement = cleanArrayValues(
     $_POST['music_involvement'] ?? [],
     $allowedMusicInvolvement
@@ -178,40 +217,7 @@ $musicInvolvement = cleanArrayValues(
 $planningStyle = cleanText($_POST['planning_style'] ?? '');
 $budgetTouched = cleanText($_POST['budget_touched'] ?? '');
 
-$allowedParts = ['ceremony', 'cocktail_hour', 'reception', 'afterparty'];
-$allowedSpaces = ['indoor_event_space', 'ballroom', 'outdoors', 'tent_or_marquee', 'inside_a_house', 'backyard', 'other'];
-$allowedSeparateSound = ['ceremony', 'cocktail_hour', 'reception', 'afterparty', 'not_sure'];
-$allowedMoments = ['grand_entrance', 'first_dance', 'parent_dances', 'cake_cutting', 'bouquet_garter', 'last_dance', 'not_sure_yet'];
-$allowedMusicStyles = ['dance', 'pop', 'disco', 'funk', 'edm', 'house', 'tech_house', 'hip_hop', 'rnb', 'sing_alongs', 'rock', 'country', 'latin', 'reggaeton', 'reggae', 'dancehall', 'soul', 'indie', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
-$allowedLighting = ['uplighting', 'basic_dance_floor_lighting', 'advanced_dance_floor_buildout', 'whole_room_lighting', 'not_sure', 'not_interested'];
-$allowedAddons = ['live_saxophone', 'live_guitar', 'live_violin', 'portrait_lounge', 'none'];
-$allowedDancers = ['friends_my_age', 'mixed_generations', 'older_relatives', 'kids'];
-$allowedDecisionStages = ['browsing', 'comparing_vendors', 'few_questions', 'only_dj'];
-$allowedSpendingMindsets = ['firm_target', 'balanced_approach', 'vision_driven', 'unrestricted'];
-$allowedCoordinatorValues = ['wedding_planner', 'day_of_coordinator', 'both', 'diy', 'not_sure'];
-$allowedBookingTimelines = [
-    'this_week',
-    'within_2_weeks',
-    'within_1_month',
-    'within_3_months',
-    'not_sure',
-];
-$allowedMeetingOptions = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'skip_for_now'];
-$allowedMcStyles = ['light_professional', 'front_and_center', 'not_sure'];
-$allowedPlanningStyles = [
-    'super_chill',
-    'guided_organized',
-    'detail_oriented_vision_driven',
-    'full_on_event_director',
-];
-$songsToSkipCategoryLabels = [
-    'overplayed_wedding_classics' => 'Overplayed Wedding Classics - The usual suspects you’ve heard at every single reception',
-    'traditional_line_dances' => 'Traditional Line Dances - Cha Cha Slide, Cupid Shuffle...',
-    'cheesy_gimmick_songs' => 'Cheesy / Gimmick Songs - Anything that feels a bit too “carnival”',
-    'throwback_slow_downs' => 'Throwback slow-downs - Classics that take the energy down.',
-    'explicit_unedited_tracks' => 'Explicit / Unedited Tracks - Keep the lyrics clean for mixed-generation crowds',
-];
-
+// ── 5. Validate submitted values ───────────────────────────────────────────
 $errors = [];
 
 if ($name === '' || textLength($name) > 100) {
@@ -463,6 +469,7 @@ if (!empty($errors)) {
     jsonResponse(false, ['errors' => $errors], 400);
 }
 
+// ── 6. Prepare display labels and email details ────────────────────────────
 $choiceLabels = [
     'ceremony' => 'Ceremony',
     'cocktail_hour' => 'Cocktail hour',
@@ -606,71 +613,17 @@ $leadSnapshot = implode(' · ', [
     'Call: ' . $meetingSnapshot,
 ]);
 
-$timelineAnswer = $timelineLines !== [] ? implode("\n\n", $timelineLines) : 'Not provided';
-$soundAnswer = in_array('not_sure', $separateSound ?? [], true)
-    ? $separateSoundLabels['not_sure']
-    : displayLines($separateSound ?? [], $separateSoundLabels);
-$bodyBlocks = [
-    "LEAD SNAPSHOT\n" . $leadSnapshot,
-    "CONTACT DETAILS\nName: " . $name . "\nSubmitted: " . $timestamp,
-    'YOUR DAY',
-    "Which parts of your day would you like us involved in?\n" . displayLines($partsOfDay ?? [], $choiceLabels),
-    "What does your event timeline look like?\n" . $timelineAnswer,
-    "Tell us about the space(s) where the music will happen.\n"
-        . displayLines($spaceType ?? [], $choiceLabels)
-        . ($spaceTypeOther !== '' ? "\nOther space type:\n" . $spaceTypeOther : ''),
-    "Which of your spaces need their own sound system?\n" . $soundAnswer,
-    "Which key moments would you like to highlight?\n"
-        . displayLines($keyMoments ?? [], $choiceLabels),
-    "Anything else we should know about?\n"
-        . ($keyMomentsOther !== '' ? $keyMomentsOther : 'Not provided'),
-    "What kind of MC style fits your day?\n" . $choiceLabels[$mcStyle],
-    "Do you have a wedding planner or day-of coordinator?\n" . $choiceLabels[$coordinator],
-    'YOUR MUSIC',
-    "What do you want to hear on the dance floor?\n" . displayLines($musicStyles ?? [], $choiceLabels),
-    "Any songs or artists that make you lose it on the dance floor?\n"
-        . ($favoriteSongs !== '' ? $favoriteSongs : 'Not provided'),
-    "Who will be on the dance floor?\n" . displayLines($dancers ?? [], $choiceLabels),
-    "Is there any music you would NOT like to hear?\n"
-        . displayLines($songsToSkipCategories ?? [], $songsToSkipCategoryLabels),
-    "Specific song/artist exclusions:\n"
-        . ($songsToSkip !== '' ? $songsToSkip : 'Not provided'),
-    "How would you like to handle your music planning?\n"
-        . displayLines($musicInvolvement ?? [], $musicInvolvementLabels),
-    "How would you describe your event planning vibe?\n" . $planningStyleLabels[$planningStyle],
-    'THE EXTRAS',
-    "Which lighting services interest you?\n"
-        . displayLines($lighting ?? [], $lightingLabels),
-    "Interested in any additional services?\n" . displayLines($addons ?? [], $choiceLabels),
-    'PRIORITIES & BUDGET',
-    "Tell us what is most important to you on your wedding day.\n"
-        . ($weddingPriorities !== '' ? $weddingPriorities : 'Not provided'),
-    "What range feels comfortable for your music and entertainment, including DJ, live musicians, lighting, and extras?\n"
-        . $budgetRange . ($budgetTouched === 'true' ? ' (adjusted)' : ' (default range, not adjusted)'),
-    "How would you describe your approach to spending?\n" . $spendingSnapshotLabels[$spendingMindset],
-    "WHERE YOU'RE AT",
-    "Where are you in your decision?\n" . $choiceLabels[$decisionStage],
-    "Who else are you considering?\n"
-        . ($competingVendors !== '' ? $competingVendors : 'Not provided'),
-    "When are you hoping to decide?\n" . $bookingTimelineLabels[$bookingTimeline],
-    "What's the best way to reach you?\n"
-        . displayLines($contactMethod ?? [], $choiceLabels),
-    "Best time to reach you:\n"
-        . displayLines($bestTime ?? [], $choiceLabels, 'No preference'),
-    "What are your most burning questions for DJ Misha?\n"
-        . ($anythingElse !== '' ? $anythingElse : 'Not provided'),
-    'MEET DJ MISHA',
-    "Meeting day\n" . ($meetingDay === 'skip_for_now'
-        ? 'Skipped'
-        : $choiceLabels[$meetingDay] . ' at 2:00 PM Pacific (requested, not confirmed)'),
-];
+// ── 7. Render the HTML notification template ───────────────────────────────
+ob_start();
+require __DIR__ . '/templates/wedding-planning-notification.php';
+$body = ob_get_clean();
 
-$body = implode("\n\n", $bodyBlocks);
+// ── 8. Send the notification email ─────────────────────────────────────────
 $headers = [
     'From: ' . $fromName . ' <' . $fromEmail . '>',
     'Reply-To: info@djmisha.com',
     'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8'
+    'Content-Type: text/html; charset=UTF-8'
 ];
 
 $sent = mail($to, $subject, $body, implode("\r\n", $headers), '-f ' . $fromEmail);
@@ -679,4 +632,5 @@ if (!$sent) {
     jsonResponse(false, ['errors' => ['form' => 'We could not send your answers. Please try again.']], 500);
 }
 
+// ── 9. Return success response ─────────────────────────────────────────────
 jsonResponse(true, ['message' => 'Thank you. Your response has been received.']);
