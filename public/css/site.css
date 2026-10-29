@@ -5453,6 +5453,11 @@ body.contact-page #content > .wp-block-image {
   margin: 0 0 0.2em 0;
 }
 
+.service-box--featured .service-box__title {
+  font-size: 2em;
+  letter-spacing: -0.025em;
+}
+
 .service-box__subtitle {
   color: var(--color-text-muted);
   font-size: 1.05em;
@@ -5478,6 +5483,89 @@ body.contact-page #content > .wp-block-image {
   margin-top: auto;
 }
 
+/* Price + action zone, set off from the copy by a ghost rule */
+
+.service-box__description {
+  max-width: 36em;
+}
+
+.service-box__aside {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25em 2em;
+  margin-top: auto;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--color-border);
+}
+
+.service-box__aside .service-box__price {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.service-box__price-label {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35em;
+}
+
+.service-box__price-amount {
+  display: block;
+  font-size: 1.75em;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+}
+
+.service-box__aside .actions {
+  margin: 0;
+}
+
+/* Split layout: story left, price + action right (featured service) */
+
+.service-box--split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  column-gap: 3em;
+  align-items: stretch;
+}
+
+.service-box--split .service-box__description {
+  margin-bottom: 0;
+}
+
+.service-box--split .service-box__aside {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5em;
+  margin-top: 0;
+  padding: 0 0 0 3em;
+  border-top: 0;
+  border-left: 1px solid var(--color-border);
+}
+
+.service-box--split .service-box__price-amount {
+  font-size: 2em;
+}
+
+@media screen and (max-width: 736px) {
+  .service-box--split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .service-box--split .service-box__aside {
+    border-left: 0;
+    border-top: 1px solid var(--color-border);
+    padding: 1.5em 0 0;
+    margin-top: 1.5em;
+  }
+}
+
 /* Service Box Color Variants */
 
 .service-box--dark {
@@ -5490,6 +5578,7 @@ body.contact-page #content > .wp-block-image {
 
 .service-box--darker {
   background-color: var(--color-bg-tertiary);
+  border-top-color: var(--color-border-medium);
 }
 
 .service-box--accent {
