@@ -1,14 +1,6 @@
 (function () {
-  const STORAGE_KEY = 'pf-state-v1';
-  const MAX_STEPS = 19;
-  const ALLOWED_REPEAT_FIELDS = [
-    'parts_of_day',
-    'space_type',
-    'key_moments',
-    'music_styles',
-    'lighting',
-    'addons',
-  ];
+  const STORAGE_KEY = 'pf-state-v2';
+  const PF_SUCCESS_REVIEWS_URL = 'https://maps.app.goo.gl/fSnwh5hcqzUykNnV9';
 
   const state = {
     currentStep: 0,
@@ -27,10 +19,13 @@
   const submitBtn = document.getElementById('pf-submit');
   const welcomeName = document.getElementById('pf-welcome-name');
   const successName = document.getElementById('pf-success-name');
-  const successMessage = document.getElementById('pf-success-message');
+  const successLink = document.getElementById('pf-success-link');
 
   function safeTrim(value) {
-    return (value || '').replace(/\r|\n/g, ' ').trim();
+    return (value || '')
+      .replace(/\r\n?/g, '\n')
+      .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+      .trim();
   }
 
   function normalizeName(raw) {
@@ -107,16 +102,50 @@
   }
 
   function updateProgress() {
+    const maxSteps = getMaxSteps();
     const ratio =
-      state.currentStep === 0 ? 0 : (state.currentStep / MAX_STEPS) * 100;
+      state.currentStep === 0 ? 0 : (state.currentStep / maxSteps) * 100;
     progressFill.style.width = `${ratio}%`;
     stepLabel.textContent =
       state.currentStep === 0
-        ? 'Step 1 of 19'
-        : `Step ${state.currentStep} of 19`;
+        ? `Step 1 of ${maxSteps}`
+        : `Step ${state.currentStep} of ${maxSteps}`;
     backBtn.hidden = state.currentStep <= 0;
-    nextBtn.hidden = state.currentStep >= MAX_STEPS;
-    submitBtn.hidden = state.currentStep < MAX_STEPS;
+    nextBtn.hidden = state.currentStep >= maxSteps;
+    submitBtn.hidden = state.currentStep < maxSteps;
+  }
+
+  function getMaxSteps() {
+    return Array.from(document.querySelectorAll('.pf-step')).filter(
+      (step) => Number(step.dataset.step) > 0,
+    ).length;
+  }
+
+  function reindexSteps() {
+    let index = 0;
+    const soundRowsVisible = Array.from(
+      form.querySelectorAll('[data-sound-space]'),
+    ).some((row) => !row.hidden);
+    const hasSelectedParts = form.querySelector(
+      'input[name="parts_of_day[]"]:checked',
+    );
+
+    document.querySelectorAll('.pf-step').forEach((step) => {
+      if (
+        step.dataset.conditionalStep === 'sound' &&
+        hasSelectedParts &&
+        !soundRowsVisible
+      ) {
+        step.dataset.step = '';
+        step.hidden = true;
+        return;
+      }
+      step.dataset.step = String(index);
+      index += 1;
+    });
+
+    state.currentStep = Math.min(state.currentStep, getMaxSteps());
+    updateProgress();
   }
 
   function applyWelcomeText() {
@@ -126,11 +155,10 @@
   }
 
   function goToStep(step) {
-    state.currentStep = Math.max(0, Math.min(MAX_STEPS, step));
+    state.currentStep = Math.max(0, Math.min(getMaxSteps(), step));
     const stepEls = Array.from(document.querySelectorAll('.pf-step'));
     stepEls.forEach((el) => {
-      const stepNumber = Number(el.dataset.step);
-      el.hidden = stepNumber !== state.currentStep;
+      el.hidden = el.dataset.step !== String(state.currentStep);
     });
 
     if (state.currentStep === 0) {
@@ -300,7 +328,20 @@
       const target = document.getElementById(
         `${input.dataset.otherToggle}_wrap`,
       );
-      if (target) target.hidden = !input.checked;
+      if (!target) return;
+
+      const isButton = input instanceof HTMLButtonElement;
+      const enabledField = isButton
+        ? form.querySelector(`[name="${input.dataset.otherToggle}_enabled"]`)
+        : null;
+      const shouldShow = isButton
+        ? enabledField.value === 'yes'
+        : input.checked;
+      target.hidden = !shouldShow;
+
+      if (isButton) {
+        input.setAttribute('aria-expanded', String(shouldShow));
+      }
     });
   }
 
@@ -341,9 +382,58 @@
     });
   }
 
+  function updateSoundRows() {
+    const selectedParts = new Set(
+      Array.from(
+        form.querySelectorAll('input[name="parts_of_day[]"]:checked'),
+        (input) => input.value,
+      ),
+    );
+    const soundParts = {
+      ceremony: selectedParts.has('ceremony'),
+      cocktail_hour: selectedParts.has('cocktail_hour'),
+      reception: selectedParts.has('reception'),
+      afterparty: selectedParts.has('afterparty'),
+    };
+    let clearedSelection = false;
+
+    Object.entries(soundParts).forEach(([part, visible]) => {
+      const row = form.querySelector(`[data-sound-space="${part}"]`);
+      if (!row) return;
+      row.hidden = !visible;
+      const checkbox = row.querySelector('input');
+      if (!visible && checkbox.checked) {
+        checkbox.checked = false;
+        clearedSelection = true;
+      }
+    });
+
+    reindexSteps();
+    if (clearedSelection) {
+      syncFormDataFromInputs();
+      saveState();
+    }
+  }
+
+  function updateDecisionStageField() {
+    const selected = form.querySelector(
+      'input[name="decision_stage"]:checked',
+    )?.value;
+    const wrapper = document.getElementById('competing_vendors_wrap');
+    const input = form.querySelector('[name="competing_vendors"]');
+    if (!wrapper || !input) return;
+
+    const shouldShow = selected === 'comparing_vendors';
+    wrapper.hidden = !shouldShow;
+    if (!shouldShow) input.value = '';
+  }
+
   function adjustTimelineTime(button) {
     const input = document.getElementById(button.dataset.timeField);
     if (!input) return;
+    const touchedField = input.name.replace(/_(start|end)$/, '_touched');
+    const touchedInput = form.querySelector(`[name="${touchedField}"]`);
+    if (touchedInput) touchedInput.value = 'true';
     const [hours, minutes] = input.value.split(':').map(Number);
     const currentMinutes = hours * 60 + minutes;
     const direction = Number(button.dataset.direction);
@@ -387,6 +477,25 @@
   function validateCurrentStep() {
     clearErrors();
     const step = state.currentStep;
+    const activeStep = document.querySelector(`.pf-step[data-step="${step}"]`);
+    const overLimitField = Array.from(
+      activeStep?.querySelectorAll('input[maxlength], textarea[maxlength]') ||
+        [],
+    ).find(
+      (field) =>
+        !field.closest('[hidden]') &&
+        [...field.value].length > Number(field.maxLength),
+    );
+    if (overLimitField) {
+      const fieldName = overLimitField.name.replace(/\[\]$/, '');
+      const errorName =
+        fieldName === 'space_type_other' ? 'space_type' : fieldName;
+      showError(
+        errorName,
+        `Please keep this answer to ${overLimitField.maxLength} characters or fewer.`,
+      );
+      return false;
+    }
 
     if (step === 1) {
       const selectedParts = form.querySelectorAll(
@@ -462,7 +571,7 @@
       }
     }
 
-    if (step === 4) {
+    if (step === 5) {
       const selected = form.querySelectorAll(
         'input[name="key_moments[]"]:checked',
       );
@@ -482,9 +591,23 @@
         );
         return false;
       }
+
+      const otherEnabled =
+        form.querySelector('[name="key_moments_other_enabled"]').value ===
+        'yes';
+      const otherValue = safeTrim(
+        form.querySelector('[name="key_moments_other"]').value,
+      );
+      if (otherEnabled && otherValue.length > 1000) {
+        showError(
+          'key_moments_other',
+          'Please keep your additional key moment notes to 1,000 characters or fewer.',
+        );
+        return false;
+      }
     }
 
-    if (step === 5) {
+    if (step === 6) {
       const selected = form.querySelector('input[name="mc_style"]:checked');
       if (!selected) {
         showError('mc_style', 'Please pick the MC style that fits your day.');
@@ -492,7 +615,7 @@
       }
     }
 
-    if (step === 6) {
+    if (step === 7) {
       const selected = form.querySelector('input[name="coordinator"]:checked');
       if (!selected) {
         showError(
@@ -503,7 +626,7 @@
       }
     }
 
-    if (step === 7) {
+    if (step === 8) {
       const selected = form.querySelectorAll(
         'input[name="music_styles[]"]:checked',
       );
@@ -513,7 +636,15 @@
       }
     }
 
-    if (step === 9) {
+    if (step === 10) {
+      const selected = form.querySelectorAll('input[name="dancers[]"]:checked');
+      if (selected.length < 1) {
+        showError('dancers', 'Please select at least one group of guests.');
+        return false;
+      }
+    }
+
+    if (step === 12) {
       const selected = form.querySelectorAll(
         'input[name="music_involvement[]"]:checked',
       );
@@ -526,7 +657,7 @@
       }
     }
 
-    if (step === 10) {
+    if (step === 13) {
       const selected = form.querySelector(
         'input[name="planning_style"]:checked',
       );
@@ -536,7 +667,7 @@
       }
     }
 
-    if (step === 11) {
+    if (step === 14) {
       const selected = form.querySelectorAll(
         'input[name="lighting[]"]:checked',
       );
@@ -544,9 +675,21 @@
         showError('lighting', 'Please select at least one lighting option.');
         return false;
       }
+      if (
+        selected.length > 1 &&
+        form.querySelector(
+          'input[name="lighting[]"][value="not_sure"]:checked, input[name="lighting[]"][value="not_interested"]:checked',
+        )
+      ) {
+        showError(
+          'lighting',
+          'Please choose either a lighting service or one of the exclusive options.',
+        );
+        return false;
+      }
     }
 
-    if (step === 12) {
+    if (step === 15) {
       const selected = form.querySelectorAll('input[name="addons[]"]:checked');
       if (selected.length < 1) {
         showError(
@@ -557,7 +700,7 @@
       }
     }
 
-    if (step === 13) {
+    if (step === 17) {
       const min = Number(form.querySelector('[name="budget_min"]').value || 0);
       const max = Number(form.querySelector('[name="budget_max"]').value || 0);
       if (
@@ -574,7 +717,7 @@
       }
     }
 
-    if (step === 14) {
+    if (step === 18) {
       const selected = form.querySelector(
         'input[name="spending_mindset"]:checked',
       );
@@ -587,7 +730,7 @@
       }
     }
 
-    if (step === 15) {
+    if (step === 19) {
       const selected = form.querySelector(
         'input[name="decision_stage"]:checked',
       );
@@ -598,9 +741,26 @@
         );
         return false;
       }
+
+      const bookingTimeline = form.querySelector(
+        'input[name="booking_timeline"]:checked',
+      );
+      if (
+        !bookingTimeline ||
+        ![
+          'this_week',
+          'within_2_weeks',
+          'within_1_month',
+          'within_3_months',
+          'not_sure',
+        ].includes(bookingTimeline.value)
+      ) {
+        showError('booking_timeline', 'Please choose when you hope to decide.');
+        return false;
+      }
     }
 
-    if (step === 17) {
+    if (step === 20) {
       const selectedContactMethods = form.querySelectorAll(
         'input[name="contact_method[]"]:checked',
       );
@@ -626,7 +786,7 @@
       }
     }
 
-    if (step === 19) {
+    if (step === 22) {
       const selected = form.querySelector('input[name="meeting_day"]:checked');
       if (!selected) {
         showError('meeting_day', 'Please select a weekday or skip for now.');
@@ -830,7 +990,7 @@
       if (!validateCurrentStep()) return;
       syncFormDataFromInputs();
       const nextStep = state.currentStep + 1;
-      if (nextStep <= MAX_STEPS) {
+      if (nextStep <= getMaxSteps()) {
         goToStep(nextStep);
       }
     });
@@ -842,12 +1002,15 @@
 
     document
       .querySelectorAll(
-        'input[name="parts_of_day[]"], input[name="key_moments[]"], input[name="lighting[]"], input[name="addons[]"], input[data-exclusive], input[data-other-toggle]',
+        'input[name="parts_of_day[]"], input[name="separate_sound[]"], input[name="key_moments[]"], input[name="lighting[]"], input[name="addons[]"], input[data-exclusive], input[data-other-toggle]',
       )
       .forEach((input) => {
         input.addEventListener('change', () => {
           handleExclusiveSelection(input);
-          if (input.name === 'parts_of_day[]') updateTimelineSections();
+          if (input.name === 'parts_of_day[]') {
+            updateTimelineSections();
+            updateSoundRows();
+          }
         });
       });
 
@@ -860,22 +1023,37 @@
     });
 
     document.querySelectorAll('[data-other-toggle]').forEach((toggle) => {
-      toggle.addEventListener('change', toggleSubFields);
+      if (toggle instanceof HTMLButtonElement) {
+        toggle.addEventListener('click', () => {
+          const enabledField = form.querySelector(
+            `[name="${toggle.dataset.otherToggle}_enabled"]`,
+          );
+          const valueField = form.querySelector(
+            `[name="${toggle.dataset.otherToggle}"]`,
+          );
+          enabledField.value = enabledField.value === 'yes' ? 'no' : 'yes';
+          if (enabledField.value === 'no') valueField.value = '';
+          toggleSubFields();
+        });
+      } else {
+        toggle.addEventListener('change', toggleSubFields);
+      }
     });
+
+    form
+      .querySelectorAll('input[name="decision_stage"]')
+      .forEach((input) =>
+        input.addEventListener('change', updateDecisionStageField),
+      );
   }
 
   function showSuccess() {
     form.hidden = true;
     success.hidden = false;
-    const meetingDay = form.querySelector(
-      'input[name="meeting_day"]:checked',
-    )?.value;
-    const meetingConfirmation =
-      meetingDay && meetingDay !== 'skip_for_now'
-        ? ` We’ll confirm your call for ${meetingDay[0].toUpperCase()}${meetingDay.slice(1)} at 2:00 PM Pacific by email.`
-        : '';
-    const message = `DJ Misha will review your answers.${meetingConfirmation}`;
-    successMessage.textContent = message;
+    if (PF_SUCCESS_REVIEWS_URL) {
+      successLink.href = PF_SUCCESS_REVIEWS_URL;
+      successLink.hidden = false;
+    }
     clearSavedState();
   }
 
@@ -887,17 +1065,19 @@
     bindEvents();
     const saved = readSavedState();
     if (saved && saved.name === state.name && saved.currentStep) {
-      state.currentStep = Math.min(saved.currentStep, MAX_STEPS);
+      state.currentStep = Math.min(saved.currentStep, getMaxSteps());
       state.data = saved.data || {};
       restoreInputsFromState();
     } else {
       if (saved) clearSavedState();
       state.currentStep = 0;
     }
+    updateTimelineSections();
+    updateSoundRows();
+    updateDecisionStageField();
     attachBudgetBehaviour();
     goToStep(state.currentStep);
     toggleSubFields();
-    updateTimelineSections();
   }
 
   initialize();
