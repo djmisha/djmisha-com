@@ -1,14 +1,6 @@
 (function () {
   const STORAGE_KEY = 'pf-state-v2';
   const PF_SUCCESS_REVIEWS_URL = 'https://maps.app.goo.gl/fSnwh5hcqzUykNnV9';
-  const ALLOWED_REPEAT_FIELDS = [
-    'parts_of_day',
-    'space_type',
-    'key_moments',
-    'music_styles',
-    'lighting',
-    'addons',
-  ];
 
   const state = {
     currentStep: 0,
@@ -336,7 +328,20 @@
       const target = document.getElementById(
         `${input.dataset.otherToggle}_wrap`,
       );
-      if (target) target.hidden = !input.checked;
+      if (!target) return;
+
+      const isButton = input instanceof HTMLButtonElement;
+      const enabledField = isButton
+        ? form.querySelector(`[name="${input.dataset.otherToggle}_enabled"]`)
+        : null;
+      const shouldShow = isButton
+        ? enabledField.value === 'yes'
+        : input.checked;
+      target.hidden = !shouldShow;
+
+      if (isButton) {
+        input.setAttribute('aria-expanded', String(shouldShow));
+      }
     });
   }
 
@@ -586,6 +591,20 @@
         );
         return false;
       }
+
+      const otherEnabled =
+        form.querySelector('[name="key_moments_other_enabled"]').value ===
+        'yes';
+      const otherValue = safeTrim(
+        form.querySelector('[name="key_moments_other"]').value,
+      );
+      if (otherEnabled && otherValue.length > 1000) {
+        showError(
+          'key_moments_other',
+          'Please keep your additional key moment notes to 1,000 characters or fewer.',
+        );
+        return false;
+      }
     }
 
     if (step === 6) {
@@ -726,7 +745,16 @@
       const bookingTimeline = form.querySelector(
         'input[name="booking_timeline"]:checked',
       );
-      if (!bookingTimeline) {
+      if (
+        !bookingTimeline ||
+        ![
+          'this_week',
+          'within_2_weeks',
+          'within_1_month',
+          'within_3_months',
+          'not_sure',
+        ].includes(bookingTimeline.value)
+      ) {
         showError('booking_timeline', 'Please choose when you hope to decide.');
         return false;
       }
@@ -995,7 +1023,21 @@
     });
 
     document.querySelectorAll('[data-other-toggle]').forEach((toggle) => {
-      toggle.addEventListener('change', toggleSubFields);
+      if (toggle instanceof HTMLButtonElement) {
+        toggle.addEventListener('click', () => {
+          const enabledField = form.querySelector(
+            `[name="${toggle.dataset.otherToggle}_enabled"]`,
+          );
+          const valueField = form.querySelector(
+            `[name="${toggle.dataset.otherToggle}"]`,
+          );
+          enabledField.value = enabledField.value === 'yes' ? 'no' : 'yes';
+          if (enabledField.value === 'no') valueField.value = '';
+          toggleSubFields();
+        });
+      } else {
+        toggle.addEventListener('change', toggleSubFields);
+      }
     });
 
     form

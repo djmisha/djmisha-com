@@ -64,11 +64,11 @@
               <p class="pf-eyebrow">Welcome</p>
               <h1 id="pf-welcome-name">Hi there!</h1>
               <p class="pf-lead">
-                Share your vision and logistics so we can continue the
-                conversation productively.
+                Share your vision and logistics with DJ Misha so that we can
+                continue the conversation productively.
               </p>
               <p class="pf-lead">
-                It takes about 5 minutes, and rough answers are perfect.
+                It takes a few minutes, and ballpark answers are perfect.
               </p>
             </div>
           </section>
@@ -116,7 +116,7 @@
             <h2>What does your event timeline look like?</h2>
             <p class="pf-help">
               Tap the buttons to tweak your estimated start and end times in
-              30-minute steps. Rough estimates are perfect.
+              30-minute steps. ballpark estimates are perfect.
             </p>
             <div
               class="pf-timeline-stepper"
@@ -552,8 +552,8 @@
             <p class="pf-section-kicker">Sound</p>
             <h2>Which of your spaces need their own sound system?</h2>
             <p class="pf-help">
-              If a space is more than 20 feet or so away from the others, it
-              likely needs a different sound system.
+              If a space is more than 50 feet away from the primary speakers or
+              in a different room it likely needs its own sound system.
             </p>
             <fieldset class="pf-choice-group pf-checkbox-group">
               <label class="pf-choice" data-sound-space="ceremony" hidden>
@@ -612,6 +612,7 @@
             <h2>Which key moments would you like to highlight?</h2>
             <p class="pf-help">Select all that apply.</p>
 
+            <input type="hidden" name="key_moments_other_enabled" value="no" />
             <fieldset class="pf-choice-group pf-checkbox-group">
               <label class="pf-choice">
                 <input
@@ -670,8 +671,16 @@
                 />
                 <span>I&apos;m not sure yet</span>
               </label>
+              <button
+                type="button"
+                class="pf-chip pf-write-in-toggle"
+                data-other-toggle="key_moments_other"
+                aria-expanded="false"
+                aria-controls="key_moments_other_wrap"
+                >✍️ Add more details</button
+              >
             </fieldset>
-            <div class="pf-inline-field">
+            <div id="key_moments_other_wrap" class="pf-inline-field" hidden>
               <label class="pf-field-label" for="key_moments_other">
                 Anything else we should know about?
               </label>
@@ -686,8 +695,8 @@
                 rows="4"
                 maxlength="1000"></textarea>
             </div>
-            <p class="pf-error" data-error-for="key_moments"></p>
             <p class="pf-error" data-error-for="key_moments_other"></p>
+            <p class="pf-error" data-error-for="key_moments"></p>
           </section>
 
           <section class="pf-step" data-step="6" data-section="Your day" hidden>
@@ -954,10 +963,7 @@
             <h2>
               Any songs or artists that make you lose it on the dance floor?
             </h2>
-            <p class="pf-help">
-              Optional, but it&apos;s gold for us. Feel free to paste a playlist
-              link.
-            </p>
+            <p class="pf-help">Feel free to paste a playlist link.</p>
             <textarea
               id="favorite_songs"
               name="favorite_songs"
@@ -1125,8 +1131,7 @@
               How would you like to handle your music planning?
             </h2>
             <p class="pf-help">
-              Mix and match. Maybe you&apos;d hand over cocktail hour but direct
-              the dance floor.
+              Mix and match. There is no wrong way to collaborate.
             </p>
             <fieldset
               class="pf-choice-group pf-checkbox-group"
@@ -1411,7 +1416,7 @@
               class="pf-input pf-textarea"
               rows="5"
               maxlength="1000"
-              placeholder="e.g., everyone dancing by 9, a smooth flow so we can enjoy the day, a favorite party we want to recreate..."
+              placeholder="e.g., everyone on the dancefloor, a smooth flow so we can enjoy the day, a favorite party we want to recreate..."
             ></textarea>
             <p class="pf-error" data-error-for="wedding_priorities"></p>
           </section>
@@ -1424,8 +1429,8 @@
           >
             <p class="pf-section-kicker">Budget</p>
             <h2>
-              What range feels comfortable for your music and entertainment,
-              including DJ, live musicians, lighting, and extras?
+              What budget range feels comfortable for your music and
+              entertainment, including DJ, live musicians, lighting, and extras?
             </h2>
             <p class="pf-help">
               This helps us more closely match services to your budget.
@@ -1586,7 +1591,7 @@
               hidden
             >
               <label class="pf-field-label" for="competing_vendors">
-                Who else are you considering? (optional)
+                Who else are you considering?
               </label>
               <p class="pf-help">
                 It&apos;s a small town. We probably know them and are friends.
@@ -1614,9 +1619,17 @@
                   <input
                     type="radio"
                     name="booking_timeline"
-                    value="within_month"
+                    value="within_2_weeks"
                   />
-                  <span>Within a month</span>
+                  <span>Within 2 weeks</span>
+                </label>
+                <label class="pf-chip">
+                  <input
+                    type="radio"
+                    name="booking_timeline"
+                    value="within_1_month"
+                  />
+                  <span>1 month</span>
                 </label>
                 <label class="pf-chip">
                   <input
@@ -1624,7 +1637,7 @@
                     name="booking_timeline"
                     value="within_3_months"
                   />
-                  <span>Within 3 months</span>
+                  <span>3 months</span>
                 </label>
                 <label class="pf-chip">
                   <input

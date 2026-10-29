@@ -141,6 +141,7 @@ $spaceTypeOther = cleanText($_POST['space_type_other'] ?? '');
 $weddingPriorities = cleanMultilineText($_POST['wedding_priorities'] ?? '');
 $anythingElse = cleanMultilineText($_POST['anything_else'] ?? '');
 $keyMomentsOther = cleanMultilineText($_POST['key_moments_other'] ?? '');
+$keyMomentsOtherEnabled = cleanText($_POST['key_moments_other_enabled'] ?? 'no');
 $favoriteSongs = cleanMultilineText($_POST['favorite_songs'] ?? '');
 $competingVendors = cleanText($_POST['competing_vendors'] ?? '');
 $meetingDay = cleanText($_POST['meeting_day'] ?? '');
@@ -188,7 +189,13 @@ $allowedDancers = ['friends_my_age', 'mixed_generations', 'older_relatives', 'ki
 $allowedDecisionStages = ['browsing', 'comparing_vendors', 'few_questions', 'only_dj'];
 $allowedSpendingMindsets = ['firm_target', 'balanced_approach', 'vision_driven', 'unrestricted'];
 $allowedCoordinatorValues = ['wedding_planner', 'day_of_coordinator', 'both', 'diy', 'not_sure'];
-$allowedBookingTimelines = ['this_week', 'within_month', 'within_3_months', 'not_sure'];
+$allowedBookingTimelines = [
+    'this_week',
+    'within_2_weeks',
+    'within_1_month',
+    'within_3_months',
+    'not_sure',
+];
 $allowedMeetingOptions = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'skip_for_now'];
 $allowedMcStyles = ['light_professional', 'front_and_center', 'not_sure'];
 $allowedPlanningStyles = [
@@ -410,7 +417,11 @@ if (textLength($weddingPriorities) > 1000) {
     $errors['wedding_priorities'] = 'Please keep your wedding priorities to 1,000 characters or fewer.';
 }
 
-if (textLength($keyMomentsOther) > 1000) {
+if (!in_array($keyMomentsOtherEnabled, ['yes', 'no'], true)) {
+    $errors['key_moments_other'] = 'Please use the write-in control to add key moment notes.';
+} elseif ($keyMomentsOtherEnabled !== 'yes') {
+    $keyMomentsOther = '';
+} elseif (textLength($keyMomentsOther) > 1000) {
     $errors['key_moments_other'] = 'Please keep your additional key moment notes to 1,000 characters or fewer.';
 }
 
@@ -512,8 +523,9 @@ $choiceLabels = [
     'older_relatives' => 'Lots of older relatives',
     'kids' => 'Lots of kids',
     'this_week' => 'This week',
-    'within_month' => 'Within a month',
-    'within_3_months' => 'Within 3 months',
+    'within_2_weeks' => 'Within 2 weeks',
+    'within_1_month' => '1 month',
+    'within_3_months' => '3 months',
     'live_saxophone' => 'Live saxophone',
     'live_guitar' => 'Live guitar',
     'live_violin' => 'Live violin',
@@ -554,8 +566,9 @@ $spendingSnapshotLabels = [
 ];
 $bookingTimelineLabels = [
     'this_week' => 'This week',
-    'within_month' => 'Within a month',
-    'within_3_months' => 'Within 3 months',
+    'within_2_weeks' => 'Within 2 weeks',
+    'within_1_month' => '1 month',
+    'within_3_months' => '3 months',
     'not_sure' => 'Not sure',
 ];
 $musicInvolvementLabels = [

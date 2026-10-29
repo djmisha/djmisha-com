@@ -150,6 +150,7 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
 - Question: **Which key moments would you like to highlight?**
 - Helper: "Select all that apply."
 - Options: Grand entrance; First dance; Parent dances; Cake cutting; Bouquet/garter; Last dance or send-off; **I'm not sure yet** (ordinary multi-select choice; it does not clear other selections)
+- **Add a write-in** reveals optional `key_moments_other` (text, max 1,000 characters).
 
 **Step 5: `mc_style`** (single-select cards, required)
 
@@ -246,6 +247,7 @@ Field names (`name=` / JSON keys) are specified so the front end and processor a
   2. I'm comparing different vendors
   3. I'm very interested and just have a few questions for you
   4. You're the only DJ for us
+- `booking_timeline` (single-select, required): This week (`this_week`); Within 2 weeks (`within_2_weeks`); 1 month (`within_1_month`); 3 months (`within_3_months`); Not sure (`not_sure`).
 
 **Step 16: `wedding_priorities`** (textarea, optional)
 
@@ -308,6 +310,8 @@ timeline_afterparty_start, timeline_afterparty_end: optional 24-hour times in 30
 space_type[]: ballroom | tent_or_marquee | outdoors | barn | inside_a_house | other | backyard
 space_type_other: optional string, max 150 characters; required when other is selected
 key_moments[]: grand_entrance | first_dance | parent_dances | cake_cutting | bouquet_garter | last_dance | not_sure_yet
+key_moments_other_enabled: yes | no; controls whether the optional `key_moments_other` write-in is included
+key_moments_other: optional string, max 1,000 characters; ignored unless enabled
 mc_style: light_professional | front_and_center
 coordinator: yes | no | not_sure
 music_styles[]: dance | pop | disco | funk | edm | house | tech_house | hip_hop | rnb | sing_alongs | rock | country | latin | reggaeton | reggae | dancehall | soul | indie | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s
@@ -321,6 +325,7 @@ budget_min, budget_max: integers 2500-10000, increments of 250, minimum $250 gap
 budget_touched: "true" | "false"
 spending_mindset: firm_target | balanced_approach | vision_driven | unrestricted
 decision_stage: browsing | comparing_vendors | few_questions | only_dj
+booking_timeline: this_week | within_2_weeks | within_1_month | within_3_months | not_sure
 wedding_priorities: optional string, max 1,000 characters
 contact_method: text | email | phone_call; no phone number field
 best_time: optional mornings | afternoons | evenings | no_preference
