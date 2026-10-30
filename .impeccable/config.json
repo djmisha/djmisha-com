@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "courier new",
+        "createdAt": "2026-10-22T12:16:18.703Z",
+        "reason": "Courier New is the standard monospace fallback for <code>/<pre> blocks, a domain-appropriate choice predating this edit; DESIGN.md intentionally omits a one-off mono role since it's used nowhere else in the system"
+      }
+    ]
+  }
+}
