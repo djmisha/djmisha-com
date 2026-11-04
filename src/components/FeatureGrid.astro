@@ -1,6 +1,6 @@
 ---
 /**
- * FeatureGrid — responsive container for FeatureCard items (auto-fit columns).
+ * FeatureGrid — vertically stacked container for FeatureCard items.
  * Optional eyebrow/heading via SectionHeading. Use `.section--alt` band by
  * passing alt={true}.
  */
@@ -46,6 +46,7 @@ const { eyebrow, heading, alt = false, id } = Astro.props;
     max-width: var(--section-text-measure);
     margin: 0 auto var(--section-heading-gap, 2.5rem);
     text-align: center;
+    font-weight: 200;
   }
 
   .feature-grid__intro > :global(:first-child) {
@@ -58,8 +59,7 @@ const { eyebrow, heading, alt = false, id } = Astro.props;
 
   .feature-grid__items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+    grid-template-columns: 1fr;
     gap: clamp(1.5rem, 3vw, 2.5rem);
   }
-
 </style>

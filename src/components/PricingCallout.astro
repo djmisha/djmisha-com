@@ -8,13 +8,28 @@ import SectionHeading from './SectionHeading.astro';
 export interface Props {
   price: string;
   caption?: string;
+  priceLabel?: string;
+  secondaryPrice?: string;
+  secondaryPriceLabel?: string;
+  secondaryCaption?: string;
   alt?: boolean;
   id?: string;
   eyebrow?: string;
   heading?: string;
 }
 
-const { price, caption, alt = false, id, eyebrow, heading } = Astro.props;
+const {
+  price,
+  caption,
+  priceLabel,
+  secondaryPrice,
+  secondaryPriceLabel,
+  secondaryCaption,
+  alt = false,
+  id,
+  eyebrow,
+  heading,
+} = Astro.props;
 ---
 
 <section id={id} class:list={['pricing-callout', { 'section--alt': alt }]}>
@@ -26,9 +41,30 @@ const { price, caption, alt = false, id, eyebrow, heading } = Astro.props;
     )
   }
   <div class="pricing-callout__inner">
-    <div class="pricing-callout__stat">
-      <span class="pricing-callout__price">{price}</span>
-      {caption && <span class="pricing-callout__caption">{caption}</span>}
+    <div
+      class:list={[
+        'pricing-callout__stat',
+        { 'pricing-callout__stat--multiple': secondaryPrice },
+      ]}
+    >
+      <div class="pricing-callout__stat-item">
+        {priceLabel && <span class="pricing-callout__label">{priceLabel}</span>}
+        <span class="pricing-callout__price">{price}</span>
+        {caption && <span class="pricing-callout__caption">{caption}</span>}
+      </div>
+      {
+        secondaryPrice && (
+          <div class="pricing-callout__stat-item">
+            {secondaryPriceLabel && (
+              <span class="pricing-callout__label">{secondaryPriceLabel}</span>
+            )}
+            <span class="pricing-callout__price">{secondaryPrice}</span>
+            {secondaryCaption && (
+              <span class="pricing-callout__caption">{secondaryCaption}</span>
+            )}
+          </div>
+        )
+      }
     </div>
     <div class="pricing-callout__body">
       <slot />
@@ -63,6 +99,20 @@ const { price, caption, alt = false, id, eyebrow, heading } = Astro.props;
     flex-direction: column;
   }
 
+  .pricing-callout__stat--multiple {
+    gap: 1.5rem;
+  }
+
+  .pricing-callout__stat-item + .pricing-callout__stat-item {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border-faint);
+  }
+
+  .pricing-callout__stat-item {
+    display: flex;
+    flex-direction: column;
+  }
+
   .pricing-callout__price {
     font-size: clamp(2.2rem, 6vw, 3.25rem);
     font-weight: 600;
@@ -70,10 +120,21 @@ const { price, caption, alt = false, id, eyebrow, heading } = Astro.props;
     color: var(--color-accent);
   }
 
+  .pricing-callout__label,
   .pricing-callout__caption {
     margin-top: 0.5em;
     font-size: 0.95rem;
     color: var(--color-text-muted);
+    font-weight: 200;
+  }
+
+  .pricing-callout__label {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+  }
+
+  .pricing-callout__body {
+    font-weight: 200;
   }
 
   .pricing-callout__body :global(:first-child) {

@@ -1,0 +1,68 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  quote: string;
+  author: string;
+}
+
+const { quote, author } = Astro.props;
+---
+
+<section class="testimonial-quote">
+  <p>
+    <Fragment set:html={quote} />
+    <br />
+    <br />
+    <span class="author-icon"><Icon name="user" size="0.85em" /></span>
+    {author}
+  </p>
+</section>
+
+<style>
+  .testimonial-quote {
+    background-color: var(--color-bg-tertiary);
+    border-radius: 10px;
+    max-width: 980px;
+    margin: 0 auto 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    height: auto;
+    transition: all 0.25s ease-in-out;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .testimonial-quote p {
+    margin: 0 0 2em 0;
+    font-weight: 200;
+  }
+
+  .author-icon {
+    padding-right: 0.3em;
+  }
+
+  .testimonial-quote::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 40px solid var(--color-bg-tertiary);
+    transition: all 0.25s ease-in-out;
+  }
+
+  .testimonial-quote:hover {
+    background-color: var(--color-bg-hover);
+  }
+
+  .testimonial-quote:hover::after {
+    border-top-color: var(--color-bg-hover);
+  }
+</style>

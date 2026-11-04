@@ -19,13 +19,17 @@ import PricingCallout from '../../components/PricingCallout.astro';
 import FaqSection from '../../components/FaqSection.astro';
 import FaqItem from '../../components/FaqItem.astro';
 import CtaBanner from '../../components/CtaBanner.astro';
-import TestimonialSlideshow from '../../components/TestimonialSlideshow.astro';
+import TestimonialQuote from '../../components/TestimonialQuote.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import { buildJsonLd } from '../../data/schema';
 
-// Reviews pulled from reviews.json by the same authors used inline on the live
-// page: Rachael Brennan, Chris R, Amanda Liew.
-const testimonialIds = ['94fe245a', 'ef671e33', 'cd3a0979'];
+const weddingHeroImages: [string, ...string[]] = [
+  '/images/wedding-page/hero-1.webp',
+  '/images/wedding-page/hero-2.webp',
+  '/images/wedding-page/hero-3.webp',
+  '/images/wedding-page/hero-4.webp',
+  '/images/wedding-page/hero-5.webp',
+];
 
 const desc =
   'Looking for the best DJ near you? Hire our top-rated wedding DJ in San Diego, and learn about our services, pricing, and one of a kind music experience.';
@@ -88,7 +92,6 @@ const navLinks = [
     label: 'Why Choose DJ Misha',
     href: '#why-choose-dj-misha-for-your-wedding',
   },
-  { label: 'Wedding DJ Testimonials', href: '#testimonials-for-dj-misha' },
   {
     label: 'How Your Music Is Chosen',
     href: '#how-the-music-is-chosen-for-your-wedding',
@@ -123,7 +126,8 @@ const navLinks = [
   noindex={true}
 >
   <HeroSection
-    backgroundImage="/images/banner.jpg"
+    backgroundImage={weddingHeroImages[0]}
+    backgroundImages={weddingHeroImages}
     alt="Wedding DJ in San Diego"
     scrollTarget="#intro"
   >
@@ -133,10 +137,11 @@ const navLinks = [
 
   <CenteredTextBlock id="intro" align="left">
     <p>
-      Think about the most fun wedding you've attended. What do you remember?
-      There's a good chance your time on the dance floor stands out. The music
-      was pumping; the atmosphere was electric; and every song seemed to capture
-      the essence of the couple&#8217;s love story. That&#8217;s the kind of
+      Think about the most fun wedding you've attended. What do you remember? <br
+      /><br />
+      There's a good chance your time on the dance floor stands out. The music was
+      pumping; the atmosphere was electric; and every song seemed to capture the essence
+      of the couple&#8217;s love story. <br /><br />That&#8217;s the kind of
       unforgettable experience <a href="/about/" rel="nofollow" title=""
         >DJ Misha</a
       > strives to create.
@@ -154,11 +159,13 @@ const navLinks = [
       years to come.
     </p>
 
-    <p>
-      <strong
-        >Your wedding is about you. Let's make the music match your vision.</strong
-      >
-    </p>
+    <center>
+      <p>
+        <strong
+          >Your wedding is about you. Let's make the music match your vision.
+        </strong>
+      </p>
+    </center>
   </CenteredTextBlock>
 
   <SectionNav links={navLinks} />
@@ -167,7 +174,7 @@ const navLinks = [
     id="why-choose-dj-misha-for-your-wedding"
     image="/images/10-i-4lhqfht-l.jpg"
     alt="DJing for 40th Birthday Party"
-    caption="DJ Misha spinning vinyl records"
+    caption="DJ Misha spinning dance records"
   >
     <SectionHeading
       eyebrow="Why DJ Misha"
@@ -182,8 +189,12 @@ const navLinks = [
     </p>
   </ImageTextSplit>
 
-  <FeatureGrid>
-    <FeatureCard title="Crafts a Personalized Music Experience" icon="star">
+  <FeatureGrid alt={true}>
+    <FeatureCard
+      title="Crafts a Personalized Music Experience"
+      icon="music-heart"
+      iconSize="3.2em"
+    >
       <p>
         By tailoring a new set list for every event, DJ Misha transforms each
         wedding into a one-of-a-kind music experience that reflects your unique
@@ -195,7 +206,8 @@ const navLinks = [
     </FeatureCard>
     <FeatureCard
       title="Blends Technical Skill & Artistic Talent"
-      icon="lightbulb"
+      icon="turntable-sparkle"
+      iconSize="3.2em"
     >
       <p>
         Throughout DJ Misha's career, he has focused on collecting and curating
@@ -206,7 +218,11 @@ const navLinks = [
         Misha creates a feeling that lasts long after the music stops.
       </p>
     </FeatureCard>
-    <FeatureCard title="Creates a Memorable Celebration" icon="check">
+    <FeatureCard
+      title="Creates a Memorable Celebration"
+      icon="sparkle-burst"
+      iconSize="3.2em"
+    >
       <p>
         Whether you're local to San Diego or having a destination wedding, DJ
         Misha is focused on entertaining you and your guests during the most
@@ -219,43 +235,44 @@ const navLinks = [
     </FeatureCard>
   </FeatureGrid>
 
-  <CenteredTextBlock id="testimonials-for-dj-misha" align="left">
-    <h2>Testimonials for DJ Misha</h2>
+  <CenteredTextBlock align="left">
+    <SectionHeading
+      eyebrow="What Clients Say"
+      title="Testimonials for DJ Misha"
+    />
+
     <p>
       Throughout his career as a highly sought after San Diego DJ, Misha has
       connected with many couples, leaving a lasting impression on their big
-      day. How do you know if a DJ is good? Their past customers will tell you!
-      Read what some of our wedding clients have said about our services by
-      visiting <a
+      day. <br /><br />How do you know if a DJ is good? Their past customers
+      will tell you!
+
+      <br /><br />Read what some of our wedding clients have said about our
+      services by visiting <a
         href={googleProfileUrl}
         target="_blank"
         rel="noopener"
-        title="">DJ Misha's Google Profile</a
-      >. You can find recent testimonials from satisfied couples and even sort
-      through the reviews with tags like: wedding, playlist, and bride. By
-      reading through these testimonials, you can get a clearer picture of
-      Misha's approach to working with couples and his commitment to
-      collaborating in the most authentic way.
-    </p>
+        title="DJ Misha's Google Profile">DJ Misha's Google Profile</a
+      >.
 
-    <p>
-      <em
-        ><br /><a
-          href={googleProfileUrl}
-          target="_blank"
-          rel="noopener nofollow"
-          title="">Read more testimonials on Misha's Google Business profile.</a
-        ></em
-      >
+      <br /><br />You can find recent testimonials from satisfied couples and
+      even sort through the reviews with tags like: wedding, playlist, and
+      bride. <br /><br />By reading through these testimonials, you can get a
+      clearer picture of Misha's approach to working with couples and his
+      commitment to collaborating in the most authentic way.
     </p>
   </CenteredTextBlock>
 
-  <TestimonialSlideshow reviewIds={testimonialIds} />
-
+  <TestimonialQuote
+    quote="What a TREAT!! What a VIBE!! <br> DJ Misha and his saxophonist were one of our favorite parts of our wedding night!! <br><br> He was so easy to work with and no one left the dance floor all night. He collaborates in the most authentic way, where you provide inspiration for the playlist and then he adds his special touch and makes it even better than you thought!!"
+    author="Rachael Brennan via Google"
+  />
+  <br /><br /><br />
   <FeatureGrid
     id="how-the-music-is-chosen-for-your-wedding"
     eyebrow="Your Music"
     heading="How the Music Is Chosen for Your Wedding"
+    alt={true}
   >
     <Fragment slot="intro">
       <p>
@@ -266,24 +283,31 @@ const navLinks = [
       </p>
     </Fragment>
 
-    <FeatureCard title="Getting to Know Your Style" icon="user">
+    <FeatureCard
+      title="Getting to Know Your Style"
+      icon="user"
+      titleIsNotHeading={true}
+    >
       <p>
-        <strong>Getting to Know Your Style: </strong>We'll have a conversation
-        about your music preferences. We'll talk about songs, artists, genres,
-        and epic concerts you've attended. With that knowledge DJ Misha will
-        execute a one-of-a-kind DJ set and a performance that can only be heard
-        on your wedding day.
+        We'll have a conversation about your music preferences. We'll talk about
+        songs, artists, genres, and epic concerts you've attended. With that
+        knowledge DJ Misha will execute a one-of-a-kind DJ set and a performance
+        that can only be heard on your wedding day.
       </p>
     </FeatureCard>
-    <FeatureCard title="Choosing the Type of Music" icon="star">
+
+    <FeatureCard
+      title="Choosing the Type of Music"
+      icon="star"
+      titleIsNotHeading={true}
+    >
       <p>
-        <strong>Choosing the Type of Music: </strong>Generally, wedding
-        playlists tend to be diverse, eclectic, and include many genres, styles,
-        and songs that span a variety of energy levels. Professional wedding DJs
-        understand this and strive to incorporate different styles of music to
-        appeal to different generations of guests while keeping to the intended
-        vision for the evening. That is exactly what makes a wedding DJ great
-        and something DJ Misha excels at.&nbsp;
+        Generally, wedding playlists tend to be diverse, eclectic, and include
+        many genres, styles, and songs that span a variety of energy levels.
+        Professional wedding DJs understand this and strive to incorporate
+        different styles of music to appeal to different generations of guests
+        while keeping to the intended vision for the evening. That is exactly
+        what makes a wedding DJ great and something DJ Misha excels at.&nbsp;
       </p>
       <p>
         Since every wedding is different, it is common to see couples create
@@ -297,12 +321,12 @@ const navLinks = [
     </FeatureCard>
     <FeatureCard
       title="Adding Live Saxophone into the Musical Mix"
+      titleIsNotHeading={true}
       icon="lightbulb"
     >
       <p>
-        <strong>Adding Live Saxophone into the Musical Mix: </strong>To elevate
-        your reception even further, DJ Misha frequently performs DJ sets with
-        live saxophone player accompaniment. This combination of <a
+        To elevate your reception even further, DJ Misha frequently performs DJ
+        sets with live saxophone player accompaniment. This combination of <a
           href="/dj-saxophone/">DJ and saxophone</a
         > music creates an exciting, fun dynamic and extremely unique show for your
         guests to enjoy.&nbsp;
@@ -310,9 +334,16 @@ const navLinks = [
     </FeatureCard>
   </FeatureGrid>
 
+  <br /><br /><br />
+
+  <TestimonialQuote
+    quote="DJ Misha was an incredible partner with us for our wedding, from the planning phase to the actual day of we seriously could not have asked for a better performance.<br /><br />Through the planning phase, he was very communicative and easy to reach which made our lives a lot easier. We met a few times to discuss our style of music, shared a playlist of our music preferences and style, and what we were going for with the after party and he was always receptive and transparent with his recommendations and feedback, which we truly appreciated.<br /><br />DJ Misha curated a set list of disco, house, and dance music for our after party that exceeded our expectations in every way. The sax player layered on to the performance helped make the best day of our lives even better."
+    author="Chris R via Google"
+  />
+
   <TimelineSection
     id="the-timeline-of-your-wedding-day-music"
-    eyebrow="The Night"
+    eyebrow="Let's Plan"
     heading="The Timeline of Your Wedding Day Music"
   >
     <Fragment slot="intro">
@@ -425,6 +456,7 @@ const navLinks = [
   <ChecklistSection
     id="our-wedding-dj-service-package"
     heading="Our Wedding DJ Service Package"
+    eyebrow="What We Provide"
   >
     <Fragment slot="intro">
       <p>
@@ -463,39 +495,45 @@ const navLinks = [
     </ul>
   </ChecklistSection>
 
+  <TestimonialQuote
+    quote="DJ Misha was an absolute pleasure to work with! We consulted with Misha to perform at our wedding in Nantucket, MA. Despite communicating with him from across the country, Misha was extremely responsive throughout every stage of our planning process providing us with a lot of ease and comfort.<br /><br />The music for our wedding was very important to us, and Misha understood our vision from the very beginning. While we provided some guidance so that he could understand our style, we let him take a lot of creative freedom in curating the final playlist and it could not have been more perfect. As the bride, I did not leave the dance floor once, and neither did any of our guests. It was an absolute blast of a dance party and we could not recommend Misha enough! Would highly recommend for your wedding or next party."
+    author="Amanda Liew via Google"
+  />
+
   <PricingCallout
     id="cost-of-our-dj-services"
     heading="Cost of Our DJ Services"
     price="$2,500"
-    caption="Average wedding rate"
+    priceLabel="STARTING AT"
+    caption="Dance Party"
+    secondaryPrice="$4,000"
+    secondaryPriceLabel="MOST COUPLES SPEND ~"
+    secondaryCaption="Full Wedding Day"
+    eyebrow="Your Investment"
   >
     <p>
-      <strong
-        >On average you can expect to pay about $2500 for our wedding DJ
-        services in San Diego.</strong
-      > This popular package includes 4 hours of coverage for the reception, with
-      a 2-speaker sound system and a microphone for toasts. Keep in mind rates can
-      vary based on factors like the length of the event, number of people attending,
-      customization options, equipment rental, travel expenses, and if live saxophone
-      music is included. Couples should communicate their specific needs and budget
-      to ensure a clear understanding of the services provided and any associated
-      costs.
+      <strong>
+        Most couples spend around $4,000 for wedding DJ services in San Diego,
+        which covers music for the ceremony, cocktail hour and a full reception.
+      </strong>
     </p>
-
     <p>
-      For more information on <a
-        href="/blog/prices-rates-and-average-cost-for-hiring-a-dj/">DJ prices</a
-      > for wedding services in San Diego – or any destination – please <a
-        href="/contact/"
-        rel="nofollow"
-        title="">contact DJ Misha</a
-      >.&nbsp;
+      Our dance-party-only package starts at $2,500 for 4 hours, with a
+      proffesional grade sound system, dance floor lighting, and a microphone
+      for toasts.
+    </p>
+    <p>
+      What changes the price: the length of your day, whether you want ceremony
+      and cocktail hour music because each needs its own sound setup, and
+      whether you'd like live saxophone. Share a few details about your day up
+      front and we'll send you a quote.
     </p>
   </PricingCallout>
 
   <FaqSection
     id="frequently-asked-questions-about-wedding-djs"
     heading="Frequently Asked Questions About Wedding DJs"
+    eyebrow="Got Questions?"
   >
     <FaqItem question="Can a Wedding DJ Take Song Requests?">
       <p>
@@ -559,7 +597,7 @@ const navLinks = [
     </FaqItem>
   </FaqSection>
 
-  <CtaBanner href="/contact/" buttonLabel="Contact DJ Misha">
+  <CtaBanner href="/contact/" buttonLabel="Reserve Your Date">
     <h2>Hire the Best DJ for Your Wedding</h2>
     <p>
       So what are you waiting for? Let's rock your wedding party together! <a

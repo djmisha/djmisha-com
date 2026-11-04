@@ -1,6 +1,7 @@
 ---
 export interface Props {
   backgroundImage: string;
+  backgroundImages?: string[];
   alt: string;
   /**
    * Anchor selector (e.g. "#intro") the scroll-down link jumps to. Should point
@@ -9,7 +10,7 @@ export interface Props {
   scrollTarget?: string;
 }
 
-const { backgroundImage, alt, scrollTarget } = Astro.props;
+const { backgroundImage, backgroundImages, alt, scrollTarget } = Astro.props;
 
 // `headline` is the large promotional line (the best quote); `title` is the
 // page H1, rendered smaller beneath it.
@@ -19,7 +20,10 @@ const hasTitle = Astro.slots.has('title');
 
 <section
   class="hero-section"
-  style={`background-image: url('${backgroundImage}');`}
+  style={backgroundImages
+    ? 'background-image: none;'
+    : `background-image: url('${backgroundImage}');`}
+  data-background-images={backgroundImages && JSON.stringify(backgroundImages)}
   aria-label={alt}
 >
   <div class="hero-overlay"></div>
@@ -52,6 +56,32 @@ const hasTitle = Astro.slots.has('title');
     )
   }
 </section>
+
+<script>
+  function getBackgroundImages(hero: HTMLElement): string[] {
+    const serializedImages = hero.dataset.backgroundImages;
+    if (!serializedImages) return [];
+
+    const images: unknown = JSON.parse(serializedImages);
+    return Array.isArray(images)
+      ? images.filter((image): image is string => typeof image === 'string')
+      : [];
+  }
+
+  function loadRandomHeroImage(hero: HTMLElement) {
+    const images = getBackgroundImages(hero);
+    if (images.length === 0) return;
+
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+    if (randomImage) {
+      hero.style.backgroundImage = `url('${randomImage}')`;
+    }
+  }
+
+  document
+    .querySelectorAll<HTMLElement>('.hero-section[data-background-images]')
+    .forEach(loadRandomHeroImage);
+</script>
 
 <style>
   .hero-section {
@@ -87,7 +117,10 @@ const hasTitle = Astro.slots.has('title');
   }
 
   .hero-content {
-    position: relative;
+    position: absolute;
+    top: 66.667%;
+    left: 0;
+    transform: translateY(-50%);
     z-index: 2;
     text-align: center;
     color: #ffffff;
@@ -103,8 +136,13 @@ const hasTitle = Astro.slots.has('title');
   .hero-headline {
     font-size: clamp(1.75rem, 3.4vw, 2.75rem);
     line-height: 1.15;
-    margin: 0 0 0.2rem 0;
-    font-weight: 300;
+    margin: 0 0 20px;
+    font-weight: 200;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  }
+
+  .hero-headline :global(p) {
+    margin: 0;
   }
 
   .hero-divider {
@@ -118,11 +156,11 @@ const hasTitle = Astro.slots.has('title');
   /* The page H1, intentionally smaller and quieter, sitting beneath the headline */
   .hero-title {
     font-size: clamp(0.95rem, 1.5vw, 1.2rem);
-    font-weight: 400;
+    font-weight: 200;
     letter-spacing: 0.04em;
-    text-transform: uppercase;
     margin: 0;
     opacity: 0.85;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   }
 
   .hero-title :global(h1) {

@@ -1,6 +1,6 @@
 ---
 /**
- * SectionNav — horizontal anchor pills linking to in-page section ids.
+ * SectionNav — centered anchor links to in-page section ids.
  * Sticky under the site nav by default. Replaces a bare <ul> table of contents.
  */
 export interface NavLink {
@@ -36,6 +36,7 @@ const { links, sticky = false } = Astro.props;
 <style>
   .section-nav {
     background: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border-faint);
     border-bottom: 1px solid var(--color-border-faint);
     padding: 0.75em var(--section-padding-x);
   }
@@ -46,42 +47,64 @@ const { links, sticky = false } = Astro.props;
     z-index: 10;
   }
 
-  /* Single row that scrolls sideways when the (often long, SEO-rich) link
-     text overflows, instead of wrapping. */
   .section-nav__list {
     list-style: none;
     margin: 0 auto;
     padding: 0;
     max-width: var(--section-max-width);
     display: flex;
-    flex-wrap: nowrap;
-    gap: 0.5em 0.75em;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75em 1em;
+  }
+
+  .section-nav__list li {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .section-nav__list li:not(:last-child)::after {
+    content: '•';
+    color: #fff;
   }
 
   .section-nav__link {
     display: inline-block;
-    flex: 0 0 auto;
-    padding: 0.4em 1em;
-    border: 1px solid var(--color-pill-border);
-    border-radius: 999px;
-    background: var(--color-pill-bg);
     color: var(--color-text);
     font-size: 0.9rem;
+    font-weight: 200;
+    border-bottom: dotted 1px rgba(255, 255, 255, 0.35);
     text-decoration: none;
-    white-space: nowrap;
-    transition:
-      background-color 0.2s ease,
-      border-color 0.2s ease,
-      color 0.2s ease;
+    transition: color 0.2s ease;
   }
 
   .section-nav__link:hover {
-    background: var(--color-pill-bg-hover);
-    border-color: var(--color-accent);
     color: var(--color-text-strong);
+    border-bottom-color: currentColor;
+  }
+
+  @media (max-width: 600px) {
+    .section-nav__list {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.125em;
+    }
+
+    .section-nav__list li {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .section-nav__list li::after {
+      display: none;
+    }
+
+    .section-nav__link {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
