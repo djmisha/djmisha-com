@@ -14,7 +14,12 @@ const { quote, author } = Astro.props;
   class="testimonial-quote"
   data-background-images={JSON.stringify(testimonialBackgroundImages)}
 >
-  <div class="testimonial-quote__image" aria-hidden="true"></div>
+  <div class="testimonial-quote__visual">
+    <div class="testimonial-quote__image" aria-hidden="true"></div>
+    <button class="testimonial-quote__next-photo button small" type="button">
+      Next Photo
+    </button>
+  </div>
   <div class="testimonial-quote__card">
     <p>
       <Fragment set:html={quote} />
@@ -42,22 +47,38 @@ const { quote, author } = Astro.props;
       '.testimonial-quote[data-background-images]',
     ),
   );
-  const images = testimonials.length
+  const backgroundImages = testimonials.length
     ? getBackgroundImages(testimonials[0])
     : [];
+  const initialImages = [...backgroundImages];
 
-  for (let index = images.length - 1; index > 0; index -= 1) {
+  for (let index = initialImages.length - 1; index > 0; index -= 1) {
     const randomIndex = Math.floor(Math.random() * (index + 1));
-    [images[index], images[randomIndex]] = [images[randomIndex], images[index]];
+    [initialImages[index], initialImages[randomIndex]] = [
+      initialImages[randomIndex],
+      initialImages[index],
+    ];
   }
 
   testimonials.forEach((testimonial, index) => {
-    const image = images[index % images.length];
+    const image = initialImages[index % initialImages.length];
     const imageLayer = testimonial.querySelector<HTMLElement>(
       '.testimonial-quote__image',
     );
-    if (image && imageLayer) {
+    const nextPhotoButton = testimonial.querySelector<HTMLButtonElement>(
+      '.testimonial-quote__next-photo',
+    );
+    if (image && imageLayer && nextPhotoButton) {
       imageLayer.style.backgroundImage = `url('${image}')`;
+
+      let currentImageIndex = backgroundImages.indexOf(image);
+      nextPhotoButton.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+        const nextImage = backgroundImages[currentImageIndex];
+        if (nextImage) {
+          imageLayer.style.backgroundImage = `url('${nextImage}')`;
+        }
+      });
     }
   });
 </script>
@@ -71,7 +92,7 @@ const { quote, author } = Astro.props;
     overflow: clip;
   }
 
-  .testimonial-quote__image {
+  .testimonial-quote__visual {
     position: sticky;
     top: 0;
     z-index: 0;
@@ -80,6 +101,11 @@ const { quote, author } = Astro.props;
     height: 100svh;
     margin-bottom: -12vh;
     margin-bottom: -12svh;
+  }
+
+  .testimonial-quote__image {
+    position: absolute;
+    inset: 0;
     background-color: var(--color-bg-primary);
     background-size: cover;
     background-position: center;
@@ -92,6 +118,21 @@ const { quote, author } = Astro.props;
     inset: 0;
     background: rgba(0, 0, 0, 0.12);
     pointer-events: none;
+  }
+
+  .testimonial-quote__next-photo {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1;
+    height: auto;
+    padding: 0.6em 1.2em;
+    background-color: transparent;
+  }
+
+  .testimonial-quote__next-photo:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
   }
 
   .testimonial-quote__card {
@@ -139,12 +180,17 @@ const { quote, author } = Astro.props;
   }
 
   @media (max-width: 768px) {
-    .testimonial-quote__image {
+    .testimonial-quote__visual {
       position: relative;
       top: auto;
       height: auto;
       aspect-ratio: 4 / 3;
       margin-bottom: 0;
+    }
+
+    .testimonial-quote__next-photo {
+      top: 1rem;
+      right: 1rem;
     }
 
     .testimonial-quote__card {
