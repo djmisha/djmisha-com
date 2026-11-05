@@ -1,4 +1,4 @@
-const testimonialImageCount = 23;
+const testimonialImageCount = 9;
 
 export const testimonialBackgroundImages = Array.from(
   { length: testimonialImageCount },
