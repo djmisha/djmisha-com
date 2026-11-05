@@ -45,12 +45,52 @@ const jsonLd = buildJsonLd(
     headline: 'Wedding DJ in San Diego',
     mainEntityOfPage: 'https://djmisha.com/services/wedding-dj-in-san-diego/',
     about:
-      "The Perfect Soundtrack for Your Special Day Think about the most fun wedding you’ve attended. What do you remember? There’s a good chance your time on the dance floor stands out. The music was pumping; the atmosphere was electric; and every song seemed to capture the essence of the couple's love story. That's the kind…",
+      "The Perfect Soundtrack for Your Special Day. Think about the most fun wedding you&apos;ve attended. What do you remember? There&apos;s a good chance your time on the dance floor stands out. The music was pumping; the atmosphere was electric; and every song seemed to capture the essence of the couple's love story. That's the kind…",
   },
   {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can we see examples of the music you play at weddings?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. You can hear real wedding DJ set playlists, from first song played to the last, on DJ Misha&apos;s Spotify profile. They show how he collaborates with couples to bring their musical vision to the dance floor, and they reflect his versatility. Keep in mind that these aren&apos;t a preview of your set. Your wedding will have its own unique DJ set, and you&apos;ll have input into what gets played.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does the booking process look like?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We keep booking easy and accessible. We start with an initial conversation and gather details about your event logistics and musical vision. Then we send you an estimate for our services. If everything looks good, we&apos;ll schedule a meet and greet call and secure your date with a deposit. Once you&apos;re ready to confirm, the entire process can be completed online, often in just a few minutes.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can we set up a meet and greet call with DJ Misha?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. DJ Misha meets with every potential client to make sure it&apos;s a great fit. Once we&apos;ve confirmed availability, logistics, and budget fit, he&apos;ll meet with you to build rapport and walk you through the next steps to secure your date. We look forward to meeting you.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does your planning process look like?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'DJ Misha starts by learning your musical vision and tastes through an initial discovery. Once your date is confirmed, we&apos;ll have a kickoff conversation, and a meeting if you&apos;d like, to get you on your way. From there, he&apos;s available by text or email to answer any questions, so your planning is never held up waiting on him. As your date approaches, we&apos;ll be in touch more often to collect your timeline and music. We&apos;ll then hold a final timeline review and event planning session to go over any music you&apos;ve provided and wrap up all details, so the day runs flawlessly.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do you handle our must-play and do-not-play lists?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Any playlists you provide are treated as input toward your DJ set. DJ Misha listens carefully to understand your musical vision and the vibe you&apos;re after, then uses that to shape your final set. Your do-not-play songs are always honored. You&apos;re welcome to share as much as you&apos;d like, including playlists, artists, genres, your guests&apos; demographics, or anything else on your mind.',
+        },
+      },
       {
         '@type': 'Question',
         name: 'Can a Wedding DJ Take Song Requests?',
@@ -532,6 +572,69 @@ const navLinks = [
     heading="Frequently Asked Questions About Wedding DJs"
     eyebrow="Got Questions?"
   >
+    <FaqItem question="Can we see examples of the music you play at weddings?">
+      <p>
+        Yes. You can hear real wedding DJ set playlists, from first song played
+        to the last, on <a
+          href="https://open.spotify.com/user/djmisha"
+          target="_blank">DJ Misha&apos;s Spotify profile</a
+        >. They show how he collaborates with couples to bring their musical
+        vision to the dance floor, and they reflect his versatility.
+      </p>
+      <p>
+        Keep in mind that these aren&apos;t a preview of your set. Your wedding
+        will have its own unique DJ set, and you&apos;ll have input into what
+        gets played.
+      </p>
+    </FaqItem>
+
+    <FaqItem question="What does the booking process look like?">
+      <p>
+        We keep booking easy and accessible. We start with an initial
+        conversation and gather details about your event logistics and musical
+        vision. Then we send you an estimate for our services. If everything
+        looks good, we&apos;ll schedule a meet and greet call and secure your
+        date with a deposit. Once you&apos;re ready to confirm, the entire
+        process can be completed online, often in just a few minutes.
+      </p>
+    </FaqItem>
+
+    <FaqItem question="Can we set up a meet and greet call with DJ Misha?">
+      <p>
+        Yes. DJ Misha meets with every potential client to make sure it&apos;s a
+        great fit. Once we&apos;ve confirmed availability, logistics, and budget
+        fit, he&apos;ll meet with you to build rapport and walk you through the
+        next steps to secure your date. We look forward to meeting you.
+      </p>
+    </FaqItem>
+
+    <FaqItem question="What does your planning process look like?">
+      <p>
+        DJ Misha starts by learning your musical vision and tastes through an
+        initial discovery. Once your date is confirmed, we&apos;ll have a
+        kickoff conversation, and a meeting if you&apos;d like, to get you on
+        your way. From there, he&apos;s available by text or email to answer any
+        questions, so your planning is never held up waiting on him.
+      </p>
+      <p>
+        As your date approaches, we&apos;ll be in touch more often to collect
+        your timeline and music. We&apos;ll then hold a final timeline review
+        and event planning session to go over any music you&apos;ve provided and
+        wrap up all details, so the day runs flawlessly.
+      </p>
+    </FaqItem>
+
+    <FaqItem question="How do you handle our must-play and do-not-play lists?">
+      <p>
+        Any playlists you provide are treated as input toward your DJ set. DJ
+        Misha listens carefully to understand your musical vision and the vibe
+        you&apos;re after, then uses that to shape your final set. Your
+        do-not-play songs are always honored. You&apos;re welcome to share as
+        much as you&apos;d like, including playlists, artists, genres, your
+        guests&apos; demographics, or anything else on your mind.
+      </p>
+    </FaqItem>
+
     <FaqItem question="Can a Wedding DJ Take Song Requests?">
       <p>
         Absolutely, and the decision is entirely up to you. Your DJ is available
