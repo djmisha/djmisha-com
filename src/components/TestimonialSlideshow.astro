@@ -1,0 +1,179 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+export interface Props {
+  reviewIds: string[];
+  eyebrow?: string;
+  heading?: string;
+}
+
+import reviewsData from '../data/reviews.json';
+
+const { reviewIds, eyebrow, heading } = Astro.props;
+
+const reviews = reviewIds
+  .map((id) => reviewsData.reviews.find((r) => r.id === id))
+  .filter((r): r is (typeof reviewsData.reviews)[number] => r !== undefined)
+  .filter((r) => r.text.trim().length > 0);
+---
+
+{
+  reviews.length > 0 && (
+    <section class="testimonial-slideshow">
+      {heading && <SectionHeading eyebrow={eyebrow} title={heading} />}
+      <div class="embla" data-testimonial-carousel>
+        <div class="embla__container">
+          {reviews.map((review) => (
+            <div class="embla__slide">
+              {review.rating > 0 && (
+                <p
+                  class="testimonial-stars"
+                  aria-label={`${review.rating} out of 5 stars`}
+                >
+                  {'★'.repeat(review.rating)}
+                </p>
+              )}
+              <blockquote class="testimonial-text">{review.text}</blockquote>
+              <p class="testimonial-author">— {review.author}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="embla__dots" data-testimonial-dots>
+        {reviews.map((_, index) => (
+          <button
+            class={`embla__dot${index === 0 ? ' embla__dot--active' : ''}`}
+            data-dot-index={index}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+
+  document.querySelectorAll('.testimonial-slideshow').forEach((slideshow) => {
+    const viewport = slideshow.querySelector(
+      '[data-testimonial-carousel]',
+    ) as HTMLElement | null;
+    const dotsContainer = slideshow.querySelector(
+      '[data-testimonial-dots]',
+    ) as HTMLElement | null;
+
+    if (!viewport || !dotsContainer) return;
+
+    const embla = EmblaCarousel(viewport, { loop: true });
+    const dots = dotsContainer.querySelectorAll('.embla__dot');
+
+    const updateDots = () => {
+      const selected = embla.selectedScrollSnap();
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('embla__dot--active', index === selected);
+      });
+    };
+
+    embla.on('select', updateDots);
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        embla.scrollTo(index);
+      });
+    });
+  });
+</script>
+
+<style>
+  .testimonial-slideshow {
+    padding: var(--section-padding-y) var(--section-padding-x);
+    max-width: var(--section-max-width);
+    margin: 0 auto;
+  }
+
+  .embla {
+    overflow: hidden;
+  }
+
+  .testimonial-stars {
+    margin: 0 0 0.75em 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--color-star-filled);
+  }
+
+  .embla__container {
+    display: flex;
+  }
+
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    min-height: 14em;
+    padding: 0 1em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .testimonial-text {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    font-style: italic;
+    color: var(--color-text);
+    margin: 0 0 1.5em 0;
+    padding: 0;
+    border: none;
+  }
+
+  .testimonial-author {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .embla__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.25em;
+    margin-top: 2em;
+  }
+
+  /* Button is a 44px tap target; the visible dot is the ::before pseudo. */
+  .embla__dot {
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .embla__dot::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    background: transparent;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .embla__dot:hover::before {
+    border-color: var(--color-text);
+  }
+
+  .embla__dot--active::before {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+</style>

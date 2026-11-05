@@ -48,7 +48,7 @@ const pages: SitemapEntry[] = [
   },
   {
     loc: `${site}/services/wedding-dj-in-san-diego/`,
-    lastmod: '2025-10-27T22:24:00+00:00',
+    lastmod: '2026-11-04T00:00:00+00:00',
     changefreq: 'weekly',
     priority: '0.7',
   },

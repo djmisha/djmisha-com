@@ -1,0 +1,230 @@
+---
+import Icon from './Icon.astro';
+import { testimonialBackgroundImages } from '../data/testimonial-backgrounds';
+
+export interface Props {
+  quote: string;
+  author: string;
+}
+
+const { quote, author } = Astro.props;
+---
+
+<section
+  class="testimonial-quote"
+  data-background-images={JSON.stringify(testimonialBackgroundImages)}
+>
+  <div class="testimonial-quote__visual">
+    <div class="testimonial-quote__image" aria-hidden="true"></div>
+    <button class="testimonial-quote__next-photo" type="button">
+      Next Photo
+    </button>
+  </div>
+  <div class="testimonial-quote__card">
+    <p>
+      <Fragment set:html={quote} />
+      <br />
+      <br />
+      <span class="author-icon"><Icon name="user" size="0.85em" /></span>
+      {author}
+    </p>
+  </div>
+</section>
+
+<script>
+  function getBackgroundImages(testimonial: HTMLElement): string[] {
+    const serializedImages = testimonial.dataset.backgroundImages;
+    if (!serializedImages) return [];
+
+    const images: unknown = JSON.parse(serializedImages);
+    return Array.isArray(images)
+      ? images.filter((image): image is string => typeof image === 'string')
+      : [];
+  }
+
+  const testimonials = Array.from(
+    document.querySelectorAll<HTMLElement>(
+      '.testimonial-quote[data-background-images]',
+    ),
+  );
+  const backgroundImages = testimonials.length
+    ? getBackgroundImages(testimonials[0])
+    : [];
+  const initialImages = [...backgroundImages];
+
+  for (let index = initialImages.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [initialImages[index], initialImages[randomIndex]] = [
+      initialImages[randomIndex],
+      initialImages[index],
+    ];
+  }
+
+  testimonials.forEach((testimonial, index) => {
+    const image = initialImages[index % initialImages.length];
+    const imageLayer = testimonial.querySelector<HTMLElement>(
+      '.testimonial-quote__image',
+    );
+    const nextPhotoButton = testimonial.querySelector<HTMLButtonElement>(
+      '.testimonial-quote__next-photo',
+    );
+    if (image && imageLayer && nextPhotoButton) {
+      imageLayer.style.backgroundImage = `url('${image}')`;
+
+      let currentImageIndex = backgroundImages.indexOf(image);
+      nextPhotoButton.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+        const nextImage = backgroundImages[currentImageIndex];
+        if (nextImage) {
+          imageLayer.style.backgroundImage = `url('${nextImage}')`;
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .testimonial-quote {
+    position: relative;
+    display: flow-root;
+    width: 100%;
+    isolation: isolate;
+    overflow: clip;
+  }
+
+  .testimonial-quote__visual {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    margin-bottom: -12vh;
+    margin-bottom: -12svh;
+  }
+
+  .testimonial-quote__image {
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-bg-primary);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .testimonial-quote__image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+  }
+
+  .testimonial-quote__next-photo {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1;
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    color: var(--color-accent);
+    cursor: pointer;
+    display: inline-block;
+    font: inherit;
+    font-size: 0.8em;
+    font-weight: 300;
+    height: 3em;
+    line-height: 3em;
+    padding: 0 2.25em;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    color: var(--color-text-strong);
+    transition: none;
+  }
+
+  .testimonial-quote__next-photo:hover,
+  .testimonial-quote__next-photo:active {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    color: var(--color-text-strong);
+  }
+
+  .testimonial-quote__next-photo:focus-visible {
+    color: var(--color-text-strong);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+
+  .testimonial-quote__next-photo:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  .testimonial-quote__card {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: calc(100% - 4rem);
+    max-width: 980px;
+    margin: -12vh auto 90vh;
+    margin: -12svh auto 90svh;
+    padding: 40px 20px;
+    border-radius: 10px;
+    background-color: color-mix(
+      in srgb,
+      var(--color-bg-tertiary) 90%,
+      transparent
+    );
+    text-align: center;
+  }
+
+  .testimonial-quote__card p {
+    margin: 0 0 2em 0;
+    font-weight: 200;
+  }
+
+  .author-icon {
+    padding-right: 0.3em;
+  }
+
+  .testimonial-quote__card::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 20px;
+    z-index: 1;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 40px solid
+      color-mix(in srgb, var(--color-bg-tertiary) 90%, transparent);
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-quote__visual {
+      position: relative;
+      top: auto;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      margin-bottom: 0;
+    }
+
+    .testimonial-quote__next-photo {
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .testimonial-quote__card {
+      width: calc(100% - 2rem);
+      margin: -3rem auto 3rem;
+      padding: 1.75rem 1.25rem;
+    }
+  }
+</style>
