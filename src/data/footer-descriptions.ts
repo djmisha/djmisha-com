@@ -14,7 +14,7 @@ export const footerDescriptions: Record<string, string> = {
   '/': DEFAULT_FOOTER_DESCRIPTION,
 
   '/about/':
-    'DJ Misha brings proffesional experience and today&apos;s sound to create unforgettable moments at San Diego events.',
+    'DJ Misha brings professional experience and today&apos;s sound to create unforgettable moments at San Diego events.',
 
   '/services/':
     'From weddings to corporate galas to private parties, DJ Misha offers tailored DJ packages with professional sound and lighting.',
