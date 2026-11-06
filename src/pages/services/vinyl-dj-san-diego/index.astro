@@ -1,0 +1,473 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import { buildJsonLd } from '../../../data/schema';
+import { GOOGLE_REVIEW_URL, SITE_URL } from '../../../data/config';
+import reviews from '../../../data/reviews.json';
+
+const title = 'Vinyl DJ San Diego | Vinyl Record Only DJ Sets – DJ Misha';
+const description =
+  'Hire DJ Misha for a vinyl record only DJ set in San Diego. Two turntables, real records, no laptop. Weddings, parties and events. Check your date.';
+const canonicalUrl = `${SITE_URL}/services/vinyl-dj-san-diego/`;
+const ogImage = `${SITE_URL}/images/logo-djmisha.png`;
+
+const faqItems = [
+  {
+    question: 'What is a vinyl DJ?',
+    answer:
+      'A vinyl DJ performs live using turntables and physical vinyl records instead of a laptop or digital files, blending tracks by ear and by hand.',
+  },
+  {
+    question: 'What does a vinyl record only DJ set mean?',
+    answer:
+      'Every song is played from a vinyl record. No laptop, no streaming and no digital files.',
+  },
+  {
+    question: 'What music does DJ Misha play on vinyl?',
+    answer:
+      'Disco, 80s, glam rock, pop hits, 2000s-era records, disco house, vocal house, funky house and deep house, with records from every generation.',
+  },
+  {
+    question: 'How do requests work?',
+    answer:
+      'Requests happen in your consultation, where we go over which genres and records from the collection will work for your event. A vinyl set is built around the records DJ Misha owns, so there are no night-of requests. That limit is the point: each record has earned its place.',
+  },
+  {
+    question: 'Do you only play vinyl?',
+    answer:
+      'Yes. Every set booked through this page is 100% vinyl. For a full digital library and live requests, see our San Diego DJ services.',
+  },
+  {
+    question: 'What equipment does DJ Misha bring?',
+    answer:
+      'The complete setup: a sound system, two turntables, a mixer and needles. If your venue or production company is supplying equipment, we coordinate with them directly.',
+  },
+  {
+    question: 'What does the venue need to provide?',
+    answer:
+      'Power and space. We confirm the DJ table setup during planning, since vinyl needs a sturdy, level surface away from the speakers.',
+  },
+  {
+    question: 'Will the record skip?',
+    answer:
+      'A sturdy, level table placed away from the speakers keeps records tracking cleanly. DJ Misha also has a lot of experience mixing records.',
+  },
+  {
+    question: 'Do you travel for destination events?',
+    answer:
+      'Yes. See our destination wedding DJ page for how planning and travel work.',
+  },
+  {
+    question: 'How far ahead should I book?',
+    answer: 'Popular dates fill early, so check your date as soon as it`s set.',
+  },
+];
+
+const jsonLd = buildJsonLd(
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Vinyl-Only DJ Services in San Diego',
+    serviceType: 'Vinyl DJ',
+    description:
+      'Live vinyl-only DJ sets for weddings, parties and corporate events in San Diego, Southern California and destination locations.',
+    url: canonicalUrl,
+    provider: {
+      '@id': '#LocalBusiness',
+    },
+    areaServed: [
+      { '@type': 'City', name: 'San Diego' },
+      { '@type': 'AdministrativeArea', name: 'Southern California' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${SITE_URL}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: `${SITE_URL}/services/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Vinyl DJ',
+        item: canonicalUrl,
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    })),
+  },
+);
+---
+
+<PageLayout
+  title={title}
+  heading="Vinyl Records DJ in San Diego"
+  description={description}
+  canonicalUrl={canonicalUrl}
+  ogTitle={title}
+  ogDescription={description}
+  ogImage={ogImage}
+  ogUrl={canonicalUrl}
+  ogType="website"
+  twitterTitle={title}
+  twitterDescription={description}
+  twitterImage={ogImage}
+  jsonLd={jsonLd}
+>
+  <h2 class="wp-block-heading">Real Records. Real Dance Floor. No Laptop.</h2>
+
+  <p>
+    DJ Misha is a San Diego vinyl-only DJ for weddings, parties and corporate
+    events. Every set is mixed live on two turntables from a huge, hand-picked
+    collection of vinyl records. No laptop, no playlist, no digital files, just
+    pure vinyl, the way DJing was always meant to be.
+  </p>
+
+  <div class="wp-block-image">
+    <figure class="alignright size-full is-resized">
+      <img
+        fetchpriority="high"
+        decoding="async"
+        width="800"
+        height="534"
+        src="/images/05-i-dsccmdj-l.jpg"
+        alt="DJing for 40th Birthday Party"
+        class="wp-image-1935"
+        style="width:358px;height:239px"
+        srcset="/images/05-i-dsccmdj-l.jpg 800w, /images/05-i-dsccmdj-l-300x200.jpg 300w, /images/05-i-dsccmdj-l-768x513.jpg 768w"
+        sizes="(max-width: 800px) 100vw, 800px"
+      /><figcaption class="wp-element-caption">
+        Spinning records at a birthday party
+      </figcaption>
+    </figure>
+  </div>
+
+  <nav aria-label="On this page">
+    <ul>
+      <li><a href="#why-hire-a-vinyl-dj">Why Hire a Vinyl DJ</a></li>
+      <li><a href="#meet-dj-misha">Meet DJ Misha</a></li>
+      <li><a href="#the-music">The Music</a></li>
+      <li><a href="#vinyl-only">What Vinyl-Only Means</a></li>
+      <li><a href="#what-you-need">What You Need</a></li>
+      <li><a href="#where-we-play">Where We Play</a></li>
+      <li><a href="#how-booking-works">How Booking Works</a></li>
+      <li><a href="#frequently-asked-questions">FAQ</a></li>
+      <li><a href="#inquire-now">Inquire Now</a></li>
+    </ul>
+  </nav>
+
+  <h2 class="wp-block-heading" id="why-hire-a-vinyl-dj">
+    Why Hire a Vinyl DJ for Your Event?
+  </h2>
+
+  <p>
+    Vinyl has made a real comeback, and guests feel the difference the moment
+    they see two turntables and a crate of records. Here is why hosts choose a
+    vinyl record only DJ set:
+  </p>
+
+  <ul class="wp-block-list">
+    <li>
+      <strong>A show, not just sound.</strong> Guests watch records get cued and blended
+      live. The turntables become a focal point and a conversation starter.
+    </li>
+    <li>
+      <strong>Warm, full analog sound.</strong> Real records, played through a real
+      sound system.
+    </li>
+    <li>
+      <strong>Curated, not generic.</strong> Every record in the collection was chosen
+      for the dance floor.
+    </li>
+    <li>
+      <strong>A party that stands out.</strong> Your night won&apos;t sound like every
+      other laptop set.
+    </li>
+    <li>
+      <strong>Built to make people dance.</strong> Dance music is DJ Misha&apos;s
+      specialty, and he has the collection and the mixing experience to fill a dance
+      floor.
+    </li>
+  </ul>
+
+  <h2 class="wp-block-heading" id="meet-dj-misha">
+    Meet DJ Misha: Vinyl Collector, Dance Floor DJ
+  </h2>
+
+  <p>
+    I&apos;ve collected enough vinyl to make a dance party all on its own, and I
+    have a lot of experience mixing records. I know what a great vinyl DJ set
+    sounds like, and as a dance music DJ first, I know how to make a room move.
+    That is why a vinyl-only set from me fills the dance floor instead of just
+    looking cool.
+  </p>
+
+  <p>
+    Learn more on{' '}
+    <a href="/about/">About DJ Misha</a>{' '}
+    page, read{' '}
+    <a href="/reviews/">client reviews</a>, and{' '}
+    <a href="/music/">listen to DJ Misha&apos;s mixes</a>.
+  </p>
+
+  <p>
+    <a href={GOOGLE_REVIEW_URL} rel="nofollow noopener" target="_blank">
+      DJ Misha is Rated {reviews.totalRating}/5 stars based on
+      {' '}{reviews.totalReviews} reviews
+    </a>
+  </p>
+
+  <h2 class="wp-block-heading" id="the-music">
+    What Music Does a Vinyl DJ Play?
+  </h2>
+
+  <p>
+    Vinyl-only doesn&apos;t mean a narrow sound. Records from every generation
+    fill the collection:
+  </p>
+
+  <h3 class="wp-block-heading">Disco and Nu-Disco Classics</h3>
+  <p>The records that built the dance floor.</p>
+
+  <h3 class="wp-block-heading">80s Hits and New Wave</h3>
+  <p>The singalongs everyone knows.</p>
+
+  <h3 class="wp-block-heading">Glam Rock Floor-Fillers</h3>
+  <p>Big, loud and fun.</p>
+
+  <h3 class="wp-block-heading">Pop Hits Through the Decades</h3>
+  <p>The songs your guests actually want to hear.</p>
+
+  <h3 class="wp-block-heading">2000s-Era Dance and Pop Records</h3>
+  <p>Throwback favorites from the early 2000s dance floor.</p>
+
+  <h3 class="wp-block-heading">Vocal House Jams</h3>
+  <p>Soulful vocals over a four-on-the-floor beat.</p>
+
+  <h3 class="wp-block-heading">Disco House and Funky House</h3>
+  <p>Where the night peaks.</p>
+
+  <h3 class="wp-block-heading">Deep House</h3>
+  <p>Smooth, warm grooves for cocktail hour and late-night sets.</p>
+
+  <p>
+    Every set is planned in a consultation, where we go over which genres and
+    records from the collection will work for your event.
+  </p>
+
+  <h2 class="wp-block-heading" id="vinyl-only">
+    What Does It Mean to Be a Vinyl-Only DJ?
+  </h2>
+
+  <p>
+    A vinyl DJ doesn&apos;t have an unlimited music library, and that is the
+    point. DJ Misha brings a hand-picked collection of records and builds your
+    night from it. Deciding what earns a place in the collection, then
+    sequencing it so the energy never drops, is a skill, an art and a science.
+    It is the opposite of a jukebox.
+  </p>
+
+  <p>
+    Limitation drives intention. Each track earns its place over a long
+    collection, and that is the whole experience.
+  </p>
+
+  <h2 class="wp-block-heading">Plan Your Set in a Consultation</h2>
+
+  <p>
+    Every vinyl set starts with a consultation. We go over the genres and eras
+    available on vinyl and which of them will work within your set, based on
+    your event and your guests. A vinyl set is defined by its limits, so
+    requests happen here, in the planning, not on the night. Share the artists
+    and songs you love, and DJ Misha will tell you what is in the collection and
+    build around it. Learn more about{' '}
+    <a href="/blog/the-art-of-taking-requests-a-djs-perspective/"
+      >taking requests</a
+    >.
+  </p>
+
+  <h2 class="wp-block-heading" id="what-you-need">
+    What It Takes to Hire a Vinyl DJ
+  </h2>
+
+  <p>
+    A vinyl record only DJ set needs real DJ hardware, and a turntable setup
+    isn&apos;t easy to arrange these days. DJ Misha has all of the equipment and
+    brings it to your event. If someone else is providing the equipment, we work
+    directly with that vendor.
+  </p>
+
+  <p>The minimum for a vinyl set:</p>
+
+  <ul class="wp-block-list">
+    <li>A powerful sound system that really bumps</li>
+    <li>Two turntables</li>
+    <li>A solid DJ mixer</li>
+    <li>Needles</li>
+    <li>
+      A sturdy, level table away from the speakers (bass vibration is what makes
+      records skip, so we confirm the setup with you during planning)
+    </li>
+  </ul>
+
+  <h2 class="wp-block-heading" id="where-we-play">
+    Where We Play: San Diego, Southern California and Destinations
+  </h2>
+
+  <p>
+    DJ Misha is based in San Diego and plays across the county, including
+    downtown, La Jolla, Coronado, Del Mar, Encinitas, Carlsbad, Oceanside and
+    Temecula. We also travel throughout Southern California, including Orange
+    County, Los Angeles and Palm Springs, and to destination events anywhere.
+    Records travel too, and for destination events we plan the equipment details
+    with your venue or planner ahead of time. Learn more about our{' '}
+    <a href="/services/destination-wedding-dj/">destination wedding DJ</a>{' '}
+    services.
+  </p>
+
+  <h2 class="wp-block-heading">Events That Suit a Vinyl Set</h2>
+
+  <ul class="wp-block-list">
+    <li>
+      Weddings —{' '}
+      <a href="/services/wedding-dj-in-san-diego/">wedding DJ in San Diego</a>
+    </li>
+    <li>
+      Corporate events, product launches and brand activations —{' '}
+      <a href="/services/corporate-event-dj-in-san-diego/">corporate event DJ</a
+      >
+    </li>
+    <li>
+      Birthdays and milestone parties, especially 40th and 50th with 80s and
+      disco —{' '}
+      <a href="/services/party-birthday-dj-in-san-diego/"
+        >party and birthday DJ</a
+      >
+    </li>
+    <li>Cocktail hours, rooftop parties and brunches</li>
+  </ul>
+
+  <h2 class="wp-block-heading" id="how-booking-works">How Booking Works</h2>
+
+  <ol class="wp-block-list">
+    <li>
+      <strong>Step 1: Tell us about your event.</strong> Date, venue, guest count
+      and vibe.
+    </li>
+    <li>
+      <strong>Step 2: Consultation.</strong> We go over which genres and records will
+      work within your set.
+    </li>
+    <li>
+      <strong>Step 3: Confirm the gear.</strong> DJ Misha brings the full setup, or
+      we coordinate with your venue or vendor.
+    </li>
+    <li>
+      <strong>Step 4: Showtime.</strong> DJ Misha arrives early, sets up and spins.
+    </li>
+  </ol>
+
+  <h2 class="wp-block-heading">What Clients Say</h2>
+
+  <blockquote>
+    <p>
+      Misha and the saxophonist Jason created an amazing atmosphere for our
+      wedding that kept the dance floor packed all night!
+    </p>
+    <cite>Jared Peter-Contesse</cite>
+  </blockquote>
+
+  <blockquote>
+    <p>
+      DJ Misha was a really fun DJ, kept the dance floor busy and was really
+      easy to work with. I would highly recommend if you want a fun night!
+    </p>
+    <cite>Rebecca Wright</cite>
+  </blockquote>
+
+  <blockquote>
+    <p>
+      I&apos;ve had the pleasure of working alongside DJ Misha at a few
+      weddings, and every time he brings an incredible vibe. He finds a way to
+      blend his style of music into the energy of a wedding, fun and full of
+      life! You can tell he truly knows how to read a crowd and keep guests on
+      the dance floor. Highly recommend him for any event where you want great
+      energy and a unique vibe.
+    </p>
+    <cite>Marc Matuszewski</cite>
+  </blockquote>
+
+  <h2 class="wp-block-heading" id="frequently-asked-questions">
+    Frequently Asked Questions
+  </h2>
+
+  <h3 class="wp-block-heading">What is a vinyl DJ?</h3>
+  <p>{faqItems[0].answer}</p>
+
+  <h3 class="wp-block-heading">What does a vinyl record only DJ set mean?</h3>
+  <p>{faqItems[1].answer}</p>
+
+  <h3 class="wp-block-heading">What music does DJ Misha play on vinyl?</h3>
+  <p>{faqItems[2].answer}</p>
+
+  <h3 class="wp-block-heading">How do requests work?</h3>
+  <p>{faqItems[3].answer}</p>
+
+  <h3 class="wp-block-heading">Do you only play vinyl?</h3>
+  <p>
+    Yes. Every set booked through this page is 100% vinyl. For a full digital
+    library and live requests, see our{' '}
+    <a href="/services/">San Diego DJ services</a>.
+  </p>
+
+  <h3 class="wp-block-heading">What equipment does DJ Misha bring?</h3>
+  <p>{faqItems[5].answer}</p>
+
+  <h3 class="wp-block-heading">What does the venue need to provide?</h3>
+  <p>{faqItems[6].answer}</p>
+
+  <h3 class="wp-block-heading">Will the record skip?</h3>
+  <p>{faqItems[7].answer}</p>
+
+  <h3 class="wp-block-heading">Do you travel for destination events?</h3>
+  <p>
+    Yes. See our{' '}
+    <a href="/services/destination-wedding-dj/">destination wedding DJ</a>{' '}
+    page for how planning and travel work.
+  </p>
+
+  <h3 class="wp-block-heading">How far ahead should I book?</h3>
+  <p>{faqItems[9].answer}</p>
+
+  <h2 class="wp-block-heading" id="inquire-now">
+    Ready for a Vinyl-Only Night?
+  </h2>
+
+  <p>
+    Tell us about your event and DJ Misha will let you know if your date is open
+    and is a good fit for a vinyl record DJ set.
+  </p>
+
+  <p>
+    <a class="button primary" href="/contact/">Reserve Your Date</a>
+  </p>
+</PageLayout>
