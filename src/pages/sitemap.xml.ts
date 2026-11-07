@@ -59,6 +59,12 @@ const pages: SitemapEntry[] = [
     priority: '0.7',
   },
   {
+    loc: `${site}/services/vinyl-dj-san-diego/`,
+    lastmod: '2026-11-06T00:00:00+00:00',
+    changefreq: 'weekly',
+    priority: '0.7',
+  },
+  {
     loc: `${site}/services/destination-wedding-dj/`,
     lastmod: '2025-09-18T11:23:20+00:00',
     changefreq: 'weekly',
