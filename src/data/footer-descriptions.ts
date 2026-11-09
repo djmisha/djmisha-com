@@ -32,7 +32,7 @@ export const footerDescriptions: Record<string, string> = {
     'Party and birthday DJ in San Diego — high-energy sets, custom playlists, and a sound system that turns any venue into a dance floor.',
 
   '/services/vinyl-dj-san-diego/':
-    'Vinyl record DJ sets  — real records, two turntables, and live mixing.',
+    'Vinyl record DJ sets by special request  — real records, two turntables, and live mixing.',
 
   '/dj-saxophone/':
     'Live saxophone paired with DJ sets for a unique, high-energy performance perfect for weddings, cocktail hours, and special events.',
