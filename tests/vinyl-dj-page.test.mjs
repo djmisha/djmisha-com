@@ -35,7 +35,7 @@ describe('vinyl DJ service page', () => {
     expect($('meta[property="og:url"]').attr('content')).toBe(canonicalUrl);
     expect($('meta[property="og:type"]').attr('content')).toBe('website');
     expect($('meta[property="og:image"]').attr('content')).toBe(
-      'https://djmisha.com/images/logo-djmisha.png',
+      'https://djmisha.com/images/Best-San-Diego-DJ-djmisha.com-12.jpg',
     );
 
     expect($('meta[name="twitter:card"]').attr('content')).toBe(
