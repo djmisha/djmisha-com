@@ -3,6 +3,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { load } from 'cheerio';
+import {
+  formatRelativeReviewDate,
+  formatReviewDate,
+} from '../src/lib/reviews-helpers.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
@@ -20,18 +24,28 @@ const ratingOnlyReviews = reviewsData.reviews.filter(
 );
 const displayReviews = [...reviewsWithText, ...ratingOnlyReviews];
 
-function collectPageCss() {
-  let css = '';
+function readStylesheets() {
+  const files = [];
   $('style').each((_, el) => {
-    css += $(el).html() || '';
+    files.push($(el).html() || '');
   });
   $('link[rel="stylesheet"]').each((_, el) => {
     const href = ($(el).attr('href') || '').split('?')[0];
     if (!href.startsWith('/')) return;
     const file = path.join(distDir, href);
-    if (fs.existsSync(file)) css += fs.readFileSync(file, 'utf8');
+    if (fs.existsSync(file)) files.push(fs.readFileSync(file, 'utf8'));
   });
-  return css;
+  return files;
+}
+
+function collectPageCss() {
+  return readStylesheets().join('\n');
+}
+
+function reviewsComponentCss() {
+  return readStylesheets()
+    .filter((css) => css.includes('review-view-more'))
+    .join('\n');
 }
 
 describe('reviews page testimonials', () => {
@@ -58,8 +72,12 @@ describe('reviews page testimonials', () => {
     expect(css).toContain('align-items:stretch');
 
     displayReviews.forEach((review) => {
-      const card = $(`.review-card[data-keywords="${review.keywords.join(',')}"]`)
-        .filter((_, el) => $(el).find('.review-author').text() === review.author)
+      const card = $(
+        `.review-card[data-keywords="${review.keywords.join(',')}"]`,
+      )
+        .filter(
+          (_, el) => $(el).find('.review-author').text() === review.author,
+        )
         .first();
       expect(card.length).toBe(1);
       if (review.text) {
@@ -67,7 +85,16 @@ describe('reviews page testimonials', () => {
       } else {
         expect(card.find('.review-text')).toHaveLength(0);
       }
-      expect(card.find('.review-date').text()).toBe(review.date);
+      expect(card.find('.review-date').attr('datetime')).toBe(review.date);
+      expect(card.find('.review-date').text().trim()).toBe(
+        formatReviewDate(review.date),
+      );
+      expect(card.find('.review-age').attr('data-review-date')).toBe(
+        review.date,
+      );
+      expect(card.find('.review-age').text().trim()).toBe(
+        formatRelativeReviewDate(review.date),
+      );
       expect(card.find('.review-stars').attr('aria-label')).toBe(
         `${review.rating} out of 5 stars`,
       );
@@ -91,7 +118,15 @@ describe('reviews page testimonials', () => {
       const detail = $(`#${detailId}`);
       expect(detail.length).toBe(1);
       expect(detail.find('.review-author').text()).toBe(review.author);
-      expect(detail.find('.review-date').text()).toBe(review.date);
+      expect(detail.find('time.review-date').attr('datetime')).toBe(
+        review.date,
+      );
+      expect(detail.find('time.review-date').text().trim()).toBe(
+        formatReviewDate(review.date),
+      );
+      expect(detail.find('.review-age').text().trim()).toBe(
+        formatRelativeReviewDate(review.date),
+      );
       expect(detail.find('.review-stars').attr('aria-label')).toBe(
         `${review.rating} out of 5 stars`,
       );
@@ -102,8 +137,50 @@ describe('reviews page testimonials', () => {
       }
     });
 
-    expect($('script[src="/js/reviews-lightbox.js"]').length).toBeGreaterThan(0);
+    expect($('script[src="/js/reviews-lightbox.js"]').length).toBeGreaterThan(
+      0,
+    );
     expect(css).toContain('overflow-y:auto');
     expect(css).toContain('prefers-reduced-motion:reduce');
+  });
+
+  it('keeps View more padding at the 480px breakpoint that zeros .button', () => {
+    const link = $('.review-view-more').first();
+    const className = link.attr('class') || '';
+    expect(className.split(/\s+/)).toEqual(
+      expect.arrayContaining(['button', 'small', 'review-view-more']),
+    );
+
+    const componentCss = reviewsComponentCss();
+    const mobileAt = Math.max(
+      componentCss.indexOf('max-width:480px'),
+      componentCss.indexOf('width<=480px'),
+    );
+    expect(mobileAt).toBeGreaterThan(-1);
+    const mobileRule = componentCss.slice(mobileAt, mobileAt + 500);
+    expect(mobileRule).toContain('review-view-more');
+    expect(mobileRule).toMatch(/min-height:\s*44px/);
+    expect(mobileRule).toMatch(/padding:\s*10px\s+18px/);
+  });
+
+  it('enlarges only the reviews lightbox arrows', () => {
+    const componentCss = reviewsComponentCss();
+    expect(componentCss).toContain(
+      '.review-fancybox .fancybox-navigation .fancybox-button',
+    );
+    expect(componentCss).toMatch(
+      /\.review-fancybox \.fancybox-navigation \.fancybox-button\{[^}]*width:64px[^}]*height:64px/,
+    );
+
+    const mobileAt = Math.max(
+      componentCss.indexOf('max-width:736px'),
+      componentCss.indexOf('width<=736px'),
+    );
+    expect(mobileAt).toBeGreaterThan(-1);
+    const mobileCss = componentCss.slice(mobileAt, mobileAt + 1500);
+    expect(mobileCss).toContain('fancybox-navigation');
+    expect(mobileCss).toMatch(/width:\s*48px/);
+    expect(mobileCss).toMatch(/height:\s*48px/);
+    expect(componentCss).toContain('outline:2px solid var(--color-accent)');
   });
 });
