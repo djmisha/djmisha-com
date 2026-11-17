@@ -9,12 +9,12 @@ import {
 import reviewsData from '../../data/reviews.json';
 
 const { totalRating, totalReviews, keywords, reviews } = reviewsData;
-const reviewsWithText = reviews.filter(
-  (review) => review.text.trim().length > 0,
-);
-const ratingOnlyReviews = reviews.filter(
-  (review) => review.text.trim().length === 0,
-);
+const reviewsWithText = reviews
+  .filter((review) => review.text.trim().length > 0)
+  .sort((a, b) => b.time - a.time);
+const ratingOnlyReviews = reviews
+  .filter((review) => review.text.trim().length === 0)
+  .sort((a, b) => b.time - a.time);
 const displayReviews = [...reviewsWithText, ...ratingOnlyReviews];
 
 // Compute badge counts from actual review keyword tags (ensures consistency
@@ -78,7 +78,11 @@ const reviewsDesc =
   <div class="reviews-grid">
     {
       displayReviews.map((review) => (
-        <article class="review-card" data-keywords={review.keywords.join(',')}>
+        <article
+          class="review-card"
+          data-keywords={review.keywords.join(',')}
+          data-review-time={review.time}
+        >
           <div class="review-card-header">
             {review.profilePhoto ? (
               <img
@@ -407,7 +411,7 @@ const reviewsDesc =
   .review-lightbox__text {
     margin: 0;
     color: var(--color-text);
-    font-size: clamp(1.125rem, 0.95rem + 1.1vw, 1.7rem);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
     font-weight: 300;
     line-height: 1.65;
     white-space: pre-line;
@@ -423,9 +427,11 @@ const reviewsDesc =
     width: 64px;
     height: 64px;
     margin: 0;
+    opacity: 1;
     padding: 16px;
     top: 50%;
     transform: translateY(-50%);
+    visibility: visible;
     background: transparent;
     border: 0;
     border-radius: var(--border-radius);
@@ -464,6 +470,10 @@ const reviewsDesc =
     outline-offset: 3px;
   }
 
+  :global(.review-fancybox .fancybox-navigation) {
+    z-index: 99995;
+  }
+
   :global(.review-fancybox .fancybox-navigation .fancybox-button.disabled),
   :global(
     .review-fancybox .fancybox-navigation .fancybox-button.disabled:hover
@@ -486,26 +496,32 @@ const reviewsDesc =
     }
 
     .review-lightbox__scroll {
-      padding-right: 5rem;
-      padding-left: 5rem;
+      padding-right: 1rem;
+      padding-bottom: 8rem;
+      padding-left: 1rem;
+    }
+
+    :global(.review-fancybox .fancybox-navigation) {
+      position: absolute;
+      right: auto;
+      bottom: 3rem;
+      left: 50%;
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      width: auto;
+      transform: translateX(-50%);
     }
 
     :global(.review-fancybox .fancybox-navigation .fancybox-button) {
+      position: relative;
+      top: auto;
+      right: auto;
+      left: auto;
       width: 48px;
       height: 48px;
+      transform: none;
       padding: 10px;
-    }
-
-    :global(
-      .review-fancybox .fancybox-navigation .fancybox-button--arrow_left
-    ) {
-      left: 8px;
-    }
-
-    :global(
-      .review-fancybox .fancybox-navigation .fancybox-button--arrow_right
-    ) {
-      right: 8px;
     }
   }
 

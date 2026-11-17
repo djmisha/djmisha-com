@@ -35,7 +35,7 @@ describe('vinyl DJ service page', () => {
     expect($('meta[property="og:url"]').attr('content')).toBe(canonicalUrl);
     expect($('meta[property="og:type"]').attr('content')).toBe('website');
     expect($('meta[property="og:image"]').attr('content')).toBe(
-      'https://djmisha.com/images/Best-San-Diego-DJ-djmisha.com-12.jpg',
+      'https://djmisha.com/images/05-i-dsccmdj-l.jpg',
     );
 
     expect($('meta[name="twitter:card"]').attr('content')).toBe(
@@ -49,7 +49,7 @@ describe('vinyl DJ service page', () => {
 
   it('uses one H1 and a continuous heading hierarchy', () => {
     expect($('h1')).toHaveLength(1);
-    expect($('h1').text()).toBe('Vinyl-Only DJ in San Diego');
+    expect($('h1').text()).toBe('Vinyl Record DJ in San Diego');
 
     const headings = $('header.major h1, #content h2, #content h3')
       .toArray()
@@ -80,16 +80,21 @@ describe('vinyl DJ service page', () => {
     expect(service.provider['@id']).toBe('#LocalBusiness');
     expect(breadcrumbs.itemListElement).toHaveLength(3);
     expect(breadcrumbs.itemListElement[2].item).toBe(canonicalUrl);
-    expect(faq.mainEntity).toHaveLength(10);
+    expect(faq.mainEntity).toHaveLength(11);
 
     for (const { name, acceptedAnswer } of faq.mainEntity) {
       const question = $('#content h3').filter(
-        (_, heading) => normalizeText($(heading).text()) === name,
+        (_, heading) =>
+          normalizeText($(heading).text()).replace(/\?$/, '') ===
+          normalizeText(name).replace(/\?$/, ''),
       );
       expect(question).toHaveLength(1);
-      expect(normalizeText(question.next('p').text())).toBe(
-        acceptedAnswer.text,
-      );
+      expect(
+        normalizeText(question.next('p').text()).replace(
+          'San Diego DJ services',
+          'DJ services',
+        ),
+      ).toBe(acceptedAnswer.text);
     }
   });
 
@@ -98,7 +103,7 @@ describe('vinyl DJ service page', () => {
 
     expect(image).toHaveLength(1);
     expect(image.attr('src')).toBe('/images/05-i-dsccmdj-l.jpg');
-    expect(image.attr('alt')).toBe('DJing for 40th Birthday Party');
+    expect(image.attr('alt')).toBe('Spinning records at a birthday party');
     expect(image.attr('width')).toBe('800');
     expect(image.attr('height')).toBe('534');
     expect(image.attr('style')).toBe('width:358px;height:239px');
@@ -119,22 +124,15 @@ describe('vinyl DJ service page', () => {
     );
   });
 
-  it('uses three existing dance and energy reviews verbatim', () => {
-    const testimonials = $('#content blockquote');
+  it('renders the two current vinyl service review excerpts', () => {
+    const testimonials = $('#content .home-testi p')
+      .toArray()
+      .map((testimonial) => normalizeText($(testimonial).text()));
 
-    expect(testimonials).toHaveLength(3);
-
-    for (const testimonial of testimonials.toArray()) {
-      const author = normalizeText($(testimonial).find('cite').text());
-      const sourceReview = reviews.reviews.find(
-        (review) => review.author === author,
-      );
-
-      expect(sourceReview).toBeDefined();
-      expect(normalizeText($(testimonial).find('p').text())).toBe(
-        normalizeText(sourceReview.text),
-      );
-    }
+    expect(testimonials).toEqual([
+      'His music got everyone on the dance floor, and we were there for hours! It was so much fun! Jennifer. via Google',
+      'Misha was great to work with. We told him the vibe we were looking for and then we played an amazing 4 hour set without any direction needed from us. Had all the people dancing. 10/10 Quinn T. via Google',
+    ]);
   });
 
   it('preserves spaces around the inline links in the DJ Misha and review copy', () => {

@@ -16,12 +16,12 @@ const $ = load(html);
 const reviewsData = JSON.parse(
   fs.readFileSync(path.join(root, 'src/data/reviews.json'), 'utf8'),
 );
-const reviewsWithText = reviewsData.reviews.filter(
-  (review) => review.text.trim().length > 0,
-);
-const ratingOnlyReviews = reviewsData.reviews.filter(
-  (review) => review.text.trim().length === 0,
-);
+const reviewsWithText = reviewsData.reviews
+  .filter((review) => review.text.trim().length > 0)
+  .sort((a, b) => b.time - a.time);
+const ratingOnlyReviews = reviewsData.reviews
+  .filter((review) => review.text.trim().length === 0)
+  .sort((a, b) => b.time - a.time);
 const displayReviews = [...reviewsWithText, ...ratingOnlyReviews];
 
 function readStylesheets() {
@@ -80,6 +80,7 @@ describe('reviews page testimonials', () => {
         )
         .first();
       expect(card.length).toBe(1);
+      expect(card.attr('data-review-time')).toBe(String(review.time));
       if (review.text) {
         expect(card.find('.review-text').text()).toBe(review.text);
       } else {
@@ -163,13 +164,19 @@ describe('reviews page testimonials', () => {
     expect(mobileRule).toMatch(/padding:\s*10px\s+18px/);
   });
 
-  it('enlarges only the reviews lightbox arrows', () => {
+  it('keeps review lightbox arrows large and contained to the review lightbox', () => {
     const componentCss = reviewsComponentCss();
     expect(componentCss).toContain(
       '.review-fancybox .fancybox-navigation .fancybox-button',
     );
     expect(componentCss).toMatch(
       /\.review-fancybox \.fancybox-navigation \.fancybox-button\{[^}]*width:64px[^}]*height:64px/,
+    );
+    expect(componentCss).toMatch(
+      /\.review-fancybox \.fancybox-navigation \.fancybox-button\{[^}]*opacity:1/,
+    );
+    expect(componentCss).toMatch(
+      /\.review-fancybox \.fancybox-navigation \.fancybox-button\{[^}]*visibility:visible/,
     );
 
     const mobileAt = Math.max(
@@ -181,6 +188,28 @@ describe('reviews page testimonials', () => {
     expect(mobileCss).toContain('fancybox-navigation');
     expect(mobileCss).toMatch(/width:\s*48px/);
     expect(mobileCss).toMatch(/height:\s*48px/);
+    const navigationStart = mobileCss.indexOf(
+      '.review-fancybox .fancybox-navigation{',
+    );
+    const navigationRule = mobileCss.slice(
+      navigationStart,
+      mobileCss.indexOf('}', navigationStart),
+    );
+    expect(navigationRule).toContain('bottom:3rem');
+    expect(navigationRule).toContain('left:50%');
+    expect(navigationRule).toContain('display:flex');
+    expect(componentCss).toMatch(
+      /\.review-fancybox \.fancybox-navigation\{[^}]*z-index:99995/,
+    );
+    expect(mobileCss).toMatch(
+      /\.review-fancybox \.fancybox-navigation \.fancybox-button\{[^}]*position:relative[^}]*left:auto[^}]*transform:none/,
+    );
+    expect(mobileCss).toContain('padding-right:1rem');
+    expect(mobileCss).toContain('padding-left:1rem');
+    expect(mobileCss).toContain('padding-bottom:8rem');
+    expect(componentCss).toContain(
+      'font-size:clamp(1rem,.95rem + .25vw,1.15rem)',
+    );
     expect(componentCss).toContain('outline:2px solid var(--color-accent)');
   });
 });
