@@ -65,6 +65,71 @@ describe('reviews page testimonials', () => {
     expect($('script[src="/js/reviews-filter.js"]').length).toBeGreaterThan(0);
   });
 
+  it('renders each reviewer photo on its card and lightbox', () => {
+    const avatarDir = path.join(root, 'public/images/review-avatars');
+    const availablePhotos = fs
+      .readdirSync(avatarDir)
+      .filter((filename) => filename.endsWith('.jpg'))
+      .map((filename) => `/images/review-avatars/${filename}`)
+      .sort();
+    const localAvatarReviews = displayReviews.filter((review) =>
+      review.profilePhoto?.startsWith('/images/review-avatars/'),
+    );
+
+    expect(
+      localAvatarReviews.map((review) => review.profilePhoto).sort(),
+    ).toEqual(availablePhotos);
+
+    displayReviews.forEach((review, index) => {
+      const card = $('.review-card').eq(index);
+      const avatar = card.find('img.review-avatar');
+      if (!review.profilePhoto) {
+        expect(avatar).toHaveLength(0);
+        return;
+      }
+
+      expect(avatar.attr('src')).toBe(review.profilePhoto);
+      expect(avatar.attr('alt')).toBe(`${review.author} profile photo`);
+      expect(avatar.attr('width')).toBe('68');
+      expect(avatar.attr('height')).toBe('68');
+      expect(
+        fs.existsSync(
+          path.join(root, 'public', review.profilePhoto.replace(/^\//, '')),
+        ),
+      ).toBe(true);
+      const lightboxAvatar = $(`#review-detail-${review.id}`).find(
+        'img.review-avatar',
+      );
+      expect(lightboxAvatar.attr('src')).toBe(review.profilePhoto);
+      expect(lightboxAvatar.attr('width')).toBe('96');
+      expect(lightboxAvatar.attr('height')).toBe('96');
+    });
+  });
+
+  it('centers the reviewer identity and sizes avatars for cards and lightboxes', () => {
+    expect(css).toMatch(
+      /\.review-card\[data-[^\]]+\] \.review-card-header\[data-[^\]]+\],\.review-lightbox\[data-[^\]]+\] \.review-card-header\[data-[^\]]+\]\{[^}]*flex-direction:column[^}]*align-items:center/,
+    );
+    expect(css).toMatch(
+      /\.review-card\[data-[^\]]+\] \.review-avatar\[data-[^\]]+\],\.review-card\[data-[^\]]+\] \.review-avatar-fallback\[data-[^\]]+\]\{[^}]*width:68px[^}]*height:68px/,
+    );
+    expect(css).toMatch(
+      /\.review-lightbox\[data-[^\]]+\] \.review-avatar\[data-[^\]]+\],\.review-lightbox\[data-[^\]]+\] \.review-avatar-fallback\[data-[^\]]+\]\{[^}]*width:96px[^}]*height:96px/,
+    );
+    expect(css).toMatch(
+      /\.review-when\[data-[^\]]+\]\{[^}]*justify-content:center/,
+    );
+  });
+
+  it('centers the stars and Read more action in review cards', () => {
+    expect(css).toMatch(
+      /\.review-card\[data-[^\]]+\] \.review-stars\[data-[^\]]+\],\.review-lightbox\[data-[^\]]+\] \.review-stars\[data-[^\]]+\]\{text-align:center\}/,
+    );
+    expect(css).toMatch(
+      /\.review-card__footer\[data-[^\]]+\]\{[^}]*text-align:center/,
+    );
+  });
+
   it('clamps card text in a 3/2/1 grid and keeps the full review in the HTML', () => {
     expect(css).toContain('grid-template-columns:repeat(3,minmax(0,1fr))');
     expect(css).toContain('grid-template-columns:repeat(2,minmax(0,1fr))');
@@ -112,8 +177,10 @@ describe('reviews page testimonials', () => {
       expect(link.attr('href')).toBe(`#${detailId}`);
       expect(link.attr('data-fancybox')).toBe('reviews');
       expect(link.attr('data-type')).toBe('inline');
-      expect(link.attr('aria-label')).toContain(review.author);
-      expect(link.text().trim()).toBe('View more');
+      expect(link.attr('aria-label')).toBe(
+        `Read more: full review by ${review.author}`,
+      );
+      expect(link.text().trim()).toBe('Read more');
       expect(link.is('a')).toBe(true);
 
       const detail = $(`#${detailId}`);
@@ -142,10 +209,17 @@ describe('reviews page testimonials', () => {
       0,
     );
     expect(css).toContain('overflow-y:auto');
+    expect(css).toContain('@media screen and (width>=737px)');
+    expect(css).toMatch(
+      /review-lightbox__scroll\[data-[^\]]+\]\{[^}]*flex-direction:column[^}]*display:flex/,
+    );
+    expect(css).toMatch(
+      /review-lightbox__inner\[data-[^\]]+\]\{margin-block:auto\}/,
+    );
     expect(css).toContain('prefers-reduced-motion:reduce');
   });
 
-  it('keeps View more padding at the 480px breakpoint that zeros .button', () => {
+  it('keeps Read more padding at the 480px breakpoint that zeros .button', () => {
     const link = $('.review-view-more').first();
     const className = link.attr('class') || '';
     expect(className.split(/\s+/)).toEqual(

@@ -2,7 +2,7 @@
   "lastFetched": "2026-05-06T18:37:31.659Z",
   "placeId": "ChIJE04UMcv_3IARGLQqdNgQ_j8",
   "totalRating": 5,
-  "totalReviews": 91,
+  "totalReviews": 92,
   "keywords": [
     "saxophonist",
     "dancing",
@@ -13,13 +13,23 @@
   ],
   "keywordCounts": {
     "saxophonist": 19,
-    "dancing": 40,
-    "dance floor": 15,
-    "playlist": 5,
+    "dancing": 41,
+    "dance floor": 16,
+    "playlist": 6,
     "music selection": 25,
-    "easy to work with": 12
+    "easy to work with": 13
   },
   "reviews": [
+    {
+      "id": "4f8d5396",
+      "author": "Nyssa Stokes",
+      "rating": 5,
+      "text": "We had an amazing experience with DJ Misha at our wedding.  He was very responsive, professional, and easy to work with leading up to the event. He understood the vibe I was going for, and curated our dance playlist perfectly with a mix of house music and classics.  The dance floor was full of energy from the moment he started, and it never stopped.  Our guests are still raving about how it was the best dance floor they've experienced at a wedding! It was the best day ever and I truly can't recommend him enough!!",
+      "time": 1784246400,
+      "date": "2026-07-17",
+      "keywords": ["dancing", "dance floor", "playlist", "easy to work with"],
+      "profilePhoto": "/images/review-avatars/nyssa-stokes.jpg"
+    },
     {
       "id": "6714707f",
       "author": "Michele Arrowsmith-Gordon",
@@ -27,10 +37,8 @@
       "text": "Working with him was an absolute pleasure! He was amazing to work with throughout the entire process—organized, responsive, professional, and incredibly calm under pressure. Communication was always seamless, and his attention to detail and preparedness made everything run so smoothly. On the wedding day, he brought such great energy and helped create an absolutely unforgettable celebration. It's always wonderful to work alongside vendors who are not only talented at what they do but also genuinely great people to collaborate with. I would happily recommend him and look forward to working together again!",
       "time": 1794787200,
       "date": "2026-11-16",
-      "keywords": [
-        "easy to work with"
-      ],
-      "profilePhoto": null
+      "keywords": ["easy to work with"],
+      "profilePhoto": "/images/review-avatars/michele-arrowsmithgordon.jpg"
     },
     {
       "id": "fb39dea6",
@@ -39,12 +47,8 @@
       "text": "I cannot recommend DJ Misha enough! He was truly so much more than just a DJ for our wedding, and we are SO grateful we found him!\n\nWhat sets Misha apart is that he just *gets it*. He understands weddings, how to properly MC, how to keep the night flowing, and most importantly, how to create an incredible experience for your guests. He gave us so many great recommendations throughout the planning process based on his experience, and looking back, he was spot on with all of them.\n\nWhen it comes to the music, he puts SO much thought and intention into everything he does. He really takes the time to understand your music taste, analyze your playlists, read the crowd, and figure out how to keep the energy going all night.\n\nAnd bringing in saxophonist Jason Whitmore was NEXT LEVEL! Jason was absolutely incredible, and the combination of the two of them was better than we ever could have imagined. The live sax added such an amazing energy to the party and took the entire experience to another level.\n\nIf you’re a music lover like we are, especially if you love EDM, house, pop, and throwing one heck of a party, DJ Misha is your guy. He knows how to create an atmosphere where everyone is having the absolute best time, and you can tell he genuinely cares about making your wedding incredible.\n\nWe couldn’t have asked for a better wedding DJ. Misha absolutely crushed it, and we would hire him again in a heartbeat. RUN DO NOT WALK!",
       "time": 1794441600,
       "date": "2026-11-12",
-      "keywords": [
-        "saxophonist",
-        "playlist",
-        "music selection"
-      ],
-      "profilePhoto": null
+      "keywords": ["saxophonist", "playlist", "music selection"],
+      "profilePhoto": "/images/review-avatars/patricia-miller.jpg"
     },
     {
       "id": "3d9e2594",
@@ -53,22 +57,18 @@
       "text": "We couldn’t have asked for a better DJ for our wedding! Misha did an amazing job reading the room and making sure the dance floor stayed packed all night. He really helped create such a fun atmosphere for everyone and was reliable and very responsive through the whole process. Jason on the sax was also a huge hit and such a fun addition to the night! The combination of great music and live sax made the dance floor experience even more memorable. Our guests had a blast, and we’re so happy we chose them to be part of our special day. We would absolutely recommend them to anyone looking for a DJ and sax player duo who know how to keep the party going!",
       "time": 1792540800,
       "date": "2026-10-21",
-      "keywords": [
-        "saxophonist",
-        "dancing",
-        "dance floor"
-      ],
-      "profilePhoto": null
+      "keywords": ["saxophonist", "dancing", "dance floor"],
+      "profilePhoto": "/images/review-avatars/megan-enright.jpg"
     },
     {
       "id": "72556da1",
       "author": "Cheeo Li",
       "rating": 5,
-      "text": "Misha handled all the speeches and portions of the wedding so smoothly! He also played such a fire set that we all ended up like this haha. Would highly recommend.",
+      "text": "Misha handled all the speeches and portions of the wedding so smoothly! He also played such a fire set that we all ended up like this [picture of guys dancing with their shirt off] haha. Would highly recommend.",
       "time": 1791849600,
       "date": "2026-10-13",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/cheeo-li.jpg"
     },
     {
       "id": "6f388345",
@@ -77,11 +77,8 @@
       "text": "DJ Misha and Jason Whitmore (sax) completely understood the assignment when we hired them for my wife’s 40th birthday. Very professional, responsive, had great feedback on our playlists and worked with us to curate the right vibe for our celebration. Music can make or break an event and Misha definitely made it. Jason was memorable and added a flare of fun on sax. Highly recommend!",
       "time": 1791244800,
       "date": "2026-10-06",
-      "keywords": [
-        "saxophonist",
-        "playlist"
-      ],
-      "profilePhoto": null
+      "keywords": ["saxophonist", "playlist"],
+      "profilePhoto": "/images/review-avatars/robert-guiles.jpg"
     },
     {
       "id": "1690f927",
@@ -105,11 +102,7 @@
       "text": "Misha and the saxophonist Jason created an amazing atmosphere for our wedding that kept the dance floor packed all night!",
       "time": 1787356800,
       "date": "2026-08-22",
-      "keywords": [
-        "saxophonist",
-        "dancing",
-        "dance floor"
-      ],
+      "keywords": ["saxophonist", "dancing", "dance floor"],
       "profilePhoto": null
     },
     {
@@ -119,10 +112,7 @@
       "text": "DJ Misha was incredible at our wedding. He was able to curate a playlist that incorporated the music we wanted to listen to along with additional music that our guests really enjoyed.",
       "time": 1787356800,
       "date": "2026-08-22",
-      "keywords": [
-        "playlist",
-        "music selection"
-      ],
+      "keywords": ["playlist", "music selection"],
       "profilePhoto": null
     },
     {
@@ -147,9 +137,7 @@
       "text": "Amazing experience with DJ Misha! Not only was he super easy to work with but he arrived early to set up, I was able to fully relax because he handled everything with the music, highly recommend!",
       "time": 1775606400,
       "date": "2026-04-08",
-      "keywords": [
-        "easy to work with"
-      ],
+      "keywords": ["easy to work with"],
       "profilePhoto": null
     },
     {
@@ -159,12 +147,8 @@
       "text": "Misha did an incredible job performing at our annual Xmas party in 2025. From the start he was a straight pro…coming the week before to scout the space, check acoustics, design the stage/floorplan. The night couldn’t have gone better. Playlist, vibe, energy were fire. Dance floor was packed the entire evening. Everyone had a fantastic time in huge part to his performance. Couldn’t possibly recommend him more than I do and he’ll undoubtedly be back in 2026.",
       "time": 1770339600,
       "date": "2026-02-06",
-      "keywords": [
-        "dancing",
-        "dance floor",
-        "playlist"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "dance floor", "playlist"],
+      "profilePhoto": "/images/review-avatars/george-chmiel.jpg"
     },
     {
       "id": "fcb52150",
@@ -173,12 +157,7 @@
       "text": "DJ Misha was awesome. Truly the highlight of our wedding weekend. He brought Jason on Sax and these two lit up the dance floor. He customized our playlist based on our feedback and read the audience perfectly to keep us all dancing for over 4 hours. Best night of my life. Thank you, Misha!",
       "time": 1762390800,
       "date": "2025-11-06",
-      "keywords": [
-        "saxophonist",
-        "dancing",
-        "dance floor",
-        "playlist"
-      ],
+      "keywords": ["saxophonist", "dancing", "dance floor", "playlist"],
       "profilePhoto": null
     },
     {
@@ -188,10 +167,7 @@
       "text": "DJ Misha was a huge hit and wonderful collaborator! The shores of Flathead Lake were truly bumping and the set (and sax) was exactly what we hoped for, keeping people dancing hard from golden hour to dark. As a bonus, DJ Misha also worked with us to put together a fun track with a voicemail from a friend talking about the groom to the bride before they met with a drop to start the party. Highly recommend DJ Misha!",
       "time": 1762390800,
       "date": "2025-11-06",
-      "keywords": [
-        "saxophonist",
-        "dancing"
-      ],
+      "keywords": ["saxophonist", "dancing"],
       "profilePhoto": null
     },
     {
@@ -201,10 +177,7 @@
       "text": "I've had the pleasure of working alongside DJ Misha at a few weddings, and every time he brings an incredible vibe. He finds a way to blend his style of music into the energy of a wedding, fun and full of life! You can tell he truly knows how to read a crowd and keep guests on the dance floor. Highly recommend him for any event where you want great energy and a unique vibe.",
       "time": 1762390800,
       "date": "2025-11-06",
-      "keywords": [
-        "dancing",
-        "dance floor"
-      ],
+      "keywords": ["dancing", "dance floor"],
       "profilePhoto": null
     },
     {
@@ -214,10 +187,8 @@
       "text": "I’ve had the pleasure of working with DJ Misha several times, and he never disappoints. His music selection is always spot on, perfectly reading the crowd and keeping the energy high from start to finish. You can truly see his passion for the craft—it shows in the way he curates every set with care and enthusiasm. Highly recommend him for any event!",
       "time": 1759708800,
       "date": "2025-10-06",
-      "keywords": [
-        "music selection"
-      ],
-      "profilePhoto": null
+      "keywords": ["music selection"],
+      "profilePhoto": "/images/review-avatars/scott-m.jpg"
     },
     {
       "id": "3d041aca",
@@ -236,12 +207,8 @@
       "text": "DJ Misha was a really fun DJ, kept the dance floor busy and was really easy to work with.  I would highly recommend if you want a fun night!",
       "time": 1757116800,
       "date": "2025-09-06",
-      "keywords": [
-        "dancing",
-        "dance floor",
-        "easy to work with"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "dance floor", "easy to work with"],
+      "profilePhoto": "/images/review-avatars/rebecca-wright.jpg"
     },
     {
       "id": "3cd304b7",
@@ -250,9 +217,7 @@
       "text": "Everything was flawless through out the whole process from our first call to the last song of the night! Ultimate dance party 🪩",
       "time": 1757116800,
       "date": "2025-09-06",
-      "keywords": [
-        "dancing"
-      ],
+      "keywords": ["dancing"],
       "profilePhoto": null
     },
     {
@@ -282,11 +247,7 @@
       "text": "DJ Misha put up a stellar performance at our wedding! Him and Jason on the Sax kept the good vibes going from the ceromony to cocktail hour to reception, and kept our guests partying on the dance floor all night long. Leading up to the wedding, Misha was with us every step of the way. He was very responsive, whether it was text messages or hopping on calls to make sure we were all on the same page before the big day, he made us feel very confident that we were in good hands. And he didn’t disappoint - 10/10 would recommend!",
       "time": 1749168000,
       "date": "2025-06-06",
-      "keywords": [
-        "saxophonist",
-        "dancing",
-        "dance floor"
-      ],
+      "keywords": ["saxophonist", "dancing", "dance floor"],
       "profilePhoto": null
     },
     {
@@ -296,11 +257,8 @@
       "text": "DJ Misha was right on point! Very personable, helpful in picking out play list, professional and easy to communicate with. We also had Jason out to play the wonderful saxophone. They were both wonderful and our wedding guests absolutely love them. Thank you for making our event memorable. You guys rock!!!",
       "time": 1749168000,
       "date": "2025-06-06",
-      "keywords": [
-        "saxophonist",
-        "easy to work with"
-      ],
-      "profilePhoto": null
+      "keywords": ["saxophonist", "easy to work with"],
+      "profilePhoto": "/images/review-avatars/malinda-watkins.jpg"
     },
     {
       "id": "df996c43",
@@ -309,11 +267,7 @@
       "text": "We hired DJ Misha for my husband’s 50th birthday party, and he absolutely nailed it! From the moment the music started, the energy was incredible.\n\nDJ Misha was professional, easy to work with, and completely understood the vibe we wanted for the evening. The playlist was a perfect mix of classics, crowd-pleasers, and our personal requests—it couldn’t have been better.\n\nOur guests couldn’t stop raving about how much fun they had, and it was all thanks to DJ Misha. If you’re looking for a DJ who will elevate your event and create an unforgettable atmosphere, look no further!",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "playlist",
-        "music selection",
-        "easy to work with"
-      ],
+      "keywords": ["playlist", "music selection", "easy to work with"],
       "profilePhoto": null
     },
     {
@@ -338,11 +292,7 @@
       "text": "DJ Misha was fantastic at Adam & Alice’s wedding on 09/28/24! He kept the energy high and the dance floor packed all night. Misha was professional, easy to work with, and perfectly captured the couple’s vision. He blended their special requests effortlessly, making the night feel personal and memorable.\n\nHighly recommend DJ Misha for any event—he truly knows how to create an amazing experience!\n\n~Penjo",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor",
-        "easy to work with"
-      ],
+      "keywords": ["dancing", "dance floor", "easy to work with"],
       "profilePhoto": null
     },
     {
@@ -352,11 +302,7 @@
       "text": "DJ Misha is the best!!! Truly had an amazing experience working with him for our wedding. He listened and executed my vision perfectly! When choosing a DJ, I really was looking for someone that would get everyone up on the dance floor and keep the party going and he exceeded all my expectations. I also hired Jason Whitmore sax player to play alongside DJ Misha and truly the duo was the most amazing part of the wedding, all my guests were so impressed and still cannot stop talking about it! The combo DJ and sax is incredible!!! I would recommend DJ Misha in a heart beat!!! Thank you for making our wedding so memorable! - Brittany & Eric",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "saxophonist",
-        "dancing",
-        "dance floor"
-      ],
+      "keywords": ["saxophonist", "dancing", "dance floor"],
       "profilePhoto": null
     },
     {
@@ -366,9 +312,7 @@
       "text": "DJ Misha went above and beyond to make our wedding into the best party we've ever been too! He's thoughtful, talented and knows how to engage the crowd. He even sent us a personal playlist from the night after our wedding to enjoy for years to come. We are already thinking of events we can host to hire him again, we were lucky to have him and Jason.",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "playlist"
-      ],
+      "keywords": ["playlist"],
       "profilePhoto": null
     },
     {
@@ -378,11 +322,8 @@
       "text": "DJ Misha was awesome! Very communicative. Gave him some ideas of vibe we wanted for our wedding but asked him to read the room and do what he does best! …..and oh my gosh did he deliver and made our vision of having an epic dance party come alive!!! All of our guests raved about the music & dancing. Even our elderly guests who we didn’t think were capable of loosening up were grooving on the dance floor. THANK YOU DJ Misha for helping make our wedding reception magical and unforgettable!!!!",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "dance floor"],
+      "profilePhoto": "/images/review-avatars/alice-johnson.jpg"
     },
     {
       "id": "6bb6dbf4",
@@ -391,10 +332,8 @@
       "text": "We hired DJ Misha for our wedding and we had a great experience! He was so easy to work with because he's very responsive, on time and communicates well. We were able to create playlists to give him an idea of what we wanted for our ceremony, dinner and reception and he kept our reception party going until it ended. He even asked what our dress code was so he could dress accordingly! Highly recommend!",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "easy to work with"
-      ],
-      "profilePhoto": null
+      "keywords": ["easy to work with"],
+      "profilePhoto": "/images/review-avatars/katie-quan.jpg"
     },
     {
       "id": "bd36b0c0",
@@ -409,7 +348,7 @@
         "dance floor",
         "easy to work with"
       ],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/julia-zhang.jpg"
     },
     {
       "id": "e099315f",
@@ -418,12 +357,8 @@
       "text": "DJ Misha was so great to work with for our wedding this April! We had a tight budget but wanted to have a live music aspect, and he worked it out so quickly. We loved his dance mix of our playlist and ability to customize our whole night with all the music we love. Can't forget to send a huge shout out to Brian with the Sax, who was a HIT at our reception.",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "saxophonist",
-        "dancing",
-        "playlist"
-      ],
-      "profilePhoto": null
+      "keywords": ["saxophonist", "dancing", "playlist"],
+      "profilePhoto": "/images/review-avatars/katie-heitner.jpg"
     },
     {
       "id": "a6f06f92",
@@ -433,7 +368,7 @@
       "time": 1746489600,
       "date": "2025-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/elegance-frame.jpg"
     },
     {
       "id": "b62a0905",
@@ -442,11 +377,8 @@
       "text": "I loved working with Dj Misha! He’s very professional and I could tell he was great at communicating with the couple, guests, and other vendors. His selection of music is amazing and fresh! Super fun and modern soundtracks that make you want to dance 👍🏼",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "dancing",
-        "music selection"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "music selection"],
+      "profilePhoto": "/images/review-avatars/maria-davis.jpg"
     },
     {
       "id": "619317e4",
@@ -471,12 +403,8 @@
       "text": "I can't recommend Dj Misha enough! Their energy and professionalism are top-notch, keeping the dance floor packed all night. The music selection was perfect, blending genres to appeal to everyone. They were great to work with and listened to our requests. If you want an unforgettable party, Dj Misha is the way to go!",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor",
-        "music selection"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "dance floor", "music selection"],
+      "profilePhoto": "/images/review-avatars/mobile-team.jpg"
     },
     {
       "id": "36e3f3bf",
@@ -485,11 +413,8 @@
       "text": "Awesome, experience working alongside Misha! He actually played energetic creative music, unlike many who plug n play Wedding Top 50. Set a great soundscape for the beginning portion of the event and finished it off with up beat, unique and some popular tunes. I could tell he did a great job of reading the atmosphere and crowd, enabling him to play the perfect mix. If you’re looking for a DJ and not a Spotify playlist hire Misha!!\n\nBest,\nColby",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "playlist",
-        "music selection"
-      ],
-      "profilePhoto": null
+      "keywords": ["playlist", "music selection"],
+      "profilePhoto": "/images/review-avatars/colby-smith.jpg"
     },
     {
       "id": "f540008b",
@@ -498,10 +423,7 @@
       "text": "DJ Misha was great and easy to work with. He also went above and beyond and found an amazing sax player (Jason Whitmore) to accompany him. Highly recommend!",
       "time": 1746489600,
       "date": "2025-05-06",
-      "keywords": [
-        "saxophonist",
-        "easy to work with"
-      ],
+      "keywords": ["saxophonist", "easy to work with"],
       "profilePhoto": null
     },
     {
@@ -512,7 +434,7 @@
       "time": 1746489600,
       "date": "2025-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/cameron-larkin.jpg"
     },
     {
       "id": "ce04500f",
@@ -522,7 +444,7 @@
       "time": 1746489600,
       "date": "2025-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/kimera-morrell.jpg"
     },
     {
       "id": "0f1a0acd",
@@ -532,7 +454,7 @@
       "time": 1746489600,
       "date": "2025-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/joe-sloan.jpg"
     },
     {
       "id": "c14f480d",
@@ -541,11 +463,7 @@
       "text": "10 out of 5 stars!  There isn’t a single thing I would have had Misha do differently . Misha played a huge role in making the wedding the perfect celebration  by curating a playlist that kept everyone on the dance floor the entire night! As a planner, he has been one of my favorite vendors to work with, communication was great, attention to detail for what our couple wanted was on point, he even was able to roll with the last minute changes that every wedding tends to have. As a planner, I cannot wait to recommend DJ Misha to my future couples!!",
       "time": 1714953600,
       "date": "2024-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor",
-        "playlist"
-      ],
+      "keywords": ["dancing", "dance floor", "playlist"],
       "profilePhoto": null
     },
     {
@@ -555,12 +473,8 @@
       "text": "DJ Misha was an absolute pleasure to work with!  We consulted with Misha to perform at our wedding in Nantucket, MA.  Despite communicating with him from across the country, Misha was extremely responsive throughout every stage of our planning process providing us with a lot of ease and comfort.\n\nThe music for our wedding was very important to us, and Misha understood our vision from the very beginning.  While we provided some guidance so that he could understand our style, we let him take a lot of creative freedom in curating the final playlist and it could not have been more perfect.  As the bride, I did not leave the dance floor once, and neither did any of our guests.  It was an absolute blast of a dance party and we could not recommend Misha enough!  Would highly recommend for your wedding or next party.\n\nThank you Misha!!!",
       "time": 1714953600,
       "date": "2024-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor",
-        "playlist"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "dance floor", "playlist"],
+      "profilePhoto": "/images/review-avatars/amanda-liew.jpg"
     },
     {
       "id": "38af5c16",
@@ -569,11 +483,8 @@
       "text": "DJ Misha was awesome. He was hired for my sisters wedding and the dance floor was so fun all night long. From beginning to end truly the music was perfect. He went the extra mile for me personally (I was the MOH). I wanted an intro/walk up song for my toast and he made it super easy and helped make my vision come to life perfectly. Highly recommend.",
       "time": 1714953600,
       "date": "2024-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "dance floor"],
+      "profilePhoto": "/images/review-avatars/caitlin-stoeckly.jpg"
     },
     {
       "id": "438aab28",
@@ -582,10 +493,8 @@
       "text": "DJ Misha set a great tone for our party. I wasn’t sure we needed a DJ but it made a big difference and all our guests raved about the music. He is friendly, easy to work with, and very dependable. He came early and set up easily. I highly recommend DJ Misha for any event!!",
       "time": 1714953600,
       "date": "2024-05-06",
-      "keywords": [
-        "easy to work with"
-      ],
-      "profilePhoto": null
+      "keywords": ["easy to work with"],
+      "profilePhoto": "/images/review-avatars/jennifer-golden.jpg"
     },
     {
       "id": "94fe245a",
@@ -601,7 +510,7 @@
         "playlist",
         "easy to work with"
       ],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/rachael-brennan.jpg"
     },
     {
       "id": "2ba5922c",
@@ -610,10 +519,7 @@
       "text": "DJ Misha did a fantastic job and San Diego Mission Bay Resort! He was professional and had a great selection of music for the couple. He also played perfectly with a saxophonist to create a super unique and fun experience.",
       "time": 1714953600,
       "date": "2024-05-06",
-      "keywords": [
-        "saxophonist",
-        "music selection"
-      ],
+      "keywords": ["saxophonist", "music selection"],
       "profilePhoto": null
     },
     {
@@ -623,10 +529,8 @@
       "text": "We hired Misha for my husbands bday party. The music was on point, and everyone was on the floor dancing. Misha was easy going and a nice person to work with. I definitely recommend him for your next event.",
       "time": 1714953600,
       "date": "2024-05-06",
-      "keywords": [
-        "dancing"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing"],
+      "profilePhoto": "/images/review-avatars/gaby-picquet.jpg"
     },
     {
       "id": "cd13294b",
@@ -635,11 +539,8 @@
       "text": "Misha was the DJ at our friend’s wedding in Nantucket, MA. He did an incredible job and kept the dance floor alive all night. I would highly recommend his services!",
       "time": 1714953600,
       "date": "2024-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "dance floor"],
+      "profilePhoto": "/images/review-avatars/nealon-weir.jpg"
     },
     {
       "id": "1d1f2c40",
@@ -659,7 +560,7 @@
       "time": 1714953600,
       "date": "2024-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/david-groves.jpg"
     },
     {
       "id": "ef671e33",
@@ -668,13 +569,8 @@
       "text": "DJ Misha was an incredible partner with us for our wedding, from the planning phase to the actual day of we seriously could not have asked for a better performance.\n\nWe hired DJ Misha to play the after party for our wedding at the Mission Bay Yacht Club in September from 10pm-12am. He also brought a saxophone player to add a live music element to the party and the sax player absolutely crushed it as a compliment to his DJ set.\n\nThrough the planning phase, he was very communicative and easy to reach which made our lives a lot easier. We met a few times to discuss our style of music, shared a playlist of our music preferences and style, and what we were going for with the after party and he was always receptive and transparent with his recommendations and feedback, which we truly appreciated.\n\nDJ Misha curated a set list of disco, house, and dance music for our after party that exceeded our expectations in every way. The sax player layered on to the performance helped make the best day of our lives even better.\n\nAlmost two months after our wedding we still have friends and family members raving about DJ Misha's performance that night. From our younger cousins to our older family members, everyone was getting down on the dance floor and had a memorable experience with us on our wedding day. Thanks, DJ Misha!!",
       "time": 1683331200,
       "date": "2023-05-06",
-      "keywords": [
-        "saxophonist",
-        "dancing",
-        "dance floor",
-        "playlist"
-      ],
-      "profilePhoto": null
+      "keywords": ["saxophonist", "dancing", "dance floor", "playlist"],
+      "profilePhoto": "/images/review-avatars/chris-r.jpg"
     },
     {
       "id": "ed1f6dea",
@@ -684,7 +580,7 @@
       "time": 1683331200,
       "date": "2023-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/karissa-shannon.jpg"
     },
     {
       "id": "0bff432f",
@@ -693,12 +589,7 @@
       "text": "We hired DJ Misha for my friend’s birthday party and he created an amazing atmosphere with his music from start to finish. People were bouncing through cocktail hour/dinner and sweating on the dance floor later in the night. He read the crowd perfectly and knew just what to play to get people moving. From start to finish he was really easy to work with and I appreciated that we didn’t have to create our own playlist (although we could have if we wanted to) instead describing the vibe we were looking for and he delivered!",
       "time": 1683331200,
       "date": "2023-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor",
-        "playlist",
-        "easy to work with"
-      ],
+      "keywords": ["dancing", "dance floor", "playlist", "easy to work with"],
       "profilePhoto": null
     },
     {
@@ -708,10 +599,7 @@
       "text": "DJ Misha was absolutely perfect for our event. The music he picked for our crowd was on point and set the tone perfectly. We also had Saxophone player Brian Pierini come and play throughout the party. This added touch was everything! Everyone raved about it! The way the two of these guys collaborate together just follows so perfectly through the event. I highly recommend them for your party. You won’t be disappointed!!!",
       "time": 1683331200,
       "date": "2023-05-06",
-      "keywords": [
-        "saxophonist",
-        "music selection"
-      ],
+      "keywords": ["saxophonist", "music selection"],
       "profilePhoto": null
     },
     {
@@ -721,11 +609,8 @@
       "text": "DJ Misha,\n\nThank you so much for making our wedding amazing! Everyone said it was the best wedding they’ve ever been to! Thank you for being attentive, caring and taking a vested interest in our needs/vision. You kept everyone on the dance floor all night! My wife and I highly HIGHLY recommend DJ Misha for any event, especially weddings!",
       "time": 1683331200,
       "date": "2023-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "dance floor"],
+      "profilePhoto": "/images/review-avatars/s.jpg"
     },
     {
       "id": "fa0c5315",
@@ -734,10 +619,8 @@
       "text": "DJ Misha was awesome! It was so fun to coordinate a wedding with his services! The bride and groom were very particular on music and he executing perfectly! He quite literally kept everyone dancing for THREE hours! The wedding party and guests couldn’t get enough!",
       "time": 1683331200,
       "date": "2023-05-06",
-      "keywords": [
-        "dancing"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing"],
+      "profilePhoto": "/images/review-avatars/gabrielle-connelly.jpg"
     },
     {
       "id": "b32777f2",
@@ -746,11 +629,8 @@
       "text": "DJ Misha was excellent for our event. We gave him a very light direction on the kind of music we wanted for the night and he took it from there! We threw him some curve balls as well along the way and he took it all in stride. I highly recommend him for any wedding or other party where you want to dance floor to really pop off.",
       "time": 1683331200,
       "date": "2023-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "dance floor"],
+      "profilePhoto": "/images/review-avatars/adrian-harris.jpg"
     },
     {
       "id": "37371a0f",
@@ -759,10 +639,7 @@
       "text": "DJ Misha did a terrific job at my client's wedding. Everyone was on the dance floor and raved about the music. Great job keeping everyone on their feet as well as the bride and groom who were the last to leave the dance floor. Thanks so much! It is all about the DJ at an event as we all know.",
       "time": 1683331200,
       "date": "2023-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor"
-      ],
+      "keywords": ["dancing", "dance floor"],
       "profilePhoto": null
     },
     {
@@ -773,7 +650,7 @@
       "time": 1683331200,
       "date": "2023-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/m-k.jpg"
     },
     {
       "id": "043d1b83",
@@ -783,7 +660,7 @@
       "time": 1683331200,
       "date": "2023-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/rachel-maher.jpg"
     },
     {
       "id": "13f966fa",
@@ -802,9 +679,7 @@
       "text": "I just wanted to say a massive thank you for playing at my recent wedding at Paradise point in San Diego.\nYou did a great job playing great music along with all our requests alongside Jason on Sax. Everyone had such a good night.\nThanks Again\nSarah",
       "time": 1683331200,
       "date": "2023-05-06",
-      "keywords": [
-        "saxophonist"
-      ],
+      "keywords": ["saxophonist"],
       "profilePhoto": null
     },
     {
@@ -824,12 +699,8 @@
       "text": "Amazing music selection and nice vibe on dance floor! Highly recommend Dj Misha fro your next event in San Diego area!",
       "time": 1683331200,
       "date": "2023-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor",
-        "music selection"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "dance floor", "music selection"],
+      "profilePhoto": "/images/review-avatars/kate-full.jpg"
     },
     {
       "id": "68ad7712",
@@ -859,7 +730,7 @@
       "time": 1683331200,
       "date": "2023-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/troy-cook.jpg"
     },
     {
       "id": "e9c1d6c2",
@@ -868,10 +739,7 @@
       "text": "We hired DJ Misha as our wedding DJ as we are very specific in our music tastes and we wanted our wedding music to be as untraditional as possible (no Usher/cupid shuffle etc). DJ Misha made our dream come true, he was easy to work with, had some great suggestions and made everything run smooth! Great person to work with!",
       "time": 1651795200,
       "date": "2022-05-06",
-      "keywords": [
-        "music selection",
-        "easy to work with"
-      ],
+      "keywords": ["music selection", "easy to work with"],
       "profilePhoto": null
     },
     {
@@ -882,7 +750,7 @@
       "time": 1651795200,
       "date": "2022-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/heather-byrdhenderson.jpg"
     },
     {
       "id": "5d71f1b6",
@@ -891,11 +759,8 @@
       "text": "DJ Misha was excellent at the wedding I officiated. Guests were dancing all night long! Sound was good, great equipment, and he was easy to work with!",
       "time": 1651795200,
       "date": "2022-05-06",
-      "keywords": [
-        "dancing",
-        "easy to work with"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing", "easy to work with"],
+      "profilePhoto": "/images/review-avatars/eric-saidi.jpg"
     },
     {
       "id": "e49c449b",
@@ -914,9 +779,7 @@
       "text": "DJ Misha and Brian on the sax did a great job! We all had a great time and it was awesome having a mix of house music and a live saxophone. Highly recommend!\nPositive\nResponsiveness, Quality, Professionalism",
       "time": 1651795200,
       "date": "2022-05-06",
-      "keywords": [
-        "saxophonist"
-      ],
+      "keywords": ["saxophonist"],
       "profilePhoto": null
     },
     {
@@ -937,7 +800,7 @@
       "time": 1620259200,
       "date": "2021-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/shirley-lara.jpg"
     },
     {
       "id": "953392d4",
@@ -946,10 +809,7 @@
       "text": "I attended a friend's anniversary party, and Misha was DJ.  His music got everyone on the dance floor, and we were there for hours!  It was so much fun!  I would highly recommend DJ Misha for any event.",
       "time": 1588723200,
       "date": "2020-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor"
-      ],
+      "keywords": ["dancing", "dance floor"],
       "profilePhoto": null
     },
     {
@@ -970,7 +830,7 @@
       "time": 1588723200,
       "date": "2020-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/carolina-filgueiras.jpg"
     },
     {
       "id": "127d0e3a",
@@ -979,11 +839,7 @@
       "text": "Misha was the DJ at our wedding.  He is going to be a little different then a typical wedding DJ you may hire because he plays more club, dance style music and totally rocked the dance floor at our party, everyone had an awesome time and it was a night to remember. He also made the process to hire him very easy. I would recommend him to my friends as a great local San Diego DJ at a reasonable price, great music selection and good sound system.",
       "time": 1557100800,
       "date": "2019-05-06",
-      "keywords": [
-        "dancing",
-        "dance floor",
-        "music selection"
-      ],
+      "keywords": ["dancing", "dance floor", "music selection"],
       "profilePhoto": null
     },
     {
@@ -994,7 +850,7 @@
       "time": 1557100800,
       "date": "2019-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/zohreh-mesri.jpg"
     },
     {
       "id": "05b27818",
@@ -1024,7 +880,7 @@
       "time": 1557100800,
       "date": "2019-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/mike-peternel.jpg"
     },
     {
       "id": "0583ebe2",
@@ -1054,7 +910,7 @@
       "time": 1557100800,
       "date": "2019-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/enrique-ortiz.jpg"
     },
     {
       "id": "769c6686",
@@ -1063,9 +919,7 @@
       "text": "DJ Misha played at our annual holiday party and did an amazing job.  He read the crowd so well and had everyone smiling, laughing and dancing - I enjoyed the ambiance he created for us. He was very in tune to our party and even turned down the tunes when my husband gave a toast (without us having to ask).  Never once did I feel the music wasn't suitable for the crowd, Misha was spot on the entire night.  We considered creating playlists for the evening and not hiring a DJ for our event - I'm so glad we didn't go that route.  It eliminated the stress of constantly having to figure out what to play next and allowed us more quality time with our guests.  He turned our party up a notch and we plan to have him back next year!",
       "time": 1525564800,
       "date": "2018-05-06",
-      "keywords": [
-        "dancing"
-      ],
+      "keywords": ["dancing"],
       "profilePhoto": null
     },
     {
@@ -1076,7 +930,7 @@
       "time": 1525564800,
       "date": "2018-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/alexandra-myers.jpg"
     },
     {
       "id": "709054ff",
@@ -1095,10 +949,8 @@
       "text": "I can attest to the awesome party brought by DJ Misha. He sets the mood and makes you want to dance.",
       "time": 1525564800,
       "date": "2018-05-06",
-      "keywords": [
-        "dancing"
-      ],
-      "profilePhoto": null
+      "keywords": ["dancing"],
+      "profilePhoto": "/images/review-avatars/joanna-nieves.jpg"
     },
     {
       "id": "20d7acbc",
@@ -1107,10 +959,7 @@
       "text": "Great DJ in San Diego for weddings, parties, corporate parties and fun events. Sometimes he plays with a saxophone player. Professional, realizable and great dance music DJ!!",
       "time": 1494028800,
       "date": "2017-05-06",
-      "keywords": [
-        "saxophonist",
-        "dancing"
-      ],
+      "keywords": ["saxophonist", "dancing"],
       "profilePhoto": null
     },
     {
@@ -1121,7 +970,7 @@
       "time": 1462492800,
       "date": "2016-05-06",
       "keywords": [],
-      "profilePhoto": null
+      "profilePhoto": "/images/review-avatars/salvador-duarte.jpg"
     }
   ]
 }
