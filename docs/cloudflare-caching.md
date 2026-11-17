@@ -1,6 +1,6 @@
 # Cloudflare caching
 
-HTML on djmisha.com is cached at Cloudflare's edge for one day. The rules in `cloudflare/cache-rules.json` are the zone's `http_request_cache_settings` entrypoint (zone id `f1f41a54923e1ec1c62276e515c393ed`). Cache Rules stack: when several rules match, the last matching rule wins for each setting they both set.
+HTML on djmisha.com is cached at Cloudflare's edge for 30 days. The rules in `cloudflare/cache-rules.json` are the zone's `http_request_cache_settings` entrypoint (zone id `f1f41a54923e1ec1c62276e515c393ed`). Cache Rules stack: when several rules match, the last matching rule wins for each setting they both set.
 
 ## Rules
 
@@ -8,15 +8,15 @@ HTML on djmisha.com is cached at Cloudflare's edge for one day. The rules in `cl
 
 2. **`/_astro/` fingerprinted files.** Astro content-hashes these build files. They are cached for 1 year at the edge and in the browser.
 
-3. **HTML.** Paths that end in `/`, use an `html` extension, or have no extension are cached at the edge for 1 day. Browsers recheck after 10 minutes. Responses with status 400–599 are not cached. Each deploy purges this edge copy.
+3. **HTML.** Paths that end in `/`, use an `html` extension, or have no extension are cached at the edge for 30 days. Browsers recheck after 1 hour. Responses with status 400–599 are not cached. The deploy purge clears the edge copy. A browser copy cannot be purged, which is why the browser TTL stays at 1 hour.
 
 4. **PHP.** Paths under `/php/` and any path with a `php` extension are never cached, including the form handlers.
 
-`public/.htaccess` sets `ExpiresByType text/html` to 10 minutes. HTML previously matched `ExpiresDefault` (2 days). Cloudflare keeps an origin `max-age` when that value is longer than the browser TTL on a cache rule, so the origin header has to be 10 minutes for browsers to recheck on that schedule.
+`public/.htaccess` sets `ExpiresByType text/html` to 1 hour. HTML previously matched `ExpiresDefault` (2 days). Cloudflare keeps an origin `max-age` when that value is longer than the browser TTL on a cache rule, so the origin header has to be 1 hour for browsers to recheck on that schedule.
 
 ## Purge on deploy
 
-The last step in `.github/workflows/deploy.yml` runs after the FTP upload. It POSTs `{"purge_everything":true}` to `https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache`. The site is small and `/_astro/` filenames change with their contents, so purging everything is the simplest way to drop stale HTML at the edge.
+The last step in `.github/workflows/deploy.yml` runs after the FTP upload. It POSTs `{"purge_everything":true}` to `https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache`. The site is small and `/_astro/` filenames change with their contents, so purging everything is the simplest way to drop stale HTML at the edge. That purge clears edge copies. Browser copies cannot be purged, which is why the HTML browser TTL stays at 1 hour. An edit uploaded by FTP outside this pipeline is not purged automatically and needs a manual purge.
 
 `CLOUDFLARE_ZONE_ID` is set on that step. `CLOUDFLARE_API_TOKEN` is the repository secret. When the secret is empty, the step prints a `::warning::` and exits successfully so deploys finish before the secret exists. Otherwise the step uses `curl --fail-with-body` and fails unless the JSON `success` field is true.
 
