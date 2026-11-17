@@ -1,0 +1,73 @@
+{
+  "description": "djmisha.com cache rules",
+  "rules": [
+    {
+      "description": "Static assets: cache at edge 30 days, browser TTL from origin",
+      "expression": "(http.request.uri.path.extension in {\"css\" \"js\" \"mjs\" \"jpg\" \"jpeg\" \"png\" \"gif\" \"webp\" \"avif\" \"svg\" \"ico\" \"woff\" \"woff2\" \"ttf\" \"otf\" \"eot\" \"mp3\" \"mp4\" \"webm\" \"pdf\" \"txt\" \"xml\" \"webmanifest\"})",
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "cache": true,
+        "edge_ttl": {
+          "mode": "override_origin",
+          "default": 2592000
+        },
+        "browser_ttl": {
+          "mode": "respect_origin"
+        }
+      },
+      "enabled": true
+    },
+    {
+      "description": "Astro fingerprinted build files: cache 1 year everywhere",
+      "expression": "(starts_with(http.request.uri.path, \"/_astro/\"))",
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "cache": true,
+        "edge_ttl": {
+          "mode": "override_origin",
+          "default": 31536000
+        },
+        "browser_ttl": {
+          "mode": "override_origin",
+          "default": 31536000
+        }
+      },
+      "enabled": true
+    },
+    {
+      "description": "HTML pages: cache at edge 1 day (purged on deploy), browsers recheck after 10 min",
+      "expression": "(ends_with(http.request.uri.path, \"/\") or http.request.uri.path.extension eq \"html\" or http.request.uri.path.extension eq \"\")",
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "cache": true,
+        "edge_ttl": {
+          "mode": "override_origin",
+          "default": 86400,
+          "status_code_ttl": [
+            {
+              "status_code_range": {
+                "from": 400,
+                "to": 599
+              },
+              "value": 0
+            }
+          ]
+        },
+        "browser_ttl": {
+          "mode": "override_origin",
+          "default": 600
+        }
+      },
+      "enabled": true
+    },
+    {
+      "description": "Never cache PHP form handlers",
+      "expression": "(starts_with(http.request.uri.path, \"/php/\") or http.request.uri.path.extension eq \"php\")",
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "cache": false
+      },
+      "enabled": true
+    }
+  ]
+}
