@@ -46,3 +46,27 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: _staging/
           server-dir: ${{ secrets.FTP_TARGET_DIR }}
+
+      - name: Purge Cloudflare cache
+        env:
+          CLOUDFLARE_ZONE_ID: f1f41a54923e1ec1c62276e515c393ed
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::warning::CLOUDFLARE_API_TOKEN is empty; skipping Cloudflare cache purge"
+            exit 0
+          fi
+          response=$(curl --fail-with-body --silent --show-error --request POST \
+            --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            --header "Content-Type: application/json" \
+            --data '{"purge_everything":true}' \
+            "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache") || {
+            printf '%s\n' "$response"
+            exit 1
+          }
+          if ! printf '%s\n' "$response" | jq -e '.success == true' >/dev/null; then
+            echo "::error::Cloudflare cache purge returned success=false"
+            printf '%s\n' "$response"
+            exit 1
+          fi
+          echo "Cloudflare cache purged"
