@@ -119,7 +119,7 @@ export function buildJsonLdWithRating(
 ): object[] {
   const orgWithRating = {
     ...organization,
-    AggregateRating: {
+    aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: String(rating.ratingValue),
       reviewCount: String(rating.reviewCount),

@@ -1,0 +1,1034 @@
+---
+import { GOOGLE_REVIEW_URL } from '../data/config';
+import reviewsData from '../data/reviews.json';
+import {
+  extractInitials,
+  formatRelativeReviewDate,
+  formatReviewDate,
+} from '../lib/reviews-helpers.mjs';
+
+export interface Props {}
+
+const eligibleReviewIds = [
+  '4f8d5396',
+  '6714707f',
+  'fb39dea6',
+  '3d9e2594',
+  '6f388345',
+  'daa439c6',
+  'ef4a5e47',
+  '944b38ad',
+  '6bb6dbf4',
+  'bd36b0c0',
+  'e099315f',
+  'a6f06f92',
+  '8962a5ce',
+  '1690f927',
+  'cd3a0979',
+  '438aab28',
+  '94fe245a',
+  'ef671e33',
+  '043d1b83',
+  '2bf4fd7a',
+];
+
+const cutoffDate = new Date();
+cutoffDate.setFullYear(cutoffDate.getFullYear() - 2);
+
+const eligibleReviews = eligibleReviewIds
+  .map((id) => reviewsData.reviews.find((review) => review.id === id))
+  .filter((review): review is (typeof reviewsData.reviews)[number] => {
+    if (!review) return false;
+    const reviewDate = new Date(`${review.date}T00:00:00`);
+    return (
+      !!review.text &&
+      review.text.trim().length > 300 &&
+      !Number.isNaN(reviewDate.getTime()) &&
+      reviewDate >= cutoffDate
+    );
+  });
+
+const initialReviews = [...eligibleReviews];
+for (let i = initialReviews.length - 1; i > 0; i -= 1) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [initialReviews[i], initialReviews[j]] = [
+    initialReviews[j],
+    initialReviews[i],
+  ];
+}
+const initialSelected = new Set(
+  initialReviews.slice(0, 6).map((review) => review.id),
+);
+const initialMobileSelected = new Set(
+  initialReviews.slice(0, 3).map((review) => review.id),
+);
+---
+
+<section id="six" class="homepage-testimonials wrapper style1 special fade">
+  <div class="container">
+    <header class="homepage-testimonials__header">
+      <h2>Top Rated DJ Services</h2>
+      <p class="homepage-testimonials__rating">
+        <a
+          class="ratings"
+          href={GOOGLE_REVIEW_URL}
+          rel="nofollow noopener"
+          target="_blank"
+        >
+          DJ Misha is rated {reviewsData.totalRating} out of 5 stars
+          {' '}from {reviewsData.totalReviews} Google reviews
+        </a>
+      </p>
+      <button
+        type="button"
+        class="homepage-review-rotate"
+        aria-label="Shuffle testimonials"
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+          <path
+            d="M20 11a8.1 8.1 0 0 0-14.9-4.3L3 9m0 0V4m0 5h5M4 13a8.1 8.1 0 0 0 14.9 4.3L21 15m0 0v5m0-5h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+        <span>Shuffle reviews</span>
+      </button>
+    </header>
+
+    <div class="homepage-reviews-grid">
+      {
+        eligibleReviews.map((review) => (
+          <article
+            class:list={[
+              'homepage-review-card',
+              'review-card',
+              'homepage-review-candidate',
+              { 'homepage-review-selected': initialSelected.has(review.id) },
+              {
+                'homepage-review-mobile-first': initialMobileSelected.has(
+                  review.id,
+                ),
+              },
+            ]}
+            data-review-id={review.id}
+          >
+            <div class="homepage-review-card-header review-card-header">
+              {review.profilePhoto ? (
+                <img
+                  class="homepage-review-avatar review-avatar"
+                  src={review.profilePhoto}
+                  alt={`${review.author} profile photo`}
+                  width="68"
+                  height="68"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="homepage-review-avatar homepage-review-avatar-fallback review-avatar review-avatar-fallback">
+                  {extractInitials(review.author)}
+                </div>
+              )}
+              <div class="homepage-review-meta review-meta">
+                <span class="homepage-review-author review-author">
+                  {review.author}
+                </span>
+                <div class="homepage-review-when review-when">
+                  <time
+                    class="homepage-review-date review-date"
+                    datetime={review.date}
+                  >
+                    {formatReviewDate(review.date)}
+                  </time>
+                  <span
+                    class="homepage-review-age review-age"
+                    data-review-date={review.date}
+                  >
+                    {formatRelativeReviewDate(review.date)}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="homepage-review-stars review-stars"
+              aria-label={`${review.rating} out of 5 stars`}
+            >
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span
+                  class:list={[
+                    'star',
+                    'homepage-review-star',
+                    i < review.rating
+                      ? 'star-filled homepage-review-star-filled'
+                      : 'star-empty homepage-review-star-empty',
+                  ]}
+                >
+                  &#9733;
+                </span>
+              ))}
+            </div>
+            {review.text && (
+              <p class="homepage-review-text review-text">{review.text}</p>
+            )}
+            <div class="homepage-review-card-footer review-card__footer">
+              <a
+                class="button small homepage-review-view-more review-view-more"
+                href={`#homepage-review-detail-${review.id}`}
+                data-fancybox="homepage-reviews"
+                data-type="inline"
+                aria-label={`Read more: full review by ${review.author}`}
+              >
+                Read more
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="homepage-review-detail-sources" hidden>
+      {
+        eligibleReviews.map((review) => (
+          <div
+            id={`homepage-review-detail-${review.id}`}
+            class="homepage-review-lightbox review-lightbox"
+          >
+            <div
+              class="homepage-review-lightbox-scroll review-lightbox__scroll"
+              tabindex="0"
+            >
+              <div class="homepage-review-lightbox-inner review-lightbox__inner">
+                <div class="homepage-review-card-header review-card-header">
+                  {review.profilePhoto ? (
+                    <img
+                      class="homepage-review-avatar review-avatar"
+                      src={review.profilePhoto}
+                      alt={`${review.author} profile photo`}
+                      width="96"
+                      height="96"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="homepage-review-avatar homepage-review-avatar-fallback review-avatar review-avatar-fallback">
+                      {extractInitials(review.author)}
+                    </div>
+                  )}
+                  <div class="homepage-review-meta review-meta">
+                    <span class="homepage-review-author review-author">
+                      {review.author}
+                    </span>
+                    <div class="homepage-review-when review-when">
+                      <time
+                        class="homepage-review-date review-date"
+                        datetime={review.date}
+                      >
+                        {formatReviewDate(review.date)}
+                      </time>
+                      <span
+                        class="homepage-review-age review-age"
+                        data-review-date={review.date}
+                      >
+                        {formatRelativeReviewDate(review.date)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="homepage-review-stars review-stars"
+                  aria-label={`${review.rating} out of 5 stars`}
+                >
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <span
+                      class:list={[
+                        'star',
+                        'homepage-review-star',
+                        i < review.rating
+                          ? 'star-filled homepage-review-star-filled'
+                          : 'star-empty homepage-review-star-empty',
+                      ]}
+                    >
+                      &#9733;
+                    </span>
+                  ))}
+                </div>
+                {review.text && (
+                  <p class="homepage-review-lightbox-text review-lightbox__text">
+                    {review.text}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <ul class="actions special homepage-reviews-actions">
+      <li>
+        <a class="button special" href="/reviews/">Read more reviews</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<script is:inline>
+  document.documentElement.classList.add('homepage-reviews-js');
+
+  (function () {
+    var candidates = Array.prototype.slice.call(
+      document.querySelectorAll('.homepage-review-candidate'),
+    );
+    if (candidates.length > 6) {
+      for (var i = candidates.length - 1; i > 0; i -= 1) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temporary = candidates[i];
+        candidates[i] = candidates[j];
+        candidates[j] = temporary;
+      }
+      applySelection(candidates.slice(0, 6));
+    } else {
+      candidates.forEach(function (card) {
+        card.classList.add('homepage-review-selected');
+      });
+    }
+
+    function applySelection(selectedCards) {
+      candidates.forEach(function (card) {
+        card.classList.remove('homepage-review-selected');
+        card.classList.remove('homepage-review-mobile-first');
+      });
+      selectedCards.forEach(function (card) {
+        card.classList.add('homepage-review-selected');
+      });
+      selectedCards.slice(0, 3).forEach(function (card) {
+        card.classList.add('homepage-review-mobile-first');
+      });
+    }
+
+    var cards = Array.prototype.slice.call(
+      document.querySelectorAll('.homepage-review-selected'),
+    );
+    var scheduled = false;
+
+    var rotateButton = document.querySelector('.homepage-review-rotate');
+    var visibleSelectionOffset = 0;
+
+    if (rotateButton) {
+      rotateButton.addEventListener('click', function () {
+        if (candidates.length <= 6) return;
+
+        visibleSelectionOffset =
+          (visibleSelectionOffset + 6) % candidates.length;
+        var shuffled = candidates.slice();
+        if (visibleSelectionOffset === 0 && shuffled.length > 6) {
+          for (var i = shuffled.length - 1; i > 0; i -= 1) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temporary = shuffled[i];
+            shuffled[i] = shuffled[j];
+            shuffled[j] = temporary;
+          }
+        }
+        var selectedCards = shuffled.slice(
+          visibleSelectionOffset,
+          visibleSelectionOffset + 6,
+        );
+        if (selectedCards.length < 6) {
+          selectedCards = selectedCards.concat(
+            shuffled.slice(0, 6 - selectedCards.length),
+          );
+        }
+
+        applySelection(selectedCards);
+        cards = selectedCards.slice();
+        scheduleOverflow();
+      });
+    }
+
+    function textOverflows(text) {
+      if (!text) return false;
+      if (text.scrollHeight > text.clientHeight + 1) return true;
+      var clone = text.cloneNode(true);
+      clone.style.position = 'absolute';
+      clone.style.visibility = 'hidden';
+      clone.style.pointerEvents = 'none';
+      clone.style.display = 'block';
+      clone.style.webkitLineClamp = 'unset';
+      clone.style.lineClamp = 'unset';
+      clone.style.webkitBoxOrient = 'unset';
+      clone.style.overflow = 'visible';
+      clone.style.height = 'auto';
+      clone.style.maxHeight = 'none';
+      clone.style.width = text.clientWidth + 'px';
+      text.parentNode.appendChild(clone);
+      var overflows = clone.scrollHeight > text.clientHeight + 1;
+      clone.remove();
+      return overflows;
+    }
+
+    function updateOverflow() {
+      scheduled = false;
+      cards.forEach(function (card) {
+        var text = card.querySelector('.homepage-review-text');
+        card.classList.add('homepage-review-card-measured');
+        card.classList.toggle(
+          'homepage-review-card-overflow',
+          !!(text && textOverflows(text)),
+        );
+      });
+    }
+
+    function scheduleOverflow() {
+      if (scheduled) return;
+      scheduled = true;
+      window.requestAnimationFrame(updateOverflow);
+    }
+
+    candidates.forEach(function (card) {
+      card.addEventListener('click', function (event) {
+        if (event.target.closest('a, button')) return;
+        var selection = window.getSelection && window.getSelection();
+        if (selection && String(selection).length) return;
+        var link = card.querySelector('.homepage-review-view-more');
+        if (link) link.click();
+      });
+    });
+
+    window.addEventListener('resize', scheduleOverflow);
+    if (window.ResizeObserver) {
+      var grid = document.querySelector('.homepage-reviews-grid');
+      if (grid) new ResizeObserver(scheduleOverflow).observe(grid);
+    }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(scheduleOverflow);
+    }
+    updateOverflow();
+
+    var reviewGesture = null;
+
+    document.addEventListener(
+      'touchstart',
+      function (event) {
+        var scroll =
+          event.target.closest &&
+          event.target.closest('.homepage-review-lightbox-scroll');
+        if (!scroll || event.touches.length !== 1) {
+          reviewGesture = null;
+          return;
+        }
+        reviewGesture = {
+          x: event.touches[0].clientX,
+          y: event.touches[0].clientY,
+          axis: '',
+        };
+        event.stopPropagation();
+      },
+      true,
+    );
+
+    document.addEventListener(
+      'touchmove',
+      function (event) {
+        if (!reviewGesture || !event.touches.length) return;
+        var dx = event.touches[0].clientX - reviewGesture.x;
+        var dy = event.touches[0].clientY - reviewGesture.y;
+        if (!reviewGesture.axis && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
+          reviewGesture.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+        }
+        event.stopPropagation();
+        if (reviewGesture.axis === 'x') event.preventDefault();
+      },
+      { capture: true, passive: false },
+    );
+
+    document.addEventListener(
+      'touchend',
+      function (event) {
+        if (!reviewGesture) return;
+        var touch = event.changedTouches[0];
+        var dx = touch.clientX - reviewGesture.x;
+        var dy = touch.clientY - reviewGesture.y;
+        var axis = reviewGesture.axis;
+        reviewGesture = null;
+        event.stopPropagation();
+        if (
+          axis === 'x' &&
+          Math.abs(dx) > 48 &&
+          Math.abs(dx) > Math.abs(dy) &&
+          window.jQuery &&
+          jQuery.fancybox
+        ) {
+          var instance = jQuery.fancybox.getInstance();
+          if (!instance) return;
+          if (dx < 0) instance.next();
+          else instance.previous();
+        }
+      },
+      true,
+    );
+
+    function fitReviewPanel(current) {
+      if (!current || !current.$slide || !current.$content) return;
+      var slide = current.$slide.get(0);
+      if (!slide) return;
+      var styles = window.getComputedStyle(slide);
+      var padX =
+        (parseFloat(styles.paddingLeft) || 0) +
+        (parseFloat(styles.paddingRight) || 0);
+      var padY =
+        (parseFloat(styles.paddingTop) || 0) +
+        (parseFloat(styles.paddingBottom) || 0);
+      current.$content.css({
+        width: Math.floor(slide.clientWidth - padX) + 'px',
+        height: Math.floor(slide.clientHeight - padY) + 'px',
+      });
+    }
+
+    function initFancybox() {
+      if (!window.jQuery || !jQuery.fn.fancybox) return;
+      var reduce = window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches;
+      jQuery('[data-fancybox="homepage-reviews"]').fancybox({
+        loop: false,
+        margin: [44, 0],
+        gutter: 40,
+        keyboard: true,
+        arrows: true,
+        infobar: false,
+        toolbar: true,
+        smallBtn: false,
+        buttons: ['close'],
+        idleTime: false,
+        protect: false,
+        modal: false,
+        hash: false,
+        animationEffect: reduce ? false : 'fade',
+        animationDuration: reduce ? 0 : 300,
+        transitionEffect: reduce ? false : 'fade',
+        transitionDuration: reduce ? 0 : 300,
+        slideClass: 'homepage-review-fancybox-slide',
+        baseClass: 'homepage-review-fancybox',
+        touch: { vertical: true, momentum: true },
+        clickContent: false,
+        clickSlide: false,
+        clickOutside: 'close',
+        wheel: false,
+        afterShow: function (_instance, current) {
+          fitReviewPanel(current);
+          var scroller = current.$content
+            .find('.homepage-review-lightbox-scroll')
+            .get(0);
+          if (scroller) scroller.scrollTop = 0;
+        },
+        onUpdate: function (_instance, current) {
+          fitReviewPanel(current);
+        },
+      });
+    }
+
+    if (window.jQuery) {
+      jQuery(initFancybox);
+    } else {
+      window.addEventListener('DOMContentLoaded', function () {
+        window.setTimeout(initFancybox, 0);
+      });
+    }
+  })();
+</script>
+
+<style>
+  .homepage-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 1.5em;
+  }
+
+  .homepage-review-candidate {
+    display: none;
+  }
+
+  :global(.homepage-reviews-js)
+    .homepage-review-candidate.homepage-review-selected {
+    display: flex;
+  }
+
+  .homepage-review-candidate:not(.homepage-review-selected) {
+    display: none;
+  }
+
+  .homepage-review-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    min-width: 0;
+    position: relative;
+    cursor: pointer;
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius);
+    padding: 1.5em;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .homepage-review-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    color: var(--color-text);
+    font-size: 0.9em;
+    line-height: 1.7em;
+    margin: 0;
+  }
+
+  .homepage-review-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    text-align: center;
+    margin-bottom: 0.75em;
+  }
+
+  .homepage-review-avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow:
+      0 0 0 3px var(--color-bg-primary),
+      0 0 0 4px var(--color-border);
+  }
+
+  .homepage-review-avatar-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent);
+    color: var(--color-text-strong);
+    font-size: 1em;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .homepage-review-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    gap: 0.15em;
+  }
+
+  .homepage-review-author {
+    max-width: 100%;
+    color: var(--color-text-strong);
+    font-weight: 300;
+    font-size: 0.95em;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+
+  .homepage-review-when {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+  }
+
+  .homepage-review-date {
+    color: var(--color-text-muted);
+    font-size: 0.8em;
+  }
+
+  .homepage-review-age {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.12em 0.55em;
+    border-radius: 2em;
+    background: var(--color-pill-bg);
+    color: var(--color-text-muted);
+    box-shadow: inset 0 0 0 1px var(--color-pill-border);
+    font-size: 0.72em;
+    font-weight: 300;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  .homepage-review-stars {
+    margin: 0.7em 0;
+    text-align: center;
+    font-size: 1.1em;
+    letter-spacing: 0.05em;
+  }
+
+  .homepage-review-star-filled {
+    color: var(--color-accent);
+  }
+
+  .homepage-review-star-empty {
+    color: var(--color-text-muted);
+  }
+
+  .homepage-review-card-footer {
+    margin-top: auto;
+    padding-top: 1em;
+    text-align: center;
+  }
+
+  a.button.homepage-review-view-more {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 44px;
+    padding: 10px 18px;
+    line-height: 1.3;
+  }
+
+  .homepage-review-card-measured:not(.homepage-review-card-overflow)
+    .homepage-review-card-footer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .homepage-review-card-measured:not(
+      .homepage-review-card-overflow
+    ):focus-within {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .homepage-review-card-measured:not(.homepage-review-card-overflow)
+    .homepage-review-view-more:focus-visible {
+    outline: none;
+  }
+
+  .homepage-review-detail-sources {
+    display: none;
+  }
+
+  .homepage-testimonials__header {
+    position: relative;
+    margin-bottom: 2.5em;
+  }
+
+  .homepage-review-rotate {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45em;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-family);
+    font-size: 0.78em;
+    font-weight: 300;
+    line-height: 1.2;
+    cursor: pointer;
+  }
+
+  .homepage-review-rotate:hover,
+  .homepage-review-rotate:focus-visible {
+    color: var(--color-text);
+  }
+
+  .homepage-review-rotate:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
+  .homepage-review-rotate svg {
+    flex: 0 0 auto;
+  }
+
+  .homepage-testimonials__rating {
+    margin: 0.5em auto 0;
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  .homepage-testimonials__rating a {
+    display: inline-block;
+    color: var(--color-text);
+    text-decoration: none;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .homepage-reviews-actions {
+    margin-top: 2.5em;
+  }
+
+  :global(.fancybox-slide.homepage-review-fancybox-slide) {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  :global(.fancybox-slide.homepage-review-fancybox-slide::before) {
+    display: none;
+  }
+
+  .homepage-review-lightbox {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--color-bg-primary);
+    color: var(--color-text);
+    font-family: var(--font-family);
+    font-weight: 300;
+    text-align: left;
+  }
+
+  .homepage-review-lightbox-scroll {
+    box-sizing: border-box;
+    height: 100%;
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    padding: clamp(3.25rem, 7vw, 4.5rem) clamp(6.5rem, 10vw, 8rem)
+      clamp(1.75rem, 4vw, 3rem);
+  }
+
+  .homepage-review-lightbox-inner {
+    width: min(100%, 65ch);
+    margin: 0 auto;
+  }
+
+  .homepage-review-lightbox .homepage-review-card-header {
+    margin-bottom: 1rem;
+  }
+
+  .homepage-review-lightbox .homepage-review-avatar {
+    width: 96px;
+    height: 96px;
+  }
+
+  .homepage-review-lightbox .homepage-review-author {
+    font-size: clamp(1.3rem, 1.1rem + 1vw, 1.8rem);
+  }
+
+  .homepage-review-lightbox-text {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+    font-weight: 300;
+    line-height: 1.65;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+  }
+
+  :global(.homepage-review-fancybox .fancybox-navigation .fancybox-button) {
+    width: 64px;
+    height: 64px;
+    margin: 0;
+    opacity: 1;
+    padding: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    visibility: visible;
+    background: transparent;
+    border: 0;
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    color: var(--color-text-strong);
+  }
+
+  :global(.homepage-review-fancybox .fancybox-navigation .fancybox-button svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  :global(.homepage-review-fancybox .fancybox-navigation) {
+    z-index: 99995;
+  }
+
+  :global(.homepage-review-fancybox .fancybox-navigation .fancybox-button svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  :global(
+    .homepage-review-fancybox .fancybox-navigation .fancybox-button::after
+  ) {
+    content: none;
+  }
+
+  :global(
+    .homepage-review-fancybox .fancybox-navigation .fancybox-button--arrow_left
+  ) {
+    left: 16px;
+  }
+
+  :global(
+    .homepage-review-fancybox .fancybox-navigation .fancybox-button--arrow_right
+  ) {
+    right: 16px;
+  }
+
+  :global(
+    .homepage-review-fancybox .fancybox-navigation .fancybox-button:hover
+  ),
+  :global(
+    .homepage-review-fancybox .fancybox-navigation .fancybox-button:active
+  ) {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  :global(
+    .homepage-review-fancybox
+      .fancybox-navigation
+      .fancybox-button:focus-visible
+  ) {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  :global(
+    .homepage-review-fancybox .fancybox-navigation .fancybox-button.disabled
+  ),
+  :global(
+    .homepage-review-fancybox
+      .fancybox-navigation
+      .fancybox-button.disabled:hover
+  ) {
+    box-shadow: inset 0 0 0 1px var(--color-border-faint);
+    color: var(--color-text-muted);
+    cursor: default;
+  }
+
+  @media screen and (min-width: 737px) {
+    .homepage-review-lightbox-scroll {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .homepage-review-lightbox-inner {
+      margin-block: auto;
+    }
+  }
+
+  @media screen and (max-width: 736px) {
+    .homepage-testimonials__header {
+      padding-bottom: 2.25em;
+    }
+
+    .homepage-review-rotate {
+      right: 50%;
+      bottom: 0;
+      transform: translateX(50%);
+    }
+
+    :global(.homepage-review-fancybox .fancybox-navigation) {
+      position: absolute;
+      right: 50%;
+      bottom: 3rem;
+      left: 50%;
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      width: auto;
+      transform: translateX(-50%);
+    }
+
+    .homepage-reviews-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1em;
+    }
+
+    .homepage-review-selected:not(.homepage-review-mobile-first) {
+      display: none !important;
+    }
+
+    .homepage-review-card {
+      padding: 1.25em;
+    }
+
+    .homepage-review-lightbox-scroll {
+      padding-right: 1rem;
+      padding-bottom: 8rem;
+      padding-left: 1rem;
+    }
+
+    :global(.homepage-review-fancybox .fancybox-navigation) {
+      position: absolute;
+      right: auto;
+      bottom: 3rem;
+      left: 50%;
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      width: auto;
+      transform: translateX(-50%);
+    }
+
+    :global(.homepage-review-fancybox .fancybox-navigation .fancybox-button) {
+      position: relative;
+      top: auto;
+      right: auto;
+      left: auto;
+      width: 48px;
+      height: 48px;
+      transform: none;
+      padding: 10px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    a.button.homepage-review-view-more {
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      min-height: 44px;
+      padding: 10px 18px;
+      line-height: 1.3;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .homepage-review-card,
+    :global(.homepage-review-fancybox .fancybox-bg),
+    :global(.homepage-review-fancybox .fancybox-slide),
+    :global(.homepage-review-fancybox .fancybox-button) {
+      transition: none;
+    }
+  }
+</style>

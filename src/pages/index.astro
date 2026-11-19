@@ -2,16 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
-import Testimonial from '../components/Testimonial.astro';
-import Icon from '../components/Icon.astro';
-import { buildJsonLd } from '../data/schema';
-import { PHONE, GOOGLE_REVIEW_URL } from '../data/config';
+import HomepageTestimonials from '../components/HomepageTestimonials.astro';
+import { buildJsonLdWithRating } from '../data/schema';
+import { PHONE } from '../data/config';
 import { blogPosts } from '../data/blog-posts';
 import reviews from '../data/reviews.json';
 
-const jsonLd = buildJsonLd();
-const reviewCount = reviews.totalReviews;
-const reviewRating = reviews.totalRating;
+const jsonLd = buildJsonLdWithRating({
+  ratingValue: reviews.totalRating,
+  reviewCount: reviews.totalReviews,
+});
 const homeBlogPosts = blogPosts.slice(0, 4);
 ---
 
@@ -151,66 +151,7 @@ const homeBlogPosts = blogPosts.slice(0, 4);
   </section>
 
   <!-- Six - Reviews & Services -->
-  <section id="six" class="wrapper style1 special fade">
-    <div class="container">
-      <header>
-        <h2>
-          Top Rated DJ Services<br />
-          <Icon name="star" size="0.6em" class="star-orange" />
-          <Icon name="star" size="0.6em" class="star-orange" />
-          <Icon name="star" size="0.6em" class="star-orange" />
-          <Icon name="star" size="0.6em" class="star-orange" />
-          <Icon name="star" size="0.6em" class="star-orange" />
-        </h2>
-        <p>
-          <a
-            class="ratings"
-            href={GOOGLE_REVIEW_URL}
-            rel="nofollow noopener"
-            target="_blank"
-          >
-            DJ Misha is Rated {reviewRating}/5 stars based on {reviewCount} reviews
-          </a>
-        </p>
-      </header>
-      <div class="row">
-        <div class="col-6 col-12-medium">
-          <Testimonial
-            quote="DJ Misha played at our annual holiday party and did an amazing job. He read the crowd so well and had everyone smiling, laughing and dancing - I enjoyed the ambiance he created for us. He <strong>turned our party up</strong> a notch and we plan to have him back next year!"
-            author="Rececca Troydon"
-            teaser="turned our party up"
-          />
-          <Testimonial
-            quote="I can attest to the awesome party brought by DJ Misha. He sets the mood and <strong>makes you want to dance</strong>."
-            author="Joanna Nieves"
-            teaser="makes you want to dance"
-          />
-          <Testimonial
-            quote="DJ Misha played at our company product launch party and was awesome! He had a great variety of music that appealed to everyone and <strong>kept the energy going</strong> throughout the event."
-            author="Misty"
-            teaser="music that appealed to everyone"
-          />
-        </div>
-        <div class="col-6 col-12-medium">
-          <Testimonial
-            quote="We hired DJ Misha and his saxophone playing partner for our company Holiday Party in December and I have never gotten so much positive feedback from all who attended. They were the <strong>perfect combination of live music and DJ</strong> songs and kept the dance floor full the entire night! I would recommend them for any party or event."
-            author="Tori, 2016"
-            teaser="perfect combo of live music and DJ"
-          />
-          <Testimonial
-            quote="He is accommodating and humble when it comes to his talents but rest assured this guy knows what he's doing and knows how to make the party!"
-            author="Jason Whitmore Saxophone"
-            teaser="knows how to make the party"
-          />
-          <Testimonial
-            quote="DJ Misha was <strong>absolutely perfect for our event</strong>. The music he picked for our crowd was on point and set the tone perfectly."
-            author="Lindsey Snyder"
-            teaser="absolutely perfect for our event"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <HomepageTestimonials />
 
   <!-- Services -->
   <section id="services" class="wrapper style1 special fade">
