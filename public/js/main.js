@@ -18,13 +18,6 @@
 			xsmall:   [ null,      '480px'  ]
 		});
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
-
 	// Touch mode.
 		if (browser.mobile)
 			$body.addClass('is-touch');
@@ -133,6 +126,20 @@
 				});
 
 		}
+
+	// Keep the spotlight and wrapper fades from playing during the initial
+	// scrollex pass (including a reload that restores a mid-page scroll).
+		var $scrollexLock = $('<style id="scrollex-lock">.spotlight .content,.spotlight .goto-next,.wrapper.fade-down>.container,.wrapper.fade-up>.container,.wrapper.fade>.container{transition:none!important;-webkit-transition:none!important}</style>').appendTo('head');
+
+		$window.on('load', function() {
+			window.setTimeout(function() {
+				window.requestAnimationFrame(function() {
+					window.requestAnimationFrame(function() {
+						$scrollexLock.remove();
+					});
+				});
+			}, 0);
+		});
 
 	// Spotlights.
 		var $spotlights = $('.spotlight');
@@ -246,5 +253,23 @@
 
 		$banner
 			._parallax();
+
+	// Commit the initial entered/inactive state before the first paint.
+		var nativeSetTimeout = window.setTimeout;
+
+		window.setTimeout = function(fn, delay) {
+			if (!delay) {
+				fn();
+				return 0;
+			}
+
+			return nativeSetTimeout.apply(this, arguments);
+		};
+
+		try {
+			$window.trigger('scroll');
+		} finally {
+			window.setTimeout = nativeSetTimeout;
+		}
 
 })(jQuery);
