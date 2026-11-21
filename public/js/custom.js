@@ -50,28 +50,67 @@ const loadHomeVideoWhenNear = () => {
   let started = false;
   let observer;
   const listenerOptions = { passive: true };
+  const scrollKeys = {
+    " ": true,
+    Spacebar: true,
+    PageDown: true,
+    PageUp: true,
+    ArrowDown: true,
+    ArrowUp: true,
+    ArrowLeft: true,
+    ArrowRight: true,
+    Home: true,
+    End: true,
+  };
+
+  const armObserver = () => {
+    if (started) return;
+    observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) start();
+      },
+      { threshold: 0.5 },
+    );
+    observer.observe(section);
+  };
 
   const start = () => {
     if (started) return;
     started = true;
     if (observer) observer.disconnect();
-    window.removeEventListener("scroll", start, listenerOptions);
+    window.removeEventListener("scroll", onScroll, listenerOptions);
     window.removeEventListener("wheel", start, listenerOptions);
     window.removeEventListener("touchstart", start, listenerOptions);
+    window.removeEventListener("keydown", onKey, listenerOptions);
+    window.removeEventListener("load", armObserver);
     attachVideo();
   };
 
-  observer = new IntersectionObserver(
-    (entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) start();
-    },
-    { rootMargin: "0px 0px 100% 0px" },
-  );
+  const onScroll = () => {
+    if (window.scrollY === 0) return;
+    start();
+  };
 
-  window.addEventListener("scroll", start, listenerOptions);
+  const onKey = (event) => {
+    if (!event || !scrollKeys[event.key]) return;
+    start();
+  };
+
+  if (window.scrollY > 0) {
+    start();
+    return;
+  }
+
+  window.addEventListener("scroll", onScroll, listenerOptions);
   window.addEventListener("wheel", start, listenerOptions);
   window.addEventListener("touchstart", start, listenerOptions);
-  observer.observe(section);
+  window.addEventListener("keydown", onKey, listenerOptions);
+
+  if (document.readyState === "complete") {
+    armObserver();
+  } else {
+    window.addEventListener("load", armObserver);
+  }
 };
 
 loadHomeVideoWhenNear();

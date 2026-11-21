@@ -56,6 +56,8 @@ function loadHomeVideo({
   withObserver = true,
   intersectingOnObserve = false,
   hasSection = true,
+  scrollY = 0,
+  readyState = 'interactive',
 } = {}) {
   const homeVideo = { html: '' };
   let writes = 0;
@@ -71,7 +73,13 @@ function loadHomeVideo({
   });
 
   const section = { id: 'one' };
-  const listeners = { scroll: [], wheel: [], touchstart: [] };
+  const listeners = {
+    scroll: [],
+    wheel: [],
+    touchstart: [],
+    keydown: [],
+    load: [],
+  };
   const timeouts = [];
   const observers = [];
 
@@ -98,6 +106,7 @@ function loadHomeVideo({
 
   const windowStub = {
     innerWidth: width,
+    scrollY,
     addEventListener(type, fn, options) {
       listeners[type].push({ fn, options });
     },
@@ -107,6 +116,7 @@ function loadHomeVideo({
   };
 
   const documentStub = {
+    readyState,
     querySelector(selector) {
       if (!hasSection) return null;
       if (selector === '#one .home-video') return homeVideo;
@@ -165,7 +175,21 @@ function loadHomeVideo({
 
   vm.runInContext(source, vm.createContext(context));
 
-  return { homeVideo, section, listeners, timeouts, observers, writes: () => writes };
+  return {
+    homeVideo,
+    section,
+    listeners,
+    timeouts,
+    observers,
+    window: windowStub,
+    writes: () => writes,
+  };
+}
+
+function fireLoad(page) {
+  const load = page.listeners.load[0];
+  expect(load).toBeTruthy();
+  load.fn();
 }
 
 function expectVideoFile(html, file) {
@@ -192,80 +216,92 @@ describe('homepage background video loading', () => {
     expect(braceDepthAt(source, index)).toBeGreaterThan(0);
     expect(source).toContain('new IntersectionObserver');
     expect(source).toContain('"#one"');
-    expect(source).toContain('rootMargin: "0px 0px 100% 0px"');
-    expect(source).toContain('addEventListener("scroll", start, listenerOptions)');
+    expect(source).toContain('threshold: 0.5');
+    expect(source).not.toContain('rootMargin');
+    expect(source).toContain('addEventListener("scroll", onScroll, listenerOptions)');
     expect(source).toContain('addEventListener("wheel", start, listenerOptions)');
     expect(source).toContain(
       'addEventListener("touchstart", start, listenerOptions)',
     );
+    expect(source).toContain('addEventListener("keydown", onKey, listenerOptions)');
+    expect(source).toContain('addEventListener("load", armObserver)');
+    expect(source).toContain('window.scrollY === 0');
+    expect(source).toContain('window.scrollY > 0');
     expect(source).toContain('passive: true');
     expect(source).toContain('observer.disconnect()');
-    expect(source).toContain('removeEventListener("scroll", start, listenerOptions)');
+    expect(source).toContain('removeEventListener("scroll", onScroll, listenerOptions)');
     expect(source).not.toMatch(/^setTimeout\(attachVideo, 1000\);/m);
   });
 
-  it('does not attach the video on load when #one is off-screen', () => {
-    const page = loadHomeVideo({ intersectingOnObserve: false, width: 375 });
+  it('does not attach on load when scrollY is 0, even if #one is partly visible', () => {
+    const page = loadHomeVideo({ width: 375, scrollY: 0 });
 
     expect(page.writes()).toBe(0);
     expect(page.homeVideo.innerHTML).toBe('');
     expect(page.timeouts).toHaveLength(0);
-    expect(page.observers).toHaveLength(1);
-    expect(page.observers[0].options).toEqual({
-      rootMargin: '0px 0px 100% 0px',
-    });
-    expect(page.observers[0].observed).toEqual([page.section]);
-    expect(page.observers[0].disconnected).toBe(false);
-    for (const type of ['scroll', 'wheel', 'touchstart']) {
+    expect(page.observers).toHaveLength(0);
+    for (const type of ['scroll', 'wheel', 'touchstart', 'keydown']) {
       expect(page.listeners[type]).toHaveLength(1);
       expect(page.listeners[type][0].options).toEqual({ passive: true });
     }
+
+    page.listeners.scroll[0].fn();
+    expect(page.writes()).toBe(0);
+
+    fireLoad(page);
+    expect(page.observers).toHaveLength(1);
+    expect(page.observers[0].options).toEqual({ threshold: 0.5 });
+    expect(page.observers[0].options.rootMargin).toBeUndefined();
+    expect(page.observers[0].observed).toEqual([page.section]);
+    page.observers[0].callback([
+      { isIntersecting: false, intersectionRatio: 0.2, target: page.section },
+    ]);
+    expect(page.writes()).toBe(0);
+    expect(page.homeVideo.innerHTML).toBe('');
   });
 
-  it('attaches once when the observer reports #one is already near the viewport', () => {
+  it('arms the observer only after load, then attaches when half of #one is in view', () => {
     const page = loadHomeVideo({
+      width: 1400,
+      scrollY: 0,
       intersectingOnObserve: true,
-      width: 1280,
     });
 
+    expect(page.observers).toHaveLength(0);
+    expect(page.writes()).toBe(0);
+    fireLoad(page);
+    expect(page.observers).toHaveLength(1);
+    expect(page.observers[0].options).toEqual({ threshold: 0.5 });
     expect(page.writes()).toBe(1);
     expectVideoFile(page.homeVideo.innerHTML, 'video.mp4');
     expect(page.observers[0].disconnected).toBe(true);
-    for (const type of ['scroll', 'wheel', 'touchstart']) {
-      expect(page.listeners[type]).toHaveLength(0);
-    }
-
     page.observers[0].callback([{ isIntersecting: true, target: page.section }]);
     expect(page.writes()).toBe(1);
   });
 
-  it('ignores a non-intersecting observer entry, then attaches on the first scroll once', () => {
-    const page = loadHomeVideo({ width: 375 });
-    const scroll = page.listeners.scroll[0].fn;
-
-    page.observers[0].callback([{ isIntersecting: false, target: page.section }]);
-    expect(page.writes()).toBe(0);
-
+  it('attaches on the first real scroll, wheel, touch, or scroll key, and only once', () => {
+    const scrollPage = loadHomeVideo({ width: 375, scrollY: 0 });
+    const scroll = scrollPage.listeners.scroll[0].fn;
     scroll();
-    expect(page.writes()).toBe(1);
-    expectVideoFile(page.homeVideo.innerHTML, 'video-mobile.mp4');
-    expect(page.observers[0].disconnected).toBe(true);
-    expect(page.listeners.scroll).toHaveLength(0);
-    expect(page.listeners.wheel).toHaveLength(0);
-    expect(page.listeners.touchstart).toHaveLength(0);
-
+    expect(scrollPage.writes()).toBe(0);
+    scrollPage.window.scrollY = 24;
     scroll();
-    page.listeners.wheel.forEach((listener) => listener.fn());
-    expect(page.writes()).toBe(1);
-  });
+    expect(scrollPage.writes()).toBe(1);
+    expectVideoFile(scrollPage.homeVideo.innerHTML, 'video-mobile.mp4');
+    expect(scrollPage.listeners.scroll).toHaveLength(0);
+    expect(scrollPage.listeners.wheel).toHaveLength(0);
+    expect(scrollPage.listeners.touchstart).toHaveLength(0);
+    expect(scrollPage.listeners.keydown).toHaveLength(0);
+    scroll();
+    expect(scrollPage.writes()).toBe(1);
 
-  it('attaches from the first wheel or touchstart and still only once', () => {
     const wheelPage = loadHomeVideo({ width: 769 });
     const wheel = wheelPage.listeners.wheel[0].fn;
     const wheelTouch = wheelPage.listeners.touchstart[0].fn;
     const wheelScroll = wheelPage.listeners.scroll[0].fn;
     wheel();
     wheelTouch();
+    wheelPage.window.scrollY = 80;
     wheelScroll();
     expect(wheelPage.writes()).toBe(1);
     expectVideoFile(wheelPage.homeVideo.innerHTML, 'video.mp4');
@@ -277,6 +313,33 @@ describe('homepage background video loading', () => {
     touchWheel();
     expect(touchPage.writes()).toBe(1);
     expectVideoFile(touchPage.homeVideo.innerHTML, 'video-mobile.mp4');
+
+    const keyPage = loadHomeVideo({ width: 1280 });
+    keyPage.listeners.keydown[0].fn({ key: 'a' });
+    expect(keyPage.writes()).toBe(0);
+    keyPage.listeners.keydown[0].fn({ key: 'ArrowDown' });
+    expect(keyPage.writes()).toBe(1);
+    expectVideoFile(keyPage.homeVideo.innerHTML, 'video.mp4');
+
+    for (const key of [' ', 'PageDown', 'ArrowUp', 'Home', 'End']) {
+      const page = loadHomeVideo({ width: 1024 });
+      page.listeners.keydown[0].fn({ key });
+      expect(page.writes()).toBe(1);
+      expectVideoFile(page.homeVideo.innerHTML, 'video.mp4');
+    }
+  });
+
+  it('attaches immediately when the page loads already scrolled', () => {
+    const page = loadHomeVideo({ width: 1280, scrollY: 400 });
+
+    expect(page.writes()).toBe(1);
+    expectVideoFile(page.homeVideo.innerHTML, 'video.mp4');
+    expect(page.observers).toHaveLength(0);
+    expect(page.listeners.scroll).toHaveLength(0);
+    expect(page.listeners.wheel).toHaveLength(0);
+    expect(page.listeners.touchstart).toHaveLength(0);
+    expect(page.listeners.keydown).toHaveLength(0);
+    expect(page.listeners.load).toHaveLength(0);
   });
 
   it('uses the one second timer when IntersectionObserver is missing', () => {
