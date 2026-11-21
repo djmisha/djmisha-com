@@ -18,17 +18,63 @@ const attachVideo = () => {
 
     function createVideoMarkup(item) {
       const videoMarkup =
-        '<video playsinline autoplay muted loop poster="/images/pic02.jpg" class="bgvid"><source src="https://grooverooster.com/images/djmisha/' +
+        '<video playsinline autoplay muted loop poster="/images/home-video-first-frame.webp" class="bgvid"><source src="https://grooverooster.com/images/djmisha/' +
         item +
         '" type="video/mp4"></video>';
       return videoMarkup;
     }
 
     myVideoWrap.innerHTML = createVideoMarkup(file);
+
+    if (typeof myVideoWrap.querySelector === "function") {
+      const video = myVideoWrap.querySelector("video");
+      const section = document.querySelector("#one");
+      if (video && section && section.classList) {
+        video.addEventListener("playing", () => {
+          section.classList.add("home-video-playing");
+        });
+      }
+    }
   }
 };
 
-setTimeout(attachVideo, 1000);
+const loadHomeVideoWhenNear = () => {
+  if (typeof IntersectionObserver !== "function") {
+    setTimeout(attachVideo, 1000);
+    return;
+  }
+
+  const section = document.querySelector("#one");
+  if (!section) return;
+
+  let started = false;
+  let observer;
+  const listenerOptions = { passive: true };
+
+  const start = () => {
+    if (started) return;
+    started = true;
+    if (observer) observer.disconnect();
+    window.removeEventListener("scroll", start, listenerOptions);
+    window.removeEventListener("wheel", start, listenerOptions);
+    window.removeEventListener("touchstart", start, listenerOptions);
+    attachVideo();
+  };
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) start();
+    },
+    { rootMargin: "0px 0px 100% 0px" },
+  );
+
+  window.addEventListener("scroll", start, listenerOptions);
+  window.addEventListener("wheel", start, listenerOptions);
+  window.addEventListener("touchstart", start, listenerOptions);
+  observer.observe(section);
+};
+
+loadHomeVideoWhenNear();
 
 /* Attach Video on Homepage*/
 

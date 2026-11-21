@@ -4013,6 +4013,11 @@ span#logo a {
 /* Video Styles*/
 
 #one img {
+  opacity: 1;
+  height: auto;
+}
+
+#one.home-video-playing img {
   opacity: 0;
 }
 
@@ -4041,6 +4046,10 @@ span#logo a {
   padding: 0;
   -o-object-fit: cover;
   object-fit: cover;
+  opacity: 0;
+}
+
+#one.home-video-playing video {
   opacity: 1;
 }
 
