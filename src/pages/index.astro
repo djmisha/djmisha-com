@@ -52,7 +52,14 @@ const homeBlogPosts = blogPosts.slice(0, 4);
         >
         <br />
       </header>
-      <span class="image"><img src="/images/pic01.jpg" alt="dj misha" /></span>
+      <span class="image"
+        ><img
+          src="/images/pic01.jpg"
+          alt="dj misha"
+          width="316"
+          height="316"
+        /></span
+      >
     </div>
     <a href="#one" class="goto-next scrolly" rel="nofollow">Next</a>
   </section>
@@ -65,6 +72,8 @@ const homeBlogPosts = blogPosts.slice(0, 4);
         alt="san diego dj"
         width="1080"
         height="608"
+        loading="lazy"
+        decoding="async"
       /></span
     >
     <div class="home-video"></div>
@@ -101,7 +110,14 @@ const homeBlogPosts = blogPosts.slice(0, 4);
   <!-- Two -->
   <section id="two" class="spotlight style2 right">
     <span class="image fit main"
-      ><img src="/images/pic03.jpg" alt="dj turntables" /></span
+      ><img
+        src="/images/pic03.jpg"
+        alt="dj turntables"
+        width="1600"
+        height="1050"
+        loading="lazy"
+        decoding="async"
+      /></span
     >
     <div class="content">
       <header>
@@ -132,7 +148,14 @@ const homeBlogPosts = blogPosts.slice(0, 4);
   <!-- Three -->
   <section id="three" class="spotlight style3 left">
     <span class="image fit main bottom">
-      <img src="/images/pic04.jpg" alt="dj and saxophone" />
+      <img
+        src="/images/pic04.jpg"
+        alt="dj and saxophone"
+        width="1600"
+        height="1050"
+        loading="lazy"
+        decoding="async"
+      />
     </span>
     <div class="content">
       <header>
@@ -182,8 +205,12 @@ const homeBlogPosts = blogPosts.slice(0, 4);
               <img
                 src="/images/dj-service-wedding.jpg"
                 alt="Wedding DJ"
+                width="400"
+                height="300"
                 style="width: 100%;"
                 class="wedding-dj-image"
+                loading="lazy"
+                decoding="async"
               />
               <h3>Wedding DJ</h3>
             </div>
@@ -210,7 +237,11 @@ const homeBlogPosts = blogPosts.slice(0, 4);
               <img
                 src="/images/dj-service-corporate.jpg"
                 alt="Corporate DJ"
+                width="400"
+                height="300"
                 style="width: 100%;"
+                loading="lazy"
+                decoding="async"
               />
               <h3>Corporate DJ</h3>
             </div>
@@ -238,7 +269,11 @@ const homeBlogPosts = blogPosts.slice(0, 4);
               <img
                 src="/images/dj-service-party.jpg"
                 alt="Private Party DJ"
+                width="400"
+                height="300"
                 style="width: 100%;"
+                loading="lazy"
+                decoding="async"
               />
               <h3>Private Party DJ</h3>
             </div>
@@ -275,7 +310,11 @@ const homeBlogPosts = blogPosts.slice(0, 4);
               <img
                 src="/images/vid4.jpg"
                 alt="play video"
+                width="480"
+                height="270"
                 style="width: 100%;"
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <p>Margarita Month Festival</p>
@@ -285,7 +324,11 @@ const homeBlogPosts = blogPosts.slice(0, 4);
               <img
                 src="/images/vid1.jpg"
                 alt="play video"
+                width="480"
+                height="270"
                 style="width: 100%;"
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <p>Banana Republic Corporate Event with DJ + Saxophone</p>
@@ -295,7 +338,11 @@ const homeBlogPosts = blogPosts.slice(0, 4);
               <img
                 src="/images/vid2.jpg"
                 alt="play video"
+                width="480"
+                height="270"
                 style="width: 100%;"
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <p>Uncorked Wine Festival</p>
@@ -305,7 +352,11 @@ const homeBlogPosts = blogPosts.slice(0, 4);
               <img
                 src="/images/vid3.jpg"
                 alt="play video"
+                width="480"
+                height="270"
                 style="width: 100%;"
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <p>Pacific Magazine Festival</p>
@@ -377,6 +428,19 @@ const homeBlogPosts = blogPosts.slice(0, 4);
 </BaseLayout>
 
 <style>
+  /* Width/height attributes reserve the ratio; height stays auto so CSS width still sets the size. */
+  #banner .content .image img,
+  .spotlight .image.main img,
+  .service-card-image img,
+  #four img {
+    height: auto;
+  }
+
+  /* The empty mobile video box is a flex sibling. Hold the still at its loaded size. */
+  .wedding-dj-image {
+    min-width: min(100%, 400px);
+  }
+
   .services-subhead {
     display: block;
     font-size: 0.8em;
