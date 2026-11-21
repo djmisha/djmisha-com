@@ -13,6 +13,8 @@ const jsonLd = buildJsonLdWithRating({
   reviewCount: reviews.totalReviews,
 });
 const homeBlogPosts = blogPosts.slice(0, 4);
+const bannerPreload =
+  '<link rel="preload" as="image" href="/images/banner.webp" type="image/webp" fetchpriority="high" />';
 ---
 
 <BaseLayout
@@ -28,6 +30,7 @@ const homeBlogPosts = blogPosts.slice(0, 4);
   twitterTitle="San Diego DJ for Weddings, Corporate Events & Parties - DJ Misha"
   twitterImage="https://djmisha.com/images/Best-San-Diego-DJ-djmisha.com-12.jpg"
   jsonLd={jsonLd}
+  extraHeadContent={bannerPreload}
 >
   <Navigation isHome={true} />
 
