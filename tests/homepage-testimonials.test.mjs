@@ -100,7 +100,7 @@ describe('homepage testimonial row', () => {
     expect(rotate).toHaveLength(1);
     expect(rotate.attr('type')).toBe('button');
     expect(rotate.hasClass('button')).toBe(false);
-    expect(rotate.attr('aria-label')).toBe('Shuffle testimonials');
+    expect(rotate.attr('aria-label')).toBe('Shuffle reviews');
     expect(rotate.find('svg')).toHaveLength(1);
     expect(rotate.find('span').text().trim()).toBe('Shuffle reviews');
   });

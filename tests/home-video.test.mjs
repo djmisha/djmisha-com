@@ -8,6 +8,10 @@ import { load } from 'cheerio';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const customJsPath = path.join(root, 'public/js/custom.js');
 const source = fs.readFileSync(customJsPath, 'utf8');
+const homePage = fs.readFileSync(
+  path.join(root, 'src/pages/index.astro'),
+  'utf8',
+);
 const posterPath = '/images/home-video-first-frame.webp';
 
 function webpSize(buffer) {
@@ -111,7 +115,9 @@ function loadHomeVideo({
       listeners[type].push({ fn, options });
     },
     removeEventListener(type, fn) {
-      listeners[type] = listeners[type].filter((listener) => listener.fn !== fn);
+      listeners[type] = listeners[type].filter(
+        (listener) => listener.fn !== fn,
+      );
     },
   };
 
@@ -206,6 +212,12 @@ function expectVideoFile(html, file) {
 }
 
 describe('homepage background video loading', () => {
+  it('uses the first frame as a cover background on desktop', () => {
+    expect(homePage).toMatch(
+      /@media \(min-width: 981px\)\s*\{\s*#one\s*\{\s*background-image: url\('\/images\/home-video-first-frame\.webp'\);\s*background-position: center;\s*background-repeat: no-repeat;\s*background-size: cover;/,
+    );
+  });
+
   it('keeps the one second timer only as the IntersectionObserver fallback', () => {
     const calls = source.match(/setTimeout\(\s*attachVideo\s*,\s*1000\s*\)/g);
     expect(calls).toEqual(['setTimeout(attachVideo, 1000)']);
@@ -218,18 +230,26 @@ describe('homepage background video loading', () => {
     expect(source).toContain('"#one"');
     expect(source).toContain('threshold: 0.5');
     expect(source).not.toContain('rootMargin');
-    expect(source).toContain('addEventListener("scroll", onScroll, listenerOptions)');
-    expect(source).toContain('addEventListener("wheel", start, listenerOptions)');
+    expect(source).toContain(
+      'addEventListener("scroll", onScroll, listenerOptions)',
+    );
+    expect(source).toContain(
+      'addEventListener("wheel", start, listenerOptions)',
+    );
     expect(source).toContain(
       'addEventListener("touchstart", start, listenerOptions)',
     );
-    expect(source).toContain('addEventListener("keydown", onKey, listenerOptions)');
+    expect(source).toContain(
+      'addEventListener("keydown", onKey, listenerOptions)',
+    );
     expect(source).toContain('addEventListener("load", armObserver)');
     expect(source).toContain('window.scrollY === 0');
     expect(source).toContain('window.scrollY > 0');
     expect(source).toContain('passive: true');
     expect(source).toContain('observer.disconnect()');
-    expect(source).toContain('removeEventListener("scroll", onScroll, listenerOptions)');
+    expect(source).toContain(
+      'removeEventListener("scroll", onScroll, listenerOptions)',
+    );
     expect(source).not.toMatch(/^setTimeout\(attachVideo, 1000\);/m);
   });
 
@@ -275,7 +295,9 @@ describe('homepage background video loading', () => {
     expect(page.writes()).toBe(1);
     expectVideoFile(page.homeVideo.innerHTML, 'video.mp4');
     expect(page.observers[0].disconnected).toBe(true);
-    page.observers[0].callback([{ isIntersecting: true, target: page.section }]);
+    page.observers[0].callback([
+      { isIntersecting: true, target: page.section },
+    ]);
     expect(page.writes()).toBe(1);
   });
 
@@ -352,9 +374,7 @@ describe('homepage background video loading', () => {
     expect(page.listeners.scroll).toHaveLength(0);
     expect(page.listeners.wheel).toHaveLength(0);
     expect(page.listeners.touchstart).toHaveLength(0);
-    expect(page.timeouts).toEqual([
-      expect.objectContaining({ delay: 1000 }),
-    ]);
+    expect(page.timeouts).toEqual([expect.objectContaining({ delay: 1000 })]);
     expect(page.homeVideo.innerHTML).toBe('');
 
     page.timeouts[0].fn();
@@ -375,7 +395,10 @@ describe('homepage background video loading', () => {
 });
 
 describe('homepage video poster image', () => {
-  const imageFile = path.join(root, 'public/images/home-video-first-frame.webp');
+  const imageFile = path.join(
+    root,
+    'public/images/home-video-first-frame.webp',
+  );
 
   it('points the poster and the #one image at the new first-frame file', () => {
     expect(fs.existsSync(imageFile)).toBe(true);
@@ -385,7 +408,10 @@ describe('homepage video poster image', () => {
     expect(source).toContain(`poster="${posterPath}"`);
     expect(source).not.toContain('pic02');
 
-    const astro = fs.readFileSync(path.join(root, 'src/pages/index.astro'), 'utf8');
+    const astro = fs.readFileSync(
+      path.join(root, 'src/pages/index.astro'),
+      'utf8',
+    );
     const section = astro.match(/<section id="one"[\s\S]*?<\/section>/);
     expect(section).not.toBeNull();
     const img = load(section[0])('span.image.fit.main img');
@@ -410,7 +436,11 @@ describe('homepage video poster image', () => {
 
     function walk(dir) {
       for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-        if (entry.name === 'node_modules' || entry.name === 'dist' || entry.name === '.git') {
+        if (
+          entry.name === 'node_modules' ||
+          entry.name === 'dist' ||
+          entry.name === '.git'
+        ) {
           continue;
         }
         const full = path.join(dir, entry.name);
@@ -420,7 +450,8 @@ describe('homepage video poster image', () => {
         }
         if (entry.name.toLowerCase().includes('pic02')) hits.push(full);
         if (full === fileURLToPath(import.meta.url)) continue;
-        if (/\.(webp|png|jpe?g|gif|mp4|woff2?|ico|svg)$/i.test(entry.name)) continue;
+        if (/\.(webp|png|jpe?g|gif|mp4|woff2?|ico|svg)$/i.test(entry.name))
+          continue;
         const buffer = fs.readFileSync(full);
         if (buffer.includes(0)) continue;
         if (buffer.toString('utf8').includes('pic02')) hits.push(full);
@@ -429,6 +460,8 @@ describe('homepage video poster image', () => {
 
     walk(root);
     expect(hits).toEqual([]);
-    expect(fs.existsSync(path.join(root, 'public/images/pic02.jpg'))).toBe(false);
+    expect(fs.existsSync(path.join(root, 'public/images/pic02.jpg'))).toBe(
+      false,
+    );
   });
 });

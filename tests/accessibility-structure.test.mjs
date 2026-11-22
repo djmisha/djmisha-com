@@ -109,4 +109,27 @@ describe('site accessibility structure', () => {
       /<a href="#navPanel" class="toggle" aria-label="Toggle navigation menu"><\/a>/,
     );
   });
+
+  it('gives homepage Learn More links descriptive names', () => {
+    const $ = load(fs.readFileSync(path.join(distDir, 'index.html'), 'utf8'));
+    const linkLabels = $('a.button')
+      .filter((_, link) => $(link).text().trim() === 'Learn More')
+      .map((_, link) => $(link).attr('aria-label'))
+      .get();
+
+    expect(linkLabels).toEqual([
+      'Learn more about DJ services',
+      'Learn more about wedding DJ services',
+      'Learn more about corporate event DJ services',
+      'Learn more about private party DJ services',
+    ]);
+  });
+
+  it('matches the review shuffle button name to its visible label', () => {
+    const $ = load(fs.readFileSync(path.join(distDir, 'index.html'), 'utf8'));
+    const shuffleButton = $('.homepage-review-rotate');
+
+    expect(shuffleButton.attr('aria-label')).toBe('Shuffle reviews');
+    expect(shuffleButton.text().trim()).toBe('Shuffle reviews');
+  });
 });
