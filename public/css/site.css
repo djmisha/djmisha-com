@@ -353,7 +353,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-accent) !important;
+  color: var(--color-accent-hover) !important;
   border-bottom-color: transparent;
 }
 
@@ -3749,7 +3749,7 @@ span#logo a {
 }
 
 #footer .copyright li a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 .cdcover {
   height: 220px;
@@ -3855,7 +3855,7 @@ img.alignleft {
 }
 
 .footer-phone-number:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 .footer-phone-cta {
@@ -3880,11 +3880,13 @@ img.alignleft {
 
 .menu-footer-navigation a,
 .services-navigation a {
+  color: var(--color-accent-hover);
   border-bottom: none;
 }
 
 .menu-footer-navigation a:hover,
 .services-navigation a:hover {
+  color: var(--color-accent-hover);
   border-bottom: dotted 1px;
 }
 #footer ul.copyright li {

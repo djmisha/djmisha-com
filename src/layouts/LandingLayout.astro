@@ -46,6 +46,8 @@ const {
   noindex={noindex}
 >
   <Navigation isHome={isHome} />
-  <slot />
+  <main>
+    <slot />
+  </main>
   <Footer />
 </BaseLayout>
