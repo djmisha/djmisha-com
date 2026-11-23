@@ -58,14 +58,26 @@ const bannerPreload =
         </header>
         <span class="image"
           ><img
-            src="/images/pic01.jpg"
-            alt="dj misha"
-            width="316"
-            height="316"
+            src="/images/djmisha-1.webp"
+            alt="DJ Misha playing dance music"
+            width="484"
+            height="484"
           /></span
         >
       </div>
-      <a href="#one" class="goto-next scrolly" rel="nofollow">Next</a>
+      <script is:inline>
+        function assignRandomHomepageHeroImage() {
+          const imageNumber = Math.random() < 0.5 ? 1 : 2;
+          const heroImage = document.querySelector(
+            '#banner .content .image img',
+          );
+          if (!heroImage) throw new Error('Homepage hero image was not found');
+          heroImage.src = `/images/djmisha-${imageNumber}.webp`;
+        }
+
+        assignRandomHomepageHeroImage();
+      </script>
+      <a href="#one" class="goto-next" rel="nofollow">Next</a>
     </section>
 
     <!-- One -->
@@ -108,7 +120,7 @@ const bannerPreload =
           </div>
         </div>
       </div>
-      <a href="#two" class="goto-next scrolly" rel="nofollow">Next</a>
+      <a href="#two" class="goto-next" rel="nofollow">Next</a>
     </section>
 
     <!-- Two -->
@@ -152,7 +164,7 @@ const bannerPreload =
           </li>
         </ul>
       </div>
-      <a href="#three" class="goto-next scrolly" rel="nofollow">Next</a>
+      <a href="#three" class="goto-next" rel="nofollow">Next</a>
     </section>
 
     <!-- Three -->
@@ -184,7 +196,7 @@ const bannerPreload =
             </li>
           </ul>
         </div>
-        <a href="#four" class="goto-next scrolly" rel="nofollow">Next</a>
+        <a href="#four" class="goto-next" rel="nofollow">Next</a>
       </div>
     </section>
 
@@ -447,6 +459,10 @@ const bannerPreload =
 </BaseLayout>
 
 <style>
+  #banner .content .image:before {
+    display: none;
+  }
+
   @media (min-width: 981px) {
     #one {
       background-image: url('/images/home-video-first-frame.webp');

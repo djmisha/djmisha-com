@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { load } from 'cheerio';
@@ -8,7 +9,16 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const html = fs.readFileSync(path.join(root, 'dist/index.html'), 'utf8');
 const $ = load(html);
 
-const heroSrc = '/images/pic01.jpg';
+const heroSrc = '/images/djmisha-1.webp';
+const heroAlt = 'DJ Misha playing dance music';
+const heroScript = $('script')
+  .map((_, element) => $(element).html() || '')
+  .get()
+  .find((script) => script.includes('assignRandomHomepageHeroImage'));
+
+if (!heroScript) {
+  throw new Error('Homepage must inline its random hero image script');
+}
 
 // Below the hero on the built home page. Dimensions are the file's real size.
 const belowFold = [
@@ -83,15 +93,54 @@ function imgsFor(src) {
 }
 
 describe('homepage image loading', () => {
+  it('randomly assigns either homepage hero image with its actual dimensions', () => {
+    expect($('script[src="/js/homepage-hero-image.js"]')).toHaveLength(0);
+
+    const choices = [
+      {
+        random: 0,
+        src: '/images/djmisha-1.webp',
+        width: 484,
+        height: 484,
+      },
+      {
+        random: 0.999,
+        src: '/images/djmisha-2.webp',
+        width: 526,
+        height: 526,
+      },
+    ];
+
+    for (const { random, ...choice } of choices) {
+      const heroImage = { alt: heroAlt };
+      vm.runInNewContext(heroScript, {
+        document: {
+          querySelector: () => heroImage,
+        },
+        Math: {
+          floor: Math.floor,
+          random: () => random,
+        },
+      });
+
+      expect(heroImage.src).toBe(choice.src);
+      expect(heroImage.alt).toBe(heroAlt);
+      expect(imageSize(path.join(root, 'public', choice.src.slice(1)))).toEqual(
+        { width: choice.width, height: choice.height },
+      );
+    }
+  });
+
   it('keeps the hero photo eager and gives it the file dimensions', () => {
     const hero = imgsFor(heroSrc);
     expect(hero).toHaveLength(1);
     expect(hero.attr('loading')).not.toBe('lazy');
-    expect(hero.attr('width')).toBe('316');
-    expect(hero.attr('height')).toBe('316');
-    expect(imageSize(path.join(root, 'public/images/pic01.jpg'))).toEqual({
-      width: 316,
-      height: 316,
+    expect(hero.attr('alt')).toBe(heroAlt);
+    expect(hero.attr('width')).toBe('484');
+    expect(hero.attr('height')).toBe('484');
+    expect(imageSize(path.join(root, 'public/images/djmisha-1.webp'))).toEqual({
+      width: 484,
+      height: 484,
     });
     expect(hero.parents('#banner')).toHaveLength(1);
 
@@ -125,14 +174,19 @@ describe('homepage image loading', () => {
   it('keeps the sticky photo eager so the slide-out button does not pop in', () => {
     const img = $('.lets-chat img');
     expect(img).toHaveLength(1);
-    expect(img.attr('src')).toBe('/images/expert.png');
+    expect(img.attr('src')).toBe('/images/djmisha-chat.webp');
     expect(img.attr('loading')).not.toBe('lazy');
     expect(img.attr('decoding')).toBe('async');
-    expect(imageSize(path.join(root, 'public/images/expert.png'))).toEqual({
-      width: 200,
-      height: 190,
+    expect(
+      imageSize(path.join(root, 'public/images/djmisha-chat.webp')),
+    ).toEqual({
+      width: 240,
+      height: 240,
     });
-    expect(img.attr('width')).toBe('200');
-    expect(img.attr('height')).toBe('190');
+    expect(img.attr('width')).toBe('240');
+    expect(img.attr('height')).toBe('240');
+    expect(fs.existsSync(path.join(root, 'public/images/expert-1.png'))).toBe(
+      true,
+    );
   });
 });

@@ -37,7 +37,7 @@
   --color-black: #000000;
   --color-bg-hover: #2d2f40;
   --color-bg-nav-panel: #181920;
-  --color-overlay: rgba(23, 24, 32, 0.95);
+  --color-overlay: rgba(23, 24, 32, 0.8);
   --color-overlay-light: rgba(23, 24, 32, 0.55);
   --color-dropdown-bg: rgba(39, 40, 51, 0.965);
 
@@ -2837,7 +2837,7 @@ input[type='button']:disabled,
   display: block;
   height: 1.5em;
   left: 50%;
-  margin: -3em 0 0 -1em;
+  margin: -1em 0 0 -1em;
   position: absolute;
   top: 50%;
   width: 2em;
@@ -3502,7 +3502,7 @@ span#logo a {
   transition: all 0.2s ease-in-out;
   position: fixed;
   bottom: 20px;
-  right: -90px;
+  right: -100px;
 }
 
 @media only screen and (min-width: 1080px) {
@@ -3527,11 +3527,15 @@ span#logo a {
   width: 70px;
   display: block;
   margin: 0 auto;
+  border-radius: 50%;
 }
 
 @media only screen and (min-width: 768px) {
   .lets-chat img {
     width: 90px;
+  }
+  .lets-chat:hover img {
+    width: 120px;
   }
 }
 
@@ -3547,10 +3551,6 @@ span#logo a {
   padding: 2px 4px;
   display: block;
   border-radius: var(--border-radius);
-}
-
-.lets-chat:hover img {
-  width: 120px;
 }
 
 .contact-page img {
@@ -4558,11 +4558,11 @@ body.contact-page #content > .wp-block-image {
 
   #banner {
     box-shadow: 0 0.125em 0.5em 0 var(--color-shadow);
-    min-height: calc(100vh + 44px);
+    min-height: calc(100vh);
   }
 
   #banner:before {
-    height: calc(100vh + 44px);
+    height: calc(100vh);
   }
 
   #banner .content {
@@ -4574,8 +4574,8 @@ body.contact-page #content > .wp-block-image {
   }
 
   #banner .content .image {
-    height: 9em;
-    width: 9em;
+    height: 13em;
+    width: 13em;
   }
 
   /* Nav */

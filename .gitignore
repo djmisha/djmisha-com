@@ -25,6 +25,9 @@ Thumbs.db
 # Staging (CI/CD)
 _staging/
 
+# Local legacy image archive
+/Legacy Images/
+
 # Various 
 
 
