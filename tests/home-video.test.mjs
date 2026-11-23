@@ -214,7 +214,7 @@ function expectVideoFile(html, file) {
 describe('homepage background video loading', () => {
   it('uses the first frame as a cover background on desktop', () => {
     expect(homePage).toMatch(
-      /@media \(min-width: 981px\)\s*\{\s*#one\s*\{\s*background-image: url\('\/images\/home-video-first-frame\.webp'\);\s*background-position: center;\s*background-repeat: no-repeat;\s*background-size: cover;/,
+      /@media \(min-width: 981px\)\s*\{\s*#one\s*\{\s*background-image: url\('\/images\/home-video-first-frame\.webp'\);\s*background-position: center(?:\s*!important)?;\s*background-repeat: no-repeat;\s*background-size: cover;/,
     );
   });
 
