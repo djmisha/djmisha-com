@@ -422,7 +422,7 @@ describe('homepage video poster image', () => {
   });
 
   it('keeps the still image visible until the video is playing', () => {
-    const css = fs.readFileSync(path.join(root, 'public/css/site.css'), 'utf8');
+    const css = fs.readFileSync(path.join(root, 'src/styles/site.css'), 'utf8');
     expect(source).toContain('section.classList.add("home-video-playing")');
     expect(source).toContain('addEventListener("playing"');
     expect(css).toMatch(/#one img \{\s*opacity: 1;\s*height: auto;/);

@@ -20,7 +20,7 @@ npm test             # Integration tests (Vitest + Cheerio)
 
 - **Framework**: Astro 5 (static output mode)
 - **Language**: TypeScript
-- **Styling**: Scoped `<style>` in components (preferred); legacy global CSS in `public/css/site.css`
+- **Styling**: Scoped `<style>` in components (preferred); global stylesheet in `src/styles/site.css`
 - **Site**: https://djmisha.com — DJ portfolio/marketing site
 - **Deploy**: GitHub Actions → FTP (push to `main` triggers deploy)
 
@@ -125,9 +125,9 @@ Scoped style rules:
 - Keep selectors simple — Astro scoping handles isolation
 - If a style genuinely needs to be global (affects multiple unrelated pages), add it to `site.css` with a comment explaining why
 
-### Legacy CSS: `public/css/site.css`
+### Global stylesheet: `src/styles/site.css`
 
-- The existing `site.css` is a legacy file from the HTML5 UP theme migration
+- The existing `site.css` is a global file based on the HTML5 UP theme
 - Do NOT add new styles to `site.css` unless they are truly global (e.g., base typography, CSS custom properties, grid utilities)
 - Do not modify or remove existing `site.css` rules without testing all pages — many depend on them implicitly
 - CSS custom properties (design tokens) remain defined in `site.css`'s `:root` and should be referenced from scoped styles
@@ -322,7 +322,7 @@ npm test             # Integration tests must pass
 ## Things to Avoid
 
 - Hardcoded phone numbers, URLs, or review counts (use `src/data/config.ts`)
-- Adding new styles to `public/css/site.css` (use scoped `<style>` in components)
+- Adding new styles to `src/styles/site.css` (use scoped `<style>` in components)
 - New jQuery code or jQuery plugin additions
 - Creating files in `dist/` (it's a build artifact, gitignored)
 - Modifying `archived-theme/` (reference only)

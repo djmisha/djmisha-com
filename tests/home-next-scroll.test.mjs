@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { load } from 'cheerio';
+import { getSiteCssAsset } from './helpers/site-css.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
@@ -32,11 +33,11 @@ describe('homepage next-link scrolling', () => {
   });
 
   it('uses CSS smooth scrolling and respects reduced-motion preferences', () => {
-    const css = fs.readFileSync(path.join(distDir, 'css/site.css'), 'utf8');
+    const { css } = getSiteCssAsset(path.join(distDir, 'index.html'), distDir);
 
-    expect(css).toMatch(/html\s*\{[^}]*scroll-behavior:\s*smooth;/);
+    expect(css).toMatch(/html\s*\{[^}]*scroll-behavior:\s*smooth(?:;|\})/);
     expect(css).toMatch(
-      /@media\s*\(prefers-reduced-motion:\s*reduce\)\s*\{\s*html\s*\{[^}]*scroll-behavior:\s*auto;/,
+      /@media\s*\(prefers-reduced-motion:\s*reduce\)\s*\{\s*html\s*\{[^}]*scroll-behavior:\s*auto(?:;|\})\s*\}/,
     );
   });
 });

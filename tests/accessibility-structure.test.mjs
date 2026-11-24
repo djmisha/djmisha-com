@@ -6,7 +6,7 @@ import { load } from 'cheerio';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
-const siteCss = fs.readFileSync(path.join(root, 'public/css/site.css'), 'utf8');
+const siteCss = fs.readFileSync(path.join(root, 'src/styles/site.css'), 'utf8');
 const mainScript = fs.readFileSync(
   path.join(root, 'public/js/main.js'),
   'utf8',
