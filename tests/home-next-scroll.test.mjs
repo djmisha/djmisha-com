@@ -28,7 +28,7 @@ describe('homepage next-link scrolling', () => {
       false,
     );
     expect(
-      fs.readFileSync(path.join(root, 'public/js/main.js'), 'utf8'),
+      fs.readFileSync(path.join(root, 'src/scripts/main.js'), 'utf8'),
     ).not.toContain('.scrolly');
   });
 

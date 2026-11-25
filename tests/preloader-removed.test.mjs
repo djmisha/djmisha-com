@@ -76,7 +76,7 @@ describe('Landed preloader removed', () => {
   });
 
   it('stops main.js from removing is-preload and keeps scrollex', () => {
-    const js = fs.readFileSync(path.join(distDir, 'js/main.js'), 'utf8');
+    const js = fs.readFileSync(path.join(root, 'src/scripts/main.js'), 'utf8');
 
     expect(js).not.toContain('is-preload');
     expect(js).toContain('.scrollex(');

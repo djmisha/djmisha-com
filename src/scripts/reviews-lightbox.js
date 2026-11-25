@@ -202,9 +202,7 @@
       wheel: false,
       afterShow: function (_instance, current) {
         fitReviewPanel(current);
-        var scroller = current.$content
-          .find('.review-lightbox__scroll')
-          .get(0);
+        var scroller = current.$content.find('.review-lightbox__scroll').get(0);
         if (scroller) scroller.scrollTop = 0;
       },
       onUpdate: function (_instance, current) {

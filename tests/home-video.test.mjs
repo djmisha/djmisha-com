@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { load } from 'cheerio';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const customJsPath = path.join(root, 'public/js/custom.js');
+const customJsPath = path.join(root, 'src/scripts/home-video.js');
 const source = fs.readFileSync(customJsPath, 'utf8');
 const homePage = fs.readFileSync(
   path.join(root, 'src/pages/index.astro'),
@@ -224,31 +224,31 @@ describe('homepage background video loading', () => {
 
     const index = source.indexOf('setTimeout(attachVideo, 1000)');
     const before = source.slice(Math.max(0, index - 180), index);
-    expect(before).toContain('typeof IntersectionObserver !== "function"');
+    expect(before).toContain("typeof IntersectionObserver !== 'function'");
     expect(braceDepthAt(source, index)).toBeGreaterThan(0);
     expect(source).toContain('new IntersectionObserver');
-    expect(source).toContain('"#one"');
+    expect(source).toContain("'#one'");
     expect(source).toContain('threshold: 0.5');
     expect(source).not.toContain('rootMargin');
     expect(source).toContain(
-      'addEventListener("scroll", onScroll, listenerOptions)',
+      "addEventListener('scroll', onScroll, listenerOptions)",
     );
     expect(source).toContain(
-      'addEventListener("wheel", start, listenerOptions)',
+      "addEventListener('wheel', start, listenerOptions)",
     );
     expect(source).toContain(
-      'addEventListener("touchstart", start, listenerOptions)',
+      "addEventListener('touchstart', start, listenerOptions)",
     );
     expect(source).toContain(
-      'addEventListener("keydown", onKey, listenerOptions)',
+      "addEventListener('keydown', onKey, listenerOptions)",
     );
-    expect(source).toContain('addEventListener("load", armObserver)');
+    expect(source).toContain("addEventListener('load', armObserver)");
     expect(source).toContain('window.scrollY === 0');
     expect(source).toContain('window.scrollY > 0');
     expect(source).toContain('passive: true');
     expect(source).toContain('observer.disconnect()');
     expect(source).toContain(
-      'removeEventListener("scroll", onScroll, listenerOptions)',
+      "removeEventListener('scroll', onScroll, listenerOptions)",
     );
     expect(source).not.toMatch(/^setTimeout\(attachVideo, 1000\);/m);
   });
@@ -423,8 +423,8 @@ describe('homepage video poster image', () => {
 
   it('keeps the still image visible until the video is playing', () => {
     const css = fs.readFileSync(path.join(root, 'src/styles/site.css'), 'utf8');
-    expect(source).toContain('section.classList.add("home-video-playing")');
-    expect(source).toContain('addEventListener("playing"');
+    expect(source).toContain("section.classList.add('home-video-playing')");
+    expect(source).toContain("addEventListener('playing'");
     expect(css).toMatch(/#one img \{\s*opacity: 1;\s*height: auto;/);
     expect(css).toMatch(/#one\.home-video-playing img \{\s*opacity: 0;/);
     expect(css).toMatch(/#one video \{[^}]*opacity: 0;/);

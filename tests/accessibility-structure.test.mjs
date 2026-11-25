@@ -8,7 +8,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
 const siteCss = fs.readFileSync(path.join(root, 'src/styles/site.css'), 'utf8');
 const mainScript = fs.readFileSync(
-  path.join(root, 'public/js/main.js'),
+  path.join(root, 'src/scripts/main.js'),
   'utf8',
 );
 
