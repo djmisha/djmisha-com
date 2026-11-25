@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { load } from 'cheerio';
+import { getSiteCssAsset } from './helpers/site-css.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
@@ -19,7 +20,9 @@ function htmlFiles(dir, files = []) {
 describe('Landed preloader removed', () => {
   it('keeps the landing class on the home page and drops is-preload', () => {
     const $ = load(fs.readFileSync(path.join(distDir, 'index.html'), 'utf8'));
-    const classes = ($('body').attr('class') || '').split(/\s+/).filter(Boolean);
+    const classes = ($('body').attr('class') || '')
+      .split(/\s+/)
+      .filter(Boolean);
 
     expect(classes).toContain('landing');
     expect(classes).not.toContain('is-preload');
@@ -34,7 +37,10 @@ describe('Landed preloader removed', () => {
   });
 
   it('removes the spinner and cover from site.css and noscript.css', () => {
-    const site = fs.readFileSync(path.join(distDir, 'css/site.css'), 'utf8');
+    const { css: site } = getSiteCssAsset(
+      path.join(distDir, 'index.html'),
+      distDir,
+    );
     const noscript = fs.readFileSync(
       path.join(distDir, 'css/noscript.css'),
       'utf8',
@@ -51,19 +57,26 @@ describe('Landed preloader removed', () => {
   });
 
   it('keeps the landing header, page wrapper, and dropdown rules', () => {
-    const site = fs.readFileSync(path.join(distDir, 'css/site.css'), 'utf8');
-
-    expect(site).toMatch(
-      /body\.landing #header \{[^}]*background: transparent;[^}]*box-shadow: none;[^}]*position: absolute;/,
+    const { css: site } = getSiteCssAsset(
+      path.join(distDir, 'index.html'),
+      distDir,
     );
-    expect(site).toMatch(/body\.landing #page-wrapper \{[^}]*padding-top: 0;/);
+    const headerStyles = site.match(/body\.landing #header\s*\{([^}]*)\}/)?.[1];
+
+    expect(headerStyles).toBeDefined();
+    expect(headerStyles).toMatch(/background:(?:transparent|0 0)(?:;|$)/);
+    expect(headerStyles).toMatch(/box-shadow:none(?:;|$)/);
+    expect(headerStyles).toMatch(/position:absolute(?:;|$)/);
     expect(site).toMatch(
-      /body\.landing \.dropotron\.level-0 \{[^}]*margin-top: 0;/,
+      /body\.landing #page-wrapper\s*\{[^}]*padding-top:0(?:;|\})/,
+    );
+    expect(site).toMatch(
+      /body\.landing \.dropotron\.level-0\s*\{[^}]*margin-top:0(?:;|\})/,
     );
   });
 
   it('stops main.js from removing is-preload and keeps scrollex', () => {
-    const js = fs.readFileSync(path.join(distDir, 'js/main.js'), 'utf8');
+    const js = fs.readFileSync(path.join(root, 'src/scripts/main.js'), 'utf8');
 
     expect(js).not.toContain('is-preload');
     expect(js).toContain('.scrollex(');

@@ -1,4 +1,4 @@
-/*
+/*!
   DJ Misha - Consolidated Site Stylesheet
   Based on "Landed" by HTML5 UP (html5up.net | @ajlkn)
   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
@@ -494,18 +494,6 @@ pre code {
   line-height: 1.75em;
   padding: 1em 1.5em;
   overflow-x: auto;
-}
-
-.align-left {
-  text-align: left;
-}
-
-.align-center {
-  text-align: center;
-}
-
-.align-right {
-  text-align: right;
 }
 
 body.landing {
@@ -2017,8 +2005,7 @@ body.landing {
 
 /* Section/Article */
 
-section.special,
-article.special {
+section.special {
   text-align: center;
 }
 
@@ -2389,7 +2376,7 @@ input[type='radio'] + label:before {
   position: absolute;
   left: 0;
   top: 0;
-  background-image: url('images/overlay.png');
+  background-image: url('/css/images/overlay.png');
   width: 100%;
   height: 100%;
   z-index: 1;
@@ -2618,11 +2605,6 @@ ul.actions.fit.stacked {
 
 /* Table */
 
-.table-wrapper {
-  -webkit-overflow-scrolling: touch;
-  overflow-x: auto;
-}
-
 table {
   margin: 0 0 2em 0;
   width: 100%;
@@ -2829,7 +2811,7 @@ input[type='button']:disabled,
 }
 
 .goto-next:before {
-  background-image: url('images/arrow.svg');
+  background-image: url('/css/images/arrow.svg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2937,7 +2919,7 @@ input[type='button']:disabled,
 }
 
 .spotlight:before {
-  background-image: url('images/overlay.png');
+  background-image: url('/css/images/overlay.png');
   content: '';
   display: block;
   height: 100%;
@@ -3382,7 +3364,7 @@ body.landing #header {
 #banner {
   background-attachment: fixed;
   background-color: var(--color-bg-secondary);
-  background-image: url('../images/banner.webp');
+  background-image: url('/images/banner.webp');
   background-position: center center;
   background-size: cover;
   box-shadow: 0 0.25em 0.5em 0 var(--color-shadow);
@@ -3601,15 +3583,6 @@ span#logo a {
   }
 }
 
-@keyframes rotatecircle {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(-360deg);
-  }
-}
-
 /* Video Styles*/
 
 #one img {
@@ -3751,29 +3724,6 @@ span#logo a {
 #footer .copyright li a:hover {
   color: var(--color-accent-hover);
 }
-.cdcover {
-  height: 220px;
-  padding: 20px;
-  text-align: center;
-  margin-bottom: 15px;
-  float: left;
-  background-color: var(--color-bg-secondary);
-  margin-left: 15px;
-}
-.cdcover h3 {
-  font-size: 15px;
-  margin-top: -20px !important;
-  font-weight: bold;
-}
-.cdcover:hover {
-  background-color: var(--color-black);
-}
-.callout-top {
-  padding-left: 30px;
-  font-size: 16px;
-  float: right;
-  color: var(--color-text-strong) d7b;
-}
 .callout {
   font-size: 18px;
   text-transform: uppercase;
@@ -3791,21 +3741,6 @@ img.alignleft {
   border: 6px solid var(--color-bg-secondary);
   float: left;
   margin: 10px;
-}
-.nicebox {
-  height: 500px;
-}
-.tags a {
-  margin: 5px;
-  line-height: 2.2;
-  font-size: 12px;
-  padding: 3px 10px;
-  border-radius: 9px;
-  background-color: var(--color-black);
-  border: 1px solid var(--color-black);
-}
-.tags a:hover {
-  border: 1px solid var(--color-text-strong);
 }
 #footer .footer-overview {
   display: flex;
@@ -3893,9 +3828,6 @@ img.alignleft {
   line-height: 25px;
   text-align: center;
   display: block;
-}
-.star-orange {
-  color: orange;
 }
 iframe.fit {
   width: 100%;
@@ -4065,51 +3997,8 @@ body.contact-page #content > .wp-block-image {
 
 /* Contact Button Main Navigation */
 
-#header nav ul li#menu-item-716 {
-  padding: 0px;
-}
-
-#header nav ul li#menu-item-716 a {
-  width: 130px;
-}
-
 #header nav ul li.button.primary a:hover {
   color: white !important;
-}
-
-/* Prices Table*/
-
-.style-prices {
-  background-color: var(--color-bg-tertiary);
-  margin-top: 4em;
-  border-radius: 10px;
-}
-
-.style-prices header ul {
-  margin: 0;
-  text-align: left;
-  list-style: none;
-}
-
-.style-prices header ul li {
-  margin-bottom: 20px;
-}
-
-.style-prices header ul li ul {
-  margin-top: 10px;
-  margin-bottom: 30px;
-  list-style: disc;
-}
-
-.style-prices header ul li ul li {
-  margin-bottom: 0px;
-}
-
-/* Blog Category Images */
-
-.category img.attachment-medium.size-medium.wp-post-image {
-  width: 100%;
-  height: auto;
 }
 
 /* WordPress Block Image Styles */
@@ -5057,10 +4946,6 @@ body.contact-page #content > .wp-block-image {
 .ratings a {
   display: block;
   text-decoration: none;
-}
-
-.ratings a:hover .total-stars {
-  text-decoration: underline;
 }
 
 .ratings__text {

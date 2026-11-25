@@ -9,7 +9,7 @@ import { JSDOM } from 'jsdom';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const scriptSource = fs.readFileSync(
-  path.join(root, 'public/js/multi-step-contact-form.js'),
+  path.join(root, 'src/scripts/multi-step-contact-form.js'),
   'utf8',
 );
 const componentSource = fs.readFileSync(
@@ -27,7 +27,9 @@ const formMarkup = `
       <div id="mscf-progress-fill"></div>
       <span id="mscf-step-label"></span>
       ${[1, 2, 3, 4, 5]
-        .map((step) => `<span class="mscf-step-dot" data-step="${step}"></span>`)
+        .map(
+          (step) => `<span class="mscf-step-dot" data-step="${step}"></span>`,
+        )
         .join('')}
       <form id="mscf-form">
         <div class="mscf-step" data-step="1">
@@ -79,7 +81,8 @@ function setup({ savedState, hostname = 'localhost' } = {}) {
     url: `http://${hostname}/contact/`,
     pretendToBeVisual: true,
   });
-  dom.window.fetch = () => Promise.reject(new Error('fetch mock not configured'));
+  dom.window.fetch = () =>
+    Promise.reject(new Error('fetch mock not configured'));
 
   if (savedState) {
     dom.window.sessionStorage.setItem('mscf_state', JSON.stringify(savedState));
@@ -133,7 +136,9 @@ function advanceTo(step) {
       dispatch(mood, 'change');
     }
     if (current === 4) {
-      const service = dom.window.document.querySelector('input[name="mscf-service"]');
+      const service = dom.window.document.querySelector(
+        'input[name="mscf-service"]',
+      );
       service.checked = true;
       dispatch(service, 'change');
     }
@@ -174,7 +179,9 @@ describe('multi-step contact form validation', () => {
     expect(exports.isStep3Valid()).toBe(true);
 
     expect(exports.isStep4Valid()).toBe(false);
-    const service = dom.window.document.querySelector('input[name="mscf-service"]');
+    const service = dom.window.document.querySelector(
+      'input[name="mscf-service"]',
+    );
     service.checked = true;
     dispatch(service, 'change');
     expect(exports.isStep4Valid()).toBe(true);
@@ -212,20 +219,22 @@ describe('multi-step contact form DOM behavior', () => {
     expect(next.disabled).toBe(false);
     dispatch(next, 'click');
 
-    expect(dom.window.document.querySelector('.mscf-step[data-step="1"]').hidden).toBe(
-      true,
-    );
-    expect(dom.window.document.querySelector('.mscf-step[data-step="2"]').hidden).toBe(
-      false,
-    );
-    expect(dom.window.document.getElementById('mscf-step-label').textContent).toBe(
-      'Step 2 of 5',
-    );
-    expect(dom.window.document.getElementById('mscf-progress-fill').style.width).toBe(
-      '40%',
-    );
     expect(
-      dom.window.document.querySelector('[data-step="1"].mscf-step-dot--complete'),
+      dom.window.document.querySelector('.mscf-step[data-step="1"]').hidden,
+    ).toBe(true);
+    expect(
+      dom.window.document.querySelector('.mscf-step[data-step="2"]').hidden,
+    ).toBe(false);
+    expect(
+      dom.window.document.getElementById('mscf-step-label').textContent,
+    ).toBe('Step 2 of 5');
+    expect(
+      dom.window.document.getElementById('mscf-progress-fill').style.width,
+    ).toBe('40%');
+    expect(
+      dom.window.document.querySelector(
+        '[data-step="1"].mscf-step-dot--complete',
+      ),
     ).not.toBeNull();
   });
 
@@ -234,26 +243,26 @@ describe('multi-step contact form DOM behavior', () => {
     const next = dom.window.document.getElementById('mscf-next-btn');
     next.disabled = false;
     next.click();
-    expect(dom.window.document.getElementById('mscf-error-name').textContent).toContain(
-      'full name',
-    );
-    expect(dom.window.document.getElementById('mscf-error-email').style.display).toBe(
-      'block',
-    );
+    expect(
+      dom.window.document.getElementById('mscf-error-name').textContent,
+    ).toContain('full name');
+    expect(
+      dom.window.document.getElementById('mscf-error-email').style.display,
+    ).toBe('block');
   });
 
   it('supports back navigation, backdrop close, and step-specific action buttons', () => {
     setup();
     fillStep1();
     dom.window.document.getElementById('mscf-next-btn').click();
-    expect(dom.window.document.getElementById('mscf-back-btn').textContent).toContain(
-      'Back',
-    );
+    expect(
+      dom.window.document.getElementById('mscf-back-btn').textContent,
+    ).toContain('Back');
 
     dom.window.document.getElementById('mscf-back-btn').click();
-    expect(dom.window.document.querySelector('.mscf-step[data-step="1"]').hidden).toBe(
-      false,
-    );
+    expect(
+      dom.window.document.querySelector('.mscf-step[data-step="1"]').hidden,
+    ).toBe(false);
 
     dom.window.document.getElementById('mscf-trigger-btn').click();
     const modal = dom.window.document.getElementById('mscf-modal');
@@ -268,7 +277,9 @@ describe('multi-step contact form DOM behavior', () => {
     const mood = dom.window.document.querySelector('input[name="vibes[]"]');
     mood.checked = true;
     dispatch(mood, 'change');
-    expect(JSON.parse(dom.window.sessionStorage.getItem('mscf_state'))).toMatchObject({
+    expect(
+      JSON.parse(dom.window.sessionStorage.getItem('mscf_state')),
+    ).toMatchObject({
       name: 'Alex Example',
       venue: 'The Grand Ballroom',
       moods: ['Chill'],
@@ -287,12 +298,12 @@ describe('multi-step contact form DOM behavior', () => {
       },
     });
     restored.window.document.getElementById('mscf-trigger-btn').click();
-    expect(restored.window.document.getElementById('mscf-input-venue').value).toBe(
-      'Saved Venue',
-    );
-    expect(restored.window.document.getElementById('mscf-input-attendance').value).toBe(
-      '200',
-    );
+    expect(
+      restored.window.document.getElementById('mscf-input-venue').value,
+    ).toBe('Saved Venue');
+    expect(
+      restored.window.document.getElementById('mscf-input-attendance').value,
+    ).toBe('200');
   });
 
   it('updates attendance bubble and selected service-card styling', () => {
@@ -301,22 +312,24 @@ describe('multi-step contact form DOM behavior', () => {
     const slider = dom.window.document.getElementById('mscf-input-attendance');
     slider.value = '250';
     dispatch(slider, 'input');
-    expect(dom.window.document.getElementById('mscf-slider-bubble').textContent).toBe(
-      '250+',
-    );
+    expect(
+      dom.window.document.getElementById('mscf-slider-bubble').textContent,
+    ).toBe('250+');
 
     advanceTo(3);
     const mood = dom.window.document.querySelector('input[name="vibes[]"]');
     mood.checked = true;
     dispatch(mood, 'change');
     dom.window.document.getElementById('mscf-next-btn').click();
-    const service = dom.window.document.querySelector('input[name="mscf-service"]');
+    const service = dom.window.document.querySelector(
+      'input[name="mscf-service"]',
+    );
     service.checked = true;
     dispatch(service, 'change');
     expect(
-      service.closest('.mscf-service-card').classList.contains(
-        'mscf-service-card--selected',
-      ),
+      service
+        .closest('.mscf-service-card')
+        .classList.contains('mscf-service-card--selected'),
     ).toBe(true);
   });
 });
@@ -329,7 +342,10 @@ describe('multi-step contact form submission branches', () => {
     input('mscf-input-message', 'Please share the event details');
     const fetchMock = vi.fn().mockResolvedValue({
       status: 422,
-      text: () => Promise.resolve(JSON.stringify({ success: false, message: 'Try again' })),
+      text: () =>
+        Promise.resolve(
+          JSON.stringify({ success: false, message: 'Try again' }),
+        ),
     });
     dom.window.fetch = fetchMock;
     const submit = dom.window.document.getElementById('mscf-submit-btn');
@@ -341,9 +357,9 @@ describe('multi-step contact form submission branches', () => {
     expect(fetchMock.mock.calls[0][1].method).toBe('POST');
     expect(fetchMock.mock.calls[0][1].body).toContain('name=Alex+Example');
     await vi.waitFor(() =>
-      expect(dom.window.document.getElementById('mscf-error-banner').textContent).toContain(
-        'Try again',
-      ),
+      expect(
+        dom.window.document.getElementById('mscf-error-banner').textContent,
+      ).toContain('Try again'),
     );
   });
 
@@ -355,9 +371,9 @@ describe('multi-step contact form submission branches', () => {
     const submit = dom.window.document.getElementById('mscf-submit-btn');
     submit.disabled = false;
     submit.click();
-    expect(dom.window.document.getElementById('mscf-error-banner').textContent).toContain(
-      'reCAPTCHA failed',
-    );
+    expect(
+      dom.window.document.getElementById('mscf-error-banner').textContent,
+    ).toContain('reCAPTCHA failed');
 
     setup();
     fillStep1();
@@ -368,9 +384,9 @@ describe('multi-step contact form submission branches', () => {
     localSubmit.disabled = false;
     localSubmit.click();
     await vi.waitFor(() =>
-      expect(dom.window.document.getElementById('mscf-error-banner').textContent).toContain(
-        'Connection problem',
-      ),
+      expect(
+        dom.window.document.getElementById('mscf-error-banner').textContent,
+      ).toContain('Connection problem'),
     );
   });
 
@@ -411,6 +427,8 @@ describe('multi-step contact form markup contract', () => {
     expect(componentSource).toContain('name="mscf-service"');
     expect(componentSource).toContain('aria-modal="true"');
     expect(componentSource).toContain('aria-labelledby="mscf-modal-heading"');
-    expect(componentSource).toContain('<script src="/js/multi-step-contact-form.js" defer></script>');
+    expect(componentSource).toContain(
+      "import '../scripts/multi-step-contact-form.js';",
+    );
   });
 });

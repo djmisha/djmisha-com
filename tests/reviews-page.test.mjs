@@ -62,7 +62,9 @@ describe('reviews page testimonials', () => {
     expect($('script[type="application/ld+json"]').text()).toContain(
       String(reviewsData.totalReviews),
     );
-    expect($('script[src="/js/reviews-filter.js"]').length).toBeGreaterThan(0);
+    expect($('script[src="/js/reviews-filter.js"]')).toHaveLength(0);
+    expect($('script[src="/js/reviews-lightbox.js"]')).toHaveLength(0);
+    expect($('script[type="module"]')).not.toHaveLength(0);
   });
 
   it('renders each reviewer photo on its card and lightbox', () => {
@@ -205,9 +207,8 @@ describe('reviews page testimonials', () => {
       }
     });
 
-    expect($('script[src="/js/reviews-lightbox.js"]').length).toBeGreaterThan(
-      0,
-    );
+    expect($('script[src="/js/reviews-lightbox.js"]')).toHaveLength(0);
+    expect($('script[type="module"]')).not.toHaveLength(0);
     expect(css).toContain('overflow-y:auto');
     expect(css).toContain('@media screen and (width>=737px)');
     expect(css).toMatch(

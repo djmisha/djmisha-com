@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { load } from 'cheerio';
+import { getSiteCssAsset } from './helpers/site-css.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
@@ -42,8 +43,8 @@ function webpSize(buffer) {
   throw new Error(`unsupported webp chunk ${fourcc}`);
 }
 
-function cssUrlToPath(cssUrl) {
-  return new URL(cssUrl, 'http://local/css/site.css').pathname;
+function cssUrlToPath(cssUrl, stylesheetHref) {
+  return new URL(cssUrl, `http://local${stylesheetHref}`).pathname;
 }
 
 function htmlFiles(dir) {
@@ -77,15 +78,16 @@ describe('homepage hero banner', () => {
     expect(preload.attr('imagesrcset')).toBeUndefined();
     expect(preload.attr('media')).toBeUndefined();
 
-    const css = fs.readFileSync(path.join(distDir, 'css/site.css'), 'utf8');
-    const bannerUrls = [
-      ...css.matchAll(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g),
-    ]
+    const { css, href } = getSiteCssAsset(
+      path.join(distDir, 'index.html'),
+      distDir,
+    );
+    const bannerUrls = [...css.matchAll(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g)]
       .map((match) => match[2])
       .filter((url) => url.includes('banner'));
 
-    expect(bannerUrls).toEqual(['../images/banner.webp']);
-    expect(cssUrlToPath(bannerUrls[0])).toBe(preload.attr('href'));
+    expect(bannerUrls).toEqual(['/images/banner.webp']);
+    expect(cssUrlToPath(bannerUrls[0], href)).toBe(preload.attr('href'));
     expect(fs.existsSync(path.join(distDir, bannerPath.slice(1)))).toBe(true);
   });
 
@@ -116,7 +118,7 @@ describe('homepage hero banner', () => {
       path.join(distDir, 'design-guide/index.html'),
       'utf8',
     );
-    expect(guide).toContain("/images/banner.webp");
+    expect(guide).toContain('/images/banner.webp');
     expect(guide).not.toContain(retiredBanner);
 
     expect(fs.existsSync(path.join(root, 'public/images/banner.jpg'))).toBe(
@@ -157,8 +159,11 @@ describe('homepage hero banner', () => {
       const text = fs.readFileSync(file, 'utf8');
       if (text.includes(retiredBanner)) hits.push(file);
     }
-    const css = fs.readFileSync(path.join(distDir, 'css/site.css'), 'utf8');
-    if (css.includes(retiredBanner)) hits.push(path.join(distDir, 'css/site.css'));
+    const { css, filePath } = getSiteCssAsset(
+      path.join(distDir, 'index.html'),
+      distDir,
+    );
+    if (css.includes(retiredBanner)) hits.push(filePath);
 
     expect(hits).toEqual([]);
   });

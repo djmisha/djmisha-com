@@ -204,61 +204,16 @@ const footerDescription =
   </ul>
 
   <!-- Scripts -->
-  <script is:inline src="/js/jquery.min.js"></script>
-  <script is:inline src="/js/jquery.dropotron.min.js"></script>
-  <script is:inline src="/js/jquery.scrollex.min.js"></script>
-  <script is:inline src="/js/browser.min.js"></script>
-  <script is:inline src="/js/breakpoints.min.js"></script>
-  <script is:inline src="/js/util.js"></script>
-  <script is:inline src="/js/main.js"></script>
-  <script is:inline src="/js/custom.js"></script>
+  <script is:inline src="/js/jquery.min.js" defer></script>
+  <script is:inline src="/js/jquery.dropotron.min.js" defer></script>
+  <script is:inline src="/js/jquery.scrollex.min.js" defer></script>
+  <script is:inline src="/js/browser.min.js" defer></script>
+  <script is:inline src="/js/breakpoints.min.js" defer></script>
+  <script is:inline src="/js/util.js" defer></script>
 
   <!-- FancyBox -->
-  <script is:inline src="/js/jquery.fancybox.min.js"></script>
-  <script is:inline>
-    jQuery(function () {
-      // Auto-detect image links
-      var images = jQuery('a').filter(function () {
-        return /\.(jpe?g|png|gif|bmp|webp)$/i.test(jQuery(this).attr('href'));
-      });
-      var gallery = jQuery('.ngg-gallery-thumbnail a');
-      images.each(function () {
-        var title = jQuery(this).children('img').attr('title');
-        var caption = jQuery(this).children('img').attr('alt');
-        jQuery(this)
-          .attr('data-fancybox', '')
-          .attr('title', title)
-          .attr('data-caption', caption);
-      });
-      gallery.each(function () {
-        var galleryid =
-          jQuery(this).closest('.ngg-galleryoverview').attr('id') || 'gallery';
-        var title = jQuery(this).children('img').attr('title');
-        var caption = jQuery(this).children('img').attr('alt');
-        jQuery(this)
-          .attr('data-fancybox', galleryid)
-          .attr('title', title)
-          .attr('data-caption', caption);
-      });
-      jQuery('[data-fancybox]').fancybox({
-        loop: false,
-        margin: [44, 0],
-        gutter: 50,
-        keyboard: true,
-        arrows: true,
-        infobar: false,
-        toolbar: true,
-        buttons: ['slideShow', 'fullScreen', 'thumbs', 'close'],
-        idleTime: 4,
-        protect: false,
-        modal: false,
-        animationEffect: 'zoom',
-        animationDuration: 350,
-        transitionEffect: 'fade',
-        transitionDuration: 350,
-      });
-    });
-  </script>
+  <script is:inline src="/js/jquery.fancybox.min.js" defer></script>
+  <script src="../scripts/footer.js"></script>
 </footer>
 
 <style>

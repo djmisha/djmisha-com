@@ -10,7 +10,7 @@ const html = fs.readFileSync(
   'utf8',
 );
 const filterScript = fs.readFileSync(
-  path.join(root, 'public/js/reviews-filter.js'),
+  path.join(root, 'src/scripts/reviews-filter.js'),
   'utf8',
 );
 const reviewsData = JSON.parse(
