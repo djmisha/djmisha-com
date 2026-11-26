@@ -28,10 +28,14 @@ $config = require __DIR__ . '/config.php';
 $RECAPTCHA_SECRET   = $config['recaptcha_api_key'];
 $RECAPTCHA_SITE_KEY = $config['recaptcha_site_key'];
 $RECAPTCHA_PROJECT  = $config['recaptcha_project_id'];
-$OWNER_EMAILS      = ['info@djmisha.com', 'djmisha@mail.grokbot.com'];
-$FROM_EMAIL        = 'no-reply@djmisha.com';
-$FROM_NAME         = 'djmisha.com';
-$EMAIL_SUBJECT     = 'Contact from djmisha.com';
+$OWNER_EMAILS       = ['info@djmisha.com', 'djmisha@mail.grokbot.com'];
+// Owner notifications keep the no-reply envelope. The client confirmation
+// uses $CONFIRM_FROM_* so the two messages are not coupled.
+$FROM_EMAIL         = 'no-reply@djmisha.com';
+$FROM_NAME          = 'djmisha.com';
+$CONFIRM_FROM_EMAIL = 'info@djmisha.com';
+$CONFIRM_FROM_NAME  = 'DJ Misha';
+$EMAIL_SUBJECT      = 'Contact from djmisha.com';
 
 // Optional secondary lead notification for the Verizon SMS/email gateway.
 // Set to true to enable the extra notification without changing the existing flow.
@@ -259,6 +263,7 @@ $verizonHtml     = renderTemplate(__DIR__ . '/templates/mscf-verizon-notificatio
 $ownerSubject = $EMAIL_SUBJECT . ' - ' . $data['name'];
 $ownerHeaders  = "From: " . $FROM_NAME . " <" . $FROM_EMAIL . ">\r\n";
 $ownerHeaders .= "Reply-To: " . $data['email'] . "\r\n";
+$ownerHeaders .= "MIME-Version: 1.0\r\n";
 $ownerHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
 
 $ownerSent = true;
@@ -272,6 +277,7 @@ foreach ($OWNER_EMAILS as $ownerAddr) {
 if ($ENABLE_VERIZON_LEAD_EMAIL) {
     $verizonHeaders  = "From: " . $VERIZON_FROM_NAME . " <" . $VERIZON_FROM_EMAIL . ">\r\n";
     $verizonHeaders .= "Reply-To: " . $VERIZON_FROM_EMAIL . "\r\n";
+    $verizonHeaders .= "MIME-Version: 1.0\r\n";
     $verizonHeaders .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
     // Keep this as a separate, non-blocking notification path to avoid altering
@@ -280,12 +286,16 @@ if ($ENABLE_VERIZON_LEAD_EMAIL) {
 }
 
 // ── Send user confirmation email ────────────────────────────────────────────
-$confirmSubject = $EMAIL_SUBJECT . ' - ' . $data['name'];
-$confirmHeaders  = "From: " . $FROM_NAME . " <" . $FROM_EMAIL . ">\r\n";
-$confirmHeaders .= "Reply-To: info@djmisha.com\r\n";
-$confirmHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
+require_once __DIR__ . '/mscf-mail.php';
 
-$confirmSent = mail($data['email'], $confirmSubject, $confirmationHtml, $confirmHeaders, '-f ' . $FROM_EMAIL);
+$confirmSubject = $EMAIL_SUBJECT . ' - ' . $data['name'];
+$confirmText = mscfBuildConfirmationText($data);
+$confirmationMail = mscfBuildMultipartAlternative($confirmText, $confirmationHtml);
+$confirmHeaders  = "From: " . $CONFIRM_FROM_NAME . " <" . $CONFIRM_FROM_EMAIL . ">\r\n";
+$confirmHeaders .= "Reply-To: " . $CONFIRM_FROM_EMAIL . "\r\n";
+$confirmHeaders .= $confirmationMail['headers'];
+
+$confirmSent = mail($data['email'], $confirmSubject, $confirmationMail['body'], $confirmHeaders, '-f ' . $CONFIRM_FROM_EMAIL);
 
 // ── Check for mail failures ─────────────────────────────────────────────────
 if (!$ownerSent || !$confirmSent) {

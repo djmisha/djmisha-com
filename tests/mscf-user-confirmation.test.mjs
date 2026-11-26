@@ -127,10 +127,14 @@ describe('mscf user confirmation auto-reply', () => {
     ).toBe('Reviews');
 
     const portrait = $('img[src="https://djmisha.com/images/expert.png"]');
-    expect(portrait.attr('width')).toBe('96');
-    expect(portrait.attr('height')).toBe('91');
+    expect(portrait.attr('width')).toBe('125');
+    expect(portrait.attr('height')).toBe('118');
     expect(portrait.attr('alt')).toBe('DJ Misha');
-    expect(portrait.parent('a').attr('href')).toBe('https://djmisha.com');
+    expect(portrait.parent('a')).toHaveLength(0);
+    expect(portrait.parents('a')).toHaveLength(0);
+    expect(portrait.attr('style')).toBe(
+      'display:block;margin:20px 0;border:0;outline:none;',
+    );
 
     for (const removed of [
       'Find Me Online',
@@ -201,7 +205,12 @@ describe('mscf user confirmation auto-reply', () => {
       fs.writeFileSync(mainPath, mainSource);
       try {
         const mainRendered = renderTemplate(mainPath, sample);
-        expect(mainRendered).toContain('Hey, Jane Q Doe!');
+        expect(rendered).toContain(
+          '<img src="https://djmisha.com/images/expert.png" width="125" height="118" alt="DJ Misha" style="display:block;margin:20px 0;border:0;outline:none;" />',
+        );
+        expect(rendered).not.toContain(
+          '<a href="https://djmisha.com" target="_blank" rel="noopener" style="display:block;margin:20px 0;border:0;text-decoration:none;">',
+        );
         expect(sectionFrom(rendered, inquiryMarker)).toBe(
           sectionFrom(mainRendered, inquiryMarker),
         );

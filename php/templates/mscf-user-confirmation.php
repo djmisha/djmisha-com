@@ -41,7 +41,7 @@ if (!empty($data['vibes']) && is_array($data['vibes'])) {
 
 <p style="margin:24px 0 0;">xoxo,<br>DJ Misha and Team</p>
 
-<a href="https://djmisha.com" target="_blank" rel="noopener" style="display:block;margin:20px 0;border:0;text-decoration:none;"><img src="https://djmisha.com/images/expert.png" width="96" height="91" alt="DJ Misha" style="display:block;border:0;outline:none;" /></a>
+<img src="https://djmisha.com/images/expert.png" width="125" height="118" alt="DJ Misha" style="display:block;margin:20px 0;border:0;outline:none;" />
 
 <p style="margin:0;">
 🌐 <a href="https://djmisha.com" target="_blank" rel="noopener" style="color:#e44c65;">djmisha.com</a><br>
