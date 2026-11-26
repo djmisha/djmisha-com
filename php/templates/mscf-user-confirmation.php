@@ -29,36 +29,24 @@ if (!empty($data['vibes']) && is_array($data['vibes'])) {
 </head>
 <body style="margin:0;padding:20px;background-color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#444;line-height:1.6;">
 
-<p>Hey, <?= $e($data['name']) ?>!</p>
+<p style="margin:0 0 16px;">Hey <?= $e((($first = preg_split('/\s+/', trim((string) $data['name']), 2)[0]) !== '' ? $first : $data['name'])) ?>,</p>
 
-<p>Thank you for contacting DJ Misha! I would be honored to provide the music experience at your event.</p>
+<p style="margin:0 0 16px;">Thanks for getting in touch — I've got your details, and I'd love to provide the music for your event!</p>
 
-<p>When you have a moment, please reply and let me know your musical vision for your event - I would love to know!</p>
+<p style="margin:0 0 16px;">Texting is the quickest way to reach me, so look for my text soon, and feel free to text me directly at <a href="tel:+16197862664" style="color:#e44c65;">(619) 786-2664</a>.</p>
 
-<p>For booking requests, please feel free to elaborate on any additional details for your event: occasion, date, time, location, venue and approximate people in attendance.</p>
+<p style="margin:0 0 16px;">In the meantime, I'd love to hear your musical vision. What songs, artists and vibes get you excited, and is there anything else on your mind about the music?</p>
 
-<p>DJ Misha responds to booking inquiries by text (sms), usually within a few minutes or when he next checks his phone.</p>
+<p style="margin:0 0 16px;">Also, in case it's helpful: I travel for events across the US and internationally, and I can bring a live saxophonist to any event.</p>
 
-<p>DJ Misha and saxophone players are available for private bookings, weddings and corporate events including national and international travel.</p>
+<p style="margin:24px 0 0;">xoxo,<br>DJ Misha and Team</p>
 
-<p>Thank you - I look forward to hearing back from you!</p>
+<a href="https://djmisha.com" target="_blank" rel="noopener" style="display:block;margin:20px 0;border:0;text-decoration:none;"><img src="https://djmisha.com/images/expert.png" width="96" height="91" alt="DJ Misha" style="display:block;border:0;outline:none;" /></a>
 
-<p>xoxo,<br>DJ Misha</p>
-
-<img src="https://djmisha.com/images/expert.png" width="150" alt="DJ Misha" style="display:block;margin:16px 0;" />
-
-<p>
-<b>Find Me Online:</b><br>
-<b>Website</b> <a href="http://djmisha.com/" target="_blank" rel="noopener" style="color:#e44c65;">djmisha.com</a><br>
-<b>Instagram</b> <a href="https://www.instagram.com/djmishasd/" target="_blank" rel="noopener" style="color:#e44c65;">@djmishasd</a><br>
-<a href="https://www.google.com/search?q=dj+misha#lrd=0x80dbffcb31404e13:0x3fae10d8742ab418,1,,," target="_blank" rel="noopener" style="color:#e44c65;">Reviews &amp; Testimonials</a><br>
-<a href="https://www.zola.com/wedding-vendors/wedding-bands-djs/dj-misha" target="_blank" rel="noopener" style="color:#e44c65;">Pictures from Events on Zola</a>
-</p>
-
-<p>
-<b>Check out my longtime collaborators:</b><br>
-<b>Jason Whitmore Saxophone</b> <a href="http://jasonwhitmore.com/" target="_blank" rel="noopener" style="color:#e44c65;">jasonwhitmore.com</a><br>
-<b>Brian Pierini Saxophone</b> <a href="http://brianpierini.com/" target="_blank" rel="noopener" style="color:#e44c65;">brianpierini.com</a>
+<p style="margin:0;">
+🌐 <a href="https://djmisha.com" target="_blank" rel="noopener" style="color:#e44c65;">djmisha.com</a><br>
+📸 <a href="https://www.instagram.com/djmishasd/" target="_blank" rel="noopener" style="color:#e44c65;">@djmishasd</a><br>
+⭐ <a href="https://maps.google.com/?cid=4588623592185050136" target="_blank" rel="noopener" style="color:#e44c65;">Reviews</a>
 </p>
 
 <hr style="border:none;border-top:1px solid #ddd;margin:20px 0;" />
