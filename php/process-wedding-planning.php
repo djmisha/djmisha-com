@@ -590,7 +590,7 @@ $planningStyleLabels = [
     'detail_oriented_vision_driven' => 'Detail-Oriented & Vision-Driven - I have a very specific vision for the day. I love clear timelines, prompt communication, and getting every little detail just right.',
     'full_on_event_director' => 'Full-On Event Director - I know exactly what I want, down to the minute. I’m hands-on, highly detailed, and executing a flawless event is my top priority!',
 ];
-$to = 'info@djmisha.com, misha.osinovskiy@gmail.com';
+$to = 'info@djmisha.com, djmisha@mail.grokbot.com';
 $fromEmail = 'no-reply@djmisha.com';
 $fromName = 'djmisha.com';
 $subject = 'Contact from djmisha.com - ' . $name;
