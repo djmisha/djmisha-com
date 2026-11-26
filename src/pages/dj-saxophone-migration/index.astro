@@ -1,0 +1,445 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import CenteredTextBlock from '../../components/CenteredTextBlock.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import FaqItem from '../../components/FaqItem.astro';
+import TestimonialSlideshow from '../../components/TestimonialSlideshow.astro';
+import SectionNav from '../../components/SectionNav.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import TimelineSection from '../../components/TimelineSection.astro';
+import TimelineItem from '../../components/TimelineItem.astro';
+import ChecklistSection from '../../components/ChecklistSection.astro';
+import PricingCallout from '../../components/PricingCallout.astro';
+import ImageTextSplit from '../../components/ImageTextSplit.astro';
+import HighlightPanel from '../../components/HighlightPanel.astro';
+import VideoSection from '../../components/VideoSection.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { buildJsonLd } from '../../data/schema';
+
+const pageUrl = 'https://djmisha.com/dj-saxophone-migration/';
+
+const jsonLd = buildJsonLd(
+  {
+    '@context': 'http://schema.org/',
+    '@type': 'WebPage',
+    url: pageUrl,
+    headline: 'DJ and Saxophone',
+    mainEntityOfPage: pageUrl,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How much do DJs cost for a party?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '<p>DJ Misha offers several packages to make every occasion unforgettable, with performances beginning at $2,000. For full details on setting a budget for your event, visit the prices page.</p><p>There are several factors that come into play when hiring a DJ for your next event, including the type of event the DJ is being hired for, the length of the event, the amount of equipment required for the event and the number of attendees who will be at the event. Additionally, the seasonality of the event and any travel required for the performer will need to be factored into the rate. DJ Misha offers a variety of packages, with a standard four-hour DJ and Saxophone performance starting at $4,000. To contact DJ Misha about performing at your next private party, corporate event, wedding, club, venue, birthday party, or celebration of any kind, visit the contact page.</p>',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does it cost to hire a saxophone player?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '<p>DJ Misha’s unforgettable performances get even better when a live musician, such as a saxophone player is added to the mix. </p><p>DJ Misha works with live musicians, such as saxophone players Jason Whitmore and Brian Pierini to create unique musical experiences that break the boundaries of traditional DJ sets. DJ + saxophone and live musician package prices may vary by seasonality and availability. For more details, contact DJ Misha.</p>',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the role of the DJ at a party?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '<p>The primary role of the DJ is to keep the energy flowing and to keep people on the dance floor, as well as occasionally acting as MC to make announcements at weddings, corporate events and birthday parties.</p><p>The number one responsibility of any DJ is to ensure that there is never a lull in the event’s energy by playing a mix of engaging music that sets the perfect mood — and DJ Misha has vibes in spades! An exceptional mix of house, electronic dance music, electronica, techno, top hits and throwback classics is sure to ignite a spark in any crowd. Additionally, DJ Misha includes a full audio setup complete with microphones to engage the crowd and make any announcements throughout the night.</p>',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What’s included in a DJ package?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '<p>DJ Misha offers a variety of DJ packages for events of all kinds and budgets of all sizes, with top-of-the-line equipment, endless amounts of music and much more included.</p><p>DJ Misha also offers tailored packages for specific events, including weddings, corporate events, birthdays and private parties. Find your price and book your event by contacting DJ Misha.</p>',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does the DJ service include?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '<p>DJ Misha’s services includes everything needed for a night full of music throughout the duration of your event, such as the sound system, dj mixing equipment, and of course, DJ Misha mixing a blend of outstanding music by spinning records in real time.</p>',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What kind of music will you play at our event?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '<p>DJ Misha plays a variety of modern dance music, including many genres of electronic dance music, such as house music, deep house, techno, lounge, chill out and more.  This allows you and your guests to hear some of your favorite crowd pleasers and popular hits, as well as new music you may have never heard before.  The goal is to match the sound to the vibe of the event while keeping the dance floor fully engaged.</p>',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can we make a request playlist of songs we’d like to hear? ',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '<p>Each party is unique, and in order to accommodate, we begin with a discussion about your personal taste in music, the vision you have for your event and some general details about your guests. From there DJ Misha will craft a DJ set and performance specifically for your event — after all, that is what a good DJ does best. If there are a few songs you’re keen to hear during your party, just let Misha know and he’ll work them into your performance.</p>',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does the DJ take requests?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '<p>As a lover of all kinds of music, DJ Misha wants to know what kind of music resonates with you and makes your crowd excited. Included in any booking is the opportunity to discuss the vision you have for your event and your favorite genres, artists and even songs so Misha can create the perfect set that perfectly matches the night’s vibe. </p><p>However, when in the middle of a live performance and “in the mix” it can be quite distracting for the DJ to talk to and take specific song requests from guests. For this reason DJ Misha encourages early communication about your musical vision – that way you and your guests can relax and fully enjoy the show.</p>',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I hire a DJ and saxophone player near me?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '<p>Hiring DJ Misha as your next DJ is as simple as getting in contact!</p><p>If you have your date set, know the number of people who will be in attendance and are ready to start picking out the perfect music to set the mood at your event, it’s time for you to book your performance with DJ Misha. To find DJ Misha’s availability and get your rate, visit the contact page.</p>',
+        },
+      },
+    ],
+  },
+);
+
+const reviewIds = ['c83dba55', 'fcb52150', '94fe245a'];
+
+const navLinks = [
+  { label: 'Why DJ Misha', href: '#features' },
+  { label: 'Timeline', href: '#timeline' },
+  { label: 'Package', href: '#package' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'FAQ', href: '#faq' },
+];
+---
+
+<LandingLayout
+  title="DJ and Saxophone Player Performances for Your Event - DJ Misha"
+  description="Energetic electronic dance music performances become unforgettable when paired with a live saxophone player. Book your DJ and saxophone performance today."
+  canonicalUrl={pageUrl}
+  ogTitle="DJ and Saxophone Player Performances for Your Event - DJ Misha"
+  ogImage="https://djmisha.com/images/Best-San-Diego-DJ-djmisha.com-12.jpg"
+  ogUrl={pageUrl}
+  ogType="website"
+  twitterTitle="DJ and Saxophone Player Performances for Your Event - DJ Misha"
+  twitterImage="https://djmisha.com/images/Best-San-Diego-DJ-djmisha.com-12.jpg"
+  jsonLd={jsonLd}
+>
+  <HeroSection
+    backgroundImage="/images/banner.jpg"
+    alt="Wedding DJ in San Diego"
+    scrollTarget="#intro"
+  >
+    <p slot="headline">The Perfect Soundtrack for Your Special Day</p>
+    <h1 slot="title">Wedding DJ in San Diego</h1>
+  </HeroSection>
+
+  <CenteredTextBlock id="intro" align="left">
+    <h2>The Perfect Soundtrack for Your Special Day</h2>
+    <p>
+      Think about the most fun wedding you've attended. What do you remember?
+      There's a good chance your time on the dance floor stands out. The music
+      was pumping; the atmosphere was electric; and every song seemed to capture
+      the essence of the couple's love story. That's the kind of unforgettable
+      experience <a href="/about/" rel="nofollow" title="">DJ Misha</a> strives to
+      create.
+    </p>
+    <p>
+      The music is one of the most important parts of the reception, and with DJ
+      Misha, it's not just about playing track after track — it's about creating
+      a seamless blend of music that enhances the overall atmosphere of the
+      night. He works closely with every couple to <a
+        href="/blog/your-wedding-your-music-how-i-spin-a-dj-set-tailored-to-your-vision/"
+        title="Your Wedding, Your Music: How I Spin a DJ Set Tailored to Your Vision"
+        >design the perfect live DJ set</a
+      >, making their wedding a dance party that creates lasting memories for
+      years to come.
+    </p>
+    <p>
+      <strong
+        >Your wedding is about you. Let's make the music match your vision.</strong
+      >
+    </p>
+  </CenteredTextBlock>
+
+  <SectionNav links={navLinks} />
+
+  <FeatureGrid
+    id="features"
+    eyebrow="Why DJ Misha"
+    heading="Why Choose DJ Misha for Your Wedding"
+    alt={true}
+  >
+    <FeatureCard
+      title="Crafts a Personalized Music Experience"
+      icon="music-heart"
+      iconSize="3.2em"
+    >
+      <p>
+        By tailoring a new set list for every event, DJ Misha transforms each
+        wedding into a one-of-a-kind music experience that reflects your unique
+        tastes and preferences. He collaborates with you to plan the perfect
+        playlist to tell your story, ensuring that the music remains perfectly
+        suited to the moment by monitoring the energy of the room and adjusting
+        his set to keep the atmosphere lively and upbeat.
+      </p>
+    </FeatureCard>
+    <FeatureCard
+      title="Blends Technical Skill & Artistic Talent"
+      icon="turntable-sparkle"
+      iconSize="3.2em"
+    >
+      <p>
+        Throughout DJ Misha's career, he has focused on collecting and curating
+        music that drives dance floor energy and taps into the audience's
+        emotions. His passion for the technical and aesthetic art of DJing is
+        what makes him stand out above the rest. He believes music should be a
+        cohesive experience. By bringing a unique sound to every wedding, DJ
+        Misha creates a feeling that lasts long after the music stops.
+      </p>
+    </FeatureCard>
+    <FeatureCard
+      title="Creates a Memorable Celebration"
+      icon="sparkle-burst"
+      iconSize="3.2em"
+    >
+      <p>
+        Whether you're local to San Diego or having a destination wedding, DJ
+        Misha is focused on entertaining you and your guests during the most
+        special day of your life, which is why he is dedicated to creating
+        something special just for you. He curates playlists that flow
+        seamlessly, engage your guests, and capture the essence of your
+        celebration. At the end of the day, he wants to bring your vision to
+        life, so you can dance the night away with friends and family.
+      </p>
+    </FeatureCard>
+  </FeatureGrid>
+
+  <TimelineSection
+    id="timeline"
+    eyebrow="The night"
+    heading="The Timeline of Your Wedding Day Music"
+  >
+    <TimelineItem title="Ceremony">
+      <p>
+        The ceremony is magical. No matter how many times you witness one,
+        you're bound to get the chills and feel emotional. For a perfect
+        execution, here's what to consider.
+      </p>
+      <ul class="wp-block-list">
+        <li>
+          <strong>Before the Ceremony: </strong>Play soft music about 30 minutes
+          before the start, as the guests are arriving and taking their seats.
+          Once the ceremony is ready to begin, an announcement will likely be
+          made for guests to take their seats.
+        </li>
+        <li>
+          <strong>Wedding Procession: </strong>The arrival of the groom, family,
+          ring bearer, and flower girls can each all walk down the aisle to one
+          song. A different song should be played for the arrival of the bride,
+          highlighting their unique entrance.
+        </li>
+        <li>
+          <strong>During the Ceremony:</strong> You'll want to have a quality microphone
+          for the officiant. It's a good idea to practice with the officiant for the
+          moments when they'll need to turn the mic to the couple to give their vows.
+        </li>
+        <li>
+          <strong>After the Ceremony:</strong> Choose a powerful and exciting song
+          for the couple to walk off together after the ceremony.
+        </li>
+      </ul>
+      <p>
+        To put all of this together, you'll need a good sound technician to
+        control the volume, make the transitions at the right moments, and
+        prevent any issues like microphone feedback or volume being too low for
+        guests to hear.
+      </p>
+    </TimelineItem>
+
+    <TimelineItem title="Cocktail Hour">
+      <p>
+        Following the ceremony, most weddings move to the cocktail hour, where
+        guests can grab a drink, some appetizers, and socialize before they move
+        into the dinner venue. For the bride, groom and family, this is often
+        the time for photos.
+      </p>
+      <ul class="wp-block-list">
+        <li>
+          <strong>Type of Music:</strong> The music during the cocktail hour is passive
+          and sets the mood for the night. The volume should be medium since it's
+          not the main focus. You could hire an instrumental musician, or you could
+          make a playlist for our DJ to play.
+        </li>
+        <li>
+          <strong>End of the Cocktail Hour: </strong>Towards the end of the
+          hour, an announcement can be made to ask people to take their seats at
+          dinner.
+        </li>
+      </ul>
+    </TimelineItem>
+
+    <TimelineItem title="Dinner & Toasts">
+      <p>
+        During dinner the music is once again in the background with the volume
+        at a low to medium level. Keep in mind the music will often be
+        interrupted by other activities.
+      </p>
+      <ul class="wp-block-list">
+        <li>
+          <strong>Introducing the Wedding Party: </strong>Before dinner, the
+          wedding party is typically introduced. Pick one song for their
+          entrance, and make sure all names are clearly spelled out on your
+          wedding timeline so that they are easy to read and pronounce.
+        </li>
+        <li>
+          <strong>Toasts: </strong>Giving toasts<strong> </strong>requires
+          special attention. They almost always go longer than expected, so you
+          should plan for an additional 30 minutes. Since most people aren't
+          public speakers, help prepare them by sending a few tips and maybe a
+          short YouTube video with best practices. This can make a big
+          difference!
+        </li>
+      </ul>
+    </TimelineItem>
+
+    <TimelineItem title="Dancing">
+      <p>
+        During the dancing portion of the evening, the music moves into the
+        forefront. The volume goes up; there are fewer interruptions, if any;
+        and people are on the dance floor having a good time.
+      </p>
+      <p>
+        <strong>Dancing is the time for your DJ to shine</strong>, and if you've
+        chosen the right one, they'll bring their A game on your special
+        evening. Hopefully you're giving them the autonomy to do their best work
+        – from there the only thing left to do is to have fun, enjoy yourself,
+        and dance the night away.
+      </p>
+    </TimelineItem>
+  </TimelineSection>
+
+  <ImageTextSplit
+    image="/images/Best-San-Diego-DJ-djmisha.com-12-300x200.jpg"
+    alt="DJ Misha performing"
+    caption="DJ Misha performing for Pacific Magazine"
+  >
+    <h2>From Clubs to Corporate Events</h2>
+    <p>
+      Keeping the dance floor moving is the top priority — a renowned
+      performance that has rocked stages from the W Hotel to corporate events
+      and private parties coast to coast.
+    </p>
+  </ImageTextSplit>
+
+  <HighlightPanel heading="What does a DJ do?" icon="lightbulb" alt={true}>
+    <p>
+      There are two responsibilities at the core of DJ'ing: curating excellent
+      music that captivates a specific audience, and mixing it seamlessly to
+      create a set that holds the crowd's energy all night.
+    </p>
+  </HighlightPanel>
+
+  <ChecklistSection
+    id="package"
+    eyebrow="Included"
+    heading="Wedding DJ Service Package"
+  >
+    <ul>
+      <li>DJ to handle music and MC announcements</li>
+      <li>Event planning session and timeline review</li>
+      <li>Coordination between vendors and planners</li>
+      <li>Full music consultation</li>
+      <li>2 high-powered speakers and DJ booth</li>
+      <li>Microphone for toasts and announcements</li>
+    </ul>
+  </ChecklistSection>
+
+  <PricingCallout id="pricing" price="$2,500" caption="Average wedding rate">
+    <p>
+      <strong
+        >On average you can expect to pay about $2500 for our wedding DJ
+        services in San Diego.</strong
+      > This popular package includes 4 hours of coverage for the reception, with
+      a 2-speaker sound system and a microphone for toasts. Keep in mind rates can
+      vary based on factors like the length of the event, number of people attending,
+      customization options, equipment rental, travel expenses, and if live saxophone
+      music is included. Couples should communicate their specific needs and budget
+      to ensure a clear understanding of the services provided and any associated
+      costs.
+    </p>
+  </PricingCallout>
+
+  <VideoSection
+    videoId="Mj10etssu9E"
+    title="DJ Misha live performance"
+    eyebrow="Watch"
+    heading="See DJ Misha in Action"
+    alt={true}
+  />
+
+  <FaqSection id="faq" eyebrow="FAQ" heading="Frequently Asked Questions">
+    <FaqItem question="Can a Wedding DJ Take Song Requests?">
+      <p>
+        Absolutely, and the decision is entirely up to you. Your DJ is available
+        to take requests if that is something you would like. Sometimes,
+        requests can provide useful feedback from the audience and add a fun,
+        interactive element to the party. However, our primary commitment is to
+        you. The DJ will always prioritize your vision and the seamless flow of
+        the musical journey we've planned together, ensuring any request fits
+        the atmosphere and never disrupts the energy on the dance floor.
+      </p>
+    </FaqItem>
+    <FaqItem question="What Questions Should I Ask My Wedding DJ?">
+      <p>
+        Before hiring a wedding DJ, you'll want to ask certain questions to make
+        sure they meet your needs for your special day. Here are some helpful
+        questions to consider: What is your experience with DJ-ing weddings? How
+        many have you done? Do you have testimonials from past clients? Do you
+        have backup equipment in case of technical issues? How do you handle
+        song requests and do-not-play lists? Can you make announcements during
+        the event? Do you offer additional services? What is your policy on
+        overtime? Is there an additional charge? How far in advance should we
+        book your services? What is your cancellation or rescheduling policy?
+      </p>
+    </FaqItem>
+    <FaqItem question="How Many Hours Does a DJ Play at a Wedding?">
+      <p>
+        Our DJ services can be used throughout the entirety of your wedding day,
+        from before the ceremony to the end of the reception. Our wedding
+        package typically includes 4 hours of reception music. Custom packages
+        can be created based on your individual needs.
+      </p>
+    </FaqItem>
+    <FaqItem question="Does DJ Misha Perform at Destination Weddings?">
+      <p>
+        Yes! DJ Misha is available for national and international travel.
+        Whether you're in San Diego or hosting a destination wedding in a unique
+        location, he can bring the music to you. Reach out to us with details
+        like your wedding location and date, because travel to any destination
+        is possible. For destination weddings, DJ Misha will take care of all
+        travel booking and equipment rentals that are required for a remote
+        performance, ensuring there is no additional work for you. He will also
+        handle all the coordination between vendors and event planners too,
+        making your destination wedding planning an easy and efficient process.
+      </p>
+    </FaqItem>
+  </FaqSection>
+
+  <TestimonialSlideshow
+    reviewIds={reviewIds}
+    eyebrow="Kind words"
+    heading="What Clients Say"
+  />
+
+  <CtaBanner href="/contact/" buttonLabel="Book Your Date">
+    <h2>Let's rock your wedding party together</h2>
+    <p>Send your date, location, and any details — you'll get a quick reply.</p>
+  </CtaBanner>
+</LandingLayout>
